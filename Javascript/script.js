@@ -107,6 +107,7 @@ const numberInputs = document.querySelectorAll(".numberInput");
 let toSolveButton = document.querySelector(".toSolve");
 let reRandomiseButton = document.querySelector(".reRandomise");
 let howToSolve = document.querySelector(".howToSolve");
+let howManyGregs = document.querySelector(".howManyGregs");
 
 function getNumbersFromInputs() {
   return Array.from(numberInputs).map(input => Number(input.value));
@@ -154,9 +155,18 @@ const gregory = []
       }
     }
   }
-  console.log(gregory);
-  return gregory[0]
+  let gregyLongLegs = gregory.length
+  let gregyRando = Math.random(gregyLongLegs) * 10
+  let bigGreg = Math.round(gregyRando)
+  
+  if (gregory[0]) {
+    howManyGregs.innerHTML = `${bigGreg}/${gregyLongLegs}`
+    return gregory[bigGreg]
+  }  else{
   return "Couldn't Solve";
+  }
+
+  
 }
 
 toSolveButton.addEventListener("click", () => {
@@ -173,4 +183,5 @@ toSolveButton.addEventListener("click", () => {
 reRandomiseButton.addEventListener("click", resetInputs);
 
 // SOLVE THE TRAIN ENDS ________________________________________________________________________
+
 
