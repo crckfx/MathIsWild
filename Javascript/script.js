@@ -108,14 +108,17 @@ let toSolveButton = document.querySelector(".toSolve");
 let reRandomiseButton = document.querySelector(".reRandomise");
 let howToSolve = document.querySelector(".howToSolve");
 let howManyGregs = document.querySelector(".howManyGregs");
+let leftTrig = document.querySelector("#leftTrig");
+let rightTrig = document.querySelector("#rightTrig");
 
 function getNumbersFromInputs() {
   return Array.from(numberInputs).map(input => Number(input.value));
 }
 
 function resetInputs() {
-  numberInputs.forEach(input => input.value = 0); 
+  numberInputs.forEach(input => input.value = ""); 
   howToSolve.innerHTML = ""; 
+  howManyGregs.innerHTML = ""
   howToSolve.classList.remove("correct");
 }
 
@@ -133,10 +136,12 @@ function permute(array) {
   return permutations;
 }
 
+let bigGreg
+
 function trainToEqualTen(numbers) {
   const operators = ['+', '-', '*', '/'];
   const permutations = permute(numbers);
-const gregory = []
+  const gregory = []
 
   for (const perm of permutations) {
     for (let op1 of operators) {
@@ -155,21 +160,32 @@ const gregory = []
       }
     }
   }
-  let gregyLongLegs = gregory.length
-  let gregyRando = Math.random(gregyLongLegs) * 10
-  let bigGreg = Math.round(gregyRando)
+
   
-  if (gregory[0]) {
-    howManyGregs.innerHTML = `${bigGreg}/${gregyLongLegs}`
-    return gregory[bigGreg]
+  let uniqueGregory = [];
+  let gregyLongLegs = uniqueGregory.length
+  let gregyRando = Math.random() * gregyLongLegs
+  bigGreg = Math.round(gregyRando)
+
+  for (let i = 0; i < gregory.length; i++) {
+    if (!uniqueGregory.includes(gregory[i])) {
+      uniqueGregory.push(gregory[i]);
+    }
+  }
+
+  if (uniqueGregory[0]) {
+
+    console.log(uniqueGregory);
+    
+    howManyGregs.innerHTML = `1/${uniqueGregory.length}`
+
+    return uniqueGregory[0]
   }  else{
   return "Couldn't Solve";
   }
-
-  
 }
 
-toSolveButton.addEventListener("click", () => {
+function toSolveThisProblem() {
   const numbersArray = getNumbersFromInputs(); 
   const outcome = trainToEqualTen(numbersArray);
   howToSolve.innerHTML = outcome;
@@ -178,10 +194,27 @@ toSolveButton.addEventListener("click", () => {
   } else {
     howToSolve.classList.remove("correct");
   }
+}
+  
+toSolveButton.addEventListener("click", () => {
+  toSolveThisProblem()
 });
 
-reRandomiseButton.addEventListener("click", resetInputs);
+reRandomiseButton.addEventListener("click",() =>{
+  resetInputs()
+});
 
+function inputNext(currentInput) {
+  if (currentInput.value.length === 1) {
+    let nextInput = currentInput.nextElementSibling
+    if (nextInput && nextInput.tagName == "INPUT") {
+        nextInput.focus()
+    } else {
+      toSolveThisProblem()
+    }
+    
+  }
+}
 // SOLVE THE TRAIN ENDS ________________________________________________________________________
 
 
