@@ -28,6 +28,10 @@ input:focus{
     outline: none;
 }
 
+.hidden {
+    display: none !important;
+}
+
 /* Calculator Rules _________________________________________________ */
 .calcContainer{
     width: 100%;

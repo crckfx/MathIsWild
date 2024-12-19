@@ -1,7 +1,5 @@
 <!DOCTYPE html>
-
 <html>
-
 <!-- Head Start --------------------------------------------------------------------------------------------------------------------->
 
 <head>
@@ -13,73 +11,69 @@
     <!-- Google Fonts Link Start -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
     <!-- Google Fonts Link End -->
 
     <!-- Font Awesome Link Start -->
     <script src="https://kit.fontawesome.com/159c5c66b8.js" crossorigin="anonymous"></script>
     <!-- Font Awesome Link End -->
 </head>
-
 <!-- Head End --------------------------------------------------------------------------------------------------------------------->
 
 
 <!-- Body Start --------------------------------------------------------------------------------------------------------------------->
 
-<body>  
+<body>
+    <div class="mainContainer">
 
-<div class="mainContainer">
+        <!-- SOLVE THE TRAIN START -->
+        <div class="trainContainer">
+            TRAINNNNN GAME
+            <div class="trainNumbers">
 
-<!-- SOLVE THE TRAIN START -->
-<div class="trainContainer">
-    TRAINNNNN GAME
-    <div class="trainNumbers">
+                <input type="input" class="numberInput" maxlength="1" oninput="inputNext(this)" value="">
+                <input type="input" class="numberInput" maxlength="1" oninput="inputNext(this)" value="">
+                <input type="input" class="numberInput" maxlength="1" oninput="inputNext(this)" value="">
+                <input type="input" class="numberInput" maxlength="1" oninput="inputNext(this)" value="">
 
-        <input type="input" class="numberInput" maxlength="1" oninput="inputNext(this)" value="">
-        <input type="input" class="numberInput" maxlength="1" oninput="inputNext(this)" value="">
-        <input type="input" class="numberInput" maxlength="1" oninput="inputNext(this)" value="">
-        <input type="input" class="numberInput" maxlength="1" oninput="inputNext(this)" value="">
+            </div>
+
+            <div class="buttonsDiv">
+
+                <button class="toSolve">Solve</button>
+                <button class="reRandomise">Reset</button>
+
+            </div>
+            <div class="howToSolve"></div>
+            <div class="solutions">
+                <div class="trigger"><i class="fa-solid fa-caret-left hidden" id="leftTrig"></i></div>
+                <div class="howManyGregs"></div>
+                <div class="trigger"><i class="fa-solid fa-caret-right hidden" id="rightTrig"></i></div>
+            </div>
+
+        </div>
+        <!-- SOLVE THE TRAIN END -->
+
+        <!-- Calculator Starts -->
+        <div class="calcContainer">
+
+            <div class="calculator">
+                <div class="calcScreen"></div>
+                <div class="calcButtons"></div>
+            </div>
+
+            <div class="timesTablesResults"></div>
+
+        </div>
+        <!-- Calculator Ends -->
 
     </div>
-    
-    <div class="buttonsDiv">
 
-        <button class="toSolve">Solve</button>
-        <button class="reRandomise">Reset</button>
+    <!-- Main Container End --------------------------------------------------------------------------------------------------------------------->
 
-    </div>
-    <div class="howToSolve"></div>
-    <div class="solutions">
-        <div class="trigger"><i class="fa-solid fa-caret-left" id="leftTrig" onclick=""></i></div>
-        <div class="howManyGregs"></div>
-        <div class="trigger"><i class="fa-solid fa-caret-right" id="rightTrig" onclick=""></i></div>
-    </div>
-    
-</div>
-<!-- SOLVE THE TRAIN END -->
-
-<!-- Calculator Starts -->
-<div class="calcContainer">
-    
-    <div class="calculator">
-
-        <div class="calcScreen"></div>
-        <div class="calcButtons"></div>
-
-    </div>
-
-    <div class="timesTablesResults">
-
-    </div>
-
-</div>
-<!-- Calculator Ends -->
-
-</div>
-
-<!-- Main Container End --------------------------------------------------------------------------------------------------------------------->
-    
-<!-- Script Source Start --------------------------------------------------------------------------------------------------------------------->
+    <!-- Script Source Start --------------------------------------------------------------------------------------------------------------------->
 
     <!-- GSAP SCRIPT Start -->
     <script src="Javascript/gsap.min.js"></script>
@@ -88,11 +82,8 @@
     <!-- GSAP SCRIPT End -->
 
     <script src="Javascript/script.js"></script>
-
-<!-- Script Source End --------------------------------------------------------------------------------------------------------------------->
-    
+    <!-- Script Source End --------------------------------------------------------------------------------------------------------------------->
 </body>
-
 <!-- Body End --------------------------------------------------------------------------------------------------------------------->
 
 </html>
