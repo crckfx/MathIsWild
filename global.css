@@ -258,3 +258,17 @@ input:focus{
 @media (max-width: 768px) {
 }
 
+
+
+/* **************************************************** */
+/* crckfx styles (not important) */
+/* **************************************************** */
+.linkContainer {
+    background-color: #222222;
+    padding: 2rem;
+    margin: 0;
+}
+.linkContainer a:visited {
+    color: #aa44aa;
+}
+/* **************************************************** */
