@@ -8,13 +8,38 @@ const timesTablesResults = document.querySelector(".timesTablesResults");
 const calcButtons = document.querySelector(".calcButtons");
 const calcScreen = document.querySelector(".calcScreen");
 
+var calculatorAllButtons = []
+
 calculatorNumbers.forEach(num => {
-    calcButtons.innerHTML += `<div class="numButton">${num}</div>`;
+    calculatorAllButtons += num
+    // calcButtons.innerHTML += `<div class="numButton">${num}</div>`;
 });
 
 calculatorOperates.forEach(op => {
-    calcButtons.innerHTML += `<div class="opButton">${op}</div>`;
+    calculatorAllButtons += op
+    // calcButtons.innerHTML += `<div class="opButton">${op}</div>`;
 });
+
+
+    calcButtons.innerHTML += `
+    <div class="numButton">${calculatorAllButtons[0]}</div>
+    <div class="numButton">${calculatorAllButtons[1]}</div>
+    <div class="numButton">${calculatorAllButtons[2]}</div>
+    <div class="opButton">${calculatorAllButtons[13]}</div>
+    <div class="numButton">${calculatorAllButtons[3]}</div>
+    <div class="numButton">${calculatorAllButtons[4]}</div>
+    <div class="numButton">${calculatorAllButtons[5]}</div>
+    <div class="opButton">${calculatorAllButtons[10]}</div>
+    <div class="numButton">${calculatorAllButtons[6]}</div>
+    <div class="numButton">${calculatorAllButtons[7]}</div>
+    <div class="numButton">${calculatorAllButtons[8]}</div>
+    <div class="opButton">${calculatorAllButtons[11]}</div>
+    <div class="opButton">${calculatorAllButtons[12]}</div>
+    <div class="numButton">${calculatorAllButtons[9]}</div>
+    <div class="opButton">${calculatorAllButtons[14]}</div>
+    <div class="opButton">${calculatorAllButtons[15]}</div>
+    `;
+
 
 let currentInput = "";
 let expression = "";
