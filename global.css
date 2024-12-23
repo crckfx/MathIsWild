@@ -264,13 +264,6 @@ input:focus{
 
 
 
-
-
-
-
-
-
-
 .bigManLinks{
     width: 100%;
     height: 100vh;
@@ -281,6 +274,7 @@ input:focus{
     flex-direction: column;
 }
 
+a.bigman,
 a.bigman:visited {
     color: unset;
 }
