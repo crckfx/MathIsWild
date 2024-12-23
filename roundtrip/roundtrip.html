@@ -39,7 +39,9 @@
                 <canvas id="waveCanvas"></canvas>
             </div>
             <div class='rt-box cycle'>
-                <div class="rt-ui cycle"></div>
+                <div class="rt-ui cycle">
+                    <div class="handle"></div>
+                </div>
             </div>
 
         </div>
@@ -96,28 +98,60 @@
             height: 100%;
             border-radius: 50%;
             background-color: #222222;
+            position: relative;
+        }
+
+        .rt-ui.cycle .handle {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: red;
+            position: absolute;
+            top: 0;
+            /* Initial position; updated dynamically via script */
+            left: 0;
+            transform: translate(-50%, -50%);
+            /* Center the circle */
+            background-color: #fff;
         }
     </style>
 
     <script>
         const bigCirc = document.querySelector('.rt-ui.cycle');
+        const sliderHandle = bigCirc.querySelector('.handle');
         bigCirc.addEventListener('click', (event) => {
             const rect = bigCirc.getBoundingClientRect();
 
-            const cx = (rect.right - rect.left) / 2;
-            const cy = (rect.bottom - rect.top) / 2;
+            // Center of the parent circle
+            const cx = rect.width / 2;
+            const cy = rect.height / 2;
 
+            // Click position relative to the parent
             const clickX = event.clientX - rect.left;
             const clickY = event.clientY - rect.top;
 
             const dx = clickX - cx;
             const dy = clickY - cy;
 
-            // Calculate angle and adjust reference to 0 degrees at the top
+            // Calculate angle
             const angleDegrees = (Math.atan2(dy, dx) * (180 / Math.PI) + 90 + 360) % 360;
+            const angleRadians = angleDegrees * (Math.PI / 180);
+
+            // Radius for positioning the handle
+            const radius = rect.width / 2;
+
+            // New position for the handle relative to the parent
+            const handleX = cx + radius * Math.cos(angleRadians - Math.PI / 2);
+            const handleY = cy + radius * Math.sin(angleRadians - Math.PI / 2);
+
+            // Update the handle's position
+            sliderHandle.style.left = `${handleX}px`;
+            sliderHandle.style.top = `${handleY}px`;
 
             console.log(`Angle: ${angleDegrees.toFixed(2)} degrees`);
         });
+
+
 
     </script>
 
