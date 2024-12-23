@@ -281,6 +281,13 @@ input:focus{
     flex-direction: column;
 }
 
+a.bigman:visited {
+    color: unset;
+}
+a.bigman:hover {
+    color: #d0d0d0;
+}
+
 /* **************************************************** */
 /* crckfx styles (not important) */
 /* **************************************************** */
