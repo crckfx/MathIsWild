@@ -14,6 +14,10 @@ h2{
     margin: 0;
 }
 
+ul {
+    list-style-type: none;
+}
+
 a{
     text-decoration: none;
 }
@@ -260,15 +264,46 @@ input:focus{
 
 
 
+
+
+
+
+
+
+
+.bigManLinks{
+    width: 100%;
+    height: 100vh;
+    background-color: #1bad49;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
 /* **************************************************** */
 /* crckfx styles (not important) */
 /* **************************************************** */
 .linkContainer {
-    background-color: #222222;
-    padding: 2rem;
-    margin: 0;
+    display: flex;
 }
+
 .linkContainer a:visited {
     color: #aa44aa;
 }
 /* **************************************************** */
+
+.linkButton{
+    width: 300px;
+    height: 350px;
+    image-rendering: inherit;
+    background-color: #cecece;
+    border-radius: 8px;
+    margin: 10px;
+}
+
+.linkButton:hover{
+    background-color: #8fabb5;
+}
+
+
