@@ -287,16 +287,11 @@ input:focus{
 .linkContainer {
     display: flex;
 }
-
-.linkContainer a:visited {
-    color: #aa44aa;
-}
 /* **************************************************** */
 
 .linkButton{
-    width: 300px;
+    width: auto;
     height: 350px;
-    image-rendering: inherit;
     background-color: #cecece;
     border-radius: 8px;
     margin: 10px;
@@ -304,6 +299,7 @@ input:focus{
 
 .linkButton:hover{
     background-color: #8fabb5;
+    outline: 5px solid red;
 }
 
 
