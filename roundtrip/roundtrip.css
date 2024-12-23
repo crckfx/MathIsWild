@@ -1,0 +1,57 @@
+.mainContainer {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.rt-cont {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    flex: 1;
+    background-color: #444444;
+}
+
+.rt-box {
+    width: 400px;
+    height: 400px;
+}
+
+.rt-box.wave {
+    background-color: #d0d000;
+}
+
+.rt-box.cycle {
+    background-color: rebeccapurple;
+    display: grid;
+    place-items: center;
+}
+
+.rt-ui.cycle {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background-color: #222222;
+    position: relative;
+}
+
+.rt-ui.cycle .handle {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: red;
+    position: absolute;
+    top: 0;
+    /* Initial position; updated dynamically via script */
+    left: 0;
+    transform: translate(-50%, -50%);
+    /* Center the circle */
+    background-color: #fff;
+}
+
+.rt-ui.cycle .handle.touch {
+    background-color: chartreuse;
+}
