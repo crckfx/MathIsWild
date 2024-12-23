@@ -39,7 +39,7 @@ function touchOnBigCircle(event) {
     smallCirc.style.left = `${handleX}px`;
     smallCirc.style.top = `${handleY}px`;
 
-    console.log(`Angle: ${angleDegrees.toFixed(2)} degrees`);    
+    // console.log(`Angle: ${angleDegrees.toFixed(2)} degrees`);    
 }
 
 
@@ -83,7 +83,7 @@ function onHandleMove(event) {
     smallCirc.style.left = `${handleX}px`;
     smallCirc.style.top = `${handleY}px`;
 
-    console.log(`Dragging - Angle: ${angleDegrees.toFixed(2)} degrees`);
+    // console.log(`Dragging - Angle: ${angleDegrees.toFixed(2)} degrees`);
 }
 
 function onHandleRelease() {
