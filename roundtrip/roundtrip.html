@@ -19,6 +19,9 @@
     <!-- Font Awesome Link Start -->
     <script src="https://kit.fontawesome.com/159c5c66b8.js" crossorigin="anonymous"></script>
     <!-- Font Awesome Link End -->
+
+    <link rel="stylesheet" href="roundtrip.css">
+
 </head>
 <!-- Head End --------------------------------------------------------------------------------------------------------------------->
 
@@ -60,100 +63,8 @@
     <script src="../script.js"></script>
     <!-- <script src="train.js"></script> -->
     <!-- Script Source End --------------------------------------------------------------------------------------------------------------------->
-    <style>
-        .mainContainer {
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-        }
 
-        .rt-cont {
-            display: flex;
-            flex-direction: row;
-            flex-wrap: wrap;
-            justify-content: space-around;
-            align-items: center;
-            width: 100%;
-            flex: 1;
-            background-color: #444444;
-        }
-
-        .rt-box {
-            width: 400px;
-            height: 400px;
-        }
-
-        .rt-box.wave {
-            background-color: #d0d000;
-        }
-
-        .rt-box.cycle {
-            background-color: rebeccapurple;
-            display: grid;
-            place-items: center;
-        }
-
-        .rt-ui.cycle {
-            width: 100%;
-            height: 100%;
-            border-radius: 50%;
-            background-color: #222222;
-            position: relative;
-        }
-
-        .rt-ui.cycle .handle {
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            background-color: red;
-            position: absolute;
-            top: 0;
-            /* Initial position; updated dynamically via script */
-            left: 0;
-            transform: translate(-50%, -50%);
-            /* Center the circle */
-            background-color: #fff;
-        }
-    </style>
-
-    <script>
-        const bigCirc = document.querySelector('.rt-ui.cycle');
-        const sliderHandle = bigCirc.querySelector('.handle');
-        bigCirc.addEventListener('click', (event) => {
-            const rect = bigCirc.getBoundingClientRect();
-
-            // Center of the parent circle
-            const cx = rect.width / 2;
-            const cy = rect.height / 2;
-
-            // Click position relative to the parent
-            const clickX = event.clientX - rect.left;
-            const clickY = event.clientY - rect.top;
-
-            const dx = clickX - cx;
-            const dy = clickY - cy;
-
-            // Calculate angle
-            const angleDegrees = (Math.atan2(dy, dx) * (180 / Math.PI) + 90 + 360) % 360;
-            const angleRadians = angleDegrees * (Math.PI / 180);
-
-            // Radius for positioning the handle
-            const radius = rect.width / 2;
-
-            // New position for the handle relative to the parent
-            const handleX = cx + radius * Math.cos(angleRadians - Math.PI / 2);
-            const handleY = cy + radius * Math.sin(angleRadians - Math.PI / 2);
-
-            // Update the handle's position
-            sliderHandle.style.left = `${handleX}px`;
-            sliderHandle.style.top = `${handleY}px`;
-
-            console.log(`Angle: ${angleDegrees.toFixed(2)} degrees`);
-        });
-
-
-
-    </script>
+    <script src="roundtrip.js"></script>
 
 </body>
 <!-- Body End --------------------------------------------------------------------------------------------------------------------->
