@@ -1,45 +1,40 @@
 
 // Calculator Starts ________________________________________________________________________
-
-const calculatorNumbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0];
 const N = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
-const calculatorOperates = ["+", "-", "*", "/", "=", "C"];
+
+// store references to some existing divs
 const timesTablesResults = document.querySelector(".timesTablesResults");
 const calcButtons = document.querySelector(".calcButtons");
 const calcScreen = document.querySelector(".calcScreen");
 
-var calculatorAllButtons = []
+// function that takes 1. a type, & 2. a value, and then returns a button of type with text value
+function constructButton(buttonType, buttonValue) {
+    const newButton = document.createElement('div');
+    newButton.classList.add(buttonType);
+    newButton.innerHTML = buttonValue;
+    return newButton;
+}
 
-calculatorNumbers.forEach(num => {
-    calculatorAllButtons += num
-    // calcButtons.innerHTML += `<div class="numButton">${num}</div>`;
-});
+// construct the buttons in order
+calcButtons.appendChild(constructButton('numButton', 1));
+calcButtons.appendChild(constructButton('numButton', 2));
+calcButtons.appendChild(constructButton('numButton', 3));
+calcButtons.appendChild(constructButton('opButton', '/'));
 
-calculatorOperates.forEach(op => {
-    calculatorAllButtons += op
-    // calcButtons.innerHTML += `<div class="opButton">${op}</div>`;
-});
+calcButtons.appendChild(constructButton('numButton', 4));
+calcButtons.appendChild(constructButton('numButton', 5));
+calcButtons.appendChild(constructButton('numButton', 6));
+calcButtons.appendChild(constructButton('opButton', '+'));
 
+calcButtons.appendChild(constructButton('numButton', 7));
+calcButtons.appendChild(constructButton('numButton', 8));
+calcButtons.appendChild(constructButton('numButton', 9));
+calcButtons.appendChild(constructButton('opButton', '-'));
 
-    calcButtons.innerHTML += `
-    <div class="numButton">${calculatorAllButtons[0]}</div>
-    <div class="numButton">${calculatorAllButtons[1]}</div>
-    <div class="numButton">${calculatorAllButtons[2]}</div>
-    <div class="opButton">${calculatorAllButtons[13]}</div>
-    <div class="numButton">${calculatorAllButtons[3]}</div>
-    <div class="numButton">${calculatorAllButtons[4]}</div>
-    <div class="numButton">${calculatorAllButtons[5]}</div>
-    <div class="opButton">${calculatorAllButtons[10]}</div>
-    <div class="numButton">${calculatorAllButtons[6]}</div>
-    <div class="numButton">${calculatorAllButtons[7]}</div>
-    <div class="numButton">${calculatorAllButtons[8]}</div>
-    <div class="opButton">${calculatorAllButtons[11]}</div>
-    <div class="opButton">${calculatorAllButtons[12]}</div>
-    <div class="numButton">${calculatorAllButtons[9]}</div>
-    <div class="opButton">${calculatorAllButtons[14]}</div>
-    <div class="opButton">${calculatorAllButtons[15]}</div>
-    `;
-
+calcButtons.appendChild(constructButton('opButton', '*'));
+calcButtons.appendChild(constructButton('numButton', 0));
+calcButtons.appendChild(constructButton('opButton' , '='));
+calcButtons.appendChild(constructButton('opButton' , 'C'));
 
 let currentInput = "";
 let expression = "";
