@@ -4,33 +4,22 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>crckfx Calculator</title>
+    <title>Calculator 2</title>
     <link href="../../global.css" rel="stylesheet">
     <link rel="stylesheet" href="calc2.css" />
     <meta name="viewport" content="width=device-width" initial-scale="1.0">
-
-    <!-- Google Fonts Link Start -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap">
-    <!-- Google Fonts Link End -->
-
-    <!-- Font Awesome Link Start -->
-    <script src="https://kit.fontawesome.com/159c5c66b8.js" crossorigin="anonymous"></script>
-    <!-- Font Awesome Link End -->
 </head>
 
 <body>
 
     <header>
-        <!-- link back to project root -->
-        <a href="../../index.html" class="goBackPlease"><i class="fa-solid fa-arrow-left fa-xl"></i></a>
-        <!-- title heading and link to the github project -->
-        <h1>(based on
-            <a class="bigman" href="https://github.com/crckfx/web-calculator">
-                crckfx/web-calculator</a>)
-        </h1>
+        <div class="svgButton">
+            <!-- link back to project root -->
+            <a class="svgLink" href="../../index.html"></a>
+        </div>
+
+        <h1 style="color:#d0d0d0">crckfx calculator</h1>
+
     </header>
 
     <div class='calc_container'>
@@ -41,8 +30,8 @@
             <div class="buttons">
 
                 <button class="control button" value="CLEAR" id="clear">AC</button>
-                <button class="control button" value="ARROWLEFT" id="arrowLeft">←</button>
-                <button class="control button" value="ARROWRIGHT" id="arrowRight">→</button>
+                <button class="control button" value="ARROWLEFT" id="arrowLeft"></button>
+                <button class="control button" value="ARROWRIGHT" id="arrowRight"></button>
                 <button class="operand button" value="^" id="exponent">^</button>
 
                 <button class="control button" value="ANS" id="ANS">ANS</button>
@@ -72,6 +61,16 @@
 
             </div>
         </div>
+    </div>
+
+    <!-- title heading and link to the github project -->
+    <div style="margin: 48px; color: #d0d0d0">
+
+        <p>(based on
+            <a class="bigman" 
+            href="https://github.com/crckfx/web-calculator">
+            crckfx/web-calculator</a>)
+        </p>
     </div>
 
 

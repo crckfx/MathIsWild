@@ -56,7 +56,7 @@
 
 
 #calculator .control.button {
-    background-color: #a44;
+    background-color: #44a;
 }
 
 #calculator .button.digit,
@@ -65,7 +65,7 @@
 }
 
 #calculator .button.control:active {
-    background-color: #722;
+    background-color: #227;
 }
 
 #calculator .button.digit:active,
@@ -123,30 +123,9 @@
 }
 
 /* ----------------------------- */
-
-.goBackPlease {
-    color: #222;
-    width: 25px;
-    height: 25px;
-    background-color: orangered;
-    border-radius: 50%;
-    padding: 12px;
-    display: grid;
-    place-items: center;
-    position: fixed;
-    left: 50px;
-    top: 25px;
-}
-
-.goBackPlease:hover {
-    background-color: rgb(225, 60, 0);
-    padding: 13px;
-}
-
 header {
     width: 100%;
     height: 100px;
-    /* background: linear-gradient(#e66465, #9198e5); */
     background: linear-gradient(0deg, #5d4595 0%, #4d0bb8 100%);
 
     display: flex;
@@ -159,6 +138,60 @@ header {
 
 body {
     background-color: #222;
+}
+
+.svgButton {
+    height: 48px;
+    width: 48px;
+    background-color: orangered;
+    border-radius: 50%;
+    /* padding: 12px; */
+    box-sizing: border-box;
+    position: fixed;
+    left: 50px;
+    top: 25px;
 
 }
 
+.svgButton:hover{
+    background-color: rgb(225, 60, 0);
+    /* padding: 13px; */
+    height: 50px;
+    width: 50px;
+    
+    left: 49px;
+    top: 24px;
+
+}
+
+.svgLink::before {
+    display: inline-flex;
+    content: '';
+
+    /* Using the background-image and
+       its related properties to add
+       the SVG content */
+    background-image: url('svg/leftArrow.svg');
+    background-size: 30px 30px;
+    height: 100%;
+    width: 100%;    
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+#calculator #arrowLeft {
+    background-image: url('svg/leftArrow-white.svg');
+    background-size: 60% 60%;
+    height: 100%;
+    width: 100%;    
+    background-position: center;
+    background-repeat: no-repeat;    
+}
+#calculator #arrowRight {
+    background-image: url('svg/rightArrow-white.svg');
+    background-size: 60% 60%;
+    height: 100%;
+    width: 100%;    
+    background-position: center;
+    background-repeat: no-repeat;    
+}

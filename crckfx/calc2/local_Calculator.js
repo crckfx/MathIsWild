@@ -215,10 +215,6 @@ class Calculator {
     // ******************************************************************
     // *** CURSOR **********************
 
-    moveCursorToStart() {
-        this.inputArea.setSelectionRange(0, 0);
-        this.inputArea.focus();     // focus the display
-    }
     moveCursorToEnd() {
         const endPos = this.inputArea.value.length;
         this.inputArea.setSelectionRange(endPos, endPos);
