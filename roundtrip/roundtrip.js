@@ -1,5 +1,8 @@
 const bigCirc = document.querySelector('.rt-ui.cycle');
 const smallCirc = bigCirc.querySelector('.handle');
+const canvas = document.getElementById('waveCanvas');
+
+const ctx = canvas.getContext("2d");
 
 smallCirc.addEventListener('pointerdown', (event) => {
     clickOnSmallCirc(event);
@@ -64,6 +67,9 @@ function updateBothPositions(dx, dy, radius) {
 
     test_wave_guy.innerHTML = angleDegrees;
     waveTester2.value = angleDegrees;
+
+    drawSineWaveWithPhase(angleDegrees);
+
 }
 
 function updatePositionsFromAngle(angleDegrees, radius) {
@@ -78,9 +84,38 @@ function updatePositionsFromAngle(angleDegrees, radius) {
 
     test_wave_guy.innerHTML = angleDegrees;
     waveTester2.value = angleDegrees;
+    drawSineWaveWithPhase(angleDegrees);
+
 }
 
 // init
 // place the smallCirc at middle top of circle
 updateBothPositions(0, -1, bigCirc.getBoundingClientRect().width/2); 
 
+
+function drawSineWaveWithPhase(angleDegrees) {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    // Convert angle to radians for trigonometric functions
+    const phase = (angleDegrees * Math.PI) / 180;
+
+    // Define the sine wave properties
+    const amplitude = 0.9 * canvas.height / 2; // Amplitude is half the canvas height
+    const frequency = 1 / canvas.width; // One full cycle across the canvas width
+    const centerY = canvas.height / 2;  // Vertical center of the canvas
+
+    // Begin drawing the sine wave
+    ctx.beginPath();
+    for (let x = 0; x < canvas.width; x++) {
+        // note: need to use negative amplitude due to canvas' upside-down Y axis
+        const y = centerY - amplitude * Math.sin(2 * Math.PI * frequency * x + phase);
+        if (x === 0) {
+            ctx.moveTo(x, y);
+        } else {
+            ctx.lineTo(x, y);
+        }
+    }
+    ctx.strokeStyle = 'black'; // Set line color
+    ctx.lineWidth = 2;         // Set line width
+    ctx.stroke();
+}

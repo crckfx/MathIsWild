@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Calculator 2</title>
+    <link href="../../global.css" rel="stylesheet">
+    <link rel="stylesheet" href="calc2.css" />
+    <link rel="stylesheet" href="../style/misc.css" />
+    <meta name="viewport" content="width=device-width" initial-scale="1.0">
+</head>
+
+<body>
+    <!-- header: a section at the top of the page -->
+    <header>
+        <!-- link back to project root -->
+        <a class="goBackBtn" href="../../index.html"></a>
+        <!-- heading/title -->
+        <h1 style="color:#d0d0d0">crckfx calculator</h1>
+    </header>
+
+    <!-- start calculator -->
+    <div class='calc_container'>
+        <div id="calculator">
+            <input id="inputArea" type="text" inputmode="none">
+            <div id="outputArea"></div>
+
+            <div class="buttons">
+
+                <button class="control button" value="CLEAR" id="clear">AC</button>
+                <button class="control button" value="ARROWLEFT" id="arrowLeft"></button>
+                <button class="control button" value="ARROWRIGHT" id="arrowRight"></button>
+                <button class="operand button" value="^" id="exponent">^</button>
+
+                <button class="control button" value="ANS" id="ANS">ANS</button>
+                <button class="operand button" value=( id="leftBracket">(</button>
+                <button class="operand button" value=) id="rightBracket">)</button>
+                <button class="operand button" value=/ id="divide">÷</button>
+
+                <button class="digit button" value="1">1</button>
+                <button class="digit button" value="2">2</button>
+                <button class="digit button" value="3">3</button>
+                <button class="operand button" value="*" id="multiply">*</button>
+
+                <button class="digit button" value="4">4</button>
+                <button class="digit button" value="5">5</button>
+                <button class="digit button" value="6">6</button>
+                <button class="operand button" value="-" id="subtract">-</button>
+
+                <button class="digit button" value="7">7</button>
+                <button class="digit button" value="8">8</button>
+                <button class="digit button" value="9">9</button>
+                <button class="operand button" value="+" id="add">+</button>
+
+                <button class="digit button" value="0">0</button>
+                <button class="operand button" value="." id="decimal">.</button>
+                <button class="control button" value="DELETE" id="delete">⌫</button>
+                <button class="control button" value="=" id="enter">=</button>
+
+            </div>
+        </div>
+    </div>
+    <!-- end calculator -->
+
+    <!-- title heading and link to the github project -->
+    <div style="margin: 24px; color: #d0d0d0">
+
+        <p>(based on
+            <a class="bigman" href="https://github.com/crckfx/web-calculator">
+                crckfx/web-calculator</a>)
+        </p>
+    </div>
+
+
+    <!-- include the javascript documents locally -->
+    <script src="local_Parser.js"></script>
+    <script src="local_Calculator.js"></script>
+    <script src="local_main.js"></script>
+    <script src="local_tester.js"></script>
+
+</body>
+</html>
