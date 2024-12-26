@@ -55,3 +55,16 @@
 .rt-ui.cycle .handle.touch {
     background-color: chartreuse;
 }
+
+.startButton{
+    width: auto;
+    height: auto;
+    background-color: #d0d000;
+    padding: 8px;
+    border-radius: 15px;
+    cursor: pointer;
+}
+
+.startButton:hover{
+    background-color: #747424;
+}

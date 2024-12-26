@@ -1,5 +1,6 @@
 const bigCirc = document.querySelector('.rt-ui.cycle');
 const smallCirc = bigCirc.querySelector('.handle');
+const mainContainer = bigCirc.querySelector('.mainContainer');
 const canvas = document.getElementById('waveCanvas');
 
 const ctx = canvas.getContext("2d");
@@ -54,7 +55,6 @@ function onHandleRelease() {
 
 // factor it up
 function updateBothPositions(dx, dy, radius) {
-    console.log(radius);
     // Calculate angle
     const angleDegrees = (Math.atan2(dy, dx) * (180 / Math.PI) + 90 + 360) % 360;
     const angleRadians = angleDegrees * (Math.PI / 180);
@@ -67,6 +67,8 @@ function updateBothPositions(dx, dy, radius) {
 
     test_wave_guy.innerHTML = angleDegrees;
     waveTester2.value = angleDegrees;
+    theResult = angleDegrees
+
 
     drawSineWaveWithPhase(angleDegrees);
 
@@ -119,3 +121,50 @@ function drawSineWaveWithPhase(angleDegrees) {
     ctx.lineWidth = 2;         // Set line width
     ctx.stroke();
 }
+
+
+
+
+
+
+
+// Add a button element to start/stop the sine wave animation
+const button = document.createElement('button');
+button.innerText = "Start Animation";
+document.body.appendChild(button);
+
+let animationInterval = null;
+let currentAngle = 0;
+
+// Helper function to calculate the current angle from handle's position
+function getCurrentAngleFromHandle() {
+    const rect = bigCirc.getBoundingClientRect();
+    const radius = rect.width / 2;
+
+    const handleRect = smallCirc.getBoundingClientRect();
+    const handleCenterX = handleRect.left + handleRect.width / 2;
+    const handleCenterY = handleRect.top + handleRect.height / 2;
+
+    const dx = handleCenterX - (rect.left + radius);
+    const dy = handleCenterY - (rect.top + radius);
+
+    return (Math.atan2(dy, dx) * (180 / Math.PI) + 90 + 360) % 360;
+}
+
+// Event listener for the button
+button.addEventListener('click', () => {
+    if (animationInterval) {
+        clearInterval(animationInterval);
+        animationInterval = null;
+        button.innerText = "Start Animation";
+    } else {
+        // Calculate the starting angle from the current handle position
+        currentAngle = getCurrentAngleFromHandle();
+        button.innerText = "Stop Animation";
+        animationInterval = setInterval(() => {
+            currentAngle = (currentAngle + 1) % 360; // Increment angle and wrap around 360
+            updatePositionsFromAngle(currentAngle, bigCirc.getBoundingClientRect().width / 2);
+        }, 16); // Approx. 60 FPS
+    }
+});
+
