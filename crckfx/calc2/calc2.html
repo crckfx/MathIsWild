@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html>
 
 <head>
@@ -11,17 +10,15 @@
 </head>
 
 <body>
-
+    <!-- header: a section at the top of the page -->
     <header>
-        <div class="svgButton">
-            <!-- link back to project root -->
-            <a class="svgLink" href="../../index.html"></a>
-        </div>
-
+        <!-- link back to project root -->
+        <div class="svgButton"><a class="svgLink" href="../../index.html"></a></div>
+        <!-- heading/title -->
         <h1 style="color:#d0d0d0">crckfx calculator</h1>
-
     </header>
 
+    <!-- start calculator -->
     <div class='calc_container'>
         <div id="calculator">
             <input id="inputArea" type="text" inputmode="none">
@@ -62,31 +59,23 @@
             </div>
         </div>
     </div>
+    <!-- end calculator -->
 
     <!-- title heading and link to the github project -->
-    <div style="margin: 48px; color: #d0d0d0">
+    <div style="margin: 24px; color: #d0d0d0">
 
         <p>(based on
-            <a class="bigman" 
-            href="https://github.com/crckfx/web-calculator">
-            crckfx/web-calculator</a>)
+            <a class="bigman" href="https://github.com/crckfx/web-calculator">
+                crckfx/web-calculator</a>)
         </p>
     </div>
 
 
-    <!-- GSAP SCRIPT Start -->
-    <script src="../../_external/gsap.min.js"></script>
-    <script src="../../_external/MotionPathPlugin.min.js"></script>
-    <script src="../../_external/ScrollTrigger.min.js"></script>
-    <!-- GSAP SCRIPT End -->
-    <script src="../../script.js"></script>
-
     <!-- include the javascript documents locally -->
-    <script src="./local_Parser.js"></script>
-    <script src="./local_Calculator.js"></script>
-    <script src="./local_main.js"></script>
-    <script src="./local_tester.js"></script>
+    <script src="local_Parser.js"></script>
+    <script src="local_Calculator.js"></script>
+    <script src="local_main.js"></script>
+    <script src="local_tester.js"></script>
 
 </body>
-
 </html>
