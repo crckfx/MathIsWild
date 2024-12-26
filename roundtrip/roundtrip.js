@@ -1,5 +1,6 @@
 const bigCirc = document.querySelector('.rt-ui.cycle');
 const smallCirc = bigCirc.querySelector('.handle');
+const waveCanv = document.getElementById('waveCanvas');
 
 smallCirc.addEventListener('pointerdown', (event) => {
     clickOnSmallCirc(event);
