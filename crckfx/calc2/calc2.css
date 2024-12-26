@@ -152,3 +152,9 @@ body {
     background-position: center;
     background-repeat: no-repeat;    
 }
+#calculator #backspace {
+    background-image: url('../style/svg/backspace-white.svg');
+    background-size: 60% 60%;
+    background-position: center;
+    background-repeat: no-repeat;    
+}
