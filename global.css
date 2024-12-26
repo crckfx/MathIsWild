@@ -345,4 +345,26 @@ a.bigman:hover {
     outline: 5px solid red;
 }
 
+.colourPaletteLight{
+    width: 100vw;
+    height: 50px;
+    background-color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.colourPaletteDark{
+    width: 100vw;
+    height: 50px;
+    background-color: #000000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.colour{
+    width: auto;
+    height: 50px;
+}
 
