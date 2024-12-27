@@ -186,7 +186,7 @@ class Calculator {
             const value = button.value;
             // bind custom string codes for UI buttons
             switch (value) {
-                case 'bs':
+                case 'BACKSPACE':
                     button.addEventListener('click', () => this.doBackspace());
                     break;
                 case 'CLEAR':
