@@ -92,14 +92,19 @@ a.bigman:hover {
 
 /* **************************************************** */
 /* crckfx styles (not important) */
-/* **************************************************** */
+/* ---------------------------------------------------- */
 .linkContainer {
     display: flex;
     justify-content: center;
-    padding-top: 20px;
+    flex-wrap: wrap;
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
-/* **************************************************** */
+/* ---------------------------------------------------- */
 
+/* **************************************************** */
+/* homepage links */
+/* ---------------------------------------------------- */
 .linkButton{
     width: 225px;
     height: 250px;
@@ -130,37 +135,4 @@ a.bigman:hover {
     background-color: #8fabb5;
     outline: 5px solid red;
 }
-
-
-
-/* Lachies Style Shinan */
-.styleContainer{
-    width: 100%;
-    height: 500px;
-    background-color: #F9FAFB;
-}
-
-.styleHeader{
-    width: 100%;
-    height: 80px;
-    background-color: #0077CC;
-}
-
-.buttonFloat{
-    width: 100px;
-    height: 50px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: darkorange;
-    position: fixed;
-    bottom: 80px;
-    left: 50%;
-    border-radius: 10px;
-    cursor: pointer;
-}
-
-.buttonFloat:hover{
-    background-color: rgb(215, 118, 0);
-}
-
+/* ---------------------------------------------------- */
