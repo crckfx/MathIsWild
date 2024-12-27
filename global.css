@@ -2,15 +2,16 @@
 
 @charset 'utf-8';
 
-body{
+body {
     margin: 0%;
     font-family: "Kanit", sans-serif;
     font-weight: 400;
     font-style: normal;
     color: var(--color-text);
+    background-color: var(--color-background);
 }
 
-h2{
+h2 {
     font-weight: 400;
     margin: 0;
 }
@@ -19,17 +20,17 @@ ul {
     list-style-type: none;
 }
 
-a{
+a {
     color: unset;
     text-decoration: none;
 }
 
-button{
+button {
     outline: none;
     border: none;
 }
 
-input:focus{
+input:focus {
     border: none;
     outline: none;
 }
@@ -48,7 +49,7 @@ header h1 {
 
 /* Back Button Rules _________________________________________________ */
 
-.backPleaseSir{
+.backPleaseSir {
     width: 25px;
     height: 25px;
     background-color: orangered;
@@ -62,7 +63,7 @@ header h1 {
     top: 140px;
 }
 
-.backPleaseSir:hover{
+.backPleaseSir:hover {
     background-color: rgb(225, 60, 0);
     padding: 13px;
 }
@@ -75,15 +76,14 @@ header h1 {
 
 /* Responsive Design_________________________________________________ */
 
-@media (max-width: 768px) {
-}
+@media (max-width: 768px) {}
 
 
 
-.bigManLinks{
+.bigManLinks {
     width: 100%;
     height: 100px;
-    background-color: #ffffff;
+    background-color: var(--color-background);
     display: flex;
     /* justify-content: center; */
     align-items: center;
@@ -94,6 +94,7 @@ a.bigman,
 a.bigman:visited {
     color: unset;
 }
+
 a.bigman:hover {
     color: #d0d0d0;
 }
@@ -108,12 +109,13 @@ a.bigman:hover {
     margin-top: 20px;
     margin-bottom: 20px;
 }
+
 /* ---------------------------------------------------- */
 
 /* **************************************************** */
 /* homepage links */
 /* ---------------------------------------------------- */
-.linkButton{
+.linkButton {
     width: 225px;
     height: 250px;
     background-color: #cecece;
@@ -125,13 +127,13 @@ a.bigman:hover {
     flex-direction: column;
 }
 
-.linkButtonImage{
+.linkButtonImage {
     width: 225px;
     height: 210px;
     background-color: #ad331b;
 }
 
-.linkButtonHeading{
+.linkButtonHeading {
     width: 225px;
     height: 40px;
     display: flex;
@@ -139,8 +141,23 @@ a.bigman:hover {
     align-items: center;
 }
 
-.linkButton:hover{
+.linkButton:hover {
     background-color: #8fabb5;
     outline: 5px solid red;
 }
+
+/* ---------------------------------------------------- */
+
+
+/* **************************************************** */
+/* crckfx styles (moderately important) */
+/* ---------------------------------------------------- */
+.pageControls {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: var(--color-background);
+    width: 100%;
+}
+
 /* ---------------------------------------------------- */

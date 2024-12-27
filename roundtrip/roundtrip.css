@@ -1,9 +1,4 @@
-.mainContainer {
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    background-color: #444444;
-}
+
 
 .rt-cont {
     display: flex;
@@ -13,6 +8,7 @@
     align-items: center;
     width: 100%;
     flex: 1;
+    background-color: var(--color-background);
 }
 
 .rt-box {
