@@ -1,0 +1,95 @@
+/* Calculator Rules _________________________________________________ */
+.calcContainer{
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+}
+
+.calculator{
+    width: 300px;
+    height: 500px;
+    background-color: #383838;
+    border-radius: 15px;
+    border: 5px solid #838383;
+}
+
+.calcScreen{
+    width: 80%;
+    height: 80px;
+    font-size: 26px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #222222;
+    color: #ffffff;
+    margin-top: 20px;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    outline: 1px solid rgb(0, 0, 0);
+}
+
+.calcButtons{
+    width: 80%;
+    height: 350px;
+    /* background-color: #f1f1f1; */
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.opButton{
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #cecece;
+    padding: 10px;
+    border-radius: 25px;
+    margin: 5px;
+}
+
+.opButton:hover{
+    background-color: #96d5e3;
+    outline: 1px solid red;
+}
+
+.opButton:last-child{
+    background-color: #ebbc11;
+}
+
+.numButton{
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #cecece;
+    padding: 10px;
+    border-radius: 25px;
+    margin: 5px;
+}
+
+.numButton:hover{
+    background-color: #96d5e3;
+    outline: 1px solid red;
+}
+
+/* Times Numbers Design_________________________________________________ */
+
+.timesTablesResults{
+    width: 300px;
+    height: 500px;
+}
+
+.timesTable{
+    width: 70%;
+    padding-left: 20%;
+    height: 30px;
+    margin: 10px;
+}

@@ -37,7 +37,7 @@ header {
     display: inline-flex;
     content: '';
     /* Using the background-image and its related properties to add the SVG content */
-    background-image: url('svg/leftArrow-white.svg');
+    background-image: url('svg/leftArrow.svg');
     background-size: 30px 30px;
     height: 100%;
     width: 100%;    
