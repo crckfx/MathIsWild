@@ -1,0 +1,28 @@
+/* Lachies Style Shinan */
+.styleContainer{
+    width: 100%;
+    height: 500px;
+    background-color: #F9FAFB;
+}
+.dark .styleContainer{
+    background-color: #1A202C;
+}
+
+.styleHeader{
+    width: 100%;
+    min-height: 100px;
+    text-align: center;
+    background-color: #0077CC;
+}
+
+.dark .styleHeader{
+    background-color: #4299E1;
+}
+
+body {
+    color: #1A202C;
+}
+
+body.dark {
+    color: #F9FAFB;
+}

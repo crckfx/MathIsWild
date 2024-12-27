@@ -129,9 +129,9 @@ function drawSineWaveWithPhase(angleDegrees) {
 
 
 // Add a button element to start/stop the sine wave animation
-const button = document.createElement('button');
+const button = document.getElementById('animateButton');
 button.innerText = "Start Animation";
-document.body.appendChild(button);
+// document.body.appendChild(button);
 
 let animationInterval = null;
 let currentAngle = 0;

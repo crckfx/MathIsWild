@@ -2,6 +2,7 @@
     height: 100vh;
     display: flex;
     flex-direction: column;
+    background-color: #444444;
 }
 
 .rt-cont {
@@ -12,7 +13,6 @@
     align-items: center;
     width: 100%;
     flex: 1;
-    background-color: #444444;
 }
 
 .rt-box {
@@ -56,15 +56,16 @@
     background-color: chartreuse;
 }
 
-.startButton{
+#animateButton{
     width: auto;
     height: auto;
     background-color: #d0d000;
     padding: 8px;
     border-radius: 15px;
     cursor: pointer;
+    margin: 20px;
 }
 
-.startButton:hover{
+#animateButton:hover{
     background-color: #747424;
 }
