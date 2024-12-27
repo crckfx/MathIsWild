@@ -1,18 +1,10 @@
+function toggleTheme() {
+    document.documentElement.classList.toggle('theme-dark');
+    swapMode.textContent = (document.documentElement.classList.contains('theme-dark')) ? 'Light Mode' : 'Dark Mode';
+}
+
+// note: shortened this script down to essentially 'get the button and assign toggleTheme() to it'
+// // if we were to instead define toggleTheme() in main 'script.js', we could probably set the button onclick in HTML
 const swapMode = document.querySelector(".buttonFloat")
-const styleContainer = document.querySelector(".styleContainer")
-const styleHeader = document.querySelector(".styleHeader")
 
-const body = document.querySelector('body');
-
-
-swapMode.addEventListener("click", () => {
-    if (!body.classList.contains('dark')) {
-        // enter dark mode
-        body.classList.add('dark');
-        swapMode.textContent = "Light Mode"        
-    } else {
-        // enter light mode
-        body.classList.remove('dark');
-        swapMode.textContent = "Dark Mode"
-    }
-})
+swapMode.addEventListener("click", () => toggleTheme());
