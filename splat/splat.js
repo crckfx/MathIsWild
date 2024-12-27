@@ -7,18 +7,12 @@ const body = document.querySelector('body');
 
 swapMode.addEventListener("click", () => {
     if (!body.classList.contains('dark')) {
-        body.classList.add('dark');
         // enter dark mode
+        body.classList.add('dark');
         swapMode.textContent = "Light Mode"        
-        // styleHeader.classList.add('dark');
-        // styleContainer.classList.add('dark');
-        
     } else {
-        body.classList.remove('dark');
         // enter light mode
+        body.classList.remove('dark');
         swapMode.textContent = "Dark Mode"
-        // styleHeader.classList.remove('dark');
-        // styleContainer.classList.remove('dark');
-
     }
 })

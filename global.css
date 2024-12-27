@@ -37,6 +37,9 @@ input:focus{
     display: none !important;
 }
 
+header h1 {
+    margin: 0;
+}
 
 /* Back Button Rules _________________________________________________ */
 
