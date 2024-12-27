@@ -19,20 +19,10 @@
     background-color: #4299E1;
 }
 
-.buttonFloat{
-    width: 100px;
-    height: 50px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: darkorange;
-    position: fixed;
-    bottom: 80px;
-    left: 50%;
-    border-radius: 10px;
-    cursor: pointer;
+body {
+    color: #1A202C;
 }
 
-.buttonFloat:hover{
-    background-color: rgb(215, 118, 0);
+body.dark {
+    color: #F9FAFB;
 }
