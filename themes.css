@@ -1,12 +1,16 @@
 :root {
     --color-background: #F9FAFB;
     --color-bg-2: #96d5e3;
+    --color-bg-3: #cecece;
 
     --color-text: #1A202C;
     --color-header: #0077CC;
     
-    
-    /* --color-primary: #8ab4f8;
+
+    --color-gareth: darkorange;
+    --color-garethson: rgb(215, 118, 0);
+    /* 
+    --color-primary: #8ab4f8;
     --color-secondary: #34a853;
     --color-accent: #fbbc05;
     */
@@ -15,10 +19,13 @@
 .theme-dark {
     --color-background: #1A202C;
     --color-bg-2: #2e565f;
+    --color-bg-3: #3a3a3a;
 
     --color-text: #F9FAFB;
     --color-header: #4299E1;
 
+    --color-gareth: rgb(138, 101, 5);
+    --color-garethson: rgb(107, 80, 5);
     /* --color-primary: #8ab4f8;
     --color-secondary: #57bb8a;
     --color-accent: #fbbc05; 
@@ -36,10 +43,9 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: darkorange;
-    /* position: fixed; */
-    /* bottom: 80px; */
-    /* left: 50%; */
+    /* background-color: darkorange; */
+    background-color: var(--color-gareth);
+
     margin: 20px;
     border-radius: 10px;
     cursor: pointer;
@@ -54,7 +60,8 @@
 }
 
 .switchThemeBtn:hover {
-    background-color: rgb(215, 118, 0);
+    /* background-color: rgb(215, 118, 0); */
+    background-color: var(--color-garethson);
 }
 /* ---------------------------------------------------- */
 
@@ -68,7 +75,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: darkorange;
+    /* background-color: darkorange; */
+    background-color: var(--color-gareth);
     position: fixed;
     bottom: 80px;
     left: 50%;
@@ -85,5 +93,6 @@
 }
 
 .buttonFloat:hover {
-    background-color: rgb(215, 118, 0);
+    /* background-color: rgb(215, 118, 0); */
+    background-color: var(--color-garethson);
 }
