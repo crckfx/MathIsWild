@@ -1,0 +1,54 @@
+:root {
+    --color-background: #F9FAFB;
+    --color-bg-2: #96d5e3;
+
+    --color-text: #1A202C;
+    --color-header: #0077CC;
+    
+    
+    /* --color-primary: #8ab4f8;
+    --color-secondary: #34a853;
+    --color-accent: #fbbc05;
+    */
+}
+
+.theme-dark {
+    --color-background: #1A202C;
+    --color-bg-2: #2e565f;
+
+    --color-text: #F9FAFB;
+    --color-header: #4299E1;
+
+    /* --color-primary: #8ab4f8;
+    --color-secondary: #57bb8a;
+    --color-accent: #fbbc05; 
+    */
+}
+
+
+
+.switchThemeBtn {
+    width: 100px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: darkorange;
+    position: fixed;
+    bottom: 80px;
+    left: 50%;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.switchThemeBtn::after {
+    content: 'Dark Mode';
+}
+
+.theme-dark .switchThemeBtn::after {
+    content: 'Light Mode';
+}
+
+.switchThemeBtn:hover {
+    background-color: rgb(215, 118, 0);
+}
