@@ -6,6 +6,8 @@
     <meta charset="UTF-8">
     <title>TRAIN GAME</title>
     <link href="../global.css" rel="stylesheet">
+    <link href="../themes.css" rel="stylesheet">
+    <link href="../crckfx/style/misc.css" rel="stylesheet">
     <link href="train.css" rel="stylesheet">
     <meta name="viewport" content="width=device-width" initial-scale="1.0">
 
@@ -28,45 +30,55 @@
 
 <body>
     <div class="mainContainer">
-        
+
         <!-- link back to project root -->
-        <div class="bigManLinks">
+        <!-- <div class="bigManLinks">
             <div class="linkContainer">
                 <a href="../index.html">
                     <div class="backPleaseSir"><i class="fa-solid fa-arrow-left fa-xl" style="color: #ffffff;"></i></div>
                 </a>
             </div>
+        </div> -->
+
+        <header class="styleHeader">
+            <h1>TRAINNNNN GAME</h1>
+        </header>
+
+        <div class="wrapper">
+            <a class="goBackBtn" href="../index.html"></a>
+
+            <!-- SOLVE THE TRAIN START -->
+            <div class="trainContainer">
+                <!-- TRAINNNNN GAME -->
+                <div class="trainNumbers">
+
+                    <input type="input" class="numberInput" maxlength="1" oninput="inputNext(this)" value="">
+                    <input type="input" class="numberInput" maxlength="1" oninput="inputNext(this)" value="">
+                    <input type="input" class="numberInput" maxlength="1" oninput="inputNext(this)" value="">
+                    <input type="input" class="numberInput" maxlength="1" oninput="inputNext(this)" value="">
+
+                </div>
+
+                <div class="buttonsDiv">
+
+                    <button class="toSolve">Solve</button>
+                    <button class="reRandomise">Reset</button>
+
+                </div>
+                <div class="howToSolve"></div>
+                <div class="solutions">
+                    <div class="trigger"><i class="fa-solid fa-caret-left hidden" id="leftTrig"></i></div>
+                    <div class="howManyGregs"></div>
+                    <div class="trigger"><i class="fa-solid fa-caret-right hidden" id="rightTrig"></i></div>
+                </div>
+
+            </div>
+            <!-- SOLVE THE TRAIN END -->
+            <div class="switchThemeBtn" onclick="toggleTheme()"></div>
+
         </div>
-
-        <!-- SOLVE THE TRAIN START -->
-        <div class="trainContainer">
-            TRAINNNNN GAME
-            <div class="trainNumbers">
-
-                <input type="input" class="numberInput" maxlength="1" oninput="inputNext(this)" value="">
-                <input type="input" class="numberInput" maxlength="1" oninput="inputNext(this)" value="">
-                <input type="input" class="numberInput" maxlength="1" oninput="inputNext(this)" value="">
-                <input type="input" class="numberInput" maxlength="1" oninput="inputNext(this)" value="">
-
-            </div>
-
-            <div class="buttonsDiv">
-
-                <button class="toSolve">Solve</button>
-                <button class="reRandomise">Reset</button>
-
-            </div>
-            <div class="howToSolve"></div>
-            <div class="solutions">
-                <div class="trigger"><i class="fa-solid fa-caret-left hidden" id="leftTrig"></i></div>
-                <div class="howManyGregs"></div>
-                <div class="trigger"><i class="fa-solid fa-caret-right hidden" id="rightTrig"></i></div>
-            </div>
-
-        </div>
-        <!-- SOLVE THE TRAIN END -->
-
     </div>
+
 
     <!-- Main Container End --------------------------------------------------------------------------------------------------------------------->
 
