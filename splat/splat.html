@@ -31,34 +31,31 @@
             <header class="styleHeader">
                 <h1>Splat It Up</h1>
             </header>
-            <div class="pageControls">
+            <div class="pageControls" style="background-color: var(--color-bg-2);">
                 <a class="goBackBtn" href="../index.html"></a>
                 <span class="switchThemeBtn" onclick="toggleTheme()"></span>
 
             </div>
             <div class="splat-main">
-                <h2>This is a heading</h2>
-                <p>This is a paragraph</p>
+                <div style="background-color: var(--color-bg-2); padding: 20px;">
+                    <h2>This is a heading</h2>
+                    <p>This is a paragraph.</p>
+                    <p>This is another paragraph, containing some text and a list.
+                    <ul>This is an unordered list. At time of writing, (by default):
+                        <li>our text colour should be <code>var(--color-text)</code></li>
+                        <li>our background should be <code>var(--color-background)</code></li>
+                        <li>our switch theme button background is <code>var(--color-gareth)</code> and <code>var(--color-garethson)</code> on hover</li>
+                    </ul>
+                    </p>
+
+                </div>
 
                 <div class="palette-area">
-                    <div class="palette light">
-                        <span class="colour background"></span>
-                        <span class="colour bg-2"></span>
-                        <span class="colour bg-3"></span>
-                        <span class="colour gareth"></span>
-                        <span class="colour garethson"></span>
-                        <span class="colour harold"></span>
-                        <span class="colour haroldson"></span>
-                    </div>
-                    <div class="palette dark">
-                        <span class="colour background"></span>
-                        <span class="colour bg-2"></span>
-                        <span class="colour bg-3"></span>
-                        <span class="colour gareth"></span>
-                        <span class="colour garethson"></span>
-                        <span class="colour harold"></span>
-                        <span class="colour haroldson"></span>
-                    </div>
+                    <h2>Colour Palettes</h2>
+                    <div>Palette 1</div>
+                    <div class="palette light"></div>
+                    <div>Palette 2</div>
+                    <div class="palette dark"></div>
                 </div>
             </div>
         </div>

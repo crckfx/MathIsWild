@@ -21,13 +21,14 @@ function getColorsForTheme(theme) {
 
 // function to find the children (colours) and set their backgrounds inline
 function displayPalette(p, c) {
-    p.querySelector('.background').style.backgroundColor = c.colorBackground;
-    p.querySelector('.bg-2').style.backgroundColor = c.colorBg2;
-    p.querySelector('.bg-3').style.backgroundColor = c.colorBg3;
-    p.querySelector('.gareth').style.backgroundColor = c.gareth;
-    p.querySelector('.garethson').style.backgroundColor = c.garethson;
-    p.querySelector('.harold').style.backgroundColor = c.harold;
-    p.querySelector('.haroldson').style.backgroundColor = c.haroldson;
+    for (const key in c) {
+        console.log(`key: ${key}, value: ${c[key]}`);
+        const colourSpan = document.createElement('span');
+        colourSpan.classList.add('colour');
+        colourSpan.classList.add(`${key}`);
+        colourSpan.style.backgroundColor = c[key];
+        p.appendChild(colourSpan);
+    }
 }
 
 // get the "palette" containers
