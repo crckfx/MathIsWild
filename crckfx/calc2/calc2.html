@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <title>Calculator 2</title>
     <link href="../../global.css" rel="stylesheet">
+    <link href="../../themes.css" rel="stylesheet">
     <link rel="stylesheet" href="calc2.css" />
     <link rel="stylesheet" href="../style/misc.css" />
     <meta name="viewport" content="width=device-width" initial-scale="1.0">
@@ -12,13 +13,15 @@
 
 <body>
     <!-- header: a section at the top of the page -->
-    <header class="crckfx">
-        <!-- link back to project root -->
+    <header>
         <!-- heading/title -->
-        <h1 style="color:#d0d0d0">crckfx calculator</h1>
+        <h1>crckfx calculator</h1>
     </header>
-    <a class="goBackBtn" href="../../index.html"></a>
-
+    <div class="pageControls">
+        <!-- link back to project root -->
+        <a class="goBackBtn" href="../../index.html"></a>
+        <span class="switchThemeBtn" onclick="toggleTheme()"></span>
+    </div>
     <!-- start calculator -->
     <div class='calc_container'>
         <div id="calculator">
@@ -77,6 +80,8 @@
     <script src="local_Calculator.js"></script>
     <script src="local_main.js"></script>
     <script src="local_tester.js"></script>
+
+    <script src="../../script.js"></script>
 
 </body>
 </html>
