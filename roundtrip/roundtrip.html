@@ -6,6 +6,7 @@
     <meta charset="UTF-8">
     <title>RoundTrip</title>
     <link href="../global.css" rel="stylesheet">
+    <link href="../themes.css" rel="stylesheet">
     <meta name="viewport" content="width=device-width" initial-scale="1.0">
     <!-- Google Fonts Link Start -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -31,21 +32,23 @@
 <body>
     <div class="mainContainer">
         <!-- header: a section at the top of the page -->
-        <header class="crckfx">
-            <!-- link back to project root -->
+        <header>
             <!-- heading/title -->
-            <h1 style="color:#d0d0d0">roundtrip</h1>
+            <h1>roundtrip</h1>
         </header>
-        <a class="goBackBtn" href="../index.html"></a>
+        <div class="pageControls">
+            <!-- link back to project root -->
+            <a class="goBackBtn" href="../index.html"></a>
+            <span class="switchThemeBtn" onclick="toggleTheme()"></span>
+        </div>
 
         <div>
-
             <button id="animateButton">placeholder text</button>
         </div>
-        
+
         <!-------- roundtrip start --------->
         <div class="rt-cont">
-            
+
             <div class='rt-box wave'>
                 <div class="rt-ui wave test">number?</div>
                 <input type="range" id="wavetester2" min="0" max="360"></input>
@@ -65,10 +68,14 @@
     <!-- Script Source Start --------------------------------------------------------------------------------------------------------------------->
 
     <!-- BIGMAN SCRIPTS -->
+    <!-- GSAP SCRIPT Start -->
 
+    <!-- GSAP SCRIPT End -->
+    <script src="../script.js"></script>
     <script src="roundtrip.js"></script>
     <!-- /BIGMAN SCRIPTS -->
     <!-- Script Source End --------------------------------------------------------------------------------------------------------------------->
 
 </body>
+
 </html>
