@@ -9,6 +9,10 @@
 
     --color-gareth: darkorange;
     --color-garethson: rgb(215, 118, 0);
+
+    --color-harold: #cecece;
+    --color-haroldson: #8fabb5;
+
     /* 
     --color-primary: #8ab4f8;
     --color-secondary: #34a853;
@@ -26,6 +30,10 @@
 
     --color-gareth: rgb(138, 101, 5);
     --color-garethson: rgb(107, 80, 5);
+
+    --color-harold: #3a3a3a;
+    --color-haroldson: #29383d;
+
     /* --color-primary: #8ab4f8;
     --color-secondary: #57bb8a;
     --color-accent: #fbbc05; 

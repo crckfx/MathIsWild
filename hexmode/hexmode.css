@@ -1,0 +1,169 @@
+.artDiv {
+    width: 100%;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.gradientDiv {
+    width: 500px;
+    height: auto;
+    display: flex;
+}
+
+.refreshColour{
+    background-color: transparent;
+    outline: none;
+    border: none;
+    color: #ffaffa;
+}
+
+#colour{
+    width: 100%;
+    height: 40px;
+}
+
+#colourLight{
+    width: 100%;
+    height: 40px;
+}
+
+#colourDark{
+    width: 100%;
+    height: 40px;
+}
+
+#colourOpp{
+    width: 100%;
+    height: 40px;
+}
+
+#colourOppDark{
+    width: 100%;
+    height: 40px;
+}
+
+.artDivTwo {
+    width: 100%;
+    height: 150px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hexiCont  {
+    width: auto;
+    height: auto;
+    background-color: var(--color-background);
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.createColour{
+    width: 180px;
+    height: 80px;
+}
+
+.nextDiv{
+    width: 100%;
+    height: 220px;
+    background-color: var(--color-background);
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.underLine {
+    width: 900px;
+    height: 1px;
+    background-color: var(--color-background);
+    margin-bottom: 10px;
+}
+
+.hexCont {
+    width: auto;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hexOriginal{
+    width: 180px;
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: end;
+    font-size: 12px;
+    padding-bottom: 8px;
+}
+
+.hexOriginalLow{
+    width: 180px;
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: end;
+    font-size: 12px;
+    padding-bottom: 8px;
+}
+
+.hexOriginalHigh{
+    width: 180px;
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: end;
+    font-size: 12px;
+    padding-bottom: 8px;
+}
+
+.hexOriginalComp{
+    width: 180px;
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: end;
+    font-size: 12px;
+    padding-bottom: 8px;
+}
+
+.hexOriginalCompLow{
+    width: 180px;
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: end;
+    font-size: 12px;
+    padding-bottom: 8px;
+}
+
+.grid {
+    width: 100%;
+    height: 300px;
+    background-color: var(--color-background);
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+}
+
+.sect1 {
+    background-color: #ffb700;
+}
+
+.sect2 {
+    background-color: #ff6600;
+}
+
+.sect3 {
+    background-color: #ff1e00;
+}
+
+.sect4 {
+    background-color: #ff1e00;
+}

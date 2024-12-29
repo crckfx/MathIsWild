@@ -16,10 +16,6 @@ h2 {
     margin: 0;
 }
 
-ul {
-    list-style-type: none;
-}
-
 a {
     color: unset;
     text-decoration: none;
@@ -41,14 +37,19 @@ input:focus {
 
 header {
     background-color: var(--color-header);
+    width: 100%;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 header h1 {
     margin: 0;
 }
 
-/* Back Button Rules _________________________________________________ */
 
+/* Back Button Rules _________________________________________________ */
 .backPleaseSir {
     width: 25px;
     height: 25px;
@@ -62,11 +63,12 @@ header h1 {
     left: 50px;
     top: 140px;
 }
-
 .backPleaseSir:hover {
     background-color: rgb(225, 60, 0);
     padding: 13px;
 }
+
+
 
 /* Calculator Rules are now in 'calculator.css' */
 
@@ -80,15 +82,7 @@ header h1 {
 
 
 
-.bigManLinks {
-    width: 100%;
-    height: 100px;
-    background-color: var(--color-background);
-    display: flex;
-    /* justify-content: center; */
-    align-items: center;
-    flex-direction: column;
-}
+
 
 a.bigman,
 a.bigman:visited {
@@ -123,5 +117,31 @@ a.bigman:hover {
     background-color: var(--color-background);
     width: 100%;
 }
-
+/* the 'go back' button in pageControls */
+.goBackBtn {
+    height: 48px;
+    width: 48px;
+    background-color: orangered;
+    border-radius: 50%;
+    box-sizing: border-box;
+    display: inline-block;
+    margin: 25px;
+}
+.goBackBtn:hover{
+    background-color: rgb(225, 60, 0);
+    height: 50px;
+    width: 50px;
+    margin: 24px;
+}
+.goBackBtn::before {
+    display: inline-flex;
+    content: '';
+    /* Using the background-image and its related properties to add the SVG content */
+    background-image: url('Images/svg/leftArrow.svg');
+    background-size: 30px 30px;
+    height: 100%;
+    width: 100%;    
+    background-position: center;
+    background-repeat: no-repeat;
+}
 /* ---------------------------------------------------- */
