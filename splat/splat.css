@@ -13,21 +13,23 @@
     /* min-height: 100px; */
     display: flex;
     flex-wrap: wrap;    
+    justify-content: center;
 }
 
 .palette .card {
     display: flex;
     flex-direction: column;
-    width: 140px;
+    width: 110px;
     height: 100px;
     align-items: center;
 }
 .palette .colour {
-    width: 100px;
+    width: 90px;
     height: 60px;
     display: inline-flex;
     justify-content: center;
     align-items: center;
+    transition: 0.2s ease;
 }
 
 .palette .card {
@@ -35,13 +37,19 @@
 }
 
 .palette .card:hover .colour{
-    width: 120px;
+    width: 100px;
     height: 70px;
+}
+
+.palette .card .display.name {
+    font-size: 12px;
 }
 
 .palette .colour .display.hex {
     display: none;
 }
+
+
 .palette .colour:hover .display.hex {
     display: inline-flex;
     color: white;
