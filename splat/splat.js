@@ -1,15 +1,26 @@
+const cssVarNames = [
+    "--color-background",
+    "--color-text",
+    "--color-header",
+    "--color-bg-2",
+    "--color-bg-3",
+    "--color-gareth",
+    "--color-garethson",
+    "--color-harold",
+    "--color-haroldson",
+];
 // Function to extract all CSS variables for a given theme
 function getCSSVariablesForTheme(theme) {
     // Temporarily apply the theme class
     document.documentElement.className = theme;
     const variables = {};
-    const styles = getComputedStyle(document.documentElement);
     // Iterate over all properties and extract custom properties (variables)
-    for (let i = 0; i < styles.length; i++) {
-        const property = styles[i];
+    for (let i = 0; i < cssVarNames.length; i++) {
+        const property = cssVarNames[i];
+        const value = window.getComputedStyle(document.body).getPropertyValue(property);
         if (property.startsWith('--color-')) {
-            // console.log(`adding ${property}`);
-            variables[property] = styles.getPropertyValue(property).trim();
+            console.log(`adding ${property}`);
+            variables[property] = value;
         }
     }
     // Reset the theme class to avoid side effects
@@ -19,8 +30,7 @@ function getCSSVariablesForTheme(theme) {
 
 // function to find the children (colours) and set their backgrounds inline
 function displayPalette(p, c) {
-    const keys = Object.keys(c).reverse(); // Reverse the key order    
-    for (const key of keys) {
+    for (const key in c) {
         console.log(`key: ${key}, value: ${c[key]}`);
 
         const card = document.createElement('div');
