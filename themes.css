@@ -7,8 +7,8 @@
 .theme-light {
     --color-background: #F9FAFB;
     --color-text: #1A202C;
-    --color-text-2: hsl(191, 58%, 16%);
-    --color-text-3: #3b3b3b;
+    --color-text-2: #113840;
+    --color-text-3: #3f3f3f;
     --color-header: #4da6ee;
 
     --color-bg-2: #96d5e3;
@@ -22,6 +22,8 @@
 
     --color-alert-1a: #ff4500;
     --color-alert-1b: #e13c00;
+
+    --color-base-chroma: #fff;
 }
 
 /* dark theme */
@@ -45,6 +47,9 @@
     /* --color-greg: #2e3f13; */
     --color-alert-1a: #992900;
     --color-alert-1b: #661b00;
+
+    --color-base-chroma: #000;
+
 }
 
 

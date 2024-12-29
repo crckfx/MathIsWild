@@ -1,9 +1,11 @@
 const cssVarNames = [
     "--color-background",
-    "--color-text",
-    "--color-header",
     "--color-bg-2",
     "--color-bg-3",
+    "--color-text",
+    "--color-text-2",
+    "--color-text-3",
+    "--color-header",
     "--color-gareth",
     "--color-garethson",
     "--color-harold",
