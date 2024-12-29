@@ -19,7 +19,7 @@ function getCSSVariablesForTheme(theme) {
         const property = cssVarNames[i];
         const value = window.getComputedStyle(document.body).getPropertyValue(property);
         if (property.startsWith('--color-')) {
-            console.log(`adding ${property}`);
+            // console.log(`adding ${property}`);
             variables[property] = value;
         }
     }
@@ -31,7 +31,7 @@ function getCSSVariablesForTheme(theme) {
 // function to find the children (colours) and set their backgrounds inline
 function displayPalette(p, c) {
     for (const key in c) {
-        console.log(`key: ${key}, value: ${c[key]}`);
+        // console.log(`key: ${key}, value: ${c[key]}`);
 
         const card = document.createElement('div');
         card.classList.add('card');
