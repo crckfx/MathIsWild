@@ -1,22 +1,20 @@
-// Function to get CSS variable value from a specific theme
-function getColorsForTheme(theme) {
+// Function to extract all CSS variables for a given theme
+function getCSSVariablesForTheme(theme) {
     // Temporarily apply the theme class
-    document.documentElement.classList = theme;
-    console.log(`classlist: ${document.documentElement.classList}`);
-    const colors = {
-        // Get the computed value of --color-bg-2 for the current theme
-        colorBackground: getComputedStyle(document.documentElement).getPropertyValue('--color-background').trim(),
-        colorBg2: getComputedStyle(document.documentElement).getPropertyValue('--color-bg-2').trim(),
-        colorBg3: getComputedStyle(document.documentElement).getPropertyValue('--color-bg-3').trim(),
-        gareth: getComputedStyle(document.documentElement).getPropertyValue('--color-gareth').trim(),
-        garethson: getComputedStyle(document.documentElement).getPropertyValue('--color-garethson').trim(),
-        harold: getComputedStyle(document.documentElement).getPropertyValue('--color-harold').trim(),
-        haroldson: getComputedStyle(document.documentElement).getPropertyValue('--color-haroldson').trim(),
-
-    };
-    // Remove the theme class after fetching the value
-    document.documentElement.classList.remove(theme);
-    return colors;
+    document.documentElement.className = theme;
+    const variables = {};
+    const styles = getComputedStyle(document.documentElement);
+    // Iterate over all properties and extract custom properties (variables)
+    for (let i = 0; i < styles.length; i++) {
+        const property = styles[i];
+        if (property.startsWith('--color-')) {
+            console.log(`adding ${property}`);
+            variables[property] = styles.getPropertyValue(property).trim();
+        }
+    }
+    // Reset the theme class to avoid side effects
+    document.documentElement.className = '';
+    return variables;
 }
 
 // function to find the children (colours) and set their backgrounds inline
@@ -27,6 +25,20 @@ function displayPalette(p, c) {
         colourSpan.classList.add('colour');
         colourSpan.classList.add(`${key}`);
         colourSpan.style.backgroundColor = c[key];
+        // colourSpan.innerHTML = `<code>${key}</code>`;
+
+        const nameDisplay = document.createElement('span');
+        nameDisplay.classList.add('display');
+        nameDisplay.classList.add('name');
+        nameDisplay.innerHTML = key;
+        
+        const hexDisplay = document.createElement('span');
+        hexDisplay.classList.add('display');
+        hexDisplay.classList.add('hex');
+        hexDisplay.innerHTML = c[key];
+        colourSpan.appendChild(nameDisplay);
+        colourSpan.appendChild(hexDisplay);
+
         p.appendChild(colourSpan);
     }
 }
@@ -36,8 +48,11 @@ const paletteLight = document.querySelector('.palette.light');
 const paletteDark = document.querySelector('.palette.dark');
 
 // Get colors for both themes
-const lightColors = getColorsForTheme('theme-light');
-const darkColors = getColorsForTheme('theme-dark');
+const lightColors = getCSSVariablesForTheme('theme-light');
+console.log(lightColors);
+const darkColors = getCSSVariablesForTheme('theme-dark');
+
+// console.log(getCSSVariablesForTheme('theme-light'));
 // fix the theme back to normal as soon as we're done
 applySavedTheme(); // assumes this is declare/defined elsewhere
 

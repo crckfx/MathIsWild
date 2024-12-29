@@ -1,7 +1,3 @@
-body {
-    color: var(--color-text);
-}
-
 .palette-area {
     /* background-color: #888; */
     width: 100%;
@@ -15,10 +11,41 @@ body {
 .palette {
     /* background-color: var(--color-bg-2); */
     width: 100%;
-    height: 100px;
+    min-height: 100px;
+    
 }
 .palette .colour {
-    width: 60px;
+    width: 100px;
     height: 60px;
-    display: inline-block;
+    display: inline-flex;
+}
+
+.palette .colour code {
+    color: white;
+    mix-blend-mode: difference;
+}
+
+.palette .colour .display {
+    /* font-family: monospace;     */
+    font-size: 1rem;
+    color: white;
+    mix-blend-mode: difference;
+}
+
+
+.palette .colour .display.name {
+    display: inline-flex;
+}
+.palette .colour .display.hex {
+    display: none;
+}
+.palette .colour:hover .display.hex {
+    display: inline-flex;
+}
+.palette .colour:hover .display.name {
+    display: none;
+}
+
+.hidden-palette {
+    display: none;
 }
