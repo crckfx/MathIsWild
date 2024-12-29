@@ -8,7 +8,7 @@ function getCSSVariablesForTheme(theme) {
     for (let i = 0; i < styles.length; i++) {
         const property = styles[i];
         if (property.startsWith('--color-')) {
-            console.log(`adding ${property}`);
+            // console.log(`adding ${property}`);
             variables[property] = styles.getPropertyValue(property).trim();
         }
     }
@@ -19,15 +19,20 @@ function getCSSVariablesForTheme(theme) {
 
 // function to find the children (colours) and set their backgrounds inline
 function displayPalette(p, c) {
-    for (const key in c) {
+    const keys = Object.keys(c).reverse(); // Reverse the key order    
+    for (const key of keys) {
         console.log(`key: ${key}, value: ${c[key]}`);
-        const colourSpan = document.createElement('span');
+
+        const card = document.createElement('div');
+        card.classList.add('card');
+
+        const colourSpan = document.createElement('div');
         colourSpan.classList.add('colour');
         colourSpan.classList.add(`${key}`);
         colourSpan.style.backgroundColor = c[key];
         // colourSpan.innerHTML = `<code>${key}</code>`;
 
-        const nameDisplay = document.createElement('span');
+        const nameDisplay = document.createElement('div');
         nameDisplay.classList.add('display');
         nameDisplay.classList.add('name');
         nameDisplay.innerHTML = key;
@@ -36,10 +41,11 @@ function displayPalette(p, c) {
         hexDisplay.classList.add('display');
         hexDisplay.classList.add('hex');
         hexDisplay.innerHTML = c[key];
-        colourSpan.appendChild(nameDisplay);
         colourSpan.appendChild(hexDisplay);
 
-        p.appendChild(colourSpan);
+        card.appendChild(colourSpan);
+        card.appendChild(nameDisplay);
+        p.appendChild(card);
     }
 }
 
@@ -49,10 +55,8 @@ const paletteDark = document.querySelector('.palette.dark');
 
 // Get colors for both themes
 const lightColors = getCSSVariablesForTheme('theme-light');
-console.log(lightColors);
 const darkColors = getCSSVariablesForTheme('theme-dark');
 
-// console.log(getCSSVariablesForTheme('theme-light'));
 // fix the theme back to normal as soon as we're done
 applySavedTheme(); // assumes this is declare/defined elsewhere
 

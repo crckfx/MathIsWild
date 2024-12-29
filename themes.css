@@ -1,11 +1,11 @@
 .theme-light {
     --color-background: #F9FAFB;
+    --color-text: #1A202C;
+    
+    --color-header: #0077CC;
+
     --color-bg-2: #96d5e3;
     --color-bg-3: #cecece;
-
-    --color-text: #1A202C;
-    --color-header: #0077CC;
-    
 
     --color-gareth: darkorange;
     --color-garethson: rgb(215, 118, 0);
@@ -22,11 +22,13 @@
 
 .theme-dark {
     --color-background: #1A202C;
+    --color-text: #F9FAFB;
+    
+    --color-header: #4299E1;
+
     --color-bg-2: #2e565f;
     --color-bg-3: #3a3a3a;
 
-    --color-text: #F9FAFB;
-    --color-header: #4299E1;
 
     --color-gareth: rgb(138, 101, 5);
     --color-garethson: rgb(107, 80, 5);
