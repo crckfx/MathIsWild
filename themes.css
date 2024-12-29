@@ -1,108 +1,69 @@
+/* global styles applied to all themes */
+:root {
+    --color-greg: #90c040;
+}
+
+/* light theme */
 .theme-light {
     --color-background: #F9FAFB;
     --color-text: #1A202C;
-    
-    --color-header: #0077CC;
+    --color-text-2: hsl(191, 58%, 16%);
+    --color-text-3: #3b3b3b;
+    --color-header: #4299E1;
 
     --color-bg-2: #96d5e3;
     --color-bg-3: #cecece;
 
-    --color-gareth: darkorange;
-    --color-garethson: rgb(215, 118, 0);
+    --color-gareth: #ff8c00;
+    --color-garethson: #d77600;
 
     --color-harold: #cecece;
     --color-haroldson: #8fabb5;
 
-    /* 
-    --color-primary: #8ab4f8;
-    --color-secondary: #34a853;
-    --color-accent: #fbbc05;
-    */
+    --color-alert-1a: #ff4500;
+    --color-alert-1b: #e13c00;
 }
 
+/* dark theme */
 .theme-dark {
     --color-background: #1A202C;
     --color-text: #F9FAFB;
-    
-    --color-header: #4299E1;
+    --color-text-2: #96d5e3;
+    --color-text-3: #cecece;
 
-    --color-bg-2: #2e565f;
+    --color-header: #005fa3;
+
+    --color-bg-2: #1e383e;
     --color-bg-3: #3a3a3a;
 
-
-    --color-gareth: rgb(138, 101, 5);
-    --color-garethson: rgb(107, 80, 5);
+    --color-gareth: #8a6505;
+    --color-garethson: #6b5005;
 
     --color-harold: #3a3a3a;
     --color-haroldson: #29383d;
 
-    /* --color-primary: #8ab4f8;
-    --color-secondary: #57bb8a;
-    --color-accent: #fbbc05; 
-    */
+    /* --color-greg: #2e3f13; */
+    --color-alert-1a: #992900;
+    --color-alert-1b: #661b00;
 }
 
 
-
-/* **************************************************** */
-/* crckfx top right switch button  */
-/* ---------------------------------------------------- */
-.switchThemeBtn {
-    width: 100px;
-    height: 50px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    /* background-color: darkorange; */
-    background-color: var(--color-gareth);
-
-    margin: 20px;
-    border-radius: 10px;
-    cursor: pointer;
+.bg-1 {
+    background-color: var(--color-background);
+}
+.bg-2 {
+    background-color: var(--color-bg-2);
+}
+.bg-3 {
+    background-color: var(--color-bg-3);
 }
 
-.switchThemeBtn::after {
-    content: 'Dark Mode';
+.tc-1 {
+    color: var(--color-text);
 }
-
-.theme-dark .switchThemeBtn::after {
-    content: 'Light Mode';
+.tc-2 {
+    color: var(--color-text-2);
 }
-
-.switchThemeBtn:hover {
-    /* background-color: rgb(215, 118, 0); */
-    background-color: var(--color-garethson);
-}
-/* ---------------------------------------------------- */
-
-
-/* **************************************************** */
-/* Lachoutlaws float button */
-/* ---------------------------------------------------- */
-.buttonFloat {
-    width: 100px;
-    height: 50px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    /* background-color: darkorange; */
-    background-color: var(--color-gareth);
-    position: fixed;
-    bottom: 80px;
-    left: 50%;
-    border-radius: 10px;
-    cursor: pointer;
-}
-
-.buttonFloat::after {
-    content: 'Dark Mode';
-}
-
-.theme-dark .buttonFloat::after {
-    content: 'Light Mode';
-}
-
-.buttonFloat:hover {
-    /* background-color: rgb(215, 118, 0); */
-    background-color: var(--color-garethson);
+.tc-3 {
+    color: var(--color-text-3);
 }

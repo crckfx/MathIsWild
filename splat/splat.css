@@ -60,3 +60,7 @@
 .hidden-palette {
     display: none;
 }
+
+.splat-class-tester li {
+    padding: 8px;
+}

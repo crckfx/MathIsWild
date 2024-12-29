@@ -8,6 +8,9 @@ const cssVarNames = [
     "--color-garethson",
     "--color-harold",
     "--color-haroldson",
+    "--color-greg",
+    "--color-alert-1a",
+    "--color-alert-1b",
 ];
 // Function to extract all CSS variables for a given theme
 function getCSSVariablesForTheme(theme) {

@@ -1,16 +1,13 @@
-
 /* **************************************************** */
 /* homepage links */
 /* ---------------------------------------------------- */
 /* link container */
-.bigManLinks {
-    min-height: 100px;
-    background-color: var(--color-background);
+.linkContainer {
     display: flex;
-    /* justify-content: center; */
-    align-items: center;
-    flex-direction: column;
-    padding: 10px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 /* styles for the link buttons */
 .linkButton {
@@ -43,5 +40,18 @@
     background-color: var(--color-haroldson);
     outline: 5px solid red;
 }
-
 /* ---------------------------------------------------- */
+
+/* **************************************************** */
+/* crckfx styles (not important) */
+/* ---------------------------------------------------- */
+/* links to our githubs */
+.bigManLinks {
+    min-height: 100px;
+    background-color: var(--color-background);
+    display: flex;
+    /* justify-content: center; */
+    align-items: center;
+    flex-direction: column;
+    padding: 10px;
+}

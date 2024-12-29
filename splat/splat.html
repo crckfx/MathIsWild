@@ -38,17 +38,33 @@
 
         <div class="splat-main">
 
-            <div style="background-color: var(--color-bg-2); padding: 20px;">
+            <div style="padding: 20px;" class="bg-2">
                 <h2>This is a heading</h2>
-                <p>This is a paragraph.</p>
-                <p>This is another paragraph, containing some text and a list. At time of writing, (by default):
-                <ul>
-                    <li>our text colour should be <code>var(--color-text)</code></li>
-                    <li>our background should be <code>var(--color-background)</code></li>
-                    <li>our switch theme button background is <code>var(--color-gareth)</code> and
-                        <code>var(--color-garethson)</code> on hover</li>
+                <p>Background colours:</p>
+                <ul class="splat-class-tester">
+                    <li class="bg-1 tc-1"><strong>Text 1, Background 1</strong> sample text</li>
+                    <li class="bg-2 tc-1"><strong>Text 1, Background 2</strong> sample text</li>
+                    <li class="bg-3 tc-1"><strong>Text 1, Background 3</strong> sample text</li>
+                    <li class="bg-1 tc-2"><strong>Text 2, Background 1</strong> sample text</li>
+                    <li class="bg-2 tc-2"><strong>Text 2, Background 2</strong> sample text</li>
+                    <li class="bg-3 tc-2"><strong>Text 2, Background 3</strong> sample text</li>
+                    <li class="bg-1 tc-3"><strong>Text 3, Background 1</strong> sample text</li>
+                    <li class="bg-2 tc-3"><strong>Text 3, Background 2</strong> sample text</li>
+                    <li class="bg-3 tc-3"><strong>Text 3, Background 3</strong> sample text</li>
+
+
                 </ul>
-                </p>
+                <div class="bg-3">
+                    <h3>At time of writing:</h3>
+                    <ul>
+                        <li>our <strong>text colour</strong> should be <code>var(--color-text)</code></li>
+                        <li>our <strong>background</strong> should be <code>var(--color-background)</code></li>
+                        <li>our <strong>switch theme button</strong> background is <code>var(--color-gareth)</code> and
+                            <code>var(--color-garethson)</code> on hover
+                        </li>
+                    </ul>
+                </div>
+
             </div>
 
             <div class="palette-area">
