@@ -160,3 +160,16 @@ leftTrig.addEventListener('click', () => {cycleGregory(-1);});
 rightTrig.addEventListener('click', () => {cycleGregory(1);});
 // *******************************************************
 
+function inputNext(currentInput) {
+    currentInput.value = currentInput.value.replace(/[^0-9]/g, ''); // Allow only digits
+    if (currentInput.value.length === 1) {
+        let nextInput = currentInput.nextElementSibling;
+        if (nextInput && nextInput.tagName === "INPUT") {
+            nextInput.focus();
+        } else {
+            toSolveThisProblem();
+        }
+    }
+}
+
+
