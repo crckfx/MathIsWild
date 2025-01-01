@@ -48,12 +48,122 @@ header h1 {
     margin: 0;
 }
 
+/* ---------------------------------------------------- */
 
-/* Back Button Rules _________________________________________________ */
+a.bigman:hover {
+    color: var(--color-greg);
+}
+
+/* ---------------------------------------------------- */
+
+
+/* **************************************************** */
+/* crckfx page controls */
+/* ---------------------------------------------------- */
+.pageControls {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: var(--color-background);
+    width: 100%;
+}
+
+/* crckfx 'go back' button in pageControls */
+.goBackBtn {
+    height: 48px;
+    width: 48px;
+    background-color: var(--color-alert-1a);
+    border-radius: 50%;
+    box-sizing: border-box;
+    display: inline-block;
+    margin: 25px;
+}
+
+.goBackBtn:hover {
+    background-color: var(--color-alert-1b);
+    height: 50px;
+    width: 50px;
+    margin: 24px;
+}
+
+.goBackBtn::before {
+    display: inline-flex;
+    content: '';
+    /* Using the background-image and its related properties to add the SVG content */
+    background-image: url('Images/svg/leftArrow.svg');
+    background-size: 30px 30px;
+    height: 100%;
+    width: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+/* crckfx 'switch theme' button  */
+.switchThemeBtn {
+    color: var(--color-text-3);
+    width: 100px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* background-color: darkorange; */
+    background-color: var(--color-gareth);
+    margin: 20px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.switchThemeBtn::after {
+    content: 'Dark Mode';
+}
+
+.theme-dark .switchThemeBtn::after {
+    content: 'Light Mode';
+}
+
+.switchThemeBtn:hover {
+    /* background-color: rgb(215, 118, 0); */
+    background-color: var(--color-garethson);
+}
+/* ---------------------------------------------------- */
+
+
+/* **************************************************** */
+/* Lachoutlaws page controls */
+/* ---------------------------------------------------- */
+/* Lachoutlaws floating 'switch theme' button */
+.buttonFloat {
+    width: 100px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* background-color: darkorange; */
+    background-color: var(--color-gareth);
+    position: fixed;
+    bottom: 80px;
+    left: 50%;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.buttonFloat::after {
+    content: 'Dark Mode';
+}
+
+.theme-dark .buttonFloat::after {
+    content: 'Light Mode';
+}
+
+.buttonFloat:hover {
+    background-color: var(--color-garethson);
+}
+
+/* Lachoutlaws 'go back' button */
 .backPleaseSir {
     width: 25px;
     height: 25px;
-    background-color: orangered;
+    background-color: var(--color-alert-1a);
     border-radius: 50%;
     padding: 12px;
     display: flex;
@@ -63,85 +173,9 @@ header h1 {
     left: 50px;
     top: 140px;
 }
+
 .backPleaseSir:hover {
-    background-color: rgb(225, 60, 0);
+    background-color: var(--color-alert-1b);
     padding: 13px;
-}
-
-
-
-/* Calculator Rules are now in 'calculator.css' */
-
-/* Times Numbers Design_________________________________________________ */
-
-/* Trains Container Design is now in 'train.css' */
-
-/* Responsive Design_________________________________________________ */
-
-@media (max-width: 768px) {}
-
-
-
-
-
-a.bigman,
-a.bigman:visited {
-    color: unset;
-}
-
-a.bigman:hover {
-    color: #d0d0d0;
-}
-
-/* **************************************************** */
-/* crckfx styles (not important) */
-/* ---------------------------------------------------- */
-.linkContainer {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    margin-top: 20px;
-    margin-bottom: 20px;
-}
-
-/* ---------------------------------------------------- */
-
-
-/* **************************************************** */
-/* crckfx styles (moderately important) */
-/* ---------------------------------------------------- */
-.pageControls {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    background-color: var(--color-background);
-    width: 100%;
-}
-/* the 'go back' button in pageControls */
-.goBackBtn {
-    height: 48px;
-    width: 48px;
-    background-color: orangered;
-    border-radius: 50%;
-    box-sizing: border-box;
-    display: inline-block;
-    margin: 25px;
-}
-.goBackBtn:hover{
-    background-color: rgb(225, 60, 0);
-    height: 50px;
-    width: 50px;
-    margin: 24px;
-}
-.goBackBtn::before {
-    display: inline-flex;
-    content: '';
-    /* Using the background-image and its related properties to add the SVG content */
-    background-image: url('Images/svg/leftArrow.svg');
-    background-size: 30px 30px;
-    height: 100%;
-    width: 100%;    
-    background-position: center;
-    background-repeat: no-repeat;
 }
 /* ---------------------------------------------------- */

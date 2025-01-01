@@ -126,10 +126,6 @@
     font-size: 18px;
 }
 
-.wrapper {
-    background-color: var(--color-bg-2);
-}
-
 .mainContainer {
     min-height: 100vh;
     display: flex;

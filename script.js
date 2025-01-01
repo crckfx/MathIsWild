@@ -14,6 +14,7 @@ if (typeof gsap !== 'undefined') {
 // Save theme in a cookie
 function saveThemeCookie(theme) {
     document.cookie = `theme=${theme}; path=/; max-age=31536000; SameSite=Strict`;  // 1 year expiration
+    console.log(document.cookie);
 }
 // Retrieve theme from the cookie
 function getThemeCookie() {

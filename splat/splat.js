@@ -1,13 +1,18 @@
 const cssVarNames = [
     "--color-background",
-    "--color-text",
-    "--color-header",
     "--color-bg-2",
     "--color-bg-3",
+    "--color-text",
+    "--color-text-2",
+    "--color-text-3",
+    "--color-header",
     "--color-gareth",
     "--color-garethson",
     "--color-harold",
     "--color-haroldson",
+    "--color-greg",
+    "--color-alert-1a",
+    "--color-alert-1b",
 ];
 // Function to extract all CSS variables for a given theme
 function getCSSVariablesForTheme(theme) {

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <!-- Head Start --------------------------------------------------------------------------------------------------------------------->
 
 <head>
@@ -31,36 +31,52 @@
             <h1>Splat It Up</h1>
         </header>
 
-        <div class="pageControls" style="background-color: var(--color-bg-2);">
-            <a class="goBackBtn" href="../index.html"></a>
+        <div class="pageControls">
+            <a class="goBackBtn" href="../index.html" aria-label="Go back"></a>
             <span class="switchThemeBtn" onclick="toggleTheme()"></span>
         </div>
 
         <div class="splat-main">
 
-            <div style="background-color: var(--color-bg-2); padding: 20px;">
-                <h2>This is a heading</h2>
-                <p>This is a paragraph.</p>
-                <p>This is another paragraph, containing some text and a list.
-                <ul>This is an unordered list. At time of writing, (by default):
-                    <li>our text colour should be <code>var(--color-text)</code></li>
-                    <li>our background should be <code>var(--color-background)</code></li>
-                    <li>our switch theme button background is <code>var(--color-gareth)</code> and
-                        <code>var(--color-garethson)</code> on hover</li>
-                </ul>
-                </p>
-            </div>
-
             <div class="palette-area">
                 <h2>Colour Palettes</h2>
-                <div style="display: flex; flex-direction: column; align-items: center;">
+                <div class="flex-column-center">
                     <h3>Light Theme</h3>
                     <div class="palette light"></div>
                 </div>
-                <div style="display: flex; flex-direction: column; align-items: center;">
+                <div class="flex-column-center">
                     <h3>Dark Theme</h3>
                     <div class="palette dark"></div>
                 </div>
+            </div>
+
+            <div class="wrapper bg-2">
+                <h2>This is a heading</h2>
+                <p>text & background colours:</p>
+                <ul class="splat-class-tester">
+                    <li class="bg-1 tc-1"><strong>Text 1, Background 1</strong> sample text</li>
+                    <li class="bg-2 tc-1"><strong>Text 1, Background 2</strong> sample text</li>
+                    <li class="bg-3 tc-1"><strong>Text 1, Background 3</strong> sample text</li>
+                    <li class="bg-1 tc-2"><strong>Text 2, Background 1</strong> sample text</li>
+                    <li class="bg-2 tc-2"><strong>Text 2, Background 2</strong> sample text</li>
+                    <li class="bg-3 tc-2"><strong>Text 2, Background 3</strong> sample text</li>
+                    <li class="bg-1 tc-3"><strong>Text 3, Background 1</strong> sample text</li>
+                    <li class="bg-2 tc-3"><strong>Text 3, Background 2</strong> sample text</li>
+                    <li class="bg-3 tc-3"><strong>Text 3, Background 3</strong> sample text</li>
+
+
+                </ul>
+                <div class="bg-3">
+                    <h3>At time of writing:</h3>
+                    <ul>
+                        <li>our <strong>text colour</strong> should be <code>var(--color-text)</code></li>
+                        <li>our <strong>background</strong> should be <code>var(--color-background)</code></li>
+                        <li>our <strong>switch theme button</strong> background is <code>var(--color-gareth)</code> and
+                            <code>var(--color-garethson)</code> on hover
+                        </li>
+                    </ul>
+                </div>
+
             </div>
 
             <div class="hidden-palette">hi there</div>

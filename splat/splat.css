@@ -8,11 +8,12 @@
     padding: 20px;
     box-sizing: border-box;
 }
+
 .palette {
     width: 100%;
     /* min-height: 100px; */
     display: flex;
-    flex-wrap: wrap;    
+    flex-wrap: wrap;
     justify-content: center;
 }
 
@@ -23,6 +24,7 @@
     height: 100px;
     align-items: center;
 }
+
 .palette .colour {
     width: 90px;
     height: 60px;
@@ -36,7 +38,7 @@
     font-size: 14px;
 }
 
-.palette .card:hover .colour{
+.palette .card:hover .colour {
     width: 100px;
     height: 70px;
 }
@@ -59,4 +61,24 @@
 
 .hidden-palette {
     display: none;
+}
+
+.splat-class-tester {
+    padding: 1rem;
+    background-color: var(--color-base-chroma);
+}
+
+.splat-class-tester li {
+    padding: 8px;
+    margin: 12px;
+    border-radius: 4px;
+}
+
+.flex-column-center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.wrapper {
+    padding: 20px;
 }
