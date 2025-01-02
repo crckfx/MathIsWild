@@ -11,6 +11,7 @@ document.querySelectorAll('.digit-container').forEach(container => {
     };
 
     container.addEventListener('pointerdown', (e) => {
+        e.preventDefault();
         startY = e.clientY; // Use clientY for pointer events
         container.setPointerCapture(e.pointerId); // Capture pointer for consistent tracking
     });
