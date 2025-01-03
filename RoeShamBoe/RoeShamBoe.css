@@ -1,14 +1,44 @@
-#lesTwo{
+#lesZero{
     width: 100%;
-    height: 220px;
+    height: 500px;
+    background-color: var(--color-background);
 }
 
-.gameColumn {
-    width: 100%;
-    height: auto;
+#lesOne{
+    width: 50%;
+    height: 350px;
     display: flex;
     justify-content: center;
     align-items: center;
+    float: left;
+}
+
+#lesTwo{
+    width: 50%;
+    height: 350px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    float: right;
+}
+
+
+#lesThree {
+    width: 100%;
+    min-height: auto;
+
+}
+
+/* .lesFour {
+    width: 100%;
+    min-height: 250px;
+} */
+
+.gameColumn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
 }
 
 .sPR {
@@ -17,11 +47,12 @@
     background-color: transparent;
     border: none;
     outline: none;
+    cursor: pointer;
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 5px;
-    margin: 5px;
+    transition: background-color 0.3s;
 }
 
 .sPR:hover{
@@ -29,17 +60,70 @@
 }
 
 .infoColumn {
-    width: auto;
-    height: auto;
     display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-flow: column;
+    flex-direction: column;
+    align-items: flex-start;
+    background-color: aliceblue;
 }
 
 .score {
-    height: 5px;
-    width: auto;
     display: flex;
-    margin-bottom: 17px;
+    width: 100%;
+    background-color: azure;
+    border-radius: 5px;
+    font-family: 'Kanit', sans-serif;
+    line-height: 1.2; 
+    border-bottom: 0.2px solid black;
+}
+
+#winsPopUp {
+    width: 150px;
+    height: 50px;
+    background-color: var(--color-greg);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 75%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: 'Kanit', sans-serif;
+    font-size: 14px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    z-index: 1000;
+}
+
+.lesOneCont{
+    width: 80%;
+    height: 90%;
+    background-color: var(--color-alert-1b);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.lesTwoCont{
+    width: 80%;
+    height: 90%;
+    background-color: var(--color-alert-1b);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.playerSelectDisplay{
+    width: 100px;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.cpuSelectDisplay{
+    width: 100px;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

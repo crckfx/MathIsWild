@@ -36,12 +36,36 @@
             <span class="switchThemeBtn" onclick="toggleTheme()"></span>
         </div>
 
-        <div id="lesTwo">
-            <div class="gameColumn">
-                <button class="sPR" value="Scissors"><img src="../Images/680ce8a9cf105b860fb74c8690d9f1bc.png" width="50px" height="50px" ></button>
-                    <button class="sPR" value="Paper"><img src="../Images/white-ripped-piece-of-paper-isolated-on-transparent-background-file-png.webp" width="50px" height="50px" ></button>
-                    <button class="sPR" value="Rock"><img src="../Images/image_processing20210530-3563-17l4x59.png" width="50px" height="50px" ></button>
+        <div id="lesZero">
+            <div id="winsPopUp" style="display: none;"></div>
+            <div id="lesOne">
+                <div class="lesOneCont">
+                    <div class="playerSelectDisplay" style="display: none;"></div>
+                </div>
             </div>
+            <div id="lesTwo">
+                <div class="lesTwoCont">
+                    <div class="cpuSelectDisplay" style="display: none;"></div>
+                </div>
+            </div>
+        </div>
+    
+        <div id="lesThree">
+            <div class="gameColumn">
+                <button class="sPR" value="Scissors">
+                    <img src="../Images/680ce8a9cf105b860fb74c8690d9f1bc.png" alt="Scissors" width="50px" height="50px">
+                </button>
+                <button class="sPR" value="Paper">
+                    <img src="../Images/white-ripped-piece-of-paper-isolated-on-transparent-background-file-png.webp"
+                        alt="Paper" width="50px" height="50px">
+                </button>
+                <button class="sPR" value="Rock">
+                    <img src="../Images/image_processing20210530-3563-17l4x59.png" alt="Rock" width="50px" height="50px">
+                </button>
+            </div>
+        </div>
+    
+        <div class="lesFour" style="display: none;">
             <div class="infoColumn">
                 <div class="score">
                     <p>Wins: </p>
@@ -52,19 +76,19 @@
                     <p class="drawPoints">0</p>
                 </div>
                 <div class="score">
+                    <p>Player Chooses: </p>
+                    <p class='playerSelection'></p>
+                </div>
+                <div class="score">
+                    <p>Cpu Chooses: </p>
+                    <p class='cpuSelection'></p>
+                </div>
+                <div class="score">
                     <p>Loses: </p>
                     <p class='cpuPoints'>0</p>
                 </div>
-                <div class="score">
-                    <p>Player Chooses: </p>
-                    <p class='playerSelection'> </p>
-                </div>  
-                <div class="score">
-                    <p>Cpu Chooses: </p>
-                    <p class='cpuSelection'> </p>
-                </div>
             </div>
-
+        </div>
     </div>
 
 

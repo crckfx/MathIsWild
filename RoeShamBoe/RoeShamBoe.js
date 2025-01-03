@@ -1,172 +1,82 @@
-function m3e5() {
-    var headsOrTails = ["heads", "tails"];
+const choiceImages = {
+    Rock: '<img src="../Images/image_processing20210530-3563-17l4x59.png" alt="Rock" width="50px" height="50px">',
+    Scissors: '<img src="../Images/680ce8a9cf105b860fb74c8690d9f1bc.png" alt="Scissors" width="50px" height="50px">',
+    Paper: '<img src="../Images/white-ripped-piece-of-paper-isolated-on-transparent-background-file-png.webp" alt="Paper" width="50px" height="50px">'
+};
 
-    var player1_score = 0;
-    var player2_score = 0;
-    var player1_matches = 0;
-    var player2_matches = 0;
-    var total_heads = 0;
-    var total_tails = 0;
-    var total_games = 0;
-    
-    var consecutiveFlips = 0;
-    var previousFlip = "";
-    
-    var stopgame = false;
-    
-    for(j=0; j<5000; j++) {
-        player1_score = 0;
-        player2_score = 0;
-    
-        for(i=0; i<10; i++) {
-            if (stopgame == false) {
-                total_games++;
-                var random = Math.floor(Math.random() * 2);
-                var flipResult = headsOrTails[random];
-                console.log(flipResult);
-    
-                if (flipResult == "heads") {
-                    player1_score++;
-                    total_heads++;
-                    currentFlip = "heads";
-                }
-                else if (flipResult == "tails") {
-                    player2_score++;
-                    total_tails++;
-                    currentFlip = "tails";
-                }
-    
-                // COMPARE PREVIOUS TO CURRENT
-                if (previousFlip == currentFlip) {
-                    consecutiveFlips++
-                }
-                else if (previousFlip != currentFlip) {
-                    consecutiveFlips = 0;
-                }
-    
-                if(consecutiveFlips == 5) {
-                    stopgame = true;
-                    console.log(`It's taken ${total_games} games to get 5 x consecutive flips of ${currentFlip}`);
-                    break
-                }
-    
-                previousFlip = currentFlip;
-    
-    
-                if (player1_score == 5) {
-                    player1_matches++;
-                    console.log( `Player1: ${player1_score}  Player2: ${player2_score}`   );
-                    console.log( `Player1 is the winner!`   );
-                    break
-                }
-                else if (player2_score == 5) {
-                    player2_matches++;
-                    console.log( `Player1: ${player1_score}  Player2: ${player2_score}`   );
-                    console.log( `Player2 is the winner!`   );
-                    break
-                }
-                console.log( `Player1: ${player1_score}  Player2: ${player2_score}`   );
-            }
-        }
-    
-    }
-    
-    
-    console.log("Matches Won:");
-    console.log(`Player1: ${player1_matches}  Player2: ${player2_matches}`);
-    
-    console.log(`Total Games: ${total_games}`);
-    console.log(`Total Heads: ${total_heads}`);
-    console.log(`Total Tails: ${total_tails}`);
-    
-    var percentage_tails = Math.round( (total_tails / total_games) * 100) + "%";
-    var percentage_heads = Math.round( (total_heads / total_games) * 100) + "%";
-    
-    console.log(`Tails percentage = ${percentage_tails}` );
-    console.log(`Heads percentage = ${percentage_heads}` );
-}
-// m3e5();
 
-    let cpuOutcome = '';
-    let playerChoice = '';
-    let cpuWins = 0;
-    let playerWins = 0;
-    let resultDraw = 0;
-    
+(() => {
+    const gameOptions = ['Scissors', 'Paper', 'Rock'];
+    let playerWins = 0, cpuWins = 0, resultDraw = 0;
+    let whoWon = null;
+
     function scissorsPaperRock(playerChoice) {
-        const game = ['Scissors', 'Paper', 'Rock'];
+        const cpuChoice = gameOptions[Math.floor(Math.random() * gameOptions.length)];
+        let result;
+
+        const playerSelectDisplay = document.querySelector(".playerSelectDisplay")
+        const cpuSelectDisplay = document.querySelector(".cpuSelectDisplay")
+
+        if (cpuChoice === "Rock") {
+            cpuSelectDisplay.innerHTML = `${choiceImages.Rock}`
+        }   else if (cpuChoice === "Scissors") {
+            cpuSelectDisplay.innerHTML = `${choiceImages.Scissors}`
+        } else {
+            cpuSelectDisplay.innerHTML = `${choiceImages.Paper}`
+        }
         
-        // let selectOption = document.querySelectorAll(".drawColumn");
-        let playerPoints = document.querySelector(".playerPoints");
-        let cpuPoints = document.querySelector(".cpuPoints");
-        let playerSelection = document.querySelector(".playerSelection");
-        let cpuSelection = document.querySelector(".cpuSelection");
-        let drawPoints = document.querySelector(".drawPoints");
-        // playerChoice = selectOption.value;
-        
+        if (playerChoice === "Rock") {
+            playerSelectDisplay.innerHTML = `${choiceImages.Rock}`
+        }   else if (playerChoice === "Scissors") {
+            playerSelectDisplay.innerHTML = `${choiceImages.Scissors}`
+        } else {
+            playerSelectDisplay.innerHTML = `${choiceImages.Paper}`
+        }
 
-            let random = Math.floor(Math.random() * 3);
-            cpuOutcome = game[random]
-            console.log(cpuOutcome);
+        if (playerChoice === cpuChoice) {
+            resultDraw++;
+            result = 'Tie';
+            whoWon = "It's a Tie!";
+        } else if (
+            (playerChoice === 'Scissors' && cpuChoice === 'Paper') ||
+            (playerChoice === 'Paper' && cpuChoice === 'Rock') ||
+            (playerChoice === 'Rock' && cpuChoice === 'Scissors')
+        ) {
+            playerWins++;
+            result = 'Player Wins';
+            whoWon = "Player Wins!";
+        } else {
+            cpuWins++;
+            result = 'CPU Wins';
+            whoWon = "Computer Wins!";
+        }
 
-            // Cpu Has Randomized Scissors
-            if(playerChoice === 'Scissors' && cpuOutcome === 'Scissors') {
-                console.log('Tie');
-                resultDraw++
-            } else if(playerChoice === 'Paper' && cpuOutcome === 'Scissors') {
-                console.log('Player Loses');
-                cpuWins++
-            } else if(playerChoice === 'Rock' && cpuOutcome === 'Scissors') {
-                console.log('Player Wins');
-                playerWins++
-                // Cpu Has Randomized Paper
-            } else if(playerChoice === 'Scissors' && cpuOutcome === 'Paper') {
-                console.log('Win');
-                playerWins++
-            } else if(playerChoice === 'Paper' && cpuOutcome === 'Paper') {
-                console.log('Tie');
-                resultDraw++
-            } else if(playerChoice === 'Rock' && cpuOutcome === 'Paper') {
-                console.log('Loss');
-                cpuWins++
-            }
-            // Cpu Has Randomized Rock
-            else if(playerChoice === 'Scissors' && cpuOutcome === 'Rock') {
-                console.log('Loss');
-                cpuWins++
-            } else if(playerChoice === 'Paper' && cpuOutcome === 'Rock') {
-                console.log('Win');
-                playerWins++
-            } else if(playerChoice === 'Rock' && cpuOutcome === 'Rock') {
-                console.log('Tie');
-                resultDraw++
-            }  else {
-                console.log(null);
-            }
+        document.querySelector(".playerPoints").innerText = playerWins;
+        document.querySelector(".cpuPoints").innerText = cpuWins;
+        document.querySelector(".drawPoints").innerText = resultDraw;
+        document.querySelector(".playerSelection").innerText = playerChoice;
+        document.querySelector(".cpuSelection").innerText = cpuChoice;
 
-            let playerCounter = playerWins;
-            let cpuCounter = cpuWins;
-            let drawCounter = resultDraw;
-            let cpuResult = cpuOutcome;
-            let playerResult = playerChoice;
-            drawPoints.innerText = drawCounter;
-            playerPoints.innerText = playerCounter;
-            cpuPoints.innerText = cpuCounter;
-            cpuSelection.innerText = cpuResult;
-            playerSelection.innerText = playerResult;
-          
-}
+        // Display winner in the popup
+        const winsPopUp = document.getElementById('winsPopUp');
+        winsPopUp.innerText = whoWon;
+        winsPopUp.style.display = 'flex';
+        playerSelectDisplay.style.display = 'flex';
+        cpuSelectDisplay.style.display = 'flex';
 
-document.querySelectorAll('.sPR').forEach(button => {
-    button.addEventListener('click', () => {
-        let playerChoice = button.value;
-        scissorsPaperRock(playerChoice);
+        // Hide the popup after 1.5 seconds
+        setTimeout(() => {
+            winsPopUp.style.display = 'none';
+            playerSelectDisplay.style.display = 'none';
+            cpuSelectDisplay.style.display = 'none';
+        }, 2500);
+    }
+
+    document.querySelectorAll('.sPR').forEach(button => {
+        button.addEventListener('click', () => {
+            scissorsPaperRock(button.value);
+        });
     });
-});
+})();
 
-// let lesTwoButton = document.querySelector('.lesTwoButton');
-
-// lesTwoButton.addEventListener('click', () => {  
-//     scissorsPaperRock()
-//     console.log(`Player: ${playerWins} Draws: ${resultDraw} Computer: ${cpuWins}`);
-// });
+    
