@@ -1,4 +1,9 @@
 document.querySelectorAll('.digit-container').forEach(container => {
+    createDigitSlider(container);
+
+});
+
+function createDigitSlider(container) {
     let currentValue = parseInt(container.dataset.value, 10) || 0;
     const digitElement = container.querySelector('.digit');
 
@@ -22,9 +27,9 @@ document.querySelectorAll('.digit-container').forEach(container => {
 
             if (Math.abs(deltaY) > 20) { // Swipe threshold
                 if (deltaY > 0) {
-                    updateDigit(currentValue - 1); // Swipe down
-                } else {
                     updateDigit(currentValue + 1); // Swipe up
+                } else {
+                    updateDigit(currentValue - 1); // Swipe down
                 }
                 startY = e.clientY; // Reset start position for continuous swiping
             }
@@ -46,4 +51,16 @@ document.querySelectorAll('.digit-container').forEach(container => {
     container.addEventListener('click', () => {
         container.focus();
     });
-});
+
+
+    container.addEventListener('wheel', (e) => {
+        const deltaY = e.deltaY;
+        if (deltaY > 0) {
+            updateDigit(currentValue + 1);
+        } else {
+            updateDigit(currentValue - 1);
+        }
+        // console.log(`scrolled ${e.deltaY}`);
+        
+    })
+}

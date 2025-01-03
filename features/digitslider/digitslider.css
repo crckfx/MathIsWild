@@ -41,6 +41,9 @@
     color: var(--color-text);
 
 }
+.digit-container:hover {
+    background-color: var(--color-bg-3);
+}
 
 .digit {
     position: relative;
@@ -50,7 +53,7 @@
 
 }
 
-
+/* disable pull-down-to-refresh behaviour on mobile */
 body, html {
     overscroll-behavior: contain;
 }
