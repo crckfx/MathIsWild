@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- Head Start --------------------------------------------------------------------------------------------------------------------->
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width" initial-scale="1.0">
+    <title>RoeShamBoe</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+    <!-- Font Awesome -->
+    <script src="https://kit.fontawesome.com/159c5c66b8.js" crossorigin="anonymous"></script>
+    <!-- local css -->
+    <link href="../global.css" rel="stylesheet">
+    <link href="../themes.css" rel="stylesheet">
+    <link href="RoeShamBoe.css" rel="stylesheet">
+</head>
+<!-- Head End --------------------------------------------------------------------------------------------------------------------->
+
+
+<!-- Body Start --------------------------------------------------------------------------------------------------------------------->
+
+<body>
+    <div class="mainContainer">
+        <header>
+            <!-- heading/title -->
+            <h1>RoeShamBoe</h1>
+        </header>
+        <div class="pageControls">
+            <!-- link back to project root -->
+            <a class="goBackBtn" href="../index.html"></a>
+            <span class="switchThemeBtn" onclick="toggleTheme()"></span>
+        </div>
+
+        <div id="lesZero">
+            <div id="winsPopUp" style="display: none;"></div>
+            <div id="lesOne">
+                <div class="lesOneCont">
+                    <div class="playerSelectDisplay" style="display: none;"></div>
+                </div>
+            </div>
+            <div id="lesTwo">
+                <div class="lesTwoCont">
+                    <div class="cpuSelectDisplay" style="display: none;"></div>
+                </div>
+            </div>
+        </div>
+    
+        <div id="lesThree">
+            <div class="gameColumn">
+                <button class="sPR" value="Scissors">
+                    <img src="../Images/680ce8a9cf105b860fb74c8690d9f1bc.png" alt="Scissors" width="50px" height="50px">
+                </button>
+                <button class="sPR" value="Paper">
+                    <img src="../Images/white-ripped-piece-of-paper-isolated-on-transparent-background-file-png.webp"
+                        alt="Paper" width="50px" height="50px">
+                </button>
+                <button class="sPR" value="Rock">
+                    <img src="../Images/image_processing20210530-3563-17l4x59.png" alt="Rock" width="50px" height="50px">
+                </button>
+            </div>
+        </div>
+    
+        <div class="lesFour" style="display: none;">
+            <div class="infoColumn">
+                <div class="score">
+                    <p>Wins: </p>
+                    <p class='playerPoints'>0</p>
+                </div>
+                <div class="score">
+                    <p>Draws: </p>
+                    <p class="drawPoints">0</p>
+                </div>
+                <div class="score">
+                    <p>Player Chooses: </p>
+                    <p class='playerSelection'></p>
+                </div>
+                <div class="score">
+                    <p>Cpu Chooses: </p>
+                    <p class='cpuSelection'></p>
+                </div>
+                <div class="score">
+                    <p>Loses: </p>
+                    <p class='cpuPoints'>0</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Main Container End --------------------------------------------------------------------------------------------------------------------->
+
+    <!-- Script Source Start --------------------------------------------------------------------------------------------------------------------->
+
+    <!-- GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/MotionPathPlugin.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <!-- local scripts -->
+    <script src="../script.js"></script>
+    <script src="RoeShamBoe.js"></script>
+    <!-- Script Source End --------------------------------------------------------------------------------------------------------------------->
+</body>
+<!-- Body End --------------------------------------------------------------------------------------------------------------------->
+
+</html>
+
+
+
+
+
+
+
+
+
