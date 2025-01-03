@@ -6,6 +6,8 @@
 /* light theme */
 .theme-light {
     --color-background: #F9FAFB;
+    --color-bg-1b: #e4f1ff;
+    
     --color-text: #1A202C;
     --color-text-2: #113840;
     --color-text-3: #3f3f3f;
@@ -29,6 +31,8 @@
 /* dark theme */
 .theme-dark {
     --color-background: #1A202C;
+    --color-bg-1b: #0f1729;
+
     --color-text: #F9FAFB;
     --color-text-2: #96d5e3;
     --color-text-3: #cecece;
@@ -55,6 +59,9 @@
 
 .bg-1 {
     background-color: var(--color-background);
+}
+.bg-1b {
+    background-color: var(--color-bg-1b);
 }
 .bg-2 {
     background-color: var(--color-bg-2);

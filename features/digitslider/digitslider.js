@@ -54,13 +54,11 @@ function createDigitSlider(container) {
 
 
     container.addEventListener('wheel', (e) => {
-        const deltaY = e.deltaY;
-        if (deltaY > 0) {
+        // convert deltaY into up/down
+        if (e.deltaY > 0) {
             updateDigit(currentValue + 1);
         } else {
             updateDigit(currentValue - 1);
-        }
-        // console.log(`scrolled ${e.deltaY}`);
-        
+        }        
     })
 }
