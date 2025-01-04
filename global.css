@@ -83,14 +83,14 @@ a.bigman:hover {
     border-radius: 50%;
     box-sizing: border-box;
     display: inline-block;
-    margin: 25px;
+    margin: 6px;
 }
 
 .goBackBtn:hover {
     background-color: var(--color-alert-1b);
     height: 50px;
     width: 50px;
-    margin: 24px;
+    margin: 5px;
 }
 
 .goBackBtn::before {
@@ -115,7 +115,7 @@ a.bigman:hover {
     align-items: center;
     /* background-color: darkorange; */
     background-color: var(--color-gareth);
-    margin: 20px;
+    margin: 5px;
     border-radius: 10px;
     cursor: pointer;
 }
@@ -131,6 +131,29 @@ a.bigman:hover {
 .switchThemeBtn:hover {
     /* background-color: rgb(215, 118, 0); */
     background-color: var(--color-garethson);
+}
+/* **************************************************** */
+/* generic 'features' content */
+/* ---------------------------------------------------- */
+/* link container */
+
+.wrapper {
+    max-width: 1200px;
+    width: 100%;
+    display: flex;
+    flex: 1;
+}
+
+.page-content {
+    border-radius: 12px;
+    margin: 12px;
+    display: flex;
+    flex-wrap: wrap;
+    align-self: stretch;
+    padding: 12px;
+    flex-direction: column;
+    width: 100%;
+    flex: 1;
 }
 /* ---------------------------------------------------- */
 

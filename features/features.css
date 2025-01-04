@@ -1,22 +1,6 @@
 /* **************************************************** */
 /* generic 'features' content */
 /* ---------------------------------------------------- */
-/* link container */
-
-.wrapper {
-    max-width: 1200px;
-    width: 100%;    
-}
-
-.page-content {
-    border-radius: 12px;
-    margin: 12px;
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    align-self: stretch;
-    padding: 12px;
-}
 /* styles for the link buttons */
 .linkButton {
     width: 225px;

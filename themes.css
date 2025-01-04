@@ -1,6 +1,8 @@
 /* global styles applied to all themes */
 :root {
     --color-greg: #90c040;
+    --color-grellow: #d0d000;
+    --color-grurple: #663399;
 }
 
 /* light theme */
@@ -28,6 +30,7 @@
     --color-alert-1b: #e13c00;
 
     --color-base-chroma: #fff;
+    
 }
 
 /* dark theme */
