@@ -131,9 +131,3 @@ input[type="number"]::-webkit-outer-spin-button {
 
     font-size: 18px;
 }
-
-.mainContainer {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-}

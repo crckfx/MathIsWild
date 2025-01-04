@@ -27,46 +27,41 @@
 <!-- Body Start --------------------------------------------------------------------------------------------------------------------->
 
 <body>
-    <div class="mainContainer">
-        <header>
-            <h1>hexmode</h1>
-        </header>
+    <header>
+        <h1>hexmode</h1>
+    </header>
 
-        <div class="pageControls">
-            <a class="goBackBtn" href="../index.html"></a>
-            <span class="switchThemeBtn" onclick="toggleTheme()"></span>
-        </div>
+    <div class="pageControls">
+        <a class="goBackBtn" href="../index.html"></a>
+        <span class="switchThemeBtn" onclick="toggleTheme()"></span>
+    </div>
 
-        <div>
-            <div class="nextDiv">
-                <h1>Colour Palette</h1>
-                <div class="underLine"></div>
-                <div class="hexCont">
-                    <div class="hexOriginalHigh"></div>
-                    <div class="hexOriginal"></div>
-                    <div class="hexOriginalLow"></div>
-                    <div class="hexOriginalComp"></div>
-                    <div class="hexOriginalCompLow"></div>
-                </div>
-                <input type="color" class="H">
+    <div>
+        <div class="nextDiv">
+            <h1>Colour Palette</h1>
+            <div class="underLine"></div>
+            <div class="hexCont">
+                <div class="hexOriginalHigh"></div>
+                <div class="hexOriginal"></div>
+                <div class="hexOriginalLow"></div>
+                <div class="hexOriginalComp"></div>
+                <div class="hexOriginalCompLow"></div>
             </div>
-            <div class="grid">
-                <div class="gridSect sect1">1</div>
-                <div class="gridSect sect2">2</div>
-                <div class="gridSect sect3">3</div>
-                <div class="gridSect sect4">4</div>
-            </div>
+            <input type="color" class="H">
         </div>
-
+        <div class="grid">
+            <div class="gridSect sect1">1</div>
+            <div class="gridSect sect2">2</div>
+            <div class="gridSect sect3">3</div>
+            <div class="gridSect sect4">4</div>
+        </div>
     </div>
 
     <!-- Script Source Start --------------------------------------------------------------------------------------------------------------------->
-
     <!-- GSAP scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/MotionPathPlugin.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-
     <!-- local scripts -->
     <script src="../script.js"></script>
     <script src="hexmode.js"></script>
