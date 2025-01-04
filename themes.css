@@ -15,6 +15,8 @@
 
     --color-bg-2: #96d5e3;
     --color-bg-3: #cecece;
+    --color-bg-4: #dedede;
+    --color-bg-5: #eeeeee;
 
     --color-gareth: #ff8c00;
     --color-garethson: #d77600;
@@ -41,6 +43,8 @@
 
     --color-bg-2: #1e383e;
     --color-bg-3: #3a3a3a;
+    --color-bg-4: #2a2a2a;
+    --color-bg-5: #1a1a1a;
 
     --color-gareth: #8a6505;
     --color-garethson: #6b5005;
@@ -68,6 +72,12 @@
 }
 .bg-3 {
     background-color: var(--color-bg-3);
+}
+.bg-4 {
+    background-color: var(--color-bg-4);
+}
+.bg-5 {
+    background-color: var(--color-bg-5);
 }
 .bg-greg {
     background-color: var(--color-greg);

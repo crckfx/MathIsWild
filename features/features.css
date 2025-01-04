@@ -1,13 +1,21 @@
 /* **************************************************** */
-/* homepage links */
+/* generic 'features' content */
 /* ---------------------------------------------------- */
 /* link container */
-.linkContainer {
+
+.wrapper {
+    max-width: 1200px;
+    width: 100%;    
+}
+
+.page-content {
+    border-radius: 12px;
+    margin: 12px;
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    margin-top: 20px;
-    margin-bottom: 20px;
+    align-self: stretch;
+    padding: 12px;
 }
 /* styles for the link buttons */
 .linkButton {
