@@ -22,9 +22,10 @@
 }
 
 .accordion, .accordion-3 {
-    background: #121212;
-    color: #effeef;
+    background: var(--color-bg-5);
+    /* color: #effeef; */
     padding: 1rem;
+    color: var(--color-text-1);
 }
 
 .accordion .accordion-panel {
@@ -58,5 +59,4 @@
 
 .accordion-3 {
     border-radius: 8px;
-    color: var(--color-text-3);
 }

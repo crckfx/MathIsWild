@@ -3,7 +3,7 @@ details.lightCollapsible {
     /* padding: 1rem; */
     border-radius: 0.5rem;
     overflow: hidden;
-    color: var(--color-text-3);
+    color: var(--color-text-1);
 }
 
 details.lightCollapsible .content {
