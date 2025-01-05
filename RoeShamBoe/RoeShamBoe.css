@@ -1,7 +1,8 @@
 #lesZero{
     width: 100%;
-    height: 500px;
+    height: 450px;
     background-color: var(--color-background);
+    margin-top: 10px;
 }
 
 #lesOne{
