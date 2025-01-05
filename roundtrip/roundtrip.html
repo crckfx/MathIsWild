@@ -26,18 +26,19 @@
     <!-- header: a section at the top of the page -->
     <header>
         <!-- heading/title -->
+        <a class="goBackBtn" href="../index.html"></a>
         <h1>roundtrip</h1>
+        <div class="toggle-switch">
+            <label class="switch-label">
+                <input type="checkbox" class="checkbox" onclick="toggleTheme()">
+                <span class="slider"></span>
+            </label>
+        </div>
     </header>
 
     <div class="page-wrapper">
 
         <div class="page-content bg-5">
-
-            <div class="pageControls">
-                <!-- link back to project root -->
-                <a class="goBackBtn" href="../index.html"></a>
-                <span class="switchThemeBtn" onclick="toggleTheme()"></span>
-            </div>
 
             <div>
                 <button id="animateButton">placeholder text</button>
