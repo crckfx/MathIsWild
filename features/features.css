@@ -1,5 +1,5 @@
 /* **************************************************** */
-/* homepage links */
+/* generic 'features' content */
 /* ---------------------------------------------------- */
 /* link container */
 .linkContainer {
@@ -9,6 +9,7 @@
     margin-top: 20px;
     margin-bottom: 20px;
 }
+
 /* styles for the link buttons */
 .linkButton {
     width: 225px;
@@ -25,7 +26,9 @@
 .linkButtonImage {
     width: 225px;
     height: 210px;
-    background-color: #ad331b;
+    /* background-color: #ad331b; */
+    text-align: center;
+    color: var(--color-text-3);
 }
 
 .linkButtonHeading {
@@ -40,18 +43,31 @@
     background-color: var(--color-haroldson);
     outline: 5px solid red;
 }
-/* ---------------------------------------------------- */
 
-/* **************************************************** */
-/* crckfx styles (not important) */
-/* ---------------------------------------------------- */
-/* links to our githubs */
-.bigManLinks {
-    min-height: 100px;
-    background-color: var(--color-bg-1);
+/* new type of link button */
+a.linkCard {
+    width: 225px;
+    height: 250px;
+    background-color: var(--color-harold);
+    border-radius: 8px;
+    margin: 10px;
     display: flex;
-    /* justify-content: center; */
     align-items: center;
     flex-direction: column;
-    padding: 10px;
+}
+
+a.linkCard:hover {
+    background-color: var(--color-haroldson);
+    outline: 5px solid var(--color-alert-1a);
+}
+
+a.linkCard .linkButtonImage {
+    width: 225px;
+    height: 210px;
+    text-align: center;
+    color: var(--color-text-3);
+
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
 }

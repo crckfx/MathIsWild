@@ -1,0 +1,107 @@
+/* ---------------------------------------------------------------- */
+/* ---- accordion main styles ---- */
+/* accordion: the thing that can contain one or more collapsible layers */
+.accordion {
+    background-color: var(--color-bg-3);
+    /* padding: 1rem; */
+    color: var(--color-text);
+    display: grid;
+    gap: 4px;
+    border-radius: 8px;
+    border: 2px solid var(--color-bg-3);
+    overflow: hidden;
+}
+
+.accordion.rounded {
+    border-radius: 8px;
+}
+.accordion.kevin {
+    border-radius: 8px;
+    
+}
+
+.accordion hr {
+    border-color: #aaa2
+}
+
+/* accordion-panel: a single collapsible layer which may have siblings within an accordion */
+.accordion-panel {
+    background-color: var(--color-bg-4);
+    
+    /* padding: 0; */
+    padding-right: 1rem;
+    padding-left: 1rem;
+    border-radius: 8px;
+    border: none;
+}
+
+.accordion.rounded .accordion-panel {
+    /*  */
+    border: none;
+}
+.accordion.kevin .accordion-panel {
+    /*  */
+    border: none;
+}
+
+/* ---------------------------------------------------------------- */
+/* ---- accordion TRIGGER styles ---- */
+/* accordion trigger: the button component that the user can touch to expand/collapse */
+.accordion-trigger {
+    background: transparent;
+    border: 0;
+    font: inherit;
+    color: inherit;
+    text-align: left;
+    width: 100%;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    padding-left: 1.25rem;
+    position: relative;
+}
+
+/* ::before: the light denoting on/off for the panel */
+.accordion-trigger::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    /* Center the light vertically */
+    background-color: var(--color-bulb-off);
+    width: 5px;
+    /* Fixed height for the light */
+    height: 35px;
+    /* Smooth transition for the light color */
+    transition: background-color 500ms;
+}
+
+.accordion-trigger[aria-expanded="true"]::before {
+    background-color: var(--color-bulb-on);
+}
+
+/* ---------------------------------------------------------------- */
+/* ---- accordion CONTENT styles ---- */
+/* accordion-content: the content that gets hidden or shown based on the the trigger */
+.accordion-content {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 500ms;
+}
+
+.accordion-content[aria-hidden="false"] {
+    grid-template-rows: 1fr;
+}
+
+.accordion-content>div {
+    overflow: hidden;
+}
+
+/* ---------------------------------------------------------------- */
+
+
+/* random irrelevant */
+.wrap-1000 {
+    max-width: 1000px;
+    width: 100%;
+}

@@ -1,6 +1,5 @@
 const bigCirc = document.querySelector('.rt-ui.cycle');
 const smallCirc = bigCirc.querySelector('.handle');
-const mainContainer = bigCirc.querySelector('.mainContainer');
 const canvas = document.getElementById('waveCanvas');
 
 const ctx = canvas.getContext("2d");

@@ -21,58 +21,50 @@
 </head>
 <!-- Head End --------------------------------------------------------------------------------------------------------------------->
 
-
 <!-- Body Start --------------------------------------------------------------------------------------------------------------------->
 
 <body>
-    <div class="mainContainer">
 
-        <header class="styleHeader">
-            <h1>TRAINNNNN GAME</h1>
-        </header>
+    <header class="styleHeader">
+        <h1>TRAINNNNN GAME</h1>
+    </header>
+    <div class="page-wrapper">
+        <div class="page-content bg-2">
 
-        <div class="pageControls bg-2">
-            <a class="goBackBtn" href="../index.html"></a>
-            <span class="switchThemeBtn" onclick="toggleTheme()"></span>
-        </div>
+            <div class="pageControls bg-2">
+                <a class="goBackBtn" href="../index.html"></a>
+                <span class="switchThemeBtn" onclick="toggleTheme()"></span>
+            </div>
 
             <!-- SOLVE THE TRAIN START -->
             <div class="trainContainer">
                 <!-- TRAINNNNN GAME -->
                 <div class="trainNumbers">
-
                     <input type="number" class="numberInput" maxlength="1" oninput="inputNext(this)" value="">
                     <input type="number" class="numberInput" maxlength="1" oninput="inputNext(this)" value="">
                     <input type="number" class="numberInput" maxlength="1" oninput="inputNext(this)" value="">
                     <input type="number" class="numberInput" maxlength="1" oninput="inputNext(this)" value="">
-
                 </div>
 
                 <div class="buttonsDiv">
-
                     <button class="toSolve">Solve</button>
                     <button class="reRandomise">Reset</button>
-
                 </div>
+
                 <div class="howToSolve"></div>
+
                 <div class="solutions">
                     <div class="trigger"><i class="fa-solid fa-caret-left hidden" id="leftTrig"></i></div>
                     <div class="howManyGregs"></div>
                     <div class="trigger"><i class="fa-solid fa-caret-right hidden" id="rightTrig"></i></div>
                 </div>
-
             </div>
             <!-- SOLVE THE TRAIN END -->
-            <!-- <div class="switchThemeBtn" onclick="toggleTheme()"></div> -->
-
         </div>
     </div>
-
-
     <!-- Main Container End --------------------------------------------------------------------------------------------------------------------->
 
     <!-- Script Source Start --------------------------------------------------------------------------------------------------------------------->
-
     <!-- GSAP -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/MotionPathPlugin.min.js"></script>

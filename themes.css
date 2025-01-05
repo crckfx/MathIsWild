@@ -1,11 +1,15 @@
 /* global styles applied to all themes */
 :root {
     --color-greg: #90c040;
+    --color-grellow: #d0d000;
+    --color-grurple: #663399;
 }
 
 /* light theme */
 .theme-light {
-    --color-background: #F9FAFB;
+    --color-bg-1: #F9FAFB;
+    --color-bg-1b: #e4f1ff;
+    
     --color-text: #1A202C;
     --color-text-2: #113840;
     --color-text-3: #3f3f3f;
@@ -13,6 +17,8 @@
 
     --color-bg-2: #96d5e3;
     --color-bg-3: #cecece;
+    --color-bg-4: #dedede;
+    --color-bg-5: #eeeeee;
 
     --color-gareth: #ff8c00;
     --color-garethson: #d77600;
@@ -24,11 +30,17 @@
     --color-alert-1b: #e13c00;
 
     --color-base-chroma: #fff;
+
+    --color-bulb-on: #ff8f00;
+    --color-bulb-off: #ff8f0022;
+    
 }
 
 /* dark theme */
 .theme-dark {
-    --color-background: #1A202C;
+    --color-bg-1: #1A202C;
+    --color-bg-1b: #0f1729;
+
     --color-text: #F9FAFB;
     --color-text-2: #96d5e3;
     --color-text-3: #cecece;
@@ -37,6 +49,8 @@
 
     --color-bg-2: #1e383e;
     --color-bg-3: #3a3a3a;
+    --color-bg-4: #2a2a2a;
+    --color-bg-5: #1a1a1a;
 
     --color-gareth: #8a6505;
     --color-garethson: #6b5005;
@@ -44,23 +58,37 @@
     --color-harold: #3a3a3a;
     --color-haroldson: #29383d;
 
-    /* --color-greg: #2e3f13; */
     --color-alert-1a: #992900;
     --color-alert-1b: #661b00;
 
     --color-base-chroma: #000;
 
+    --color-bulb-on: #00ddff;
+    --color-bulb-off: #00ddff22;
+    
 }
 
 
 .bg-1 {
-    background-color: var(--color-background);
+    background-color: var(--color-bg-1);
+}
+.bg-1b {
+    background-color: var(--color-bg-1b);
 }
 .bg-2 {
     background-color: var(--color-bg-2);
 }
 .bg-3 {
     background-color: var(--color-bg-3);
+}
+.bg-4 {
+    background-color: var(--color-bg-4);
+}
+.bg-5 {
+    background-color: var(--color-bg-5);
+}
+.bg-greg {
+    background-color: var(--color-greg);
 }
 
 .tc-1 {

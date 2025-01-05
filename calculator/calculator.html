@@ -26,46 +26,36 @@
 <!-- Body Start --------------------------------------------------------------------------------------------------------------------->
 
 <body>
-    <div class="mainContainer">
+    <header>
+        <h1>Calculator</h1>
+    </header>
 
-        <header>
-            <h1>Calculator</h1>
-        </header>
-
-        <div class="pageControls">
-            <!-- Navigate back -->
-            <a class="goBackBtn" href="../index.html"></a>
-            <span class="switchThemeBtn" onclick="toggleTheme()"></span>
-        </div>
-
-
-        <!-- Calculator Starts -->
-        <div class="calcContainer">
-
-            <div class="calculator">
-                <div class="calcScreen"></div>
-                <div class="calcButtons"></div>
-            </div>
-
-            <div class="timesTablesResults"></div>
-
-        </div>
-        <!-- Calculator Ends -->
-
+    <div class="pageControls">
+        <!-- Navigate back -->
+        <a class="goBackBtn" href="../index.html"></a>
+        <span class="switchThemeBtn" onclick="toggleTheme()"></span>
     </div>
 
+    <!-- Calculator Starts -->
+    <div class="calcContainer">
+        <div class="calculator">
+            <div class="calcScreen"></div>
+            <div class="calcButtons"></div>
+        </div>
+        <div class="timesTablesResults"></div>
+    </div>
+    <!-- Calculator Ends -->
     <!-- Main Container End --------------------------------------------------------------------------------------------------------------------->
-
     <!-- Script Source Start --------------------------------------------------------------------------------------------------------------------->
-
-    <!-- GSAP SCRIPT Start -->
-    <script src="../_external/gsap.min.js"></script>
-    <script src="../_external/MotionPathPlugin.min.js"></script>
-    <script src="../_external/ScrollTrigger.min.js"></script>
+    <!-- GSAP SCRIPT -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/MotionPathPlugin.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
     <!-- local scripts -->
     <script src="../script.js"></script>
     <script src="calculator.js"></script>
     <!-- Script Source End --------------------------------------------------------------------------------------------------------------------->
+
 </body>
 <!-- Body End --------------------------------------------------------------------------------------------------------------------->
 
