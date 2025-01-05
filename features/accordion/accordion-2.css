@@ -13,28 +13,24 @@
 }
 
 /* other styles */
-
-
-
-.wrapper {
-    width: min(65ch, 100% - 4rem);
-    margin-inline: auto;
-}
-
-.accordion, .accordion-3 {
+.accordion {
     background: var(--color-bg-5);
-    /* color: #effeef; */
     padding: 1rem;
     color: var(--color-text-1);
 }
 
-.accordion .accordion-panel {
-    padding: 1rem;
-    border: 1px solid;
+.accordion.rounded {
+    border-radius: 8px;
 }
 
-.accordion h2 {
-    position: relative;
+.accordion-panel {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    border: 1px solid;
+}
+.accordion.rounded .accordion-panel {
+    padding: 0;
+    border: none;
 }
 
 .accordion-trigger {
@@ -43,20 +39,33 @@
     font: inherit;
     color: inherit;
     text-align: left;
+    width: 100%;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    /* border-left: 4px solid; */
+    /* border-left-color: var(--color-bulb-off); */
+    position: relative;
 }
 
-/* crckfx below */
-.accordion-trigger {
-    padding-left: 1rem;
-    border-left: 4px solid;
-    border-left-color: var(--color-bulb-off);
+/* Light pseudo-element */
+.accordion-trigger::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%); /* Center the light vertically */
+    background-color: var(--color-bulb-off);
+    width: 4px;
+    height: 35px; /* Fixed height for the light */
+    transition: background-color 500ms; /* Smooth transition for the light color */
+}
+.accordion-trigger[aria-expanded="true"]::before {
+    background-color: var(--color-bulb-on);
 }
 
-.accordion-trigger[aria-expanded="true"] {
-    border-left: 4px solid;
-    border-left-color: var(--color-bulb-on);
-}
 
-.accordion-3 {
-    border-radius: 8px;
+/* random irrelevant */
+.wrap-1000 {
+    max-width: 1000px;
+    width: 100%;
 }
