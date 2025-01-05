@@ -60,17 +60,25 @@ const choiceImages = {
         // Display winner in the popup
         const winsPopUp = document.getElementById('winsPopUp');
         winsPopUp.innerText = whoWon;
-        winsPopUp.style.display = 'flex';
         playerSelectDisplay.style.display = 'flex';
         cpuSelectDisplay.style.display = 'flex';
-
-        // Hide the popup after 1.5 seconds
+        
+        // Step 1: Keep player and CPU selections visible for 1.5 seconds
         setTimeout(() => {
-            winsPopUp.style.display = 'none';
-            playerSelectDisplay.style.display = 'none';
-            cpuSelectDisplay.style.display = 'none';
-        }, 2500);
-    }
+            // Step 2: Show the winsPopUp while keeping player and CPU selections visible
+            winsPopUp.style.display = 'flex';
+        
+            // Step 3: Hide all three together after 1 second
+            setTimeout(() => {
+                playerSelectDisplay.style.display = 'none';
+                cpuSelectDisplay.style.display = 'none';
+                winsPopUp.style.display = 'none';
+            }, 1000); // Delay for keeping all three visible
+        
+        }, 1500); // Initial delay for player and CPU selections
+        
+}
+
 
     document.querySelectorAll('.sPR').forEach(button => {
         button.addEventListener('click', () => {
