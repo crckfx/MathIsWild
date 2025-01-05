@@ -42,6 +42,7 @@
     width: 100%;
     padding-top: 12px;
     padding-bottom: 12px;
+    padding-left: 1rem;
     /* border-left: 4px solid; */
     /* border-left-color: var(--color-bulb-off); */
     position: relative;
