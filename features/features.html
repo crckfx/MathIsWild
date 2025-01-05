@@ -26,22 +26,33 @@
 
     <!-- something -->
     <div class="wrapper">
-
         <div class="page-content bg-5">
             <!-- page controls -->
             <div class="pageControls">
                 <!-- link back to project root -->
-                <a class="goBackBtn" href="../index.html"></a>
+                <a class="goBackBtn" href="../index.html" aria-label="Go back"></a>
                 <span class="switchThemeBtn" onclick="toggleTheme()"></span>
             </div>
-            <a href="digitslider/digitslider.html">
-                <div class="linkButton">
-                    <div class="linkButtonImage bg-greg">
-                        <img src="" alt="Digit Slider">
+
+            <div class="linkContainer">
+
+                <a href="digitslider/digitslider.html">
+                    <div class="linkButton">
+                        <div class="linkButtonImage bg-greg">
+                            <img src="" alt="Digit Slider">
+                        </div>
+                        <div class="linkButtonHeading">Digit Slider</div>
                     </div>
-                    <div class="linkButtonHeading">Digit Slider</div>
-                </div>
-            </a>
+                </a>
+                <!-- todo: use a different type of linkbutton here -->
+                <a class="linkCard" href="accordion/accordion.html">
+                    <div class="linkButtonImage bg-greg">
+                        <img src="" alt="Accordion">
+                    </div>
+                    <div class="linkButtonHeading">Accordion</div>
+                </a>
+
+            </div>
         </div>
     </div>
 

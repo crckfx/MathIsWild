@@ -30,6 +30,9 @@
     --color-alert-1b: #e13c00;
 
     --color-base-chroma: #fff;
+
+    --color-bulb-on: #ff8f00;
+    --color-bulb-off: #ff8f0022;
     
 }
 
@@ -60,6 +63,9 @@
 
     --color-base-chroma: #000;
 
+    --color-bulb-on: #00ddff;
+    --color-bulb-off: #00ddff22;
+    
 }
 
 

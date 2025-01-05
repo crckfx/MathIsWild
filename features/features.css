@@ -1,6 +1,15 @@
 /* **************************************************** */
 /* generic 'features' content */
 /* ---------------------------------------------------- */
+/* link container */
+.linkContainer {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
 /* styles for the link buttons */
 .linkButton {
     width: 225px;
@@ -18,6 +27,8 @@
     width: 225px;
     height: 210px;
     /* background-color: #ad331b; */
+    text-align: center;
+    color: var(--color-text-3);
 }
 
 .linkButtonHeading {
@@ -31,4 +42,21 @@
 .linkButton:hover {
     background-color: var(--color-haroldson);
     outline: 5px solid red;
+}
+
+/* new type of link button */
+a.linkCard {
+    width: 225px;
+    height: 250px;
+    background-color: var(--color-harold);
+    border-radius: 8px;
+    margin: 10px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+a.linkCard:hover {
+    background-color: var(--color-haroldson);
+    outline: 5px solid var(--color-alert-1a);
 }
