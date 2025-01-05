@@ -71,7 +71,7 @@ a.bigman:hover {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    /* background-color: var(--color-bg-1); */
+    /* background-color: var(--color-background); */
     width: 100%;
 }
 
