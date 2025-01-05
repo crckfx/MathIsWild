@@ -27,7 +27,7 @@ details.lightCollapsible>summary span {
     border-left: 4px solid;
     border-left-color: var(--color-bulb-off);
     display: block;
-    width: 0.5rem;
+    /* width: 0.5rem; */
 }
 
 details.lightCollapsible[open]>summary span {

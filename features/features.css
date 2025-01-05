@@ -60,3 +60,14 @@ a.linkCard:hover {
     background-color: var(--color-haroldson);
     outline: 5px solid var(--color-alert-1a);
 }
+
+a.linkCard .linkButtonImage {
+    width: 225px;
+    height: 210px;
+    text-align: center;
+    color: var(--color-text-3);
+
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
