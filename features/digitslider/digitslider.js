@@ -20,8 +20,9 @@ function createDigitSlider(container) {
         startY = e.clientY; // Use clientY for pointer events
         container.setPointerCapture(e.pointerId); // Capture pointer for consistent tracking
     });
-
+    
     container.addEventListener('pointermove', (e) => {
+        e.preventDefault();
         if (e.buttons === 1) { // Check if the primary button is pressed
             const deltaY = e.clientY - startY;
 
