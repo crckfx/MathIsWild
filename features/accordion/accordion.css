@@ -1,0 +1,46 @@
+details.lightCollapsible {
+    background-color: var(--color-bg-5);
+    /* padding: 1rem; */
+    border-radius: 0.5rem;
+    overflow: hidden;
+    color: var(--color-text-3);
+}
+
+details.lightCollapsible .content {
+    padding: 1rem;
+    padding-top: 0;
+    border-top: none;
+}
+
+details.lightCollapsible>summary {
+    padding: 1rem;
+    list-style: none;
+    cursor: pointer;
+    /* no selecty texty */
+    -webkit-user-select: none; /* Safari */
+    -ms-user-select: none; /* IE 10 and IE 11 */
+    user-select: none; /* Standard syntax */
+}
+
+details.lightCollapsible>summary span {
+    padding-left: 1rem;
+    border-left: 4px solid;
+    border-left-color: var(--color-bulb-off);
+    display: block;
+    width: 0.5rem;
+}
+
+details.lightCollapsible[open]>summary span {
+    border-left: 4px solid;
+    border-left-color: var(--color-bulb-on);
+    background-color: none;
+}
+
+details.lightCollapsible>summary::marker, /* Latest Chrome, Edge, Firefox */
+details.lightCollapsible>summary::-webkit-details-marker { /* Safari */
+    display: none;
+}
+
+.spareMargin {
+    margin-bottom: 1.5rem;    
+}
