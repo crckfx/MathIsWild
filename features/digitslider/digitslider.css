@@ -30,7 +30,7 @@
     /* touch-action: manipulation; */
     border-radius: 15px;
 
-    background-color: var(--color-background);
+    background-color: var(--color-bg-1);
 
     color: var(--color-text);
 

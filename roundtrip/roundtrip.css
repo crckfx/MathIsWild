@@ -6,7 +6,7 @@
     align-items: center;
     width: 100%;
     flex: 1;
-    background-color: var(--color-background);
+    background-color: var(--color-bg-1);
 }
 
 .rt-box {

@@ -1,5 +1,5 @@
 const cssVarNames = [
-    "--color-background",
+    "--color-bg-1",
     "--color-bg-2",
     "--color-bg-3",
     "--color-text",
