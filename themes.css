@@ -161,3 +161,28 @@
     background-color: var(--dark);
     box-shadow: none;
   }
+
+  /* Responsive Design */
+@media (max-width: 1042px) {
+    .toggle-switch {
+        right: 40px;  
+      }
+    .headerTextContainer{
+        width: 80%;
+    }
+    h1 {
+        font-size: 28px;
+    }
+}
+
+@media (max-width: 768px) {
+    .toggle-switch {
+        right: 20px;  
+      }
+    .headerTextContainer{
+        width: 70%;
+    }
+    h1 {
+        font-size: 24px;
+    }
+}
