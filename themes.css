@@ -105,29 +105,34 @@
 /* Themes Toggle Switch */
 
 .toggle-switch {
-    position: absolute; 
-    right: 100px; 
-    top: 42.5px; 
-    width: 30px; 
-    height: 15px; 
+    /* position: absolute;  */
+    /* right: 100px;  */
+    /* top: 42.5px;  */
+    display: inline-flex;
+    width: 32px; 
+    height: 20px; 
     --light: #d8dbe0;
     --dark: #28292c;
     --link: rgb(27, 129, 112);
     --link-hover: rgb(24, 94, 82);
+    box-sizing: border-box;
+    margin: 16px;
   }
   
   .switch-label {
-    position: absolute;
+    /* position: absolute; */
+    position: relative;
     width: 100%;
     height: 100%;
     background-color: var(--dark);
-    border-radius: 15px; 
+    border-radius: 10px; 
     cursor: pointer;
-    border: 2px solid var(--dark); 
+    border: 2px solid var(--dark);
+    box-sizing: border-box;
   }
   
   .checkbox {
-    position: absolute;
+    /* position: absolute; */
     display: none;
   }
   
@@ -147,17 +152,21 @@
     content: "";
     position: absolute;
     top: 2px; 
-    left: 2px; 
-    width: 11px; 
-    height: 11px; 
+    left: -2px; 
+    width: 12px; 
+    height: 12px; 
     border-radius: 50%;
     box-shadow: inset 8px -2px 0px 0px var(--light); 
     background-color: var(--dark);
     transition: 0.3s;
   }
-  
+  .theme-dark .slider::before {
+    left: 2px;
+
+  }
+
   .checkbox:checked ~ .slider::before {
-    transform: translateX(15px); 
+    transform: translateX(16px); 
     background-color: var(--dark);
     box-shadow: none;
   }
@@ -165,10 +174,10 @@
   /* Responsive Design */
 @media (max-width: 1042px) {
     .toggle-switch {
-        right: 40px;  
+        /* right: 40px;   */
       }
     .headerTextContainer{
-        width: 80%;
+        /* width: 80%; */
     }
     h1 {
         font-size: 28px;
@@ -177,10 +186,10 @@
 
 @media (max-width: 768px) {
     .toggle-switch {
-        right: 20px;  
+        /* right: 20px;   */
       }
     .headerTextContainer{
-        width: 70%;
+        /* width: 70%; */
     }
     h1 {
         font-size: 24px;

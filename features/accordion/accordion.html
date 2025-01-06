@@ -22,7 +22,9 @@
     <!-- header -->
     <header>
         <a class="goBackBtn" href="../features.html"></a>
-        <h1>Accordion</h1>
+        <div class="header-middle">
+            <h1>Accordion</h1>
+        </div>
         <div class="toggle-switch">
             <label class="switch-label">
                 <input type="checkbox" class="checkbox" onclick="toggleTheme()">
@@ -37,8 +39,9 @@
             <!-- place accordion below -->
             <div class="wrap-1000">
                 <h1>Hello Accordion</h1>
+                <!-- accordion 1 start -->
                 <div class="accordion rounded">
-                    <div class="accordion-panel">
+                    <div class="accordion-panel bg-5">
                         <button class="accordion-trigger" aria-expanded="false" aria-controls="accordion0-content">
                             <h2>Expand me</h2>
                         </button>
@@ -52,15 +55,14 @@
                         </div>
                     </div>
                 </div>
+                <!-- accordion 1 end -->
             </div>
 
 
-            <div class="wrap-1000">
-
-
+            <div class="wrap-600">
                 <h1>Going from 0 to auto, the easy way</h1>
-
-                <div class="accordion kevin">
+                <!-- accordion 2 start -->
+                <div class="accordion kevin bg-2">
 
                     <div class="accordion-panel">
                         <button class="accordion-trigger" aria-expanded="true">
@@ -134,6 +136,7 @@
                         </div>
                     </div>
                 </div>
+                <!-- accordion 2 end -->
             </div>
 
             <div class="wrap-1000">
@@ -169,6 +172,10 @@
 
     <script src="../../script.js"></script>
 
+    <script>
+        const fakeCheck = document.querySelector('.switch-label').querySelector('input');
+        console.log(fakeCheck)
+    </script>
 </body>
 
 </html>
