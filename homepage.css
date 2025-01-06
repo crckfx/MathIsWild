@@ -49,11 +49,11 @@
 .bigManLinks {
     /* min-height: 100px; */
     /* background-color: var(--color-bg-1); */
-    display: flex;
+    /* display: flex; */
     /* justify-content: center; */
-    align-items: center;
-    flex-direction: column;
-    padding: 10px;
+    /* align-items: center; */
+    /* flex-direction: column; */
+    margin: 16px;
 }
 
 .header-left {
