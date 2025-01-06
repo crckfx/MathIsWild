@@ -1,3 +1,5 @@
+
+
 // *************************************************
 // --- GSAP ---
 // ----------------------------------------------
@@ -11,6 +13,11 @@ if (typeof gsap !== 'undefined') {
 // *************************************************
 // --- THEMES ---
 // ----------------------------------------------
+const root = document.documentElement;
+// experimental
+const fakeCheck = document.querySelector('.switch-label').querySelector('input');
+console.log(fakeCheck)
+
 // Save theme in a cookie
 function saveThemeCookie(theme) {
     document.cookie = `theme=${theme}; path=/; max-age=31536000; SameSite=Strict`;  // 1 year expiration
@@ -24,18 +31,20 @@ function getThemeCookie() {
 // Apply saved theme to the page
 function applySavedTheme() {
     document.documentElement.className = getThemeCookie();
+    fakeCheck.checked = root.classList.contains('theme-light') ? true : false;
 }
 // Toggle theme between dark and light
 function toggleTheme() {
-    const root = document.documentElement;
     const isDark = root.classList.contains('theme-dark');
     if (isDark) {
         root.classList.remove('theme-dark');
         root.classList.add('theme-light');
+        fakeCheck.checked = true;
         saveThemeCookie('theme-light');
     } else {
         root.classList.remove('theme-light');
         root.classList.add('theme-dark');
+        fakeCheck.checked = false;
         saveThemeCookie('theme-dark');
     }
 }
@@ -43,3 +52,5 @@ function toggleTheme() {
 
 // Apply saved theme on page load
 applySavedTheme();
+
+
