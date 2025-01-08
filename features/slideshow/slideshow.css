@@ -10,23 +10,20 @@
 
 .name-view {
     background-color: #00800088;
-    /* background-color: aqua; */
     height: 3rem;
     display: inline-block;
     width: 600px;
 }
 
 .slideshow .image-view {
-    background-color: aqua;
+    /* background-color: aqua; */
+    background-color: inherit;
     flex: 1;
     max-height: 100%;
     height: 100%;
-    /* display: grid; */
     display: flex;
     flex-direction: row;
     width: 100%;
-    /* overflow-x: scroll; */
-    transition: transform 0.5s ease; /* Smooth transition */    
 }
 
 .slideshow .image-view .media-element {
@@ -34,8 +31,8 @@
     max-height: 100%;
     width: 100%;
     flex-shrink: 0;
-    display: grid;
-    place-items: middle;
+    display: flex;
+    place-content: center;
 }
 
 .slideshow img {

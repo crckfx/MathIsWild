@@ -39,7 +39,7 @@
             <!-- -- -- SLIDESHOW -- -- -->
             <div class="slideshow">
                 <div class="image-view"></div>
-                
+
                 <div class="button-prev"></div>
                 <div class="button-next"></div>
 
@@ -47,71 +47,21 @@
             </div>
             <div class="name-view"></div>
 
-            <button id="test-left" onclick="moveLeft()">test left</button>
-            <button id="test-right" onclick="moveRight()">test right</button>
+            <button id="testLeft" onclick="slideShow.moveLeft()">test left</button>
+            <button id="testLight" onclick="slideShow.moveRight()">test right</button>
 
 
         </div>
 
     </div>
-    
-    
-    <!-- -- -- JAVASCRIPT -- -- -->
+
+    <script src="Slideshow.js"></script>
+
     <script>
-        // hi
-        const slideShow = document.querySelector('.slideshow');
-
-        const imageView = slideShow.querySelector('.image-view');
-        const nameView = slideShow.querySelector('.name-view');
-
-        // const elements = imageView.querySelectorAll('.media-element');
-        const mediaElements = {
-            "Source One":       "https://i.pinimg.com/736x/54/27/64/542764d7ba3a31abb75a7110b235a5a8.jpg",
-            "Source 2":         "https://i.pinimg.com/originals/e0/56/58/e05658d539c0e509e293d45b970d67b0.jpg",
-            "The Third Source": "https://i.pinimg.com/736x/6c/d4/7f/6cd47f0dc801757c6230f634aba56dfb.jpg",
-        };
-
-        console.log('------------------');
-        console.log('--- elements ---');
-        for (const name in mediaElements) {
-            console.log(name);
-            const src = mediaElements[name];
-            console.log(`${name}: ${src}`);
-
-            const el = document.createElement('div');
-            el.classList.add('media-element');
-
-            const image = document.createElement('img');
-            image.src = src;
-            
-            el.appendChild(image);
-
-            imageView.appendChild(el);
-            
-            // imageView.innerHTML = ``;
-            // imageView.appendChild(image);
-
-
-        }
-
-        // doesn't work
-        function moveLeft() {
-            const lastElement = imageView.lastElementChild;
-            console.log(lastElement);
-            imageView.appendChild(lastElement);
-        }
-
-        // works!
-        function moveRight() {
-            const firstElement = imageView.firstElementChild;
-            console.log(firstElement);
-            imageView.appendChild(firstElement);
-        }
-
-
-        console.log('------------------');
+        const slideShowObject = document.querySelector('.slideshow');
+        const slideShow = new Slideshow(slideShowObject);
     </script>
-
+    
 
 
     <script src="../../script.js"></script>
