@@ -1,7 +1,3 @@
-document.querySelectorAll('.digit-container').forEach(container => {
-    createDigitSlider(container);
-
-});
 
 function createDigitSlider(container) {
     let currentValue = parseInt(container.dataset.value, 10) || 0;
@@ -63,3 +59,10 @@ function createDigitSlider(container) {
         }        
     })
 }
+
+
+
+document.querySelectorAll('.digit-container').forEach(container => {
+    createDigitSlider(container);
+
+});
