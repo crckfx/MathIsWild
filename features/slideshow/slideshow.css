@@ -84,17 +84,8 @@
     transform: translate(-50%, -50%); 
 }
 
-.button-prev:hover,
-.button-next:hover {
-    /* background-color: red; */
-}
 
 
-
-
-
-
-/* crckfx 'go back' button */
 .button-prev,
 .button-next {
     height: 50px;
