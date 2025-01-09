@@ -1,65 +1,90 @@
-.slideshow {
-    /* display: flex; */
-    /* flex-direction: column; */
-    background-color: var(--color-bg-2);
-    width: 600px;
-    height: 400px;
-    position: relative;
-    overflow: hidden;
-}
 
 .name-view {
+    background-color: var(--color-bg-2);
     background-color: #00800088;
-    height: 3rem;
-    display: inline-block;
-    width: 600px;
+    height: 48px;
+    display: inline-flex;
+    width: 100%;
+    justify-content: space-between;
+    margin-top: 20px;    
 }
 
-.slideshow .image-view {
-    /* background-color: aqua; */
-    background-color: inherit;
-    flex: 1;
-    max-height: 100%;
-    height: 100%;
+/* Slideshow Container */
+.slideshow {
     display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%; /* Full height of the parent */
+}
+
+/* Image Container */
+.image-contain {
+    /* flex: 0; */
+    overflow: hidden; /* Prevent overflowing content */
+    display: flex;
+    position: relative;
+    background-color: inherit;
+}
+
+/* Image Container */
+.image-contain.init {
+    flex: 1; /* Take up remaining space in .slideshow */
+}
+.image-contain.init .media-element {
+    display: none;
+}
+
+
+/* Image View */
+.image-view {
+    display: flex; /* Lay out slides side-by-side */
     flex-direction: row;
     width: 100%;
+    height: 100%; /* Match parent height */
+    transform: translateX(0); /* Controlled by JS */
+    transition: transform 0.5s ease; /* Smooth transitions */
 }
 
-.slideshow .image-view .media-element {
-    height: 100%;
-    max-height: 100%;
-    width: 100%;
-    flex-shrink: 0;
+/* Individual Slides */
+.media-element {
+    flex: 0 0 100%; /* Each slide takes full width */
+    height: 100%; /* Match the height of .image-view */
     display: flex;
-    place-content: center;
+    justify-content: center; /* Center image horizontally */
+    align-items: center; /* Center image vertically */
 }
 
+/* Images */
 .slideshow img {
-    max-height: 100%;
-    height: 100%;
+    max-width: 100%; /* Scale within width constraints */
+    max-height: 100%; /* Scale within height constraints */
+    object-fit: contain; /* Maintain aspect ratio */
 }
+
 
 .button-prev,
 .button-next {
-    display: inline-flex;
-    width: 24px;
-    height: 24px;
+    /* display: inline-flex; */
+    display: none;
+    width:  32px;
+    height: 32px;
     background-color: pink;
     position: absolute;
+    top: 50%;
+    /* transform: translateY(-50%);  */
 }
 
 .button-prev {
-    top: 50%;
     left: 0px;
+    transform: translate(50%, -50%);
 }
 
 .button-next {
-    top: 50%;
     right: 0px;
+    transform: translate(-50%, -50%); 
 }
 
-
-.sources-hidden {
-    display: none;
+.button-prev:hover,
+.button-next:hover {
+    background-color: red;
 }

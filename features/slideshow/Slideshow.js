@@ -1,17 +1,27 @@
 class Slideshow {
-    constructor(slideShowElement) {
+    constructor(slideShowElement, mediaElements) {
         this.slideShowElement = slideShowElement;
+        this.imageContain = slideShowElement.querySelector('.image-contain');
         this.imageView = slideShowElement.querySelector('.image-view');
         this.nameView = slideShowElement.querySelector('.name-view');
-        this.mediaElements = [
-            "https://i.pinimg.com/736x/54/27/64/542764d7ba3a31abb75a7110b235a5a8.jpg",
-            "https://i.pinimg.com/originals/e0/56/58/e05658d539c0e509e293d45b970d67b0.jpg",
-            "https://i.pinimg.com/736x/6c/d4/7f/6cd47f0dc801757c6230f634aba56dfb.jpg"
-        ];
+        this.mediaElements = mediaElements;
+
         this.currentIndex = 1; // Start at the "real" first slide
         this.isTransitioning = false;
+
+        this.setHeight();
         this.initSlides();
         this.addEventListeners();
+
+    }
+
+    setHeight() {
+        this.imageContain.classList.add('init');
+        const calcHeight = this.imageContain.offsetHeight;
+        console.log(calcHeight);
+        this.imageContain.style.height = `${calcHeight}px`;
+        this.imageContain.classList.remove('init');
+        console.log(this.imageContain.offsetHeight);
     }
 
     initSlides() {
@@ -30,8 +40,13 @@ class Slideshow {
         this.imageView.appendChild(firstClone);
         this.imageView.insertBefore(lastClone, this.imageView.firstElementChild);
         this.totalSlides = this.mediaElements.length + 2; // Includes clones
-        // Set initial position
+        // Set initial position without transition
+        this.imageView.style.transition = 'none';  // Disable transition
         this.imageView.style.transform = `translateX(-${this.currentIndex * 100}%)`;
+        // Re-enable transition for subsequent moves
+        setTimeout(() => {
+            this.imageView.style.transition = 'transform 200ms ease'; // Re-enable transition
+        }, 0);
     }
 
     updateSlideView(withTransition = true) {
@@ -42,21 +57,21 @@ class Slideshow {
     moveRight() {
         if (this.isTransitioning) return;
         this.isTransitioning = true;
-        
+
         this.currentIndex++;
         this.updateSlideView(true);
 
         const handleTransitionEnd = () => {
             this.imageView.removeEventListener('transitionend', handleTransitionEnd);
-            
+
             if (this.currentIndex === this.totalSlides - 1) {
                 this.currentIndex = 1;
                 this.updateSlideView(false);
             }
-            
+
             setTimeout(() => {
                 this.isTransitioning = false;
-            }, 50);
+            }, 0);
         };
 
         this.imageView.addEventListener('transitionend', handleTransitionEnd);
@@ -71,15 +86,15 @@ class Slideshow {
 
         const handleTransitionEnd = () => {
             this.imageView.removeEventListener('transitionend', handleTransitionEnd);
-            
+
             if (this.currentIndex === 0) {
                 this.currentIndex = this.totalSlides - 2;
                 this.updateSlideView(false);
             }
-            
+
             setTimeout(() => {
                 this.isTransitioning = false;
-            }, 50);
+            }, 0);
         };
 
         this.imageView.addEventListener('transitionend', handleTransitionEnd);
@@ -90,5 +105,7 @@ class Slideshow {
         const nextButton = this.slideShowElement.querySelector('.button-next');
         if (prevButton) prevButton.addEventListener('click', () => this.moveLeft());
         if (nextButton) nextButton.addEventListener('click', () => this.moveRight());
+
+        window.addEventListener('resize', () => this.setHeight());
     }
 }

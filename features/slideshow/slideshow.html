@@ -38,17 +38,22 @@
         <div class="page-content bg-3">
             <!-- -- -- SLIDESHOW -- -- -->
             <div class="slideshow">
-                <div class="image-view"></div>
+                <div class="image-contain">
 
-                <div class="button-prev"></div>
-                <div class="button-next"></div>
+                    <div class="image-view"></div>
+
+                    <div class="button-prev"></div>
+                    <div class="button-next"></div>
+                </div>
 
                 <div class="sources-hidden"></div>
-            </div>
-            <div class="name-view"></div>
+                <div class="name-view">
 
-            <button id="testLeft" onclick="slideShow.moveLeft()">test left</button>
-            <button id="testLight" onclick="slideShow.moveRight()">test right</button>
+                    <button id="testLeft" onclick="slideShow.moveLeft()">test left</button>
+                    <button id="testLight" onclick="slideShow.moveRight()">test right</button>
+                </div>
+            </div>
+
 
 
         </div>
@@ -59,9 +64,17 @@
 
     <script>
         const slideShowObject = document.querySelector('.slideshow');
-        const slideShow = new Slideshow(slideShowObject);
+        const slideShow = new Slideshow(
+            slideShowObject,
+            [
+                "https://i.pinimg.com/736x/54/27/64/542764d7ba3a31abb75a7110b235a5a8.jpg",
+                "https://i.pinimg.com/originals/e0/56/58/e05658d539c0e509e293d45b970d67b0.jpg",
+                "https://i.pinimg.com/736x/6c/d4/7f/6cd47f0dc801757c6230f634aba56dfb.jpg",
+                "https://i.pinimg.com/736x/47/ef/d5/47efd503343dcaa02966c35be0dc6e3e.jpg"
+            ]
+        );
     </script>
-    
+
 
 
     <script src="../../script.js"></script>
