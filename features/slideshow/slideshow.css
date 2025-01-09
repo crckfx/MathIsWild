@@ -14,18 +14,17 @@
     display: flex;
     flex-direction: column;
     width: 100%;
-    height: 100%; /* Full height of the parent */
+    height: 100%;
 }
+
 
 /* Image Container */
 .image-contain {
-    /* flex: 0; */
     overflow: hidden; /* Prevent overflowing content */
     display: flex;
     position: relative;
     background-color: inherit;
 }
-
 /* Image Container */
 .image-contain.init {
     flex: 1; /* Take up remaining space in .slideshow */
@@ -37,25 +36,26 @@
 
 /* Image View */
 .image-view {
-    display: flex; /* Lay out slides side-by-side */
+    display: flex; 
     flex-direction: row;
     width: 100%;
-    height: 100%; /* Match parent height */
-    transform: translateX(0); /* Controlled by JS */
-    transition: transform 0.5s ease; /* Smooth transitions */
+    height: 100%;
+    transition: transform 0.2s ease;
+}
+.image-view.immediate {
+    transition: none;
 }
 
 /* Individual Slides */
 .media-element {
     flex: 0 0 100%; /* Each slide takes full width */
-    height: 100%; /* Match the height of .image-view */
+    height: 100%;
     display: flex;
-    justify-content: center; /* Center image horizontally */
-    align-items: center; /* Center image vertically */
+    place-content: center;
 }
 
 /* Images */
-.slideshow img {
+.media-element img {
     max-width: 100%; /* Scale within width constraints */
     max-height: 100%; /* Scale within height constraints */
     object-fit: contain; /* Maintain aspect ratio */
@@ -64,14 +64,13 @@
 
 .button-prev,
 .button-next {
-    /* display: inline-flex; */
-    display: none;
+    display: inline-flex;
+    /* display: none; */
     width:  32px;
     height: 32px;
     background-color: pink;
     position: absolute;
     top: 50%;
-    /* transform: translateY(-50%);  */
 }
 
 .button-prev {
@@ -87,4 +86,46 @@
 .button-prev:hover,
 .button-next:hover {
     background-color: red;
+}
+
+
+
+
+
+
+/* crckfx 'go back' button */
+.button-prev {
+    height: 50px;
+    width: 50px;
+    /* background-color: var(--color-alert-1a); */
+    border-radius: 50%;
+    box-sizing: content-box;
+    display: inline-block;
+    /* transition: 200ms ease; */
+    background-color: #0001;
+
+    /* background-color: transparent; */
+}
+
+.button-prev:hover {
+    border: none;
+    height: 50px;
+    width: 50px;
+    background-color: #0002;
+    /* margin: 10px; */
+    /* background-color: red; */
+    /* background-color: var(--color-alert-1b); */
+}
+
+.button-prev::before {
+    /* background-color: var(--color-alert-1b); */
+    display: inline-flex;
+    content: '';
+    /* Using the background-image and its related properties to add the SVG content */
+    background-image: url('../../Images/svg/leftArrow.svg');
+    background-size: 32px 32px;
+    height: 100%;
+    width: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
 }

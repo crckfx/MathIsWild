@@ -9,13 +9,14 @@ class Slideshow {
         this.currentIndex = 1; // Start at the "real" first slide
         this.isTransitioning = false;
 
-        this.setHeight();
+        this.setSize();
         this.initSlides();
         this.addEventListeners();
+        this.slideShowElement.focus();
 
     }
 
-    setHeight() {
+    setSize() {
         this.imageContain.classList.add('init');
         const calcHeight = this.imageContain.offsetHeight;
         console.log(calcHeight);
@@ -41,21 +42,21 @@ class Slideshow {
         this.imageView.insertBefore(lastClone, this.imageView.firstElementChild);
         this.totalSlides = this.mediaElements.length + 2; // Includes clones
         // Set initial position without transition
-        this.imageView.style.transition = 'none';  // Disable transition
+        this.imageView.classList.add('immediate');
         this.imageView.style.transform = `translateX(-${this.currentIndex * 100}%)`;
-        // Re-enable transition for subsequent moves
+        // the timeout 0 helps the removal fire at the right time
         setTimeout(() => {
-            this.imageView.style.transition = 'transform 200ms ease'; // Re-enable transition
+            this.imageView.classList.remove('immediate');
         }, 0);
     }
 
     updateSlideView(withTransition = true) {
-        this.imageView.style.transition = withTransition ? 'transform 200ms ease' : 'none';
+        withTransition ? this.imageView.classList.remove('immediate') : this.imageView.classList.add('immediate');
         this.imageView.style.transform = `translateX(-${this.currentIndex * 100}%)`;
     }
 
     moveRight() {
-        if (this.isTransitioning) return;
+        if (this.isTransitioning && this.currentIndex === this.totalSlides - 1) return;
         this.isTransitioning = true;
 
         this.currentIndex++;
@@ -78,7 +79,7 @@ class Slideshow {
     }
 
     moveLeft() {
-        if (this.isTransitioning) return;
+        if (this.isTransitioning && this.currentIndex === 0) return;
         this.isTransitioning = true;
 
         this.currentIndex--;
@@ -106,6 +107,10 @@ class Slideshow {
         if (prevButton) prevButton.addEventListener('click', () => this.moveLeft());
         if (nextButton) nextButton.addEventListener('click', () => this.moveRight());
 
-        window.addEventListener('resize', () => this.setHeight());
+        this.slideShowElement.addEventListener('keydown', (e) => {
+            console.log(e);
+        })
+
+        window.addEventListener('resize', () => this.setSize());
     }
 }
