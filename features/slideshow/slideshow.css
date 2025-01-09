@@ -3,10 +3,11 @@
     background-color: var(--color-bg-2);
     background-color: #00800088;
     height: 48px;
-    display: inline-flex;
     width: 100%;
     justify-content: space-between;
-    margin-top: 20px;    
+    margin-top: 20px;  
+    /* display: inline-flex; */
+    display: none;  
 }
 
 /* Slideshow Container */
@@ -85,7 +86,7 @@
 
 .button-prev:hover,
 .button-next:hover {
-    background-color: red;
+    /* background-color: red; */
 }
 
 
@@ -94,7 +95,8 @@
 
 
 /* crckfx 'go back' button */
-.button-prev {
+.button-prev,
+.button-next {
     height: 50px;
     width: 50px;
     /* background-color: var(--color-alert-1a); */
@@ -107,25 +109,32 @@
     /* background-color: transparent; */
 }
 
-.button-prev:hover {
+.button-prev:hover,
+.button-next:hover {
     border: none;
     height: 50px;
     width: 50px;
     background-color: #0002;
-    /* margin: 10px; */
-    /* background-color: red; */
-    /* background-color: var(--color-alert-1b); */
 }
 
-.button-prev::before {
+.button-prev::before,
+.button-next::before {
     /* background-color: var(--color-alert-1b); */
     display: inline-flex;
     content: '';
-    /* Using the background-image and its related properties to add the SVG content */
-    background-image: url('../../Images/svg/leftArrow.svg');
     background-size: 32px 32px;
     height: 100%;
     width: 100%;
     background-position: center;
     background-repeat: no-repeat;
+}
+
+.button-prev::before {
+    /* Using the background-image and its related properties to add the SVG content */
+    background-image: url('../../Images/svg/leftArrow.svg');
+}
+
+.button-next::before {
+    /* Using the background-image and its related properties to add the SVG content */
+    background-image: url('../../Images/svg/rightArrow.svg');
 }

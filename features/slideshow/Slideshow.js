@@ -107,8 +107,16 @@ class Slideshow {
         if (prevButton) prevButton.addEventListener('click', () => this.moveLeft());
         if (nextButton) nextButton.addEventListener('click', () => this.moveRight());
 
-        this.slideShowElement.addEventListener('keydown', (e) => {
-            console.log(e);
+        window.addEventListener('keydown', (e) => {
+            // console.log(e);
+            if (e.key === "ArrowLeft") {
+                // console.log("LEFT LEFT LEFT!111!1");
+                this.moveLeft();
+            } else if (e.key === "ArrowRight") {
+                
+                this.moveRight();
+                // console.log("riiiiight");
+            }
         })
 
         window.addEventListener('resize', () => this.setSize());
