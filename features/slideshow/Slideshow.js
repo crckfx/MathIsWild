@@ -131,22 +131,19 @@ class Slideshow {
         window.addEventListener('resize', () => this.setSize());
 
         this.imageContain.addEventListener('touchstart', (e) => this.touchstart(e));
-        this.imageContain.addEventListener('touchmove', (e) => {
-            e.preventDefault();
-            this.touchmove(e);
-        });
+        this.imageContain.addEventListener('touchmove', (e) => this.touchmove(e));
         this.imageContain.addEventListener('touchend', (e) => this.touchend(e));
 
     }
 
     touchstart(event) {
-        event.preventDefault();
+        // event.preventDefault();
     }
     touchmove(event) {
-        event.preventDefault();
+        // event.preventDefault();
     }
     touchend(event) {
-        event.preventDefault();
+        // event.preventDefault();
         console.log('finished touch');
     }
 
