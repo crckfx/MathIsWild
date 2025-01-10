@@ -136,15 +136,35 @@ class Slideshow {
 
     }
 
+    touchX = 0;
+    currentX = 0;
+    offsetX = 0;
+
     touchstart(event) {
-        // event.preventDefault();
+        if (event.touches.length > 1) return; // Ignore multi-touch for zoom or other gestures.        
+        const touch = event.touches[0]; // Get the primary touch.
+        this.startX = touch.clientX; // Record the starting X position.
+        this.currentX = touch.clientX; // Initialize current X to the start X.
+        this.offsetX = 0; // Initialize offset to 0.        
     }
     touchmove(event) {
-        // event.preventDefault();
+        if (event.touches.length > 1) return; // Ignore multi-touch.
+
+        const touch = event.touches[0]; // Get the primary touch.
+        this.currentX = touch.clientX; // Update the current X position.
+        this.offsetX = this.currentX - this.startX; // Calculate the offset.
+    
+        // Apply a translation based on the offset.
+        this.imageContain.style.transform = `translateX(${this.offsetX}px)`;
+    
+        console.log('Offset:', this.offsetX); // Log the offset for debugging.        
     }
     touchend(event) {
-        // event.preventDefault();
         console.log('finished touch');
+
+        this.startX = 0;
+        this.currentX = 0;
+        this.offsetX = 0;        
     }
 
 }
