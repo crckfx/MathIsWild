@@ -181,10 +181,10 @@
     box-shadow: none;
 }
 
-.checkbox:focus + .slider, /* For focus on the checkbox */
-.switch-label:focus {     /* For focus on the label */
-    outline: 2px solid var(--color-focus); /* Or any color you prefer */
-    outline-offset: 4px; /* Space between the border and focus outline */
+.checkbox:focus + .slider, /* for focus on the checkbox */
+.switch-label:focus {     /* for focus on the label */
+    /* outline: 2px solid var(--color-focus);  */
+    outline-offset: 4px; /* space between the border and focus outline */
 }
 
 /* -------------------------------------------------------------------------------- */

@@ -123,10 +123,12 @@
 
 
 .ss-progress {
-    width: 90%;
-    height: 40px;
+    margin: 20px;
+    width: 80%;
+    height: 10px;
     background-color: magenta;
     overflow: hidden;
+    display: flex;
 }
 
 .ss-index {
