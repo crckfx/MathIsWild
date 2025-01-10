@@ -67,7 +67,7 @@ class Slideshow {
         const iWidth = parseFloat(this.indexView.style.width);
         const norm = iWidth * this.currentIndex;
         // console.log(`index:'${this.currentIndex-1}', translateX(${norm}px)`);
-        this.indexView.style.transform = `translateX(${norm-iWidth}px)`;
+        this.indexView.style.transform = `translateX(${norm - iWidth}px)`;
     }
 
     moveRight() {
@@ -96,10 +96,10 @@ class Slideshow {
     moveLeft() {
         if (this.isTransitioning && this.currentIndex === 0) return;
         this.isTransitioning = true;
-        
+
         this.currentIndex--;
         this.updateSlideView(true);
-        
+
         const handleTransitionEnd = () => {
             this.imageView.removeEventListener('transitionend', handleTransitionEnd);
 
@@ -124,10 +124,15 @@ class Slideshow {
 
         window.addEventListener('keydown', (e) => {
             // console.log(e);
-            if (e.key === "ArrowLeft") {this.moveLeft();} 
-            else if (e.key === "ArrowRight") {this.moveRight();}
+            if (e.key === "ArrowLeft") { this.moveLeft(); }
+            else if (e.key === "ArrowRight") { this.moveRight(); }
         });
 
         window.addEventListener('resize', () => this.setSize());
+
+
     }
+
+
+
 }
