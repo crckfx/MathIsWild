@@ -181,8 +181,10 @@ class Slideshow {
         // console.log('Offset:', this.offsetX); // Log the offset for debugging.        
     }
     touchend(event) {
-        console.log('finished touch');
-
+        if (event.touches.length > 1) {
+            this.updateSlideView(false);
+            return;
+        } // Ignore multi-touch.
         const threshold = this.imageContain.clientWidth / 2;
 
         // Check if the swipe offset surpasses the threshold.
