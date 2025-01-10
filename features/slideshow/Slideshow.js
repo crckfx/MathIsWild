@@ -150,6 +150,7 @@ class Slideshow {
 
         // Query the current transform value for the bias.
         const transform = window.getComputedStyle(this.imageView).transform;
+        this.imageView.classList.add('immediate');
 
         if (transform && transform !== 'none') {
             // Extract the translateX value from the matrix.
