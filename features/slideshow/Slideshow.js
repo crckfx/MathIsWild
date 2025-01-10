@@ -139,6 +139,7 @@ class Slideshow {
     touchX = 0;
     currentX = 0;
     offsetX = 0;
+    biasX = 0;
 
     touchstart(event) {
         if (event.touches.length > 1) return; // Ignore multi-touch for zoom or other gestures.        
@@ -146,6 +147,24 @@ class Slideshow {
         this.startX = touch.clientX; // Record the starting X position.
         this.currentX = touch.clientX; // Initialize current X to the start X.
         this.offsetX = 0; // Initialize offset to 0.        
+
+        // Query the current transform value for the bias.
+        const transform = window.getComputedStyle(this.imageView).transform;
+
+        if (transform && transform !== 'none') {
+            // Extract the translateX value from the matrix.
+            const matrix = transform.match(/matrix\((.+)\)/);
+            if (matrix) {
+                const values = matrix[1].split(', ');
+                this.biasX = parseFloat(values[4]); // The 5th value in the matrix is translateX.
+            } else {
+                this.biasX = 0; // Default to 0 if parsing fails.
+            }
+        } else {
+            this.biasX = 0; // Default to 0 if no transform is applied.
+        }
+
+        console.log('BiasX:', this.biasX); // Debugging: Log the initial bias.
     }
     touchmove(event) {
         if (event.touches.length > 1) return; // Ignore multi-touch.
@@ -153,10 +172,10 @@ class Slideshow {
         const touch = event.touches[0]; // Get the primary touch.
         this.currentX = touch.clientX; // Update the current X position.
         this.offsetX = this.currentX - this.startX; // Calculate the offset.
-    
+
         // Apply a translation based on the offset.
         // this.imageContain.style.transform = `translateX(${this.offsetX}px)`;
-        this.imageView.style.transform = `translateX(${this.offsetX}px)`;
+        this.imageView.style.transform = `translateX(${this.offsetX + this.biasX}px)`;
 
         console.log('Offset:', this.offsetX); // Log the offset for debugging.        
     }
@@ -165,7 +184,7 @@ class Slideshow {
 
         this.startX = 0;
         this.currentX = 0;
-        this.offsetX = 0;        
+        this.offsetX = 0;
         this.updateSlideView(false);
     }
 
