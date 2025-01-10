@@ -142,7 +142,7 @@ class Slideshow {
     biasX = 0;
 
     touchstart(event) {
-        if (event.touches.length > 1) return; // Ignore multi-touch for zoom or other gestures.        
+        if (event.touches.length > 1 || this.isTransitioning) return; // Ignore multi-touch for zoom or other gestures.        
         const touch = event.touches[0]; // Get the primary touch.
         this.startX = touch.clientX; // Record the starting X position.
         this.currentX = touch.clientX; // Initialize current X to the start X.
@@ -168,7 +168,7 @@ class Slideshow {
         console.log('BiasX:', this.biasX); // Debugging: Log the initial bias.
     }
     touchmove(event) {
-        if (event.touches.length > 1) return; // Ignore multi-touch.
+        if (event.touches.length > 1 || this.isTransitioning) return; // Ignore multi-touch.
 
         const touch = event.touches[0]; // Get the primary touch.
         this.currentX = touch.clientX; // Update the current X position.
@@ -181,7 +181,7 @@ class Slideshow {
         // console.log('Offset:', this.offsetX); // Log the offset for debugging.        
     }
     touchend(event) {
-        if (event.touches.length > 1) {
+        if (event.touches.length > 1 || this.isTransitioning) {
             this.updateSlideView(false);
             return;
         } // Ignore multi-touch.
