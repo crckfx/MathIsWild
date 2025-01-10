@@ -1,15 +1,3 @@
-
-.name-view {
-    background-color: var(--color-bg-2);
-    background-color: #00800088;
-    height: 48px;
-    width: 100%;
-    justify-content: space-between;
-    margin-top: 20px;  
-    /* display: inline-flex; */
-    display: none;  
-}
-
 /* Slideshow Container */
 .slideshow {
     display: flex;
@@ -18,38 +6,39 @@
     height: 100%;
 }
 
-
 /* Image Container */
 .image-contain {
-    overflow: hidden; /* Prevent overflowing content */
+    overflow: hidden;
+    /* Prevent overflowing content */
     display: flex;
     position: relative;
     background-color: inherit;
 }
+
 /* Image Container */
 .image-contain.init {
-    flex: 1; /* Take up remaining space in .slideshow */
+    flex: 1;
+    /* Take up remaining space in .slideshow */
 }
+
 .image-contain.init .media-element {
     display: none;
 }
 
-
 /* Image View */
 .image-view {
-    display: flex; 
+    display: flex;
     flex-direction: row;
     width: 100%;
     height: 100%;
-    transition: transform 0.2s ease;
+    transition: transform 0.5s ease;
 }
-.image-view.immediate {
-    transition: none;
-}
+
 
 /* Individual Slides */
 .media-element {
-    flex: 0 0 100%; /* Each slide takes full width */
+    flex: 0 0 100%;
+    /* Each slide takes full width */
     height: 100%;
     display: flex;
     place-content: center;
@@ -57,44 +46,23 @@
 
 /* Images */
 .media-element img {
-    max-width: 100%; /* Scale within width constraints */
-    max-height: 100%; /* Scale within height constraints */
-    object-fit: contain; /* Maintain aspect ratio */
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
 }
-
 
 .button-prev,
 .button-next {
     display: inline-flex;
-    /* display: none; */
-    width:  32px;
-    height: 32px;
-    background-color: pink;
     position: absolute;
     top: 50%;
-}
-
-.button-prev {
-    left: 0px;
-    transform: translate(50%, -50%);
-}
-
-.button-next {
-    right: 0px;
-    transform: translate(-50%, -50%); 
-}
-
-
-
-.button-prev,
-.button-next {
     height: 50px;
     width: 50px;
     /* background-color: var(--color-alert-1a); */
     border-radius: 50%;
     box-sizing: content-box;
-    display: inline-block;
-    /* transition: 200ms ease; */
+    /* display: inline-block; */
+    transition: 200ms ease;
     background-color: #0001;
 
     /* background-color: transparent; */
@@ -120,6 +88,16 @@
     background-repeat: no-repeat;
 }
 
+.button-prev {
+    left: 0px;
+    transform: translate(50%, -50%);
+}
+
+.button-next {
+    right: 0px;
+    transform: translate(-50%, -50%);
+}
+
 .button-prev::before {
     /* Using the background-image and its related properties to add the SVG content */
     background-image: url('../../Images/svg/leftArrow.svg');
@@ -128,4 +106,40 @@
 .button-next::before {
     /* Using the background-image and its related properties to add the SVG content */
     background-image: url('../../Images/svg/rightArrow.svg');
+}
+
+/* a text view below the image view */
+.name-view {
+    /* background-color: var(--color-bg-2); */
+    background-color: transparent;
+    height: 48px;
+    width: 100%;
+    justify-content: space-between;
+    margin-top: 20px;
+    display: inline-flex;
+    place-content: center;
+    /* display: none;   */
+}
+
+
+.ss-progress {
+    width: 90%;
+    height: 40px;
+    background-color: magenta;
+    overflow: hidden;
+}
+
+.ss-index {
+    display: inline-flex;
+    height: 100%;
+    /* width: 1rem; */
+    background-color: blue;
+
+    transition: transform 0.35s ease;
+
+}
+
+.image-view.immediate,
+.ss-index.immediate {
+    transition: none;
 }

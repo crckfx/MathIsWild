@@ -6,11 +6,17 @@ class Slideshow {
         this.nameView = slideShowElement.querySelector('.name-view');
         this.mediaElements = mediaElements;
 
+        this.progressView = this.nameView.querySelector('.ss-progress');
+        console.log(this.progressView);
+        this.indexView = this.progressView.querySelector('.ss-index');
+        console.log(this.indexView);
+
+
         this.currentIndex = 1; // Start at the "real" first slide
         this.isTransitioning = false;
 
-        this.setSize();
         this.initSlides();
+        this.setSize();
         this.addEventListeners();
         this.slideShowElement.focus();
 
@@ -22,7 +28,11 @@ class Slideshow {
         console.log(calcHeight);
         this.imageContain.style.height = `${calcHeight}px`;
         this.imageContain.classList.remove('init');
-        console.log(this.imageContain.offsetHeight);
+
+        console.log(`Setting slideshow size to 'height: ${this.imageContain.offsetHeight}px'.`);
+
+
+        this.indexView.style.width = (this.progressView.offsetWidth / (this.totalSlides - 2)) + 'px';
     }
 
     initSlides() {
@@ -52,7 +62,12 @@ class Slideshow {
 
     updateSlideView(withTransition = true) {
         withTransition ? this.imageView.classList.remove('immediate') : this.imageView.classList.add('immediate');
+        withTransition ? this.indexView.classList.remove('immediate') : this.indexView.classList.add('immediate');
         this.imageView.style.transform = `translateX(-${this.currentIndex * 100}%)`;
+        const iWidth = parseFloat(this.indexView.style.width);
+        const norm = iWidth * this.currentIndex;
+        // console.log(`index:'${this.currentIndex-1}', translateX(${norm}px)`);
+        this.indexView.style.transform = `translateX(${norm-iWidth}px)`;
     }
 
     moveRight() {
@@ -81,10 +96,10 @@ class Slideshow {
     moveLeft() {
         if (this.isTransitioning && this.currentIndex === 0) return;
         this.isTransitioning = true;
-
+        
         this.currentIndex--;
         this.updateSlideView(true);
-
+        
         const handleTransitionEnd = () => {
             this.imageView.removeEventListener('transitionend', handleTransitionEnd);
 
@@ -109,15 +124,9 @@ class Slideshow {
 
         window.addEventListener('keydown', (e) => {
             // console.log(e);
-            if (e.key === "ArrowLeft") {
-                // console.log("LEFT LEFT LEFT!111!1");
-                this.moveLeft();
-            } else if (e.key === "ArrowRight") {
-                
-                this.moveRight();
-                // console.log("riiiiight");
-            }
-        })
+            if (e.key === "ArrowLeft") {this.moveLeft();} 
+            else if (e.key === "ArrowRight") {this.moveRight();}
+        });
 
         window.addEventListener('resize', () => this.setSize());
     }
