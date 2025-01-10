@@ -17,8 +17,6 @@
     <link rel="stylesheet" href="../../themes.css">
     <link rel="stylesheet" href="slideshow.css">
 
-    <script src="https://hammerjs.github.io/dist/hammer.min.js" crossorigin="anonymous"></script>
-
 </head>
 
 <body>
@@ -52,11 +50,9 @@
                 <div class="sources-hidden"></div>
                 <div class="name-view">
 
-                    <!-- <button id="testLeft" onclick="slideShow.moveLeft()">test left</button> -->
                     <div class="ss-progress">
                         <div class="ss-index"></div>
                     </div>
-                    <!-- <button id="testLight" onclick="slideShow.moveRight()">test right</button> -->
                 </div>
             </div>
         </div>
@@ -80,9 +76,6 @@
             ]
         );
 
-        const hammertime = new Hammer(slideShow.imageContain, null);
-        hammertime.get('swipe').set({ direction: Hammer.DIRECTION_HORIZONTAL });
-        console.log(hammertime);
     </script>
 
 

@@ -130,9 +130,21 @@ class Slideshow {
 
         window.addEventListener('resize', () => this.setSize());
 
+        this.imageContain.addEventListener('touchstart', (e) => this.touchstart(e));
+        this.imageContain.addEventListener('touchmove', (e) => this.touchmove(e));
+        this.imageContain.addEventListener('touchend', (e) => this.touchend(e));
 
     }
 
-
+    touchstart(event) {
+        event.preventDefault();
+    }
+    touchmove(event) {
+        event.preventDefault();
+    }
+    touchend(event) {
+        event.preventDefault();
+        console.log('finished touch');
+    }
 
 }
