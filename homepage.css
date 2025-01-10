@@ -8,6 +8,7 @@
     flex-wrap: wrap;
     margin-top: 20px;
     margin-bottom: 20px;
+    max-width: 1400px;
 }
 /* styles for the link buttons */
 .linkButton {

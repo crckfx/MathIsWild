@@ -126,7 +126,8 @@
     margin: 20px;
     width: 80%;
     height: 10px;
-    background-color: magenta;
+    border-radius: 5px;
+    background-color: var(--color-header);
     overflow: hidden;
     display: flex;
 }
@@ -135,8 +136,7 @@
     display: inline-flex;
     height: 100%;
     /* width: 1rem; */
-    background-color: blue;
-
+    background-color: var(--color-greg);
     transition: transform 0.35s ease;
 
 }
