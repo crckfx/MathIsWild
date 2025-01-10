@@ -155,7 +155,7 @@ class Slideshow {
         this.offsetX = this.currentX - this.startX; // Calculate the offset.
     
         // Apply a translation based on the offset.
-        this.imageContain.style.transform = `translateX(${this.offsetX}px)`;
+        // this.imageContain.style.transform = `translateX(${this.offsetX}px)`;
     
         console.log('Offset:', this.offsetX); // Log the offset for debugging.        
     }
