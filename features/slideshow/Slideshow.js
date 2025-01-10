@@ -177,15 +177,32 @@ class Slideshow {
         // this.imageContain.style.transform = `translateX(${this.offsetX}px)`;
         this.imageView.style.transform = `translateX(${this.offsetX + this.biasX}px)`;
 
-        console.log('Offset:', this.offsetX); // Log the offset for debugging.        
+        // console.log('Offset:', this.offsetX); // Log the offset for debugging.        
     }
     touchend(event) {
         console.log('finished touch');
 
+        const threshold = this.imageContain.clientWidth / 2;
+
+        // Check if the swipe offset surpasses the threshold.
+        if (Math.abs(this.offsetX) > threshold) {
+            if (this.offsetX > 0) {
+                // Swipe is towards the right, move to the previous image.
+                this.moveLeft();
+            } else {
+                // Swipe is towards the left, move to the next image.
+                this.moveRight();
+            }
+        } else {
+            // Reset to the current image if the swipe is insufficient.
+            this.updateSlideView(false);
+        }
+
+
         this.startX = 0;
         this.currentX = 0;
         this.offsetX = 0;
-        this.updateSlideView(true);
+        // this.updateSlideView(false);
     }
 
 }
