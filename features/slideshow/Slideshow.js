@@ -185,7 +185,7 @@ class Slideshow {
         this.startX = 0;
         this.currentX = 0;
         this.offsetX = 0;
-        this.updateSlideView(false);
+        this.updateSlideView(true);
     }
 
 }
