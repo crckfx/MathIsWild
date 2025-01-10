@@ -145,3 +145,8 @@
 .ss-index.immediate {
     transition: none;
 }
+
+body {
+    min-height: none;
+    height: 100vh;
+}
