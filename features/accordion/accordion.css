@@ -2,45 +2,43 @@
 /* ---- accordion main styles ---- */
 /* accordion: the thing that can contain one or more collapsible layers */
 .accordion {
-    background-color: var(--color-bg-3);
-    /* padding: 1rem; */
+    
+    
     color: var(--color-text);
     display: grid;
-    gap: 4px;
-    border-radius: 8px;
-    border: 2px solid var(--color-bg-3);
     overflow: hidden;
+    border-radius: 8px;
+    gap: 2px;
+    border: 2px solid var(--color-bg-2);
 }
 
 .accordion.rounded {
+    border: 2px solid transparent;
     border-radius: 8px;
 }
 .accordion.kevin {
     border-radius: 8px;
     
 }
-
 .accordion hr {
     border-color: #aaa2
 }
 
 /* accordion-panel: a single collapsible layer which may have siblings within an accordion */
 .accordion-panel {
-    background-color: var(--color-bg-4);
-    
-    /* padding: 0; */
-    padding-right: 1rem;
-    padding-left: 1rem;
-    border-radius: 8px;
+    background-color: var(--color-bg-4);    
+    padding: 0;
     border: none;
 }
 
 .accordion.rounded .accordion-panel {
     /*  */
+    border-radius: 8px;
     border: none;
 }
 .accordion.kevin .accordion-panel {
     /*  */
+    border-radius: 0px;
     border: none;
 }
 
@@ -56,7 +54,7 @@
     width: 100%;
     padding-top: 12px;
     padding-bottom: 12px;
-    padding-left: 1.25rem;
+    padding-left: 2rem;
     position: relative;
 }
 
@@ -64,7 +62,7 @@
 .accordion-trigger::before {
     content: "";
     position: absolute;
-    left: 0;
+    left: 16px;
     top: 50%;
     transform: translateY(-50%);
     /* Center the light vertically */
@@ -87,6 +85,8 @@
     display: grid;
     grid-template-rows: 0fr;
     transition: grid-template-rows 500ms;
+    padding-left: 16px;
+    padding-right: 16px;
 }
 
 .accordion-content[aria-hidden="false"] {
@@ -98,10 +98,12 @@
 }
 
 /* ---------------------------------------------------------------- */
-
-
 /* random irrelevant */
 .wrap-1000 {
     max-width: 1000px;
+    width: 100%;
+}
+.wrap-600 {
+    max-width: 600px;
     width: 100%;
 }
