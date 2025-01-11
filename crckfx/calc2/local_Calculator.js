@@ -4,9 +4,9 @@ class Calculator {
         // DOM elements
         this.calculator = domObject;
 
-        this.inputArea = this.calculator.querySelector("#inputArea");
+        this.textArea = this.calculator.querySelector("#textArea");
         this.allowedCharacters = /^[0-9+\-*/.()^]*$/;
-        this.outputArea = this.calculator.querySelector("#outputArea");
+        this.prevInputArea = this.calculator.querySelector("#prevInputArea");
 
         this.parser = new Parser();
 
@@ -36,10 +36,10 @@ class Calculator {
         const controls = this.calculator.querySelectorAll("button.control");
         this.bindControlButtons(controls);
 
-        this.inputArea.addEventListener('input', () => {
+        this.textArea.addEventListener('input', () => {
             this.validateInput();
         })
-        this.inputArea.addEventListener('keydown', (e) => {
+        this.textArea.addEventListener('keydown', (e) => {
             switch (e.key) {
                 case '=':
                 case 'Enter':
@@ -50,20 +50,20 @@ class Calculator {
                     break;
             }
         });
-        this.outputArea.addEventListener('click', () => {
+        this.prevInputArea.addEventListener('click', () => {
             // console.log(`you want to use an old answer hey, possibly '${this.lastInput}'`);
-            this.outputArea.innerHTML = "";
-            this.inputArea.value = this.lastInput;
-            this.inputArea.focus();
+            this.prevInputArea.innerHTML = "";
+            this.textArea.value = this.lastInput;
+            this.textArea.focus();
         });
 
     }
 
 
     validateInput() {
-        const value = this.inputArea.value;
+        const value = this.textArea.value;
         if (!this.allowedCharacters.test(value)) {
-            this.inputArea.value = value.replace(/[^0-9+\-*/.()]/g, '');
+            this.textArea.value = value.replace(/[^0-9+\-*/.()]/g, '');
         }
     }
 
@@ -75,22 +75,22 @@ class Calculator {
     enterInput(input) {
         //
         console.log(`INPUT (manual; misc): '${input}'`);
-        this.inputArea.focus();
+        this.textArea.focus();
 
-        const initialPos = this.inputArea.selectionStart;
+        const initialPos = this.textArea.selectionStart;
         const newPos = initialPos + input.length;
 
         // Insert the character at the cursor position
         const newValue =
-            this.inputArea.value.slice(0, initialPos) +
+            this.textArea.value.slice(0, initialPos) +
             input +
-            this.inputArea.value.slice(initialPos);
-        this.inputArea.value = newValue;
+            this.textArea.value.slice(initialPos);
+        this.textArea.value = newValue;
         // Move the cursor position forward
-        this.inputArea.setSelectionRange(newPos, newPos);
+        this.textArea.setSelectionRange(newPos, newPos);
 
         // focus the display
-        this.inputArea.focus();
+        this.textArea.focus();
     }
 
     inputLastAnswer() {
@@ -108,62 +108,62 @@ class Calculator {
         this.clearInput();
         this.clearOutput();
         // focus the display
-        this.inputArea.focus();
+        this.textArea.focus();
     }
 
     clearInput() {
-        this.inputArea.value = "";
+        this.textArea.value = "";
     }
 
     clearOutput() {
-        this.outputArea.innerHTML = "";
+        this.prevInputArea.innerHTML = "";
     }
 
     doBackspace() {
-        this.inputArea.focus();
-        const pos = this.inputArea.selectionStart;
+        this.textArea.focus();
+        const pos = this.textArea.selectionStart;
         if (pos > 0) {
             const newPos = pos - 1;
             const newInput =
-                this.inputArea.value.slice(0, newPos) +
-                this.inputArea.value.slice(pos);
-            this.inputArea.value = newInput;
-            this.inputArea.setSelectionRange(newPos, newPos);
+                this.textArea.value.slice(0, newPos) +
+                this.textArea.value.slice(pos);
+            this.textArea.value = newInput;
+            this.textArea.setSelectionRange(newPos, newPos);
             // focus the display
-            this.inputArea.focus();
+            this.textArea.focus();
         }
     }
 
     submit() {
-        // this.inputArea.focus();
+        // this.textArea.focus();
         // get the string and save it
-        const inputString = this.inputArea.value;
+        const inputString = this.textArea.value;
         if (inputString !== "") {
             const answer = this.parser.parse(inputString);   // NOTE 2. THIS SHOULD USE THE DEFINED METHOD NOT A CLASS
-            // this.outputArea.innerHTML = `${answer}`;
-            this.outputArea.innerHTML = `${inputString} = ${answer}`;
+            // this.prevInputArea.innerHTML = `${answer}`;
+            this.prevInputArea.innerHTML = `${inputString} = ${answer}`;
 
             if (!isNaN(answer)) {
-                this.inputArea.value = `${answer}`;
+                this.textArea.value = `${answer}`;
                 this.lastInput = inputString // save the input as last
                 this.addToHistory(inputString, answer);         // add a valid answer to history
                 this.printHistory();                            // display the history
-                // this.outputArea.classList.remove('soft');       // make visuals 'real' (not 'soft')
+                // this.prevInputArea.classList.remove('soft');       // make visuals 'real' (not 'soft')
                 this.moveCursorToEnd();
-                this.outputArea.focus();
+                this.prevInputArea.focus();
             }
         }
     }
 
     softSubmit() {
-        this.inputArea.focus();
-        const answer = this.parser.parse(this.inputArea.value);
+        this.textArea.focus();
+        const answer = this.parser.parse(this.textArea.value);
         if (!isNaN(answer)) {
-            this.outputArea.classList.add('soft');
-            this.outputArea.innerHTML = `${answer}`;
+            this.prevInputArea.classList.add('soft');
+            this.prevInputArea.innerHTML = `${answer}`;
         } else {
-            if (!this.outputArea.classList.contains('soft')) {
-                this.outputArea.classList.add('soft');
+            if (!this.prevInputArea.classList.contains('soft')) {
+                this.prevInputArea.classList.add('soft');
             }
         }
     }
@@ -216,29 +216,29 @@ class Calculator {
     // *** CURSOR **********************
 
     moveCursorToEnd() {
-        const endPos = this.inputArea.value.length;
-        this.inputArea.setSelectionRange(endPos, endPos);
-        this.inputArea.focus();     // focus the display
+        const endPos = this.textArea.value.length;
+        this.textArea.setSelectionRange(endPos, endPos);
+        this.textArea.focus();     // focus the display
     }
 
     moveCursor(steps) {
-        const currentPos = this.inputArea.selectionStart;
+        const currentPos = this.textArea.selectionStart;
         const newPos = currentPos + steps;
         console.log(`moveCursor: moving '${steps}' steps`);
 
         if (steps > 0) {
-            if (this.inputArea.selectionStart < this.inputArea.value.length) {
-                this.inputArea.setSelectionRange(newPos, newPos);
+            if (this.textArea.selectionStart < this.textArea.value.length) {
+                this.textArea.setSelectionRange(newPos, newPos);
             }
         }
         else if (steps < 0) {
-            if (this.inputArea.selectionStart > 0) {
-                this.inputArea.setSelectionRange(newPos, newPos);
+            if (this.textArea.selectionStart > 0) {
+                this.textArea.setSelectionRange(newPos, newPos);
             }
         } else {
             return;
         }
-        this.inputArea.focus();
+        this.textArea.focus();
     }
     // ******************************************************************
 
