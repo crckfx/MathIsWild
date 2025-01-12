@@ -49,14 +49,16 @@ input:focus {
 header {
     background-color: var(--color-header);
     width: 100%;
-    min-height: 100px;
+    min-height: 72px;
     display: flex;
     align-items: center;
 
     transition: color 500ms ease, background-color 500ms ease;
     /* transition:  500ms ease; */
 }
-
+header h1 {
+    margin: 0;
+}
 /* ---------------------------------------------------- */
 
 a.bigman:hover {

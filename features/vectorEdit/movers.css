@@ -1,0 +1,207 @@
+
+.green-square {
+    background-color: rgb(0, 90, 0);
+    width: 100%;
+    height: 100%;
+}
+#yellow-square {
+    background-color: rgb(90, 90, 40);
+    width: 100%;
+    height: 100%;
+}
+
+.container-padder {
+
+    touch-action: none; 
+    width: 100%; 
+    height: 50vh; 
+    display: flex; 
+    justify-content: center; 
+    align-items: center;
+}
+
+.resizers {
+
+    overflow: hidden;
+}
+
+.resizable {
+    /* background: white; */
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    top: 100px;
+    left: 100px;
+    z-index: 2;
+}
+
+.resizable .resizers {
+    width: 100%;
+    height: 100%;
+    border: 3px solid #4286f4;
+    box-sizing: border-box;
+}
+
+.resizable .resizers .resizer {
+    width: 1.5rem;
+    height: 1.5rem;
+    border-radius: 50%;
+    /*magic to turn square into circle*/
+    background: var(--color-text);
+    border: 3px solid #4286f4;
+    position: absolute;
+    box-sizing: border-box;
+}
+
+
+
+.resizable .resizers .resizer.top {
+    top: -0.75rem;
+    cursor: ns-resize;
+}
+
+.resizable .resizers .resizer.right {
+    right: -0.75rem;
+    cursor: ew-resize;
+    bottom: 50%;
+}
+
+.resizable .resizers .resizer.left {
+    left: -0.75rem;
+    cursor: ew-resize;
+}
+
+.resizable .resizers .resizer.bottom {
+    bottom: -0.75rem;
+    right: 50%;
+    cursor: ns-resize;
+}
+
+
+
+.resizable .resizers .resizer.top.left {
+    left: -0.75rem;
+    top: -0.75rem;
+    cursor: nwse-resize;
+    /*resizer cursor*/
+}
+
+.resizable .resizers .resizer.top.right {
+    right: -0.75rem;
+    top: -0.75rem;
+    cursor: nesw-resize;
+}
+
+.resizable .resizers .resizer.bottom.left {
+    left: -0.75rem;
+    bottom: -0.75rem;
+    cursor: nesw-resize;
+}
+
+.resizable .resizers .resizer.bottom.right {
+    right: -0.75rem;
+    bottom: -0.75rem;
+    cursor: nwse-resize;
+}
+
+.resizable-container {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    touch-action: none; 
+    background-color: var(--color-bg-1);
+}
+
+
+.resizable {
+    /* background: white; */
+    position: absolute;
+    top: 0;
+    left: 0;
+    box-sizing: border-box;
+    /* Include padding and border in size calculations */
+}
+
+.neighbour {
+    overflow: hidden;
+    flex:1; 
+    background-color: var(--color-garethson); 
+    width:100%; 
+    height: 100%;
+    border: 3px solid #4286f4;
+    box-sizing: border-box;
+    position: relative;
+}
+
+
+.neighbour.bottom {
+    width: 100%;
+    left: 0px;
+    border-top: 1.5px;
+}
+.neighbour.right {
+    width: 100%;
+    left: 0px;
+    border-left: 1.5px;
+}
+
+#neighbour-horizontal {
+    position: absolute;
+    border: 2px solid blue;
+    /* background-color: rgb(56, 27, 56); */
+    height: 100%;
+    box-sizing: border-box;
+}
+
+#neighbour-vertical {
+    position: absolute;
+    border: 2px solid blue;
+    /* background-color: rgb(56, 27, 56); */
+    width: 100%;
+    box-sizing: border-box;
+    left: 0px;
+}
+
+.horizontal-resizer {
+    /* right: -0.75rem; */
+    top: 50%;
+    cursor: ew-resize;
+    height: 1.5rem;
+    border-radius: 0.5rem;
+    
+    width: 1.5rem;
+    /*magic to turn square into circle*/
+    border-radius: 50%;
+    background: white;
+    border: 3px solid #4286f4;
+    position: absolute;
+    box-sizing: border-box;
+}
+
+.vertical .vertical-resizer {
+    left: 50%;
+    top: -0.0rem;
+    cursor: ns-resize;
+    width: 1.5rem;
+    bottom: -0.75rem;
+    border-radius: 50%;
+    height: 1.5rem;
+    /*magic to turn square into circle*/
+    background: white;
+    border: 3px solid #4286f4;
+    position: absolute;
+    /* box-sizing: border-box; */
+    z-index: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+.content-panel {
+    width: 100%;
+    height: 100%;
+}

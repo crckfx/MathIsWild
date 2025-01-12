@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width" initial-scale="1.0">
+    <title>vectorEdit</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap">
+    <!-- Font Awesome -->
+    <script src="https://kit.fontawesome.com/159c5c66b8.js" crossorigin="anonymous"></script>
+    <!-- local -->
+    <link rel="stylesheet" href="../../global.css">
+    <link rel="stylesheet" href="../../themes.css">
+    <!-- <link rel="stylesheet" href="vectorEdit.css"> -->
+    <link rel="stylesheet" type="text/css" href="movers.css">
+
+</head>
+
+<body>
+    <!-- header -->
+    <header>
+        <a class="goBackBtn" href="../features.html"></a>
+        <div class="header-middle">
+            <h1>movers</h1>
+            <div>
+                <a>shakers</a>
+            </div>
+        </div>
+        <div class="toggle-switch">
+            <label class="switch-label">
+                <input type="checkbox" class="checkbox" onclick="toggleTheme()">
+                <span class="slider"></span>
+            </label>
+        </div>
+    </header>
+    <!-- something -->
+    <div class="page-wrapper">
+        <div class="page-content bg-5">
+
+
+            <!-- <title>experiments</title> -->
+
+
+            <!-- custom mover 2-->
+            <div class="content-panel bg-pal-0 border-pal-3">
+                <div class="content-panel-child">
+                    <h2>custom mover 2</h2>
+                    <div class="container-padder">
+                        <div id="resizable-container-2" class="resizable-container">
+                            <div id="resizable-2" class="resizable" style="left: 18%; top: 18%; width: 50%;">
+                                <div style="overflow: hidden;" class="resizers">
+
+
+                                    <div class="resizer top-left left top"></div>
+                                    <div class="resizer top-right right top"></div>
+                                    <div class="resizer bottom-left left bottom"></div>
+                                    <div class="resizer bottom-right right bottom"></div>
+
+                                    <div id="blue-square"
+                                        style="width: 100%; height: 100%; background-color: rgb(0, 0, 90);">
+                                        <ul style="margin: 0px; padding: 1.25rem">
+                                            <li>custom resizers babey</li>
+                                            <li>max dimensions 100% of parent</li>
+                                            <li>achieved via voodoo</li>
+                                        </ul>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- custom mover 3-->
+            <div class="content-panel bg-pal-0 border-pal-3">
+                <div class="content-panel-child">
+                    <h2>custom mover with movement</h2>
+                    <div class="container-padder"
+                        style="touch-action: none; width: 100%; height: 50vh; display: flex; justify-content: center; align-items: center;">
+
+                        <div id="resizable-container-3" class="resizable-container"
+                            style="touch-action: none; background-color: black;">
+                            <div id="resizable-3" class="resizable green-square"
+                                style="left: 18%; top: 18%; width: 50%;">
+                                <div class="resizers">
+
+
+                                    <div class="resizer left top"></div>
+                                    <div class="resizer right top"></div>
+                                    <div class="resizer left bottom"></div>
+                                    <div class="resizer right bottom"></div>
+                                    <div class="resizer pos" style="right:10%; top: 10%"></div>
+
+                                    <div id="red-square"
+                                        style="width: 100%; height: 100%; background-color: rgb(90, 0, 0);">
+                                        <ul style="margin: 0px; padding: 1.25rem">
+                                            <li>custom resizers babey</li>
+                                            <li>max dimensions 100% of parent</li>
+                                            <li>achieved via voodoo</li>
+                                        </ul>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- custom mover 4-->
+            <div class="content-panel bg-pal-0 border-pal-3">
+                <div class="content-panel-child">
+                    <h2>single axis again but with generic function</h2>
+                    <div class="container-"
+                        style="touch-action: none; width: 100%; height: 30vh; display: flex; justify-content: center; align-items: center;">
+
+                        <div id="resizable-container-4" class="resizable-container"
+                            style="touch-action: none; background-color: black;">
+                            <div id="resizable-4" class="resizable" style="left: 0; top: 0; height: 100%; width: 40%;">
+                                <div style="overflow: hidden;" class="resizers">
+
+
+                                    <!-- <div class="resizer left"></div> -->
+                                    <!-- <div class="resizer right top"></div> -->
+                                    <!-- <div class="resizer left bottom"></div> -->
+                                    <div class="resizer right"></div>
+                                    <div class="green-square" style="width: 100%; height: 100%;">
+                                        <ul style="margin: 0px; padding: 1.25rem">
+                                            <li>custom resizers babey</li>
+                                            <li>max dimensions 100% of parent</li>
+                                            <li>achieved via voodoo</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="neighbour right">
+                                <ul style="margin: 0px; padding: 1.25rem">
+                                    <li>free birds at the park</li>
+                                    <li>catch geese with bread</li>
+                                    <li>crrruuuuummbs</li>
+                                </ul>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- custom mover 5-->
+            <div class="content-panel bg-pal-0 border-pal-3">
+                <div class="content-panel-child">
+                    <h2>single axis again but with generic function</h2>
+                    <div class="container-padder"
+                        style="touch-action: none; width: 100%; height: 30vh; display: flex; justify-content: center; align-items: center;">
+
+                        <div id="resizable-container-5" class="resizable-container"
+                            style="touch-action: none; background-color: black;">
+                            <div id="resizable-5" class="resizable" style="left: 0; top: 0; height: 40%; width: 100%;">
+                                <div class="resizers" style="overflow: hidden;">
+
+
+                                    <!-- <div class="resizer left"></div> -->
+                                    <!-- <div class="resizer right top"></div> -->
+                                    <!-- <div class="resizer left bottom"></div> -->
+                                    <div class="resizer bottom"></div>
+                                    <div id="purple-square"
+                                        style="width: 100%; height: 100%; background-color: rgb(50, 20, 50);">
+                                        <ul style="margin: 0px; padding: 1.25rem">
+                                            <li>custom resizers babey</li>
+                                            <li>max dimensions 100% of parent</li>
+                                            <li>achieved via voodoo</li>
+                                        </ul>
+                                    </div>
+
+                                </div>
+                            </div>
+
+
+                            <div class="neighbour bottom">
+                                <ul style="margin: 0px; padding: 1.25rem">
+                                    <li>free birds at the park</li>
+                                    <li>catch geese with bread</li>
+                                    <li>crrruuuuummbs</li>
+                                </ul>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- include the javascript documents locally -->
+    <script src="movers.js"></script>
+    <script>
+
+        makeCustomResizableDiv(document.getElementById('resizable-2'));
+        makeCustomResizableDiv(document.getElementById('resizable-3'));
+        makeCustomResizableDiv(document.getElementById('resizable-4'));
+        makeCustomResizableDiv(document.getElementById('resizable-5'));
+
+    </script>
+
+    <script src="../../script.js"></script>
+
+</body>
+
+</html>
