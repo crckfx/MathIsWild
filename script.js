@@ -50,6 +50,7 @@ function toggleTheme() {
 // ----------------------------------------------
 
 // Apply saved theme on page load
-applySavedTheme();
+document.addEventListener('DOMContentLoaded', () => applySavedTheme());
+// applySavedTheme();
 
 

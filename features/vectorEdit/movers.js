@@ -1,4 +1,3 @@
-{
 
 
 // ---------------------------------- 
@@ -24,14 +23,14 @@ function makeCustomResizableDiv(element) {
     let original_mouse_x = 0;
     let original_mouse_y = 0;
     let max_x = 0;
-    let max_y = 0;    
+    let max_y = 0;
 
 
     for (let i = 0; i < resizers.length; i++) {
         const currentResizer = resizers[i];
         currentResizer.addEventListener('pointerdown', function (e) {
             e.preventDefault()
-        
+
             original_width = parseFloat(getComputedStyle(element, null).getPropertyValue('width').replace('px', ''));
             original_height = parseFloat(getComputedStyle(element, null).getPropertyValue('height').replace('px', ''));
             original_x = element.getBoundingClientRect().left - parent.getBoundingClientRect().left;
@@ -42,6 +41,7 @@ function makeCustomResizableDiv(element) {
             max_y = parent.getBoundingClientRect().bottom - parent.getBoundingClientRect().top;
             window.addEventListener('pointermove', resize);
             window.addEventListener('pointerup', stopResize);
+            window.addEventListener('pointercancel', stopResize);
         })
 
         function resize(e) {
@@ -50,41 +50,40 @@ function makeCustomResizableDiv(element) {
                 const width = original_width + (e.pageX - original_mouse_x);
                 const right = checkEdgeMax(width, original_x, max_x);
                 if (right !== null) {
-                    element.style.width = right + 'px'; 
+                    element.style.width = right + 'px';
                 }
             } else if (currentResizer.classList.contains('left')) {
                 const width = original_width - (e.pageX - original_mouse_x);
-                const left = checkEdgeMin(width, e.pageX, original_x, original_mouse_x); 
+                const left = checkEdgeMin(width, e.pageX, original_x, original_mouse_x);
                 if (left !== null) {
                     element.style.width = left.length + 'px';
                     element.style.left = left.offset + 'px';
                 }
-            }            
+            }
             // vertical resize
             if (currentResizer.classList.contains('bottom')) {
                 const height = original_height + (e.pageY - original_mouse_y);
                 const bottom = checkEdgeMax(height, original_y, max_y);
                 if (bottom !== null) {
-                    element.style.height = bottom + 'px'; 
+                    element.style.height = bottom + 'px';
                 }
             } else if (currentResizer.classList.contains('top')) {
                 const height = original_height - (e.pageY - original_mouse_y);
-                const top = checkEdgeMin(height, e.pageY, original_y, original_mouse_y); 
+                const top = checkEdgeMin(height, e.pageY, original_y, original_mouse_y);
                 if (top !== null) {
                     element.style.height = top.length + 'px';
                     element.style.top = top.offset + 'px';
-                } 
+                }
             }
             // position
             if (currentResizer.classList.contains('pos')) {
                 const y = checkPosition(original_height, e.pageY, original_y, original_mouse_y, max_y);
-                element.style.top = y + 'px';                
+                element.style.top = y + 'px';
                 const x = checkPosition(original_width, e.pageX, original_x, original_mouse_x, max_x);
                 element.style.left = x + 'px';
             }
 
             if (neighbour) {
-                
                 updateNeighbour(neighbour, element, parent);
             }
 
@@ -95,9 +94,9 @@ function makeCustomResizableDiv(element) {
         }
     }
 
-    if (neighbour) {           
+    if (neighbour) {
         updateNeighbour(neighbour, element, parent);
-    }    
+    }
 }
 
 
@@ -116,7 +115,7 @@ function checkEdgeMax(length, origCoord, max) {
             // not exceeding, all clear
             return length;
         }
-    }  
+    }
     return null;
 }
 
@@ -161,7 +160,7 @@ function updateNeighbour(neighbour, brother, parent) {
     if (neighbour.classList.contains('bottom')) {
         //c
         // console.log('vertical neighbour '+ rect.bottom);
-        neighbour.style.top = rect.bottom-rect.top + 'px';
+        neighbour.style.top = rect.bottom - rect.top + 'px';
         const height = parentRect.bottom - rect.bottom;
         neighbour.style.height = height + 'px';
 
@@ -172,5 +171,4 @@ function updateNeighbour(neighbour, brother, parent) {
         const width = parentRect.right - rect.right;
         neighbour.style.width = width + 'px';
     }
-}
 }

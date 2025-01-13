@@ -23,8 +23,9 @@
     <!-- header -->
     <header>
         <a class="goBackBtn" href="../features.html"></a>
-        <div class="header-middle">
+        <div class="header-middle" style="justify-content: space-around;">
             <h1>vectorEdit</h1>
+            <a href="movers.html"><h2>movers</h2></a>
         </div>
         <div class="toggle-switch">
             <label class="switch-label">
@@ -39,12 +40,9 @@
 
 
             <!-- custom mover 5-->
-            <div class="content-panel"
-                style="touch-action: none; width: 100%; flex: 1; display: flex; justify-content: center; align-items: center;">
-
-                <div id="resizable-container-5" class="resizable-container"
-                    style="touch-action: none; background-color: black;">
-                    <div id="resizable-5" class="resizable" style="left: 0; top: 0; height: 80%; width: 100%;">
+            <div class="content-panel">
+                <div id="resizable-container-5" class="resizable-container">
+                    <div id="ve-top" class="resizable" style="left: 0; top: 0; height: 70%; width: 100%;">
                         <div class="resizers" style="overflow: hidden;">
                             <div class="resizer bottom"></div>
                             <div class="flex-fill" id="purple-square" style=" background-color: rgb(50, 20, 50); ">
@@ -55,19 +53,24 @@
 
                         </div>
                     </div>
-                    <div class="neighbour bottom" style="display: flex;">
+                    <div class="separator" style="z-index: 1; width: 100%; position: absolute; height: 4px; background-color: var(--color-greg); top: 70%;"></div>
+                    <div id="ve-bottom" class="neighbour bottom" style="display: flex;">
                         <form class="code-form">
                             <textarea name="stuff" resizable="false">
-<g data-name="Layer 2">
-    <g data-name="arrow-back">
-        <rect width="24" height="24" opacity="0"/>
-        <path fill="#d0d0d0" stroke="#d0d0d0" stroke-width="0.3"
-        d="M19 11H7.14l3.63-4.36a1 1 0 1 0-1.54-1.28l-5 6a1.19 1.19 0 0 0-.09.15c0 .05 0 .08-.07.13A1 1 0 0 0 4 12a1 1 0 0 0 .07.36c0 .05 0 .08.07.13a1.19 1.19 0 0 0 .09.15l5 6A1 1 0 0 0 10 19a1 1 0 0 0 .64-.23 1 1 0 0 0 .13-1.41L7.14 13H19a1 1 0 0 0 0-2z"
-        />
-    </g>
-</g>                                
+<rect width="24" height="24" opacity="0"/>
+<path d="M0 0 H24 V24 H0 Z" stroke="red"></path>
+<path fill="#d0d0d0" stroke="#d0d0d0" stroke-width="0.3" d="M19 11H7.14l3.63-4.36a1 1 0 1 0-1.54-1.28l-5 6a1.19 1.19 0 0 0-.09.15c0 .05 0 .08-.07.13A1 1 0 0 0 4 12a1 1 0 0 0 .07.36c0 .05 0 .08.07.13a1.19 1.19 0 0 0 .09.15l5 6A1 1 0 0 0 10 19a1 1 0 0 0 .64-.23 1 1 0 0 0 .13-1.41L7.14 13H19a1 1 0 0 0 0-2z"/>
                             </textarea>
-                            <button type="submit">render vector code</button>
+
+                            <div class="controlArea">
+                                <!-- controlArea: the button submits the form; the rest are just here for layout convenience -->
+                                <div class="viewBoxCtrls">
+                                    viewBox:
+                                    <input class="vb-width" type="number" value="24">
+                                    <input class="vb-height" type="number" value="24">
+                                </div>
+                                <button type="submit">render vector code</button>
+                            </div>                
                         </form>
                     </div>
 
@@ -83,10 +86,10 @@
 
     <!-- include the javascript documents locally -->
     <script src="vectorEdit.js"></script>
-    <script src="movers.js"></script>
+    <!-- <script src="movers.js"></script> -->
 
     <script>
-        makeCustomResizableDiv(document.getElementById('resizable-5'));
+        makeCustomResizableDiv(document.getElementById('ve-top'));
         submitCodeForm();
     </script>
 
