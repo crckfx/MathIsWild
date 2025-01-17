@@ -135,6 +135,7 @@ function makeCustomResizableDiv(element) {
         updateNeighbour(neighbour, element, parent);
     }
     window.addEventListener('resize', () => resizeResizeableForWindow(element));
+    window.addEventListener('DOMContentLoaded', () => changeViewboxSize());
 
 }
 
