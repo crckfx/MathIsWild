@@ -103,6 +103,12 @@
 .bg-greg {
     background-color: var(--color-greg);
 }
+.bg-gareth {
+    background-color: var(--color-gareth);
+}
+.bg-grurple {
+    background-color: var(--color-grurple);
+}
 
 .tc-1 {
     color: var(--color-text);
