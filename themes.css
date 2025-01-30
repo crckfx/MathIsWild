@@ -109,6 +109,9 @@
 .bg-grurple {
     background-color: var(--color-grurple);
 }
+.bg-grellow {
+    background-color: var(--color-grellow);
+}
 
 .tc-1 {
     color: var(--color-text);
