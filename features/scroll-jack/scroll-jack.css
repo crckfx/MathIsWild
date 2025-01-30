@@ -4,6 +4,10 @@
     box-sizing: border-box;
 } */
 
+:root {
+    --background-size: contain;
+}
+
 .container {
     overflow-y: scroll;
     height: 100svh;
@@ -11,6 +15,7 @@
     scroll-snap-type: y mandatory;
     scroll-snap-stop: normal;
 }
+
 section {
     height: 100svh;
     display: flex;
@@ -18,6 +23,11 @@ section {
     align-items: center;
     scroll-snap-align: start;
     flex-direction: column;
+
+    /* generic background settings */
+    background-size: var(--background-size);
+    background-position: center;    
+    background-repeat: no-repeat;
 }
 
 section.one {
@@ -33,4 +43,25 @@ section .content {
     align-items: center;
     flex: 1;
     width: 100%;
+}
+
+section:nth-child(1) {
+    background-image: url('https://wallpapersok.com/images/high/hilarious-lord-farquaad-quote-8moduapfl6srl8uk.jpg');
+
+}
+
+section:nth-child(2) {
+    background-image: url('https://us.britishessentials.com/cdn/shop/products/March082337_grande.jpg?v=1678258337');
+}
+
+section:nth-child(3) {
+    background-image: url('https://entertainmentbureau.com.au/wp-content/uploads/2014/04/Rove-McManus-Entertainment-Bureau.png');
+}
+
+section:nth-child(4) {
+    background-image: url('https://m.media-amazon.com/images/I/81gP4d+3NCL.jpg');
+}
+
+.header-middle {
+    justify-content: space-evenly;
 }
