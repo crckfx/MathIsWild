@@ -16,22 +16,24 @@
 }
 
 /* ------------------------------------ */
+.snap-x,
+.snap-y {
+    display: flex;
+    flex-grow: 1;
+    overscroll-behavior: none;
+}
+
 
 .snap-x {
     overflow-x: scroll;
     scroll-snap-type: x mandatory;
-    display: flex;
     flex-direction: row;
-    flex-grow: 1;
 }
 
 .snap-y {
     overflow-y: scroll;
     scroll-snap-type: y mandatory;
-    scroll-snap-stop: normal;
-    display: flex;
     flex-direction: column;
-    flex-grow: 1;
 }
 
 .snap-x.always .snap-section,
@@ -40,7 +42,6 @@
 }
 
 .snap-section {
-    /* height: 100svh; */
     display: flex;
     justify-content: center;
     align-items: center;
