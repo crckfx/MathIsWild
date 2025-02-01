@@ -22,10 +22,10 @@
 <body>
     <!-- a flex container with explicit height to allow intrinsic growth -->
     <div class="full-page">
-        <header>
+        <header style="position: absolute; top: 0px; left: 0px; background-color: transparent;">
             <a class="goBackBtn" href="../features.html"></a>
             <div class="header-middle">
-                <h1>Scroll Jacking #2 (no wrapper)</h1>
+                <h1>Scroll Jacking #4</h1>
                 <span>
                     <button onclick="changeBackgroundSize('contain')">contain</button>
                     <button onclick="changeBackgroundSize('cover')">cover</button>
@@ -38,7 +38,6 @@
                 </label>
             </div>
         </header>
-        <p>note: the header, this text and the snap all sit in a .full-page.</p>
 
         <div class="snap-y no-scrollbar">
             <!-- the first section will contain the header too -->

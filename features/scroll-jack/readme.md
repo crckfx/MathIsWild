@@ -11,8 +11,12 @@ this feature only works properly on firefox.
 
 ## 2. scroll-jack-2.html
 - one css doc: *sj2.css*
-- full-page straight onto the body
+- uses the **.full-page** wrapper straight onto the body
 
 ## 3. scroll-jack-3.html
 - one css doc: *sj2.css*
 - uses the site's **page wrapper** 
+
+## 4. scroll-jack-4.html
+- one css doc: *sj2.css*
+- uses **.full-page** and a fixed header
