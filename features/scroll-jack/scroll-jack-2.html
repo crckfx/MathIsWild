@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width" initial-scale="1.0">
+    <title>Scroll Jacking</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap">
+    <!-- Font Awesome -->
+    <script src="https://kit.fontawesome.com/159c5c66b8.js" crossorigin="anonymous"></script>
+    <!-- local -->
+    <link rel="stylesheet" href="../../global.css">
+    <link rel="stylesheet" href="../../themes.css">
+    <link rel="stylesheet" href="sj2.css">
+
+</head>
+
+<body>
+    <!-- a flex container with explicit height to allow intrinsic growth -->
+    <div class="full-page">
+        <header>
+            <a class="goBackBtn" href="../features.html"></a>
+            <div class="header-middle">
+                <h1>Scroll Jacking (no wrapper)</h1>
+                <span>
+                    <button onclick="changeBackgroundSize('contain')">contain</button>
+                    <button onclick="changeBackgroundSize('cover')">cover</button>
+                </span>
+            </div>
+            <div class="toggle-switch">
+                <label class="switch-label">
+                    <input type="checkbox" class="checkbox" onclick="toggleTheme()">
+                    <span class="slider"></span>
+                </label>
+            </div>
+        </header>
+        <p>note: the header, this text and the snap all sit in a .full-page.</p>
+
+        <div class="snap-y no-scrollbar">
+            <!-- the first section will contain the header too -->
+            <section class="one background bg-gareth">
+
+
+            </section>
+            <section class="two background bg-bg-1"></section>
+            <section class="three background bg-grurple"></section>
+            <section class="four background bg-greg"></section>
+
+            <section class="five background bg-2">
+                <div class="content" style="justify-content: space-evenly; flex-wrap: wrap;">
+                    <div class="demo-box">
+                        <h2>vertical scroll</h2>
+                        <div class="snap-y no-scrollbar">
+                            <section class="bg-greg">Lorem ipsum</section>
+                            <section class="bg-grurple">Lorem farkin</section>
+                            <section class="bg-grellow">Ipsum farkin</section>
+                            <section class="bg-gareth">Ipsum farkin</section>
+                        </div>
+                        <p>allows skipping</p>
+                    </div>
+                    <div class="demo-box">
+                        <h2>vertical scroll</h2>
+                        <div class="snap-y no-scrollbar always">
+                            <section class="bg-greg">Lorem ipsum</section>
+                            <section class="bg-grurple">Lorem farkin</section>
+                            <section class="bg-grellow">Ipsum farkin</section>
+                            <section class="bg-gareth">Ipsum farkin</section>
+                        </div>
+                        <p>always snaps</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="six background">
+                <div class="content" style="justify-content: space-evenly; flex-wrap: wrap;">
+                    <div class="demo-box">
+                        <h2>horizontal scroll</h2>
+                        <div class="snap-x no-scrollbar">
+                            <section class="bg-2">Lorem ipsum</section>
+                            <section class="bg-3">Lorem farkin</section>
+                            <section class="bg-4">Ipsum farkin</section>
+                            <section class="bg-5">Ipsum farkin</section>
+
+                        </div>
+                        <p>allows skipping</p>
+                    </div>
+                    <div class="demo-box">
+                        <h2>horizontal scroll 2</h2>
+                        <div class="snap-x no-scrollbar always">
+                            <section class="bg-2">Lorem ipsum</section>
+                            <section class="bg-3">Lorem farkin</section>
+                            <section class="bg-4">Ipsum farkin</section>
+                            <section class="bg-5">Ipsum farkin</section>
+                        </div>
+                        <p>always snaps</p>
+                    </div>
+                </div>
+            </section>
+
+
+        </div>
+    </div>
+
+
+    <!-- look Ma, no javascript! -->
+
+    <script src="../../script.js"></script>
+
+    <script>
+        function changeBackgroundSize(size) {
+            document.documentElement.style.setProperty('--background-size', size);
+        }
+
+    </script>
+
+
+</body>
+
+</html>

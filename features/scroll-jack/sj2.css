@@ -1,0 +1,118 @@
+:root {
+    --background-size: contain;
+}
+
+html {
+    scroll-behavior: auto;
+    overscroll-behavior: contain;
+}
+
+/* *********************************** */
+/* no scrollbar */
+.no-scrollbar {
+    /* Firefox */
+    scrollbar-width: none;
+    /* Internet Explorer 10+ */
+    -ms-overflow-style: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+    /* WebKit */
+    width: 0;
+    height: 0;
+}
+/* ------------------------------------ */
+
+
+
+.snap-x,
+.snap-y {
+    display: flex;
+    overscroll-behavior: contain;
+    width: 100%;
+    flex-grow: 1;
+    /* we use flex-grow instead of height */
+    
+}
+.full-page {
+    height: 100svh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+/* .full-page section {
+    height: 100%;
+    width: 100%;
+} */
+
+.snap-x {
+    overflow-x: scroll;
+    scroll-snap-type: x mandatory;
+    flex-direction: row;
+}
+
+.snap-y {
+    overflow-y: scroll;
+    scroll-snap-type: y mandatory;
+    flex-direction: column;
+}
+
+section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    scroll-snap-align: start;
+    scroll-snap-stop: normal;
+    width: 100%;
+    height: 100%;
+    flex-shrink: 0;
+}
+
+section.background {
+    background-size: var(--background-size);
+    background-position: center;    
+    background-repeat: no-repeat;
+}
+
+.snap-x.always section,
+.snap-y.always section {
+    scroll-snap-stop: always;
+}
+
+
+/* used as a "center content" container which grows inside of a full-page container */
+section .content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+    width: 100%;
+}
+
+section.background:nth-child(1) {
+    background-image: url('https://wallpapersok.com/images/high/hilarious-lord-farquaad-quote-8moduapfl6srl8uk.jpg');
+
+}
+
+section.background:nth-child(2) {
+    background-image: url('https://us.britishessentials.com/cdn/shop/products/March082337_grande.jpg?v=1678258337');
+}
+
+section.background:nth-child(3) {
+    background-image: url('https://entertainmentbureau.com.au/wp-content/uploads/2014/04/Rove-McManus-Entertainment-Bureau.png');
+}
+
+section.background:nth-child(4) {
+    background-image: url('https://m.media-amazon.com/images/I/81gP4d+3NCL.jpg');
+}
+
+.header-middle {
+    justify-content: space-evenly;
+}
+
+.demo-box {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    width: 320px;
+    height: 320px;
+}
