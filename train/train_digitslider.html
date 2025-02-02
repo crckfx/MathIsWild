@@ -41,27 +41,7 @@
     </header>
     <div class="page-wrapper">
         <div class="page-content bg-2">
-            <!-- example 1: accordion in a width:600px wrapper -->
-            <div class="wrap-600">
-                <h1>Train Game</h1>
-                <!-- accordion 1 start -->
-                <div class="accordion" id="myAccordion">
-                    <div class="accordion-panel bg-3">
-                        <button class="accordion-trigger" aria-expanded="false">
-                            <h2>Readme</h2>
-                        </button>
-                        <div class="accordion-content" aria-hidden="true">
-                            <div>
-                                <hr>
-                                <h2>Hello</h2>
-                                <p>this is the new way to do the accordion, this one has beautiful smooth transitions
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- accordion 1 end -->
-            </div>            
+         
             <!-- SOLVE THE TRAIN START -->
             <div class="trainContainer">
                 <!-- TRAINNNNN GAME -->
@@ -77,40 +57,55 @@
                 <div class="slots_container">
                     <!-- cosmetic extra parent layer for slots -->
                     <div class="numberSlots bg-2">
-                        
-                        <div id="digit-a" class="digit-container " tabindex="0">0
-                            <!-- <div class="digit">0</div> -->
-                        </div>
-
-                        <div id="digit-b" class="digit-container " tabindex="0">
-                            <!-- <div class="digit"></div> -->
-                        </div>
-    
-                        <div id="digit-c" class="digit-container " tabindex="0">
-                            <!-- <div class="digit"></div> -->
-                        </div>
-    
-                        <div id="digit-d" class="digit-container " tabindex="0">
-                            <!-- <div class="digit"></div> -->
-                        </div>
+                        <div id="digit-a" class="digit-container " tabindex="0">0</div>
+                        <div id="digit-b" class="digit-container " tabindex="0"></div>
+                        <div id="digit-c" class="digit-container " tabindex="0"></div>
+                        <div id="digit-d" class="digit-container " tabindex="0"></div>
                     </div>
                 </div>   
                 <!-- <button onclick="logDigitsFromSet(document.querySelector('.slots_container'))">console log digits from set</button>   -->
 
                 <div class="buttonsDiv">
-                    <button class="toSolve">Solve</button>
-                    <button class="reRandomise">Reset</button>
+                    <button class="toSolve" tabindex="0">Solve</button>
+                    <button class="reRandomise" tabindex="0">Reset</button>
                 </div>
 
-                <div class="howToSolve"></div>
+                <div>
+                    <div class="howToSolve"></div>
 
-                <div class="solutions">
-                    <div class="trigger"><i class="fa-solid fa-caret-left hidden" id="leftTrig"></i></div>
-                    <div class="howManyGregs"></div>
-                    <div class="trigger"><i class="fa-solid fa-caret-right hidden" id="rightTrig"></i></div>
+                    <div class="solutions">
+                        <div class="trigger"><i class="fa-solid fa-caret-left hidden" id="leftTrig"></i></div>
+                        <div class="howManyGregs"></div>
+                        <div class="trigger"><i class="fa-solid fa-caret-right hidden" id="rightTrig"></i></div>
+                    </div>
                 </div>
+
             </div>
             <!-- SOLVE THE TRAIN END -->
+
+            <!-- readme accordion in a width:600px wrapper -->
+            <div class="wrap-600">
+                <!-- <h1>Train Game</h1> -->
+                <!-- accordion 1 start -->
+                <div class="accordion" id="myAccordion">
+                    <div class="accordion-panel bg-3">
+                        <button class="accordion-trigger" aria-expanded="false">
+                            <h2>Readme</h2>
+                        </button>
+                        <div class="accordion-content" aria-hidden="true">
+                            <div>
+                                <hr>
+                                <h2>Train Game</h2>
+                                <p>uses your 4 train carriage numbers and basic maths to solve for a result of '10'.</p>
+                                <h3>how to play:</h3>
+                                <p>drag up and down on the slots (or use the arrow keys)</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- accordion 1 end -->
+            </div>   
+
         </div>
     </div>
     <!-- Main Container End --------------------------------------------------------------------------------------------------------------------->

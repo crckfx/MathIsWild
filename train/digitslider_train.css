@@ -41,11 +41,6 @@
     background-color: var(--color-bg-1b);
 }
 
-/* .digit {
-    position: relative;
-    transition: transform 150ms ease-in-out;
-    will-change: transform;
-} */
 
 /* disable pull-down-to-refresh behaviour on mobile */
 body, html {
