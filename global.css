@@ -46,6 +46,9 @@ input:focus {
     outline: none;
 } */
 
+button {
+    font: inherit;
+}
 
 header {
     background-color: var(--color-header);
