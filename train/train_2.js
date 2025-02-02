@@ -19,28 +19,19 @@ const slots = slotsContainer.querySelectorAll('.digit-container');  // new slots
 
 
 function getNumbersFromInputs() {
-    // (old)
-    // const array = Array.from(numberInputs).map(input => Number(input.value));
-
-    // (new)
-    // const array = getDigitsFromSet(slotsContainer);
     const array = [];
     slots.forEach((slot) => {
         const value = parseInt(slot.dataset.value, 10) || 0;
         array.push(value);
     });
-    // console.log(array);
     return array;
 }
 
 function resetInputs() {
-    // (new)
     slotsContainer.querySelectorAll('.digit-container').forEach(slot => {
         slot.dataset.value = "";
         slot.textContent = "";
     });
-    numberInputs.forEach(input => input.value = ""); // (old)
-    //
     howToSolve.innerHTML = "";
     howManyGregs.innerHTML = ""
     howToSolve.classList.remove("correct");
@@ -196,20 +187,7 @@ function inputNext(currentInput) {
 }
 
 // *******************************************************
-function getDigitsFromSet(set) {
-    const array = [];
-    if (typeof set !== null) {
-        const slots = set.querySelectorAll('.digit-container');
-        slots.forEach((slot) => {
-            const value = parseInt(slot.dataset.value, 10) || 0;
-            array.push(value);
-        });
-    }
-
-    // console.log(array);
-    return array;
-}
-
-function logDigitsFromSet(set) {
-    console.log(getDigitsFromSet(set));
+console.log(slots[0]);
+if (typeof slots[0] !== undefined) {
+    slots[0].focus();
 }

@@ -18,6 +18,8 @@
     <link href="../global.css" rel="stylesheet">
     <link href="../themes.css" rel="stylesheet">
     <link href="train.css" rel="stylesheet">
+    <link href="../features/accordion/accordion_basic.css" rel="stylesheet">
+
 </head>
 <!-- Head End --------------------------------------------------------------------------------------------------------------------->
 
@@ -67,6 +69,33 @@
                 </div>
             </div>
             <!-- SOLVE THE TRAIN END -->
+
+
+            <!-- readme accordion in a width:600px wrapper -->
+            <div class="wrap-600">
+                <!-- accordion start -->
+                <div class="accordion" id="myAccordion">
+                    <div class="accordion-panel bg-3">
+                        <button class="accordion-trigger" aria-expanded="false">
+                            <h2>Readme</h2>
+                        </button>
+                        <div class="accordion-content" aria-hidden="true">
+                            <div class>
+                                <hr>
+                                <h2>Train Game</h2>
+                                <p>uses your 4 train carriage numbers and basic maths to solve for a result of '10'.</p>
+                                <h3>how to play:</h3>
+                                <ul>
+                                    <li>input 4 numbers</li>
+                                    <li>click to solve</li>
+                                </ul>
+                                <h3><a href="train_2.html">link to train #2</a></h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- accordion end -->
+            </div>
         </div>
     </div>
     <!-- Main Container End --------------------------------------------------------------------------------------------------------------------->
@@ -79,6 +108,7 @@
     <!-- local scripts -->
     <script src="../script.js"></script>
     <script src="train.js"></script>
+    <script src="../features/accordion/accordion_basic.js"></script>
     <!-- Script Source End --------------------------------------------------------------------------------------------------------------------->
 </body>
 <!-- Body End --------------------------------------------------------------------------------------------------------------------->

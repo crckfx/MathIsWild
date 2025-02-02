@@ -40,6 +40,10 @@
 .digit-container:hover {
     background-color: var(--color-bg-1b);
 }
+.digit-container:focus {
+    background-color: var(--color-bg-1b);
+    /* background-color: #ffa; */
+}
 
 
 /* disable pull-down-to-refresh behaviour on mobile */

@@ -8,7 +8,7 @@ html {
 
 body {
     font-family: "Kanit", sans-serif;
-    font-weight: 400;
+    font-weight: 300;
     font-style: normal;
     color: var(--color-text);
     background-color: var(--color-bg-1);
@@ -35,15 +35,16 @@ a {
     text-decoration: none;
 }
 
+/* trying out removing both of these styles  */
+/* 
 button {
     outline: none;
     border: none;
 }
-
 input:focus {
     border: none;
     outline: none;
-}
+} */
 
 
 header {
