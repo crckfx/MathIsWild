@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- Head Start --------------------------------------------------------------------------------------------------------------------->
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width" initial-scale="1.0">
+    <title>TRAIN GAME</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+    <!-- Font Awesome -->
+    <script src="https://kit.fontawesome.com/159c5c66b8.js" crossorigin="anonymous"></script>
+    <!-- local css -->
+    <link href="../global.css" rel="stylesheet">
+    <link href="../themes.css" rel="stylesheet">
+    <link href="train.css" rel="stylesheet">
+    <link href="digitslider_train.css" rel="stylesheet">
+    <link href="../features/accordion/accordion_basic.css" rel="stylesheet">
+</head>
+<!-- Head End --------------------------------------------------------------------------------------------------------------------->
+
+<!-- Body Start --------------------------------------------------------------------------------------------------------------------->
+
+<body>
+
+    <header class="styleHeader">
+        <a class="goBackBtn" href="../index.html"></a>
+        <div class="header-middle">
+            <h1>TRAINNNNN GAME</h1>
+        </div>
+        <div class="toggle-switch">
+            <label class="switch-label">
+                <input type="checkbox" class="checkbox" onclick="toggleTheme()">
+                <span class="slider"></span>
+            </label>
+        </div>
+    </header>
+    <div class="page-wrapper">
+        <div class="page-content bg-2">
+            <!-- example 1: accordion in a width:600px wrapper -->
+            <div class="wrap-600">
+                <h1>Train Game</h1>
+                <!-- accordion 1 start -->
+                <div class="accordion" id="myAccordion">
+                    <div class="accordion-panel bg-3">
+                        <button class="accordion-trigger" aria-expanded="false">
+                            <h2>Readme</h2>
+                        </button>
+                        <div class="accordion-content" aria-hidden="true">
+                            <div>
+                                <hr>
+                                <h2>Hello</h2>
+                                <p>this is the new way to do the accordion, this one has beautiful smooth transitions
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- accordion 1 end -->
+            </div>            
+            <!-- SOLVE THE TRAIN START -->
+            <div class="trainContainer">
+                <!-- TRAINNNNN GAME -->
+                <!-- hidden old container -->
+                <div class="trainNumbers" style="display: none;">
+                    <input type="number" class="numberInput" maxlength="1" oninput="inputNext(this)" value="">
+                    <input type="number" class="numberInput" maxlength="1" oninput="inputNext(this)" value="">
+                    <input type="number" class="numberInput" maxlength="1" oninput="inputNext(this)" value="">
+                    <input type="number" class="numberInput" maxlength="1" oninput="inputNext(this)" value="">
+                </div>                
+
+                <!-- functional parent for slots -->
+                <div class="slots_container">
+                    <!-- cosmetic extra parent layer for slots -->
+                    <div class="numberSlots bg-2">
+                        
+                        <div id="digit-a" class="digit-container " tabindex="0">0
+                            <!-- <div class="digit">0</div> -->
+                        </div>
+
+                        <div id="digit-b" class="digit-container " tabindex="0">
+                            <!-- <div class="digit"></div> -->
+                        </div>
+    
+                        <div id="digit-c" class="digit-container " tabindex="0">
+                            <!-- <div class="digit"></div> -->
+                        </div>
+    
+                        <div id="digit-d" class="digit-container " tabindex="0">
+                            <!-- <div class="digit"></div> -->
+                        </div>
+                    </div>
+                </div>   
+                <!-- <button onclick="logDigitsFromSet(document.querySelector('.slots_container'))">console log digits from set</button>   -->
+
+                <div class="buttonsDiv">
+                    <button class="toSolve">Solve</button>
+                    <button class="reRandomise">Reset</button>
+                </div>
+
+                <div class="howToSolve"></div>
+
+                <div class="solutions">
+                    <div class="trigger"><i class="fa-solid fa-caret-left hidden" id="leftTrig"></i></div>
+                    <div class="howManyGregs"></div>
+                    <div class="trigger"><i class="fa-solid fa-caret-right hidden" id="rightTrig"></i></div>
+                </div>
+            </div>
+            <!-- SOLVE THE TRAIN END -->
+        </div>
+    </div>
+    <!-- Main Container End --------------------------------------------------------------------------------------------------------------------->
+
+    <!-- Script Source Start --------------------------------------------------------------------------------------------------------------------->
+    <!-- GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/MotionPathPlugin.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <!-- local scripts -->
+    <script src="../script.js"></script>
+    <script src="digitslider_train.js"></script>
+    <script src="train_2.js"></script>
+    <script src="../features/accordion/accordion_basic.js"></script>
+    <!-- Script Source End --------------------------------------------------------------------------------------------------------------------->
+</body>
+<!-- Body End --------------------------------------------------------------------------------------------------------------------->
+
+</html>

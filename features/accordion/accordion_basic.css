@@ -37,6 +37,7 @@
     padding-bottom: 12px;
     padding-left: 2rem;
     position: relative;
+    cursor: pointer;
 }
 
 /* ::before: the light denoting on/off for the panel */
