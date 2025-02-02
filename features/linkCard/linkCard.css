@@ -10,28 +10,24 @@
     margin-bottom: 20px;
 }
 
-/* styles for the link buttons */
-.linkButton {
+/* link card - currently we use this class on an <a> */
+.linkCard {
     width: 225px;
     height: 250px;
     background-color: var(--color-harold);
     border-radius: 8px;
     margin: 10px;
     display: flex;
-    /* justify-content: center; */
     align-items: center;
     flex-direction: column;
 }
 
-.linkButtonImage {
-    width: 225px;
-    height: 210px;
-    /* background-color: #ad331b; */
-    text-align: center;
-    color: var(--color-text-3);
+.linkCard:hover {
+    background-color: var(--color-haroldson);
+    outline: 5px solid var(--color-alert-1a);
 }
 
-.linkButtonHeading {
+.linkCard .linkButtonHeading {
     width: 225px;
     height: 40px;
     display: flex;
@@ -39,29 +35,8 @@
     align-items: center;
 }
 
-.linkButton:hover {
-    background-color: var(--color-haroldson);
-    outline: 5px solid red;
-}
 
-/* new type of link button */
-a.linkCard {
-    width: 225px;
-    height: 250px;
-    background-color: var(--color-harold);
-    border-radius: 8px;
-    margin: 10px;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-}
-
-a.linkCard:hover {
-    background-color: var(--color-haroldson);
-    outline: 5px solid var(--color-alert-1a);
-}
-
-a.linkCard .linkButtonImage {
+.linkCard .linkButtonImage {
     width: 225px;
     height: 210px;
     text-align: center;
@@ -70,8 +45,10 @@ a.linkCard .linkButtonImage {
     place-items: center;
 }
 
-a.linkCard .linkButtonImage img {
+.linkCard .linkButtonImage img {
     width: 100%;
     height: 100%;
     object-fit: contain;
 }
+
+

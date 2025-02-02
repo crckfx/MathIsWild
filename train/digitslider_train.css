@@ -1,12 +1,6 @@
-.numberSlots {
-    flex: 1;
-    max-width: 500px;
-    min-height: 100px;
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-}
+/* digitslider.css - TRAIN edition */
 
+/* main parent (the js-functional one) */
 .slots_container {
     width: 100%;
     height: 100px;
@@ -14,6 +8,16 @@
     align-items: center;
     justify-content: center;
     touch-action: none;
+}
+
+/* sub-parent (cosmetic purposes) */
+.numberSlots {
+    flex: 1;
+    max-width: 500px;
+    min-height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
 }
 
 /* ************************************** */
@@ -31,9 +35,7 @@
     user-select: none;
     /* touch-action: manipulation; */
     border-radius: 15px;
-
     background-color: var(--color-bg-1);
-
     color: var(--color-text);
 
 }
@@ -43,6 +45,7 @@
 .digit-container:focus {
     background-color: var(--color-bg-1b);
     /* background-color: #ffa; */
+    outline: 2px solid var(--color-grurple);
 }
 
 

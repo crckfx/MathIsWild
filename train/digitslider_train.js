@@ -1,20 +1,19 @@
 
 function createDigitSlider(container) {
     let currentValue = parseInt(container.dataset.value, 10) || 0;
-    // const digitElement = container.querySelector('.digit');
-    const digitElement = container;
 
-    let startY = 0;
-
+    let startY = 0; // reserve a variable for pointer actions
 
     const updateDigit = (newValue) => {
+        container.focus();
         currentValue = (newValue + 10) % 10; // Keep value within 0-9
         container.dataset.value = currentValue;
-        digitElement.textContent = currentValue;
+        container.textContent = currentValue;
     };
 
     container.addEventListener('pointerdown', (e) => {
         e.preventDefault();
+        container.focus();  // focus on touch, not just 'click'
         startY = e.clientY; // Use clientY for pointer events
         container.setPointerCapture(e.pointerId); // Capture pointer for consistent tracking
     });

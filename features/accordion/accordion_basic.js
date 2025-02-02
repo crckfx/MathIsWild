@@ -22,21 +22,26 @@ function createAccordion(accordion) {
     function toggleAccordion(currentPanel) {
         const panelButton = currentPanel.querySelector("button");
         const panelIsOpened = panelButton.getAttribute("aria-expanded");
+        
+        const content = currentPanel.querySelector(".accordion-content");
 
         if (panelIsOpened === "true") {
-            currentPanel
-                .querySelector("button")
-                .setAttribute("aria-expanded", false);
-
-            currentPanel
-                .querySelector(".accordion-content")
-                .setAttribute("aria-hidden", true);
+            panelButton.setAttribute("aria-expanded", false);
+            content.setAttribute("aria-hidden", true);
         } else {
-            currentPanel.querySelector("button").setAttribute("aria-expanded", true);
+            panelButton.setAttribute("aria-expanded", true);
 
-            currentPanel
-                .querySelector(".accordion-content")
-                .setAttribute("aria-hidden", false);
+            content.setAttribute("aria-hidden", false);
+
+            // experimental: scroll to fit panel
+            // this is kind of crude (fires after transition), but "nearest" seems to filter nicely
+            content.addEventListener("transitionend", function handler(event) {
+                if (event.propertyName === "grid-template-rows") {
+                    console.log('transition end');
+                    currentPanel.scrollIntoView({ behavior: "smooth", block: "nearest" });
+                    content.removeEventListener("transitionend", handler);
+                }
+            });
         }
     }
 

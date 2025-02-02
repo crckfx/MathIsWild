@@ -125,7 +125,7 @@ input[type="number"]::-webkit-outer-spin-button {
 
 .toSolve:focus,
 .reRandomise:focus{
-    outline: 2px solid var(--color-greg);
+    outline: 2px solid var(--color-grurple);
 }
 
 
