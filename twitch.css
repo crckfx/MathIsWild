@@ -1,7 +1,6 @@
-
 /* Skyriac Twitch Link */
 
-.skyriacContainer{
+.skyriacContainer {
     width: auto;
     height: auto;
     position: absolute;
@@ -14,7 +13,7 @@
     transform: rotate(30deg);
 }
 
-.skyriacLink{
+.skyriacContainer .skyriacLink {
     padding: 10px 15px;
     background-color: pink;
     border-radius: 25px;
@@ -23,27 +22,33 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    transition: 0.3s ease;  
+    transition: 0.3s ease;
 }
 
-.skyriacLink i {
-    display: inline-block;  
+.skyriacContainer:hover .skyriacLink {
+    /* transition: 0.3s ease;   */
+    /* background-color: #e6a5b0; */
+    background-color: #26a5b0;
+}
+
+.skyriacContainer .skyriacLink i {
+    display: inline-block;
     transform: rotate(-30deg);
 }
 
-.skyriacLink:hover{
-    transition: 0.3s ease;  
-    background-color: #e6a5b0;
-}
-
-
-.skyriacText {
-    display: flex;           
-    opacity: 0;              
-    transform: translateY(10px);  
-    transition: opacity 0.3s ease, transform 0.3s ease;  
-    pointer-events: none;   
+.skyriacContainer .skyriacText {
+    display: flex;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    pointer-events: none;
     line-height: 1px;
     margin-left: 5px;
     font-size: 12px;
+}
+
+.skyriacContainer:hover .skyriacText {
+    transform: translateY(0);
+    pointer-events: auto;
+    opacity: 1;
 }
