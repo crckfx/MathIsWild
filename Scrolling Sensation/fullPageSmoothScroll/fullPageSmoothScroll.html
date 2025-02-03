@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Full Page Smooth Scroll</title>
+    <link rel="stylesheet" href="../../global.css">
+    <link rel="stylesheet" href="../../themes.css">
+    <link rel="stylesheet" href="fullPageSmoothScroll.css">
+    <link rel="stylesheet" href="../scrollLachieHasBeenJacked/scrollLachieHasBeenJacked.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel&family=Noto+Sans&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<div id="smooth-wrapper">
+    <div class="stage" id="smooth-content">
+        <!-- ✅ Header -->
+        <header class="header">
+            <a class="goBackBtn" href="../scrollingSensation.html"></a>
+            <div class="logo">Lachie</div>
+            <a href="#" class="nav-btn">
+                <svg class="nav-btn__svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 56 30">
+                    <rect class="nav-rect" width="40" height="2" x="8" y="8" fill="#242423" />
+                    <rect class="nav-rect" width="40" height="2" x="8" y="14" fill="#242423" />
+                    <rect class="nav-rect" width="40" height="2" x="8" y="20" fill="#242423" />
+                </svg>
+            </a>
+        </header>
+
+    <div class="snap-y no-scrollbar">
+        <section class="one background bg-gareth">
+            <!-- ✅ Intro Section -->
+            <section class="intro slide--0" id="slide-0">
+                <div class="intro__content">
+                    <h1 class="intro__title">Lachie</h1>
+                    <p class="intro__txt">They say pain is beauty and well that is true, At the cost of pearly white teeth I have an upset stomach due to eating a whole pack of dentasticks</p>
+                </div>
+                <img class="intro__img intro__img--1" src="" width="350" height="450"/>
+                <img class="intro__img intro__img--2" src="" width="350" height="450"/>
+            </section>
+        </section>
+        
+        <section class="two background bg-bg-1">
+            <!-- ✅ Slides (Looped for Multiple Sections) -->
+            <!-- Each slide includes text and images with parallax effects -->
+            <section class="slide slide--1" id="slide-1">
+                <div class="col col--1">
+                    <div class="col__content col__content--1">
+                        <h2 class="col__content-title">Project # 1 of 3</h2>
+                        <p class="col__content-txt">Praesent commodo cursus magna, vel scelerisque nisl consectetur et.</p>
+                    </div>
+                    <a href="#slide-2" class="slide__scroll-link">↓</a>
+                </div>
+                <div class="col col--2">
+                    <div class="col__image-wrap">
+                        <img class="img" src="../../Images/wooperdooper.png" />
+                    </div>
+                </div>
+            </section>
+        </section>
+
+        <section class="three background bg-grurple">
+            <section class="slide slide--2" id="slide-2">
+                <div class="col col--1">
+                    <div class="col__content col__content--2">
+                        <h2 class="col__content-title">Project # 2 of 3</h2>
+                        <p class="col__content-txt">Etiam porta sem malesuada magna mollis euismod.</p>
+                    </div>
+                    <a href="#slide-3" class="slide__scroll-link">↓</a>
+                </div>
+                <div class="col col--2">
+                    <div class="col__image-wrap">
+                        <img class="img" src="../../Images/splatoonOne.jpg" />
+                    </div>
+                </div>
+            </section>
+        </section>
+
+        <section class="four background bg-greg">
+            <section class="slide slide--3" id="slide-3">
+                <div class="col col--1">
+                    <div class="col__content col__content--3">
+                        <h2 class="col__content-title">Project # 3 of 3</h2>
+                        <p class="col__content-txt">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                    </div>
+                    <a href="#slide-4" class="slide__scroll-link">↓</a>
+                </div>
+                <div class="col col--2">
+                    <div class="col__image-wrap">
+                        <img class="img" src="../../Images/Pokemon Wallpaper.jpeg" />
+                    </div>
+                </div>
+            </section>
+        </section>
+            
+    </div>
+
+        <!-- ✅ Footer -->
+        <footer class="footer" id="slide-4">
+            <a class="footer__link" href="" target="_blank">LachOutlaws</a>
+            <a class="footer__link-top" href="#slide-0">Top ↑</a>
+            <p class="footer__copyright">© 2025 Lachlan McGhie</p>
+        </footer>
+    </div>
+</div>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollToPlugin.min.js"></script>
+<script src="../../script.js"></script>
+<script src="../../parallax.js"></script> <!-- todo: review if this is needed here -->
+<script src="fullPageSmoothScroll.js"></script>
+</body>
+</html>

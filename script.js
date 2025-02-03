@@ -5,7 +5,8 @@
 // ----------------------------------------------
 // reliable way to only try to 'register' gsap if it is already defined by other includes elsewhere
 if (typeof gsap !== 'undefined') {
-    gsap.registerPlugin(ScrollTrigger, MotionPathPlugin)
+    // gsap.registerPlugin(ScrollTrigger, MotionPathPlugin)
+    gsap.registerPlugin(ScrollTrigger);
 }
 // ----------------------------------------------
 

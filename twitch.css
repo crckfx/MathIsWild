@@ -1,0 +1,49 @@
+
+/* Skyriac Twitch Link */
+
+.skyriacContainer{
+    width: auto;
+    height: auto;
+    position: absolute;
+    bottom: 100px;
+    right: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 15px;
+    transform: rotate(30deg);
+}
+
+.skyriacLink{
+    padding: 10px 15px;
+    background-color: pink;
+    border-radius: 25px;
+    color: #2f0844;
+    font-size: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.3s ease;  
+}
+
+.skyriacLink i {
+    display: inline-block;  
+    transform: rotate(-30deg);
+}
+
+.skyriacLink:hover{
+    transition: 0.3s ease;  
+    background-color: #e6a5b0;
+}
+
+
+.skyriacText {
+    display: flex;           
+    opacity: 0;              
+    transform: translateY(10px);  
+    transition: opacity 0.3s ease, transform 0.3s ease;  
+    pointer-events: none;   
+    line-height: 1px;
+    margin-left: 5px;
+    font-size: 12px;
+}
