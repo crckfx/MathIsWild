@@ -56,7 +56,7 @@ header {
     min-height: 72px;
     display: flex;
     align-items: center;
-
+    z-index: 1738; /* Im Like Hey Whats Up Hello */
     transition: color 500ms ease, background-color 500ms ease;
     /* transition:  500ms ease; */
 }
