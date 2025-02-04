@@ -51,3 +51,8 @@
 body, html {
     overscroll-behavior: contain;
 }
+
+/* greg it up on the link(s) */
+a:hover, a:focus {
+    color: var(--color-greg);
+}

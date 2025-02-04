@@ -15,7 +15,7 @@
 
 .skyriacContainer .skyriacLink {
     padding: 10px 15px;
-    background-color: pink;
+    background-color: #e6a5b0;
     border-radius: 25px;
     color: #2f0844;
     font-size: 24px;
@@ -26,7 +26,6 @@
 }
 
 .skyriacContainer:hover .skyriacLink {
-    /* transition: 0.3s ease;   */
     /* background-color: #e6a5b0; */
     background-color: #26a5b0;
 }

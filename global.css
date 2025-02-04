@@ -144,64 +144,27 @@ a.bigman:hover {
     /* background-color: rgb(215, 118, 0); */
     background-color: var(--color-garethson);
 }
-/* **************************************************** */
-/* generic 'features' content */
-/* ---------------------------------------------------- */
-/* link container */
-
+/* **************************************************************************** */
+/* PAGE WRAPPER + PAGE CONTENT */
+/* defines a generic style to grow to autofill + grow to and contain content  */
+/* ---------------------------------------------------*********************- */
 .page-wrapper {
     max-width: 1200px;
     width: 100%;
     display: flex;
     flex: 1;
 }
-
 .page-content {
     border-radius: 12px;
     margin: 12px;
     padding: 12px;
     width: 100%;
-
     display: flex;
     flex-direction: column;
     align-items: center;    
-
     transition: color 500ms ease, background-color 500ms ease;
-
-}
-/* ---------------------------------------------------- */
-
-
-/* **************************************************** */
-/* Lachoutlaws page controls */
-/* ---------------------------------------------------- */
-/* Lachoutlaws floating 'switch theme' button */
-.buttonFloat {
-    width: 100px;
-    height: 50px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    /* background-color: darkorange; */
-    background-color: var(--color-gareth);
-    position: fixed;
-    bottom: 80px;
-    left: 50%;
-    border-radius: 10px;
-    cursor: pointer;
 }
 
-.buttonFloat::after {
-    content: 'Dark Mode';
-}
-
-.theme-dark .buttonFloat::after {
-    content: 'Light Mode';
-}
-
-.buttonFloat:hover {
-    background-color: var(--color-garethson);
-}
 /* ---------------------------------------------------- */
 
 .headerTextContainer{
