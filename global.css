@@ -178,3 +178,7 @@ a.bigman:hover {
     display: flex;
     place-content: center;
 }
+
+footer {
+    flex: 1; width: 100%; display: flex;
+}

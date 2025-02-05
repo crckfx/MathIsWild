@@ -8,6 +8,8 @@
     flex-wrap: wrap;
     margin-top: 20px;
     margin-bottom: 20px;
+    flex: 1;
+    max-width: 1200px;
 }
 
 /* link card - currently we use this class on an <a> */
