@@ -30,9 +30,9 @@ html {
     overscroll-behavior: contain;
     width: 100%;
     flex-grow: 1;
-    /* we use flex-grow instead of height */
-    
+    /* we use flex-grow instead of height */ 
 }
+
 .full-page {
     height: 100svh;
     width: 100%;

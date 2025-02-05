@@ -112,6 +112,9 @@
 .bg-grellow {
     background-color: var(--color-grellow);
 }
+.bg-grew {
+    background-color: var(--color-grew);
+}
 
 .tc-1 {
     color: var(--color-text);
