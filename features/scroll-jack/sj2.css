@@ -7,20 +7,6 @@ html {
     overscroll-behavior: contain;
 }
 
-/* *********************************** */
-/* no scrollbar */
-.no-scrollbar {
-    /* Firefox */
-    scrollbar-width: none;
-    /* Internet Explorer 10+ */
-    -ms-overflow-style: none;
-}
-.no-scrollbar::-webkit-scrollbar {
-    /* WebKit */
-    width: 0;
-    height: 0;
-}
-/* ------------------------------------ */
 
 
 

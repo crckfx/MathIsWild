@@ -1,0 +1,35 @@
+/* ---------------------------------------------------------------- */
+/* random irrelevant */
+.wrap-1000 {
+    max-width: 1000px;
+    width: 100%;
+}
+.wrap-600 {
+    max-width: 600px;
+    width: 100%;
+}
+
+.pad-50 {
+    display: inline-flex;
+    height: 50px;
+}
+.pad-24 {
+    display: inline-flex;
+    height: 24px;
+}
+
+
+/* *********************************** */
+/* no scrollbar */
+.no-scrollbar {
+    /* Firefox */
+    scrollbar-width: none;
+    /* Internet Explorer 10+ */
+    -ms-overflow-style: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+    /* WebKit */
+    width: 0;
+    height: 0;
+}
+/* ------------------------------------ */

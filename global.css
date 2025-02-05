@@ -8,7 +8,7 @@ html {
 
 body {
     font-family: "Kanit", sans-serif;
-    font-weight: 300;
+    /* font-weight: 300; */
     font-style: normal;
     color: var(--color-text);
     background-color: var(--color-bg-1);

@@ -17,13 +17,13 @@ function createDigitSlider(container) {
         startY = e.clientY; // Use clientY for pointer events
         container.setPointerCapture(e.pointerId); // Capture pointer for consistent tracking
     });
-    
+
     container.addEventListener('pointermove', (e) => {
         e.preventDefault();
         if (e.buttons === 1) { // Check if the primary button is pressed
             const deltaY = e.clientY - startY;
 
-            if (Math.abs(deltaY) > 20) { // Swipe threshold
+            if (Math.abs(deltaY) > 40) { // Swipe threshold
                 if (deltaY > 0) {
                     updateDigit(currentValue + 1); // Swipe up
                 } else {
@@ -46,18 +46,21 @@ function createDigitSlider(container) {
         }
     });
 
-    container.addEventListener('click', () => {
-        container.focus();
-    });
+    // container.addEventListener('click', () => {
+    //     container.focus();
+    // });
 
 
     container.addEventListener('wheel', (e) => {
+        e.preventDefault();
+        container.focus();
+        // e.stopPropagation();
         // convert deltaY into up/down
         if (e.deltaY > 0) {
             updateDigit(currentValue + 1);
         } else {
             updateDigit(currentValue - 1);
-        }        
+        }
     })
 }
 

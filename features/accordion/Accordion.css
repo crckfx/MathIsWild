@@ -1,12 +1,15 @@
 /* ---------------------------------------------------------------- */
 /* ---- accordion main styles ---- */
+
 /* accordion: the thing that can contain one or more collapsible layers */
 .accordion {
     color: var(--color-text);
     display: grid;
     overflow: hidden;
-    border-radius: 8px;
-    gap: 2px; 
+    border-radius: 8px; /* overridden by class? */
+    gap: 2px;   /* overridden by class? */
+    /* gap: var(--accordion-gap);  */
+    /* gap: var(--accordion-gap, 2px); Default to 2px if not set */
     /* remember, the transparent border exposes the background */
     border: 2px solid transparent;
 }
@@ -20,6 +23,7 @@
     background-color: var(--color-bg-4);    
     padding: 0;
     border: none;
+    scroll-margin-bottom: 20px;    
 }
 
 
@@ -77,24 +81,4 @@
 
 .accordion-content>div {
     overflow: hidden;
-}
-
-/* ---------------------------------------------------------------- */
-/* random irrelevant */
-.wrap-1000 {
-    max-width: 1000px;
-    width: 100%;
-}
-.wrap-600 {
-    max-width: 600px;
-    width: 100%;
-}
-
-.pad-50 {
-    display: inline-flex;
-    height: 50px;
-}
-.pad-24 {
-    display: inline-flex;
-    height: 24px;
 }
