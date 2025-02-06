@@ -5,6 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width" initial-scale="1.0">
+    <link rel="icon" type="image/png" rel="noopener" target="_blank" href="../../block.ico">
     <title>TRAIN GAME</title>
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -15,12 +16,12 @@
     <!-- Font Awesome -->
     <script src="https://kit.fontawesome.com/159c5c66b8.js" crossorigin="anonymous"></script>
     <!-- local css -->
-    <link href="../global.css" rel="stylesheet">
-    <link href="../misc.css" rel="stylesheet">
-    <link href="../themes.css" rel="stylesheet">
-    <link href="train.css" rel="stylesheet">
-    <link href="digitslider_train.css" rel="stylesheet">
-    <link href="../features/accordion/Accordion.css" rel="stylesheet">
+    <link href="../../global.css" rel="stylesheet">
+    <link href="../../misc.css" rel="stylesheet">
+    <link href="../../themes.css" rel="stylesheet">
+    <link href="train3.css" rel="stylesheet">
+    <link href="digitslider_train3.css" rel="stylesheet">
+    <link href="../../features/accordion/Accordion.css" rel="stylesheet">
 </head>
 <!-- Head End --------------------------------------------------------------------------------------------------------------------->
 
@@ -29,7 +30,7 @@
 <body>
 
     <header class="styleHeader">
-        <a class="goBackBtn" href="../index.html"></a>
+        <a class="goBackBtn" href="../../index.html"></a>
         <div class="header-middle">
             <h1>TRAINNNNN GAME (3)</h1>
         </div>
@@ -82,7 +83,7 @@
                 <div class="accordion" id="myAccordion">
                     <div class="accordion-panel bg-3">
                         <button class="accordion-trigger" aria-expanded="false">
-                            <h2>Readme</h2>
+                            <h2>(unfetched, old) Readme</h2>
                         </button>
                         <div class="accordion-content" aria-hidden="true">
                             <div>
@@ -98,7 +99,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="accordion-panel bg-3">
+                    <!-- <div class="accordion-panel bg-3">
                         <button class="accordion-trigger" aria-expanded="false">
                             <h2>Train Game #1</h2>
                         </button>
@@ -109,8 +110,8 @@
                                 <h3><a href="train.html">link to train #1</a></h3>
                             </div>
                         </div>
-                    </div>
-                    <div class="accordion-panel bg-3">
+                    </div> -->
+                    <!-- <div class="accordion-panel bg-3">
                         <button class="accordion-trigger" aria-expanded="false">
                             <h2>Train Game #2</h2>
                         </button>
@@ -121,7 +122,7 @@
                                 <h3><a href="train_2.html">link to train #2</a></h3>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
                 <!-- accordion end -->
             </div>
@@ -132,25 +133,28 @@
 
     <!-- Script Source Start --------------------------------------------------------------------------------------------------------------------->
     <!-- local scripts -->
-    <script src="../script.js"></script>
-    <script src="digitslider_train.js"></script>
-    <script src="train_2.js"></script>
+    <script src="../../script.js"></script>
+    <script src="../digitslider_train.js"></script>
+    <script src="../train_2.js"></script>
     <!-- <script src="../features/accordion/accordion_basic.js"></script> -->
-    <script src="../features/accordion/Accordion.js"></script>
+    <script src="../../features/accordion/Accordion.js"></script>
     <script type="module">
-        import { loadMarkdownAsHTML } from '../features/markdown/markdown.js';
+        import { loadMarkdownAsHTML } from '../../features/markdown/markdown.js';
+        import { Accordion } from '../../features/accordion/AccordionES6.js';
 
         loadMarkdownAsHTML('readme.md')
             .then(html => {
-                console.log(html)
+
+                
+
                 new Accordion(
                     document.getElementById("myAccordion"),
                     {
                         mainRounding: "8px",        // Larger rounded corners
-                        panelRounding: "4px",       // Larger rounded corners
-                        gap: "2px",                 // Wider gap between panels
-                        animationDuration: "0.25s",
-                        backgroundColor: "#ffa",
+                        panelRounding: "0px",       // Larger rounded corners
+                        gap: "3px",                 // Wider gap between panels
+                        animationDuration: "0.4s",
+                        backgroundColor: "var(--color-greg)",
                         scrollOnExpand: true,
                         addPanels: [
                             {
@@ -161,10 +165,6 @@
                     }
                 );
             });
-
-        const markdownContent = "<p>this is just dummy content</p>";
-        //
-
 
     </script>
     <!-- Script Source End --------------------------------------------------------------------------------------------------------------------->

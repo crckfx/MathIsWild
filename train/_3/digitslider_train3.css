@@ -1,0 +1,56 @@
+/* digitslider.css - TRAIN edition */
+
+/* main parent (the js-functional one) */
+.slots_container {
+    width: 100%;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    touch-action: none;
+}
+
+/* sub-parent (cosmetic purposes) */
+.numberSlots {
+    flex: 1;
+    max-width: 500px;
+    min-height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+/* ************************************** */
+
+.digit-container {
+    display: inline-block;
+    width: 50px;
+    height: 70px;
+    overflow: hidden;
+    position: relative;
+    border: 1px solid transparent;
+    text-align: center;
+    font-size: 2rem;
+    line-height: 70px;
+    user-select: none;
+    /* touch-action: manipulation; */
+    border-radius: 15px;
+    background-color: var(--color-bg-1);
+    color: var(--color-text);
+    overscroll-behavior: contain;
+
+}
+.digit-container:hover {
+    background-color: var(--color-bg-1b);
+}
+.digit-container:focus {
+    background-color: var(--color-bg-1b);
+    /* background-color: #ffa; */
+    outline: 2px solid var(--color-grurple);
+}
+
+
+/* disable pull-down-to-refresh behaviour on mobile */
+body, html {
+    overscroll-behavior: contain;
+}
