@@ -41,7 +41,7 @@ class Accordion {
             this.panels.push(newPanel);
 
             console.log(`provided position is ${panel.order}`);
-            if (panel.order) {
+            if (panel.order !== undefined) {
                 container.insertBefore(newPanel, container.children[panel.order]);
             } else {
                 container.appendChild(newPanel);
