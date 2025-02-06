@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- Head Start --------------------------------------------------------------------------------------------------------------------->
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width" initial-scale="1.0">
+    <title>Animate On Scroll</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+    <!-- Font Awesome -->
+    <script src="https://kit.fontawesome.com/159c5c66b8.js" crossorigin="anonymous"></script>
+    <!-- aos -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <!-- local css -->
+    <link href="../../global.css" rel="stylesheet">
+    <link href="../../misc.css" rel="stylesheet">
+    <link href="../../themes.css" rel="stylesheet">
+
+    <style>
+        .gremlin {
+            height: 400px;
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 8px;
+        }
+    </style>
+</head>
+<!-- Head End --------------------------------------------------------------------------------------------------------------------->
+
+<!-- Body Start --------------------------------------------------------------------------------------------------------------------->
+
+<body>
+
+    <header class="styleHeader">
+        <a class="goBackBtn" href="../animation.html"></a>
+        <div class="header-middle">
+            <h1>Animate On Scroll</h1>
+        </div>
+        <div class="toggle-switch">
+            <label class="switch-label">
+                <input type="checkbox" class="checkbox" onclick="toggleTheme()">
+                <span class="slider"></span>
+            </label>
+        </div>
+    </header>
+    <div class="page-wrapper">
+        <div class="page-content" style="overflow-x: hidden;">
+
+            <div class="gremlin">
+                <h1>Animate On Scroll</h1>
+            </div>
+
+            <div class="bg-4 gremlin" data-aos="fade-left" data-aos-duration="500">
+                <h1>hello there</h1>
+                <p>this is a div with an aos 'fade-left' transition</p>
+            </div>
+            <div class="bg-3 gremlin" data-aos="fade-right" data-aos-duration="500" data-aos-anchor-placement="center-bottom">
+                <h1>hello there</h1>
+                <p>this is a div with an aos 'fade-right' transition</p>
+            </div>
+            <div class="bg-2 gremlin" data-aos="flip-left" data-aos-duration="500" data-aos-easing="ease-in-out">
+                <h1>flip left</h1>
+                <p>this one flips left with a specified duration</p>
+            </div>
+            <div class="bg-3 gremlin" data-aos="flip-right" data-aos-duration="500">
+                <h1>fade-down</h1>
+                <p>this one flips left with a specified duration</p>
+            </div>
+            <div class="bg-4 gremlin" data-aos="fade-right" data-aos-easing="linear" data-aos-duration="500">
+                <h1>fade-down</h1>
+                <p>this one flips left with a specified duration</p>
+            </div>
+
+
+
+
+
+
+        </div>
+    </div>
+    <!-- Main Container End --------------------------------------------------------------------------------------------------------------------->
+
+    <!-- Script Source Start --------------------------------------------------------------------------------------------------------------------->
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <!-- local scripts -->
+    <script src="../../script.js"></script>
+    <script>
+        AOS.init({
+            once: false,            
+            mirror: true,
+            duration: 500,
+            anchorPlacement: "center-bottom",
+            offset: 0,
+            easing: "ease-in-out",
+        });        
+    </script>
+    <!-- Script Source End --------------------------------------------------------------------------------------------------------------------->
+</body>
+<!-- Body End --------------------------------------------------------------------------------------------------------------------->
+
+</html>
