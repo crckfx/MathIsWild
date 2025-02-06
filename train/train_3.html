@@ -42,7 +42,7 @@
     </header>
     <div class="page-wrapper">
         <div class="page-content bg-2">
-         
+
             <!-- SOLVE THE TRAIN START -->
             <div class="trainContainer">
                 <!-- TRAINNNNN GAME -->
@@ -56,7 +56,7 @@
                         <div id="digit-c" class="digit-container " tabindex="1"></div>
                         <div id="digit-d" class="digit-container " tabindex="1"></div>
                     </div>
-                </div>   
+                </div>
 
                 <div class="buttonsDiv">
                     <button class="toSolve" tabindex="1">Solve</button>
@@ -89,7 +89,8 @@
                                 <hr>
                                 <h2>Train Game 3</h2>
                                 <ul>
-                                    <li>uses your 4 train carriage numbers and basic maths to solve for a result of '10'.</li>
+                                    <li>uses your 4 train carriage numbers and basic maths to solve for a result of
+                                        '10'.</li>
                                     <li>uses class <strong>Accordion</strong></li>
                                 </ul>
                                 <h3>how to play:</h3>
@@ -123,7 +124,7 @@
                     </div>
                 </div>
                 <!-- accordion end -->
-            </div>   
+            </div>
 
         </div>
     </div>
@@ -136,18 +137,35 @@
     <script src="train_2.js"></script>
     <!-- <script src="../features/accordion/accordion_basic.js"></script> -->
     <script src="../features/accordion/Accordion.js"></script>
-    <script>
+    <script type="module">
+        import { loadMarkdownAsHTML } from '../features/markdown/markdown.js';
+
+        loadMarkdownAsHTML('readme.md')
+            .then(html => {
+                console.log(html)
+                new Accordion(
+                    document.getElementById("myAccordion"),
+                    {
+                        mainRounding: "8px",        // Larger rounded corners
+                        panelRounding: "4px",       // Larger rounded corners
+                        gap: "2px",                 // Wider gap between panels
+                        animationDuration: "0.25s",
+                        backgroundColor: "#ffa",
+                        scrollOnExpand: true,
+                        addPanels: [
+                            {
+                                title: 'readme.md', content: html,
+                                order: 0,
+                            }
+                        ],
+                    }
+                );
+            });
+
+        const markdownContent = "<p>this is just dummy content</p>";
         //
-        new Accordion(
-            document.getElementById("myAccordion"),
-            {
-                mainRounding: "20px", // Larger rounded corners
-                panelRounding: "20px", // Larger rounded corners
-                gap: "20px", // Wider gap between panels
-                animationDuration: "0.1s", // Slower transition
-                // scrollOnExpand
-            }
-        );        
+
+
     </script>
     <!-- Script Source End --------------------------------------------------------------------------------------------------------------------->
 </body>

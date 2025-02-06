@@ -35,34 +35,22 @@
     <!-- something -->
     <div class="page-wrapper">
         <div class="page-content bg-5">
-
-
             <div id="content"></div>
-            <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-
-
         </div>
     </div>
 
     <!-- include the javascript documents locally -->
     <script src="../../script.js"></script>
 
-    <script>
-        function loadMarkdown() {
-            fetch('example.md')  // replace with the correct path
-                .then(response => response.text())
-                .then(markdown => {
-                    const htmlContent = marked.parse(markdown); // Convert Markdown to HTML
-                    document.getElementById('content').innerHTML = htmlContent;
-                })
-                .catch(error => console.error('Error loading markdown:', error));
-        }        
+    <!-- <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script> -->
+    <!-- <script src="markdown.js"></script> -->
+    <script type="module">
+        import {loadMarkdownAndTargetHtml} from './markdown.js'
+        // document.getElementById('content').innerHTML =
+        //     marked.parse('# Marked in the browser\n\nRendered by **marked**.');
+        loadMarkdownAndTargetHtml('example.md', document.getElementById('content'));
+        
     </script>
-            <script>
-                // document.getElementById('content').innerHTML =
-                //     marked.parse('# Marked in the browser\n\nRendered by **marked**.');
-                loadMarkdown();
-            </script>
 </body>
 
 </html>
