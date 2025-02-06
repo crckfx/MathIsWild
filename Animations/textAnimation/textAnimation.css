@@ -1,0 +1,120 @@
+/* Top */
+
+.initialEditContainer {
+    width: 100vw;
+    height: 100px;
+    display: flex;
+    align-items: center;
+}
+
+.textEdit, .textSizeEdit, .rotationAmountEditor {
+    width: 200px;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.displayFontSize {
+    width: 80px;
+    height: 20px;
+    padding: 5px 10px;
+    background-color: aliceblue;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Middle */
+
+.textDisplayContainer {
+    width: 100vw;
+    height: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.letter {
+    display: inline-block;
+    font-weight: bold;
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.letter:hover {
+    transform: 
+    scale(var(--hover-scale, 1.5))
+    rotate(var(--rotation-angle, 0deg))
+    skew(var(--hover-skew, 0deg)); 
+    color: var(--hover-color, rgb(0, 0, 0));
+    background-color: var(--hover-bg, rgb(255, 255, 255));
+    opacity: var(--hover-opacity, 1);
+    border: var(--hover-border, 0px solid transparent);
+    letter-spacing: var(--hover-spacing, 0px);
+}
+
+/* Bottom */
+
+.onHoverEdits {
+    width: 100vw;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    background-color: orangered;
+}
+
+.onPlayContainer {
+    width: 100vw;
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 20px;
+}
+
+.rotationAmountEditor, .colourPickerEditor, .skewEditor, .backgroundColourEditor, .spacingEditor, .borderWidthEditor, .opacityEditor, .scaleEditor{
+    width: 200px;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+#displayPickedColour {
+    padding: 5px;
+}
+
+.letterControls, .playControls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-top: 20px;
+    flex-direction: column;
+}
+
+#addStyleBtn {
+    padding: 8px 16px;
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+#addStyleBtn:hover {
+    background-color: #388e3c;
+}
+
+#letterSelector {
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+#bgColorInput, #noBgCheckbox {
+    cursor: pointer;
+}

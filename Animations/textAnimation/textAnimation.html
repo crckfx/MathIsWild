@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Combination Ting</title>
+    <link rel="stylesheet" href="../../global.css">
+    <link rel="stylesheet" href="../../themes.css">
+    <link rel="stylesheet" href="textAnimation.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel&family=Noto+Sans&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="styleHeader">
+        <a class="goBackBtn" href="../animation.html"></a>
+
+        <div class="header-middle">
+            <h1>Text Animation</h1>
+        </div>
+
+        <div class="toggle-switch">
+            <label class="switch-label">
+                <input type="checkbox" class="checkbox" onclick="toggleTheme()">
+                <span class="slider"></span>
+            </label>
+        </div>
+    </header>
+
+    <div class="initialEditContainer">
+
+        <div class="textEdit">
+            <label>Display Text</label>
+            <input type="text" id="textInput" placeholder="Type something...">
+        </div>
+    
+        <div class="textSizeEdit">
+            <label>Font Size</label>
+            <input type="range" id="fontSizeInput" min="10" max="100" value="16">
+            <span id="displayFontSize">24px</span> <!-- Display current font size -->
+        </div>
+
+        <div class="letterControls">
+            <label for="letterSelector">Select Letter:</label>
+            <select id="letterSelector"></select> 
+            <button id="addStyleBtn">Add Style</button>
+        </div>
+        
+
+
+    </div>
+    
+    <div class="textDisplayContainer">
+        <h2 id="textDisplay"></h2>
+    </div>
+    
+    <div class="onPlayContainer">
+        <div class="playControls">
+            <label>Play Animation</label>
+            <button id="addStyleBtn">Play</button>
+        </div>
+    </div>
+
+    <div class="onHoverEdits">
+
+        <div class="rotationAmountEditor">
+            <label>Rotation Amount</label>
+            <input type="range" id="rotationAmountInput" min="-75" max="75" value="0">
+            <span id="displayRotationAmount">0</span> <!-- Display current Rotaion Angle -->
+        </div>
+       
+        <div class="colourPickerEditor">
+            <label>Pick The Colour</label>
+            <input type="color" id="colourPickerInput" value="000000">
+            <span id="displayPickedColour">#000000</span> <!-- Display RGB Code -->
+        </div>
+
+        <div class="skewEditor">
+            <label>Skew:</label>
+            <input type="range" id="skewInput" min="-45" max="45" value="0">
+            <span id="displaySkew">0°</span>
+        </div>
+
+        <div class="backgroundColourEditor">
+            <label>Background Color:</label>
+            <input type="color" id="bgColorInput" value="#ffffee">
+            <span id="displayBgColor">#ffffee</span>
+            <label for="noBgCheckbox">No Background</label>
+            <input type="checkbox" id="noBgCheckbox">
+        </div>
+        
+
+        <div class="scaleEditor">
+            <label>Scale:</label>
+            <input type="range" id="scaleInput" min="1" max="3" step="0.1" value="1.5">
+            <span id="displayScale">1.5x</span>
+        </div>
+        
+         <div class="opacityEditor">
+            <label>Opacity:</label>
+            <input type="range" id="opacityInput" min="0" max="1" step="0.1" value="1">
+            <span id="displayOpacity">1</span>
+        </div>
+
+        <div class="borderWidthEditor">
+            <label>Border Width:</label>
+            <input type="range" id="borderInput" min="0" max="10" value="0">
+            <span id="displayBorder">0px</span>
+        </div>
+
+        <div class="spacingEditor">
+            <label>Letter Spacing:</label>
+            <input type="range" id="spacingInput" min="0" max="20" value="0">
+            <span id="displaySpacing">0px</span>
+        </div>
+        
+    </div>    
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollToPlugin.min.js"></script>
+<script src="../../script.js"></script>
+<script src="textAnimation.js"></script>
+</body>
+</html>
