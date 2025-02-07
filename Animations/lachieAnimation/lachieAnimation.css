@@ -1,0 +1,51 @@
+.heroSection{
+    width: 100vw;
+    height: fit-content;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.heroText{
+    width: fit-content;
+    height: fit-content;
+    padding: 10px;
+    background-color: aquamarine;
+}
+
+.lachieText{
+    color: black;
+    font-size: 50px;
+
+}
+
+.playAnimation{
+    width: 100vw;
+    height: 80px;
+    background-color: rgb(230, 238, 238);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.playButton{
+    width: fit-content;
+    height: fit-content;
+    padding: 10px 20px;
+    background-color: #0dd10d;
+    color: white;
+    border: none;
+    outline: none;
+    border-radius: 50px;
+}
+
+.playButton:hover{
+    background-color: #0cb10c;
+    padding: 11px 21px;
+}
+
+
+
