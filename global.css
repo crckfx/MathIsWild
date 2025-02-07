@@ -149,7 +149,7 @@ a.bigman:hover {
 /* defines a generic style to grow to autofill + grow to and contain content  */
 /* ---------------------------------------------------*********************- */
 .page-wrapper {
-    max-width: 1200px;
+    max-width: 1400px;
     width: 100%;
     display: flex;
     flex: 1;
