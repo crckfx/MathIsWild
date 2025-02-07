@@ -54,6 +54,10 @@
     letter-spacing: var(--hover-spacing, 0px);
 }
 
+.selected{
+    background-color: #4caf50;
+}
+
 /* Bottom */
 
 .onHoverEdits {
@@ -95,7 +99,7 @@
     flex-direction: column;
 }
 
-#addStyleBtn {
+#addStyleButton, #playButton {
     padding: 8px 16px;
     background-color: #4caf50;
     color: white;
@@ -118,3 +122,72 @@
 #bgColorInput, #noBgCheckbox {
     cursor: pointer;
 }
+
+
+
+
+.containerTwo{
+    width: 100%;
+    height: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.textBox{
+    width: 80%;
+    height: 80%;
+    background-color: #c7c7c7;
+    border-radius: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.Lachie{
+    font-size: 44px;
+    margin: 5px;
+}
+
+.L{
+    color: #ff8c00;
+    transform: translateX(20px); /* Start slightly to the right */
+    opacity: 0;
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+}
+
+.A{
+    color: #95ff00;
+    transform: translateX(20px); /* Start slightly to the right */
+    opacity: 0;
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+}
+
+.C{
+    color: #00ff8c;
+    transform: translateX(20px); /* Start slightly to the right */
+    opacity: 0;
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+}
+
+.H{
+    color: #00d9ff;
+    transform: translateX(20px); /* Start slightly to the right */
+    opacity: 0;
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+}
+
+.I{
+    color: #0015ff;
+    transform: translateX(20px); /* Start slightly to the right */
+    opacity: 0;
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+}
+
+.E{
+    color: #b700ff;
+    transform: translateX(20px); /* Start slightly to the right */
+    opacity: 0;
+    transition: opacity 0.5s ease-out, transform 0.8s ease-out;
+}
+

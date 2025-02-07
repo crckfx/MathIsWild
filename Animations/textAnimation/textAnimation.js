@@ -46,7 +46,9 @@ const displayScale = document.getElementById('displayScale');
 
 // Button
 const letterSelector = document.getElementById('letterSelector');
-const addStyleBtn = document.getElementById('addStyleBtn');
+const addStyleBtn = document.getElementById('addStyleButton');
+const playButton = document.getElementById('playButton');
+
 
 // ****************
 // Event Listeners
@@ -192,3 +194,21 @@ addStyleBtn.addEventListener('click', () => {
     }
 });
 
+const Lachie = document.querySelector(".Lachie")
+const L = document.querySelector(".L")
+const A = document.querySelector(".A")
+const C = document.querySelector(".C")
+const H = document.querySelector(".H")
+const I = document.querySelector(".I")
+const E = document.querySelector(".E")
+
+const letters = [".L", ".A", ".C", ".H", ".I", ".E"];
+const interval = 500; // 1.5 seconds
+
+letters.forEach((selector, index) => {
+  setTimeout(() => {
+    const letter = document.querySelector(selector);
+    letter.style.opacity = "1";
+    letter.style.transform = "translateX(0)"; // Move into position
+  }, index * interval);
+});
