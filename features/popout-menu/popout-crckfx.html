@@ -41,8 +41,30 @@
 
             <h2>the idea is we make some kind of funny button/thing that can be interacted with</h2>
 
-            <div class="centreflex grow bg-grurple">
-                <button class="">Options</button>
+            <div class="centreflex grow width-100 bg-grurple" style="justify-content: space-evenly;">
+                <!-- <div class="popout-crckfx">Options</div> -->
+
+                <div class="custom-tooltip-container">
+                    <button class="custom-tooltip-btn">Hover me</button>
+                    <div class="ct-content-container">
+
+                        <button class="custom-tooltip-content">
+                            <span class="custom-tooltip-text">
+                                a link here to 'crckfx' github
+                            </span>
+                        </button>
+                        <button class="custom-tooltip-content">
+                            <!-- <span class="custom-tooltip-arrow"></span> -->
+                            <span class="custom-tooltip-text">
+                                a link here to 'Lachoutlaws' github
+                            </span>
+                        </button>
+                        <span class="custom-tooltip-arrow"></span>
+                    </div>
+                </div>
+
+
+
             </div>
 
 
@@ -51,6 +73,87 @@
     </div>
 
 
+
+    <style>
+        /* From Uiverse.io by BishalSaini */
+        .custom-tooltip-container {
+            position: relative;
+            display: inline-flex;
+        }
+
+        .custom-tooltip-btn {
+            padding: 12px 25px;
+            font-size: 18px;
+            font-weight: bold;
+            /* color: #ffffff; */
+            background-color: #007bff;
+            border: none;
+            border-radius: 8px;
+            /* cursor: pointer; */
+            transition: background-color 0.3s ease;
+            box-shadow: 0 8px 15px rgba(0, 123, 255, 0.4);
+        }
+
+        .custom-tooltip-btn:hover {
+            background-color: #0056b3;
+        }
+
+        .ct-content-container {
+            display: flex;
+            position: absolute;
+            bottom: 140%;
+            left: 50%;
+            transform: translateX(-50%);
+            visibility: hidden;
+            opacity: 0;
+            transition: all 0.4s ease;
+            border-radius: 15px;
+            z-index: 1;
+            box-shadow: 0px 10px 20px rgba(0, 123, 255, 0.3);
+            width: 240px;
+            background: linear-gradient(135deg, #007bff 0%, #00c6ff 100%);
+
+        }
+
+        .custom-tooltip-content {
+            /* color: #fff; */
+            text-align: center;
+            /* padding: 15px; */
+            font-size: 14px;
+            /* clip-path: polygon(0 0, 100% 0, 100% 85%, 50% 100%, 0 85%); */
+            /* height: 100%; */
+            flex: 1;
+            display: flex;
+            background-color: transparent;
+            border-radius: 15px;
+
+        }
+
+        .custom-tooltip-container:hover .ct-content-container,
+        .custom-tooltip-container:focus-within .ct-content-container {
+            visibility: visible;
+            opacity: 1;
+            transform: translateX(-50%) translateY(-10px);
+        }
+
+        .custom-tooltip-arrow {
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            margin-left: -10px;
+            width: 0;
+            height: 0;
+            border-left: 10px solid transparent;
+            border-right: 10px solid transparent;
+            border-top: 10px solid #007bff;
+        }
+
+        .custom-tooltip-text {
+            font-size: 14px;
+            line-height: 1.5;
+            letter-spacing: 0.5px;
+        }
+    </style>
     <!-- javascript -->
     <script src="../../script.js"></script>
 
