@@ -36,13 +36,14 @@
     /* padding: 8px; */
     background-color: #222;
     position: relative;
+    color: white;
 }
 
 .game-text {
     flex: 1;
     padding: 4px;
     margin: 8px;
-    color: white;
+    
     background-color: black;
     overflow-y: scroll;
 
