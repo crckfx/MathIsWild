@@ -1,9 +1,9 @@
 
 export class Entity {
-    
+
     constructor(name, options) {
         this.name = name;
-        this.maxHP = options.maxHP ? options.maxHP : 10 ;
+        this.maxHP = options.maxHP ? options.maxHP : 10;
         this.currentHP = this.maxHP;
         this.inventory = options.inventorySize ? Array(options.inventorySize) : Array(3);
         console.log(`created inventory size of ${this.inventory.length} for ${this.name}`);
@@ -20,8 +20,30 @@ export class Entity {
 
     equipWeapon(weapon) {
         this.equippedWeapon = weapon;
+        return weapon;
     }
-    equipArmour() {}
+    equipInventoryItem(index) {
+        const item = this.inventory[index];
+        if (item.isEquippable) {
+            switch (item.itemType) {
+                case "weapon":
+                    this.equipWeapon(item);
+                    break;
+                case "armour":
+                    this.equipArmour(item);
+                    break;
+                default:
+                    console.log('unhandled item type');
+            }
+            return true;
+        }
+        return false;
+    }
+    equipWeapon(weapon) {
+        this.equippedWeapon = weapon;
+        return weapon;
+    }
+    equipArmour() { }
 
     setHP(value) {
         if (value > this.maxHP) {
@@ -31,11 +53,11 @@ export class Entity {
     }
 
     addToInventory(item) {
-        for (let i=0; i<this.inventory.length; i++) {
+        for (let i = 0; i < this.inventory.length; i++) {
             if (this.inventory[i] == undefined) {
-                console.log(`free inv slot at position ${i}`);
+                // console.log(`free inv slot at position ${i}`);
                 this.inventory[i] = item;
-                return i; 
+                return i;
             }
         }
         console.error(`no free space in ${this.name} inventory`);
@@ -45,17 +67,14 @@ export class Entity {
 
     getInventory() {
         let inventoryString = "";
-        for (let i=0; i<this.inventory.length; i++) {
-            if (i===0) {
+        for (let i = 0; i < this.inventory.length; i++) {
+            if (i === 0) {
                 inventoryString += `${this.name} inventory: \'`;
             }
             if (this.inventory[i] !== undefined && this.inventory[i] !== null) {
-                // console.log(`free inv slot at position ${i}`);
-                // this.inventory[i] = item;
-                // return i; 
                 inventoryString += `${this.inventory[i].name}, `;
             }
-        }        
+        }
         inventoryString = inventoryString.slice(0, -2);
         inventoryString += "\'";
         return inventoryString;
@@ -63,12 +82,14 @@ export class Entity {
 
     getItemsInInventory() {
         let currentInventory = [];
-        for (let i=0; i<this.inventory.length; i++) {
+        for (let i = 0; i < this.inventory.length; i++) {
             if (this.inventory[i] !== undefined && this.inventory[i] !== null) {
                 currentInventory.push(this.inventory[i]);
             }
         }
         return currentInventory;
     }
+
+
 
 }

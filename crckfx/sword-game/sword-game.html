@@ -55,11 +55,11 @@
                             </div>
 
                             <div class="gear">
-                                <div class="gear-section">
+                                <div class="gear-section" id="gear-weapon">
                                     Weapon
                                     <div class="slot"></div>
                                 </div>
-                                <div class="gear-section">
+                                <div class="gear-section" id="gear-armour">
                                     Armour
                                     <div class="slot"></div>
                                 </div>
@@ -92,7 +92,6 @@
     <script type="module">
         import {Game} from './Game.js';
         const game = new Game(document.querySelector('.game-container'));
-
         document.getElementById('show-inventory').onclick = ()=>game.showInventory();
         document.getElementById('hide-inventory').onclick = ()=>game.hideInventory();
     </script>

@@ -1,3 +1,4 @@
+import { Item } from './classes/item.js';
 import { Entity } from './classes/entity.js';
 import { Weapon } from './classes/weapon.js';
 
@@ -9,10 +10,20 @@ export class Game {
         this.inventoryView = gameContainer.querySelector('.game-inventory');
         this.inventorySlots = [];
         this.inventorySlotsView = this.inventoryView.querySelector('.slots');
+        this.inventoryGearSlots = {
+            weapon: document.getElementById('gear-weapon'),
+            armour: document.getElementById('gear-armour'),
+
+        }
         this.entities = [];
         this.weapons = [];
+        this.items = [];
         this.player = null;
         
+        
+        // init some dummy weapons into the world
+        this.initItem('Apple', {});
+
         // init some dummy weapons into the world
         this.initWeapon('Sword', 3);
         this.initWeapon('Dagger', 2);
@@ -39,6 +50,7 @@ export class Game {
                 startingInventory: [
                     this.initWeapon('Wooden Club', 2),
                     this.initWeapon('Axe', 3),
+                    this.initItem('Apple', {}),
                 ],
             })            
         );
@@ -77,6 +89,13 @@ export class Game {
         this.printLine(`Initialised new weapon '${this.formatItemName(newWeapon)}' with damage ${newWeapon.damage}`);
         return newWeapon;
     }
+    
+    initItem(name, options) {
+        const newItem = new Item(name, options);
+        this.weapons.push(newItem);
+        return newItem;
+    }
+
 
     initPlayer(player) {
 
@@ -108,14 +127,30 @@ export class Game {
 
         // set all the 
         for (let i=0; i<this.player.inventory.length; i++) {
-
+            const slot_DOM = this.inventorySlots[i];
             if (this.player.inventory[i] !== undefined && this.player.inventory[i] !== null) {
-                this.inventorySlots[i].innerHTML = this.player.inventory[i].name;   // set the item name
-                this.inventorySlots[i].classList.add('occupied');
+                slot_DOM.innerHTML = this.player.inventory[i].name;   // set the item name
+                slot_DOM.classList.add('occupied');
+
+                slot_DOM.addEventListener("contextmenu", (event) => {
+                    event.preventDefault(); // Prevents the default right-click menu
+                    console.log(`right click on le slot ${i}`);
+    
+                    if (this.player.equipInventoryItem(i)) {
+                        this.drawPlayerInventory();
+                    };
+    
+                });                
             } else {
-                this.inventorySlots[i].innerHTML = "";
+                slot_DOM.innerHTML = "";
             }
         }
+
+        if (this.player.equippedWeapon !== null) {
+            this.inventoryGearSlots.weapon.querySelector('.slot').innerHTML = this.player.equippedWeapon.name;
+            this.printLine(`${this.formatEntityName(this.player)} equipped ${this.formatItemName(this.player.equippedWeapon)}`)
+        }
+
     }
 
     formatEntityName(entity) {
