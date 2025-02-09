@@ -1,0 +1,101 @@
+.game-wrapper {
+    display: flex;
+    flex: 1;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+.game-container {
+    width: 300px;
+    height: 400px;
+    display: flex;
+    flex-direction: column;
+    /* padding: 8px; */
+    background-color: #222;
+    position: relative;
+}
+
+.game-text {
+    flex: 1;
+    padding: 4px;
+    margin: 8px;
+    color: white;
+    background-color: black;
+    overflow-y: scroll;
+
+/* no scrollbar */
+
+    /* Firefox */
+    scrollbar-width: none;
+    /* Internet Explorer 10+ */
+    -ms-overflow-style: none;
+}
+.game-text::-webkit-scrollbar {
+    /* WebKit */
+    width: 0;
+    height: 0;
+}
+
+
+.game-controls {
+    margin: 8px;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.game-inventory {
+    /* display: flex; */
+    flex-direction: column;
+    background-color: red;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    display: none;
+    padding: 8px;
+    text-align: center;
+    user-select: none;
+}
+
+.game-inventory.visible {
+    display: flex;
+}
+
+.game-inventory .slots {
+    width: 60%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(48px, 1fr));
+    gap: 8px;
+    justify-content: center;
+    height: auto;
+    place-content: start;
+}
+
+.slot {
+    display: inline-flex;
+    width: 48px;
+    height: 48px;
+    background-color: green;
+    border: 4px solid #555;
+    box-sizing: border-box;
+}
+
+.game-inventory .gear {
+    flex: 1;
+    background-color: blue;
+    display: grid;
+    grid-template-columns: 1fr;
+    /* flex-direction: column; */
+    /* justify-content: space-evenly; */
+    gap: 8px;
+    padding: 8px;
+}
+.game-inventory .gear .gear-section{
+    display: inline-block;
+    /* width: 48px; */
+    /* height: 48px; */
+    background-color: #333;
+    text-align: center;
+}
+
+
