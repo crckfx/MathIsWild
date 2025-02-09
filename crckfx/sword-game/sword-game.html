@@ -49,27 +49,9 @@
                 <div class="game-container">
                     <div class="game-inventory">
                         <h2>Inventory</h2>
-                        <div style="display: flex; flex: 1;">
-
+                        <div class="slots-wrapper">
                             <div class="slots">
-                                <div class="slot"></div>
-                                <div class="slot"></div>
-                                <div class="slot"></div>
-                                <div class="slot"></div>
-                                <div class="slot"></div>
-                                <div class="slot"></div>
-                                <div class="slot"></div>
-                                <div class="slot"></div>
-                                <div class="slot"></div>
-                                <div class="slot"></div>
-                                <div class="slot"></div>
-                                <div class="slot"></div>
-                                <div class="slot"></div>
-                                <div class="slot"></div>
-                                <div class="slot"></div>
-                                <div class="slot"></div>
-                                <div class="slot"></div>
-                                <div class="slot"></div>
+                                <!-- slots added in JS -->
                             </div>
 
                             <div class="gear">
@@ -83,21 +65,19 @@
                                 </div>
                             </div>
                         </div>
-                        <div style="display: flex; padding: 8px;">
+                        <div id="controls-inventory">
                             <button style="margin-left: auto;"
-                                onclick="hideInventory()">Close</button>
-                            <!-- </div> -->
+                                id="hide-inventory">Close</button>
                         </div>
                     </div>
 
                     <div class="game-text">
-                        <div class="line">Here is a description of something</div>
-                        <div class="line">A second line of text</div>
+                        <div class="line">Welcome!</div>
                     </div>
                     <div class="game-controls">
                         <button onclick="advance();">Advance</button>
                         <button>Control 2</button>
-                        <button onclick="showInventory()">Inventory</button>
+                        <button id="show-inventory">Inventory</button>
                     </div>
                 </div>
 
@@ -110,7 +90,11 @@
     <!-- include the javascript documents locally -->
     <!-- <script src="sword-game.js"></script> -->
     <script type="module">
-        import {Game} from './Game.js'
+        import {Game} from './Game.js';
+        const game = new Game(document.querySelector('.game-container'));
+
+        document.getElementById('show-inventory').onclick = ()=>game.showInventory();
+        document.getElementById('hide-inventory').onclick = ()=>game.hideInventory();
     </script>
     <script src="../../script.js"></script>
 
