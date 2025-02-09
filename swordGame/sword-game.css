@@ -1,6 +1,8 @@
 :root {
-    --color-weapon: #824;
-    --color-armour: #882;
+    --color-weapon-A: #a33;
+    --color-weapon-B: #844;
+    --color-armour: #cc6;
+    --color-armour-B: #882;
     --color-entity: #2dd;
 
     --color-inventoryItem-empty: #333;
@@ -49,10 +51,16 @@
 }
 
 .game-text .weapon {
-    color: var(--color-weapon);
+    color: var(--color-weapon-A);
+}
+.game-text .weaponDescription {
+    color: var(--color-weapon-B);
 }
 .game-text .armour {
     color: var(--color-armour);
+}
+.game-text .armourDescription {
+    color: var(--color-armour-B);
 }
 
 .game-text .entity {
@@ -87,7 +95,7 @@
     /* display: flex; */
     flex-direction: column;
     /* background-color: var(--color-inventoryBackground); */
-    background-color: #888b;
+    background-color: #888d;
     height: 100%;
     width: 100%;
     position: absolute;

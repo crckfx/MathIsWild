@@ -17,6 +17,10 @@ export class Game {
 
         }
         this.playerStatsView = document.getElementById('playerStats');
+        this.playerStats = {
+            view: this.playerStatsView,
+            hp: this.playerStatsView.querySelector('.hp'),
+        }
         this.entities = [];
         this.weapons = [];
         this.items = [];
@@ -182,12 +186,12 @@ export class Game {
                 }
                 switch (item.itemType) {
                     case "weapon":
-                        this.printLine(`${this.formatEntityName(this.player)} has equipped weapon ${this.formatItemName(this.player.equippedWeapon)}.`);
+                        this.printLine(`${this.formatEntityName(this.player)} has equipped ${this.formatStringWithClass("weapon", "weaponDescription")} ${this.formatItemName(this.player.equippedWeapon)}.`);
                         this.inventoryGearSlots.weapon.innerHTML = this.player.equippedWeapon.name;
                         this.inventoryGearSlots.weapon.classList.add('equipped');
                         break;
                     case "armour":
-                        this.printLine(`${this.formatEntityName(this.player)} has equipped armour ${this.formatItemName(this.player.equippedArmour)}.`);
+                        this.printLine(`${this.formatEntityName(this.player)} has equipped ${this.formatStringWithClass("armour", "armourDescription")} ${this.formatItemName(this.player.equippedArmour)}.`);
                         this.inventoryGearSlots.armour.innerHTML = this.player.equippedArmour.name;
                         this.inventoryGearSlots.armour.classList.add('equipped');
                         break;
