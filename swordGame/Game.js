@@ -169,7 +169,7 @@ export class Game {
             const item = this.player.equipInventoryItem(index);
 
             if (item === null) return;  // exit if nothing was equipped
-            // style all  catch-all for
+            // style all catch-all for
             for (let i = 0; i < this.player.inventory.length; i++) {
                 if (this.player.inventory[i] && this.player.inventory[i].itemType === item.itemType) this.inventorySlots[i].classList.remove('equipped');
             }
