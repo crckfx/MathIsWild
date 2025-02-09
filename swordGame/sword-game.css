@@ -1,6 +1,7 @@
 :root {
-    --color-weapon: yellow;
-    --color-entity: cyan;
+    --color-weapon: #824;
+    --color-armour: #882;
+    --color-entity: #2dd;
 
     --color-inventoryItem-empty: #333;
     --color-inventoryItem-occupied: #222;
@@ -10,7 +11,7 @@
     --color-inventoryItemBorder-occupied: #228;
     --color-inventoryItemBorder-equipped: #44d;
 
-    --color-inventoryBackground: #b22;
+    --color-inventoryBackground: #622;
 }
 
 .game-wrapper {
@@ -50,6 +51,9 @@
 .game-text .weapon {
     color: var(--color-weapon);
 }
+.game-text .armour {
+    color: var(--color-armour);
+}
 
 .game-text .entity {
     color: var(--color-entity);
@@ -82,7 +86,8 @@
 .game-inventory {
     /* display: flex; */
     flex-direction: column;
-    background-color: var(--color-inventoryBackground);
+    /* background-color: var(--color-inventoryBackground); */
+    background-color: #888b;
     height: 100%;
     width: 100%;
     position: absolute;
@@ -111,6 +116,7 @@
     height: auto;
     place-content: start;
     overflow-y: scroll;
+    padding: 8px;
 }
 
 
@@ -139,11 +145,9 @@
 
 .game-inventory .gear {
     flex: 1;
-    background-color: blue;
+    /* background-color: blue; */
     display: grid;
     grid-template-columns: 1fr;
-    /* flex-direction: column; */
-    /* justify-content: space-evenly; */
     gap: 8px;
     padding: 8px;
 }
@@ -156,6 +160,7 @@
     align-items: center;
     justify-content: space-evenly;
     flex-direction: column;
+    border-radius: 8px;
 
 }
 

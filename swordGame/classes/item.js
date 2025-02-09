@@ -1,9 +1,10 @@
 export class Item {
-    constructor(name, { isEquippable = false, itemType = "misc", damage = 0 } = {}) {
+    constructor(name, { isEquippable = false, itemType = "misc"} = {}) {
         this.name = name;
-        this.isEquippable = isEquippable;  // Equippable is true for weapons, false for most items
-        this.itemType = itemType;          // All items, weapon or not, have an itemType
-        this.damage = damage;              // Only relevant for weapons, but set here for consistency
+        this.itemType = itemType;          // mandatory
+        this.isEquippable = isEquippable;  // true for weapons + armour, false for most items
+        // this.damage = damage;              // Only relevant for weapons, but set here for consistency
         this.isHeldBy = null;              // Assuming items can be held by entities
+        this.isConsumable = false;         //
     }
 }
