@@ -9,41 +9,64 @@ export class Entity {
         console.log(`created inventory size of ${this.inventory.length} for ${this.name}`);
         this.equippedWeapon = null;
         this.equippedArmour = null;
+        this.equippedWeaponIndex = -1;
+        this.equippedArmourIndex = -1;
 
         if (options.startingInventory !== undefined) {
-            options.startingInventory.forEach((item) => {
-                console.log(`${this.name} was given ${item.name} at init`);
-                this.addToInventory(item);
-            })
+
+            for (let i=0; i<options.startingInventory.length; i++) {
+                // console.log(`${this.name} was given ${options.startingInventory[i].name} at init`);
+                this.addToInventory(options.startingInventory[i]);
+            }
+
+            // options.startingInventory.forEach((item) => {
+            //     console.log(`${this.name} was given ${item.name} at init`);
+            //     this.addToInventory(item);
+            // })
         }
     }
 
-    equipWeapon(weapon) {
-        this.equippedWeapon = weapon;
-        return weapon;
-    }
+    // equip an item by inventory index
     equipInventoryItem(index) {
         const item = this.inventory[index];
         if (item.isEquippable) {
             switch (item.itemType) {
                 case "weapon":
-                    this.equipWeapon(item);
+                    this.equipWeapon(item, index);
                     break;
                 case "armour":
-                    this.equipArmour(item);
+                    this.equipArmour(item, index);
                     break;
                 default:
                     console.log('unhandled item type');
             }
-            return true;
+            return item;
         }
-        return false;
+        return null;
     }
-    equipWeapon(weapon) {
+    // equip an ACTUAL weapon object (could be obsolete?)
+    equipWeapon(weapon, index) {
         this.equippedWeapon = weapon;
+        this.equippedWeaponIndex = index;
         return weapon;
     }
-    equipArmour() { }
+    equipArmour(armour, index) {
+        this.equippedArmour = armour;
+        this.equippedArmourIndex = index;
+        return armour;        
+    }
+    
+    unequipWeapon() {
+        const oldIndex = this.equippedWeaponIndex;
+        this.equippedWeapon = null;
+        return oldIndex;
+    }
+    
+    unequipArmour() {
+        const oldIndex = this.equippedArmourIndex;
+        this.equippedArmour = null;
+        return oldIndex;
+    }
 
     setHP(value) {
         if (value > this.maxHP) {
@@ -57,6 +80,8 @@ export class Entity {
             if (this.inventory[i] == undefined) {
                 // console.log(`free inv slot at position ${i}`);
                 this.inventory[i] = item;
+                item.isHeldBy = this;
+                console.log(`item ${item.name} is held by ${item.isHeldBy.name}`);
                 return i;
             }
         }

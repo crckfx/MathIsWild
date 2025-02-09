@@ -4,8 +4,11 @@
 
     --color-inventoryItem-empty: #333;
     --color-inventoryItem-occupied: #222;
+    --color-inventoryItem-equipped: #228;
+
     --color-inventoryItemBorder-empty: #555;
-    --color-inventoryItemBorder-occupied: green;
+    --color-inventoryItemBorder-occupied: #228;
+    --color-inventoryItemBorder-equipped: #44d;
 
     --color-inventoryBackground: #b22;
 }
@@ -123,6 +126,14 @@
 .slot.occupied {
     border-color: var(--color-inventoryItemBorder-occupied);
     background-color: var(--color-inventoryItem-occupied);
+}
+.slot.occupied.equipped {
+    border-color: var(--color-inventoryItemBorder-equipped);
+    background-color: var(--color-inventoryItem-equipped);
+}
+.slot.equipped {
+    border-color: var(--color-inventoryItemBorder-equipped);
+    background-color: var(--color-inventoryItem-equipped);
 }
 
 .game-inventory .gear {

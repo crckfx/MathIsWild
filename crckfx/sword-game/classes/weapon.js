@@ -1,13 +1,7 @@
+import { Item } from './item.js';
 
-export class Weapon {
-    
+export class Weapon extends Item {
     constructor(name, damage) {
-        this.name = name;
-        this.itemType = "weapon",
-        this.damage = damage;
-        this.isHeldBy = null;
-        this.isEquippable = true;
+        super(name, { isEquippable: true, itemType: "weapon", damage });
     }
-
-        
 }
