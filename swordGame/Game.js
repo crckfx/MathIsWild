@@ -6,11 +6,6 @@ import { Armour } from './classes/armour.js';
 export class Game {
     constructor(gameContainer) {
         this.gameContainer = gameContainer;
-        this.textView = gameContainer.querySelector('.game-text');
-        this.inventoryView = gameContainer.querySelector('.game-inventory');
-        this.inventorySlots = [];
-        // this.inventorySlotsView = this.inventoryView.querySelector('.slots');
-
 
         this.entities = [];
         this.weapons = [];
@@ -31,6 +26,10 @@ export class Game {
         // ---------------------------------------------
         // --- create a UI to hand back to game ---
         const UI = {
+
+            inventoryView: this.gameContainer.querySelector('.game-inventory'),
+            textView: this.gameContainer.querySelector('.game-text'),
+
             btn_showInventory: document.getElementById('show-inventory'),
             btn_hideInventory: document.getElementById('hide-inventory'),
             playerStats: {
@@ -46,14 +45,16 @@ export class Game {
             playerGear: {
                 armour: document.getElementById('gear-armour').querySelector('.slot'),
                 weapon: document.getElementById('gear-weapon').querySelector('.slot'),
-
             },
         };
   
         // ---------------------------------------------
         // --- bind actions before returning ---
+        //
+        // inventory show/hide
         UI.btn_showInventory.onclick = () => this.showInventory();
         UI.btn_hideInventory.onclick = () => this.hideInventory();
+        // gear slot right clicks
         UI.playerGear.armour.addEventListener("contextmenu", (event) => {
             event.preventDefault();
             this.rightClickPlayerEquippedArmourSlot();
@@ -64,7 +65,16 @@ export class Game {
             this.rightClickPlayerEquippedWeaponSlot();
         });  
         
+        // todo: use a for loop here, eg.:
+        // console.log('-*-*-*-*-*-*-*-*-*-*-*-*');
+        // for (const key in UI.playerGear) {
+        //     console.log(UI.playerGear[key]);
+        // }
+        // console.log('-*-*-*-*-*-*-*-*-*-*-*-*');
+
+        // finally, return the UI object
         return UI;
+        // todo: break me (UI) off into a class, an instance of which would look very similar to the object we are returning here
         // ---------------------------------------------
     }
 
@@ -112,24 +122,28 @@ export class Game {
     }
 
 
-    printLine(text) {
+    printLine(input) {
         const newLine = document.createElement('div');
-        newLine.innerHTML = text;
-        this.textView.appendChild(newLine);
+        newLine.innerHTML = input;
+        this.UI.textView.appendChild(newLine);
     }
 
     showInventory() {
-        this.inventoryView.classList.add('visible');
+        this.UI.inventoryView.classList.add('visible');
+        
     }
 
     hideInventory() {
-        this.inventoryView.classList.remove('visible');
+        this.UI.inventoryView.classList.remove('visible');
     }
 
+    // ---------------------------------------------
+    // --- creating objects ---
+    // these 'create' functions return their entity to instantiate 'up' to the Game
+    //
+    // entity creation
     createEntity(name, options) {
         const entity = new Entity(name, options);
-        // let index = this.entities.push(entity) - 1;
-
         this.entities.push(entity);
         this.printLine(`Initialised new entity ${this.formatEntityName(entity)}.`);
         // this.printLine(`Initialised new entity '${this.entities[index].name}'`); // proof of concept
@@ -137,7 +151,7 @@ export class Game {
         // return this.entities[index];
     }
 
-    // --- item creation --- 
+    // item creation
     createItem(name, options) {
         const newItem = new Item(name, options);
         this.items.push(newItem);
@@ -156,19 +170,19 @@ export class Game {
         this.printLine(`Initialised new armour ${this.formatItemName(newArmour)} with strength ${newArmour.strength}`);
         return newArmour;
     }
-
+    // ---------------------------------------------
 
 
 
     // --- player (UI layer) --- 
-    initPlayer(player) {
-        this.player = player;
+    initPlayer(entity) {
+        this.player = entity;
         // this.printLine(this.player.getInventory());     // prove that the inventory has been inited
         // make the UI inventory the same as player's
         for (let i = 0; i < this.player.inventory.length; i++) {
             const slot = document.createElement('div');
             slot.classList.add('slot');
-            this.inventorySlots.push(slot);
+            this.UI.playerInv.slots.push(slot);
             this.UI.playerInv.view.appendChild(slot);
         }
         this.printLine(`Now playing as ${this.formatEntityName(this.player)}.`);
@@ -177,9 +191,10 @@ export class Game {
     }
 
     drawPlayerInventory() {
+        const slots = this.UI.playerInv.slots;
         // generate the slots based on player inventory max size (probably not optimal)
-        for (let i = 0; i < this.player.inventory.length; i++) {
-            const slot_DOM = this.inventorySlots[i];
+        for (let i = 0; i < slots.length; i++) {
+            const slot_DOM = slots[i];
             if (this.player.inventory[i] !== undefined && this.player.inventory[i] !== null) {
                 slot_DOM.innerHTML = this.player.inventory[i].name;   // set the item name
                 slot_DOM.classList.add('occupied');
@@ -209,7 +224,7 @@ export class Game {
                 // if ()
 
                 for (let i = 0; i < this.player.inventory.length; i++) {
-                    if (this.player.inventory[i] && this.player.inventory[i].itemType === item.itemType) this.inventorySlots[i].classList.remove('equipped');
+                    if (this.player.inventory[i] && this.player.inventory[i].itemType === item.itemType) this.UI.playerInv.slots[i].classList.remove('equipped');
                 }
                 switch (item.itemType) {
                     case "weapon":
@@ -228,7 +243,7 @@ export class Game {
                 // this.printLine(`${this.formatEntityName(this.player)} has equipped ${item.itemType} ${this.formatItemName(item)}.`);
 
 
-                this.inventorySlots[index].classList.add('equipped');   // style the player inventory item
+                this.UI.playerInv.slots[index].classList.add('equipped');   // style the player inventory item
             } else if (item.isConsumable) {
                 this.printLine(`${this.player.name} tries to eat the ${item.name}.`);
             }
@@ -244,7 +259,7 @@ export class Game {
             const oldIndex = this.player.unequipWeapon(); // store the returned old
             this.UI.playerGear.weapon.classList.remove('equipped');
             this.UI.playerGear.weapon.innerHTML = "";
-            this.inventorySlots[oldIndex].classList.remove('equipped');
+            this.UI.playerInv.slots[oldIndex].classList.remove('equipped');
             this.printLine(`${this.formatEntityName(this.player)} has removed weapon ${this.formatItemName(oldItem)}.`);
 
         }
@@ -256,12 +271,28 @@ export class Game {
             console.log(`le click le armour slot`);
             const oldItem = this.player.equippedArmour;
             const oldIndex = this.player.unequipArmour();
-            this.inventorySlots[oldIndex].classList.remove('equipped');
+            this.UI.playerInv.slots[oldIndex].classList.remove('equipped');
             this.UI.playerGear.armour.classList.remove('equipped');
             this.UI.playerGear.armour.innerHTML = "";
             this.printLine(`${this.formatEntityName(this.player)} has removed armour ${this.formatItemName(oldItem)}.`);
 
         }
+    }
+
+    rightClickPlayerGearSlot(key) {
+        if (this.player.equippedArmour !== null) {
+            // good?
+            console.log(`le click le  slot`);
+
+            // not
+            const oldItem = this.player.equippedArmour;
+            const oldIndex = this.player.unequipArmour();
+            this.UI.playerInv.slots[oldIndex].classList.remove('equipped');
+            this.UI.playerGear.armour.classList.remove('equipped');
+            this.UI.playerGear.armour.innerHTML = "";
+            this.printLine(`${this.formatEntityName(this.player)} has removed armour ${this.formatItemName(oldItem)}.`);
+
+        }        
     }
 
     updatePlayerUI() {
