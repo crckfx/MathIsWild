@@ -9,14 +9,7 @@ export class Game {
         this.textView = gameContainer.querySelector('.game-text');
         this.inventoryView = gameContainer.querySelector('.game-inventory');
         this.inventorySlots = [];
-        this.inventorySlotsView = this.inventoryView.querySelector('.slots');
-        this.inventoryGearSlots = {
-            weapon: document.getElementById('gear-weapon').querySelector('.slot'),
-            armour: document.getElementById('gear-armour').querySelector('.slot'),
-
-        }
-
-
+        // this.inventorySlotsView = this.inventoryView.querySelector('.slots');
 
 
         this.entities = [];
@@ -32,54 +25,47 @@ export class Game {
     init_UI() {
         const gameControls = document.querySelector('.game-controls');
         const playerStatsView = document.getElementById('playerStats');
+        const inventoryView = this.gameContainer.querySelector('.game-inventory');
 
-        // create game UI to return
+
+        // ---------------------------------------------
+        // --- create a UI to hand back to game ---
         const UI = {
-            btn_showInventoryView: document.getElementById('show-inventory'),
-            btn_hideInventoryView: document.getElementById('hide-inventory'),
+            btn_showInventory: document.getElementById('show-inventory'),
+            btn_hideInventory: document.getElementById('hide-inventory'),
             playerStats: {
                 view: playerStatsView,
                 hp: playerStatsView.querySelector('.hp'),
                 name: playerStatsView.querySelector('.name'),
             },
             playerInv: {
-                slot_equippedGear: {
-                }
-                
+                view: inventoryView.querySelector('.slots'),
+                slots: [],
             },
+
             playerGear: {
                 armour: document.getElementById('gear-armour').querySelector('.slot'),
                 weapon: document.getElementById('gear-weapon').querySelector('.slot'),
 
-            }
+            },
         };
   
-        // bind actions before returning
-        UI.btn_showInventoryView.onclick = () => this.showInventory();
-        UI.btn_hideInventoryView.onclick = () => this.hideInventory();
-
+        // ---------------------------------------------
+        // --- bind actions before returning ---
+        UI.btn_showInventory.onclick = () => this.showInventory();
+        UI.btn_hideInventory.onclick = () => this.hideInventory();
         UI.playerGear.armour.addEventListener("contextmenu", (event) => {
             event.preventDefault();
             this.rightClickPlayerEquippedArmourSlot();
         });
-
+        
         UI.playerGear.weapon.addEventListener("contextmenu", (event) => {
             event.preventDefault();
             this.rightClickPlayerEquippedWeaponSlot();
-        });
-
-
-        // this.inventoryGearSlots['armour'].addEventListener("contextmenu", (event) => {
-        //     event.preventDefault();
-        //     this.rightClickPlayerEquippedArmourSlot();
-        // });
-
-        // this.inventoryGearSlots['weapon'].addEventListener("contextmenu", (event) => {
-        //     event.preventDefault();
-        //     this.rightClickPlayerEquippedWeaponSlot();
-        // });        
+        });  
         
         return UI;
+        // ---------------------------------------------
     }
 
     // --- INIT WORLD ---
@@ -183,7 +169,7 @@ export class Game {
             const slot = document.createElement('div');
             slot.classList.add('slot');
             this.inventorySlots.push(slot);
-            this.inventorySlotsView.appendChild(slot);
+            this.UI.playerInv.view.appendChild(slot);
         }
         this.printLine(`Now playing as ${this.formatEntityName(this.player)}.`);
         this.drawPlayerInventory();
@@ -228,16 +214,12 @@ export class Game {
                 switch (item.itemType) {
                     case "weapon":
                         this.printLine(`${this.formatEntityName(this.player)} has equipped ${this.formatStringWithClass("weapon", "weaponDescription")} ${this.formatItemName(this.player.equippedWeapon)}.`);
-                        // this.inventoryGearSlots.weapon.innerHTML = this.player.equippedWeapon.name;
                         this.UI.playerGear.weapon.innerHTML = this.player.equippedWeapon.name;
-                        // this.inventoryGearSlots.weapon.classList.add('equipped');
                         this.UI.playerGear.weapon.classList.add('equipped');
                         break;
                     case "armour":
                         this.printLine(`${this.formatEntityName(this.player)} has equipped ${this.formatStringWithClass("armour", "armourDescription")} ${this.formatItemName(this.player.equippedArmour)}.`);
-                        // this.inventoryGearSlots.armour.innerHTML = this.player.equippedArmour.name;
                         this.UI.playerGear.armour.innerHTML = this.player.equippedArmour.name;
-                        // this.inventoryGearSlots.armour.classList.add('equipped');
                         this.UI.playerGear.armour.classList.add('equipped');
                         break;
                     default:
@@ -260,9 +242,7 @@ export class Game {
 
             const oldItem = this.player.equippedWeapon;
             const oldIndex = this.player.unequipWeapon(); // store the returned old
-            // this.inventoryGearSlots.weapon.classList.remove('equipped');
             this.UI.playerGear.weapon.classList.remove('equipped');
-            // this.inventoryGearSlots.weapon.innerHTML = "";
             this.UI.playerGear.weapon.innerHTML = "";
             this.inventorySlots[oldIndex].classList.remove('equipped');
             this.printLine(`${this.formatEntityName(this.player)} has removed weapon ${this.formatItemName(oldItem)}.`);
@@ -277,9 +257,7 @@ export class Game {
             const oldItem = this.player.equippedArmour;
             const oldIndex = this.player.unequipArmour();
             this.inventorySlots[oldIndex].classList.remove('equipped');
-            // this.inventoryGearSlots.armour.classList.remove('equipped');
             this.UI.playerGear.armour.classList.remove('equipped');
-            // this.inventoryGearSlots.armour.innerHTML = "";
             this.UI.playerGear.armour.innerHTML = "";
             this.printLine(`${this.formatEntityName(this.player)} has removed armour ${this.formatItemName(oldItem)}.`);
 
