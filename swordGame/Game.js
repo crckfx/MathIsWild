@@ -71,7 +71,6 @@ export class Game {
         UI.btn_showInventory.onclick = () => this.showInventory();  // inventory show
         UI.btn_hideInventory.onclick = () => this.hideInventory();  // inventory hide
         UI.btn_playerAttack.onclick = () => this.player_attack();    // player attack
-        // UI.btn_playerAttack.onclick = () => this.entityAttack(this.player, this.getTargetList(this.player)[0]);
 
         // gear slot right clicks
         UI.playerGear.armour.addEventListener("contextmenu", (event) => {
@@ -389,25 +388,9 @@ export class Game {
         const containerRect = this.UI.textView.getBoundingClientRect();
         const btnRect = anchor.getBoundingClientRect();
     
-        // Calculate the available space below and above the button
-        const spaceBelow = containerRect.bottom - btnRect.bottom; // Space from button bottom to container bottom
-        const spaceAbove = btnRect.top - containerRect.top; // Space from button top to container top
-    
         // Define the position for the menu
         let left = btnRect.left - containerRect.left;
-    
-        // Decide whether to show the menu above or below the button
-        if (spaceBelow >= spaceAbove) {
-            // Position the menu below the button (top of menu aligns with bottom of button)
-            menu.style.top = `${btnRect.bottom - containerRect.top}px`;
-            menu.style.bottom = ""; // Clear any previous bottom setting
-        } else {
-            // Position the menu above the button (bottom of menu aligns with top of button)
-            // menu.style.bottom = `${containerRect.bottom - btnRect.top}px`;
-            menu.style.bottom = '0px';
-            menu.style.top = ""; // Clear any previous top setting
-        }
-    
+
         // Apply the horizontal position (left)
         menu.style.left = `${left}px`;
     
@@ -424,10 +407,10 @@ export class Game {
     
 
     openMenu(menu, button) {
-        this.styleSomeMenu(this.UI.menuContainer, button);
         this.UI.currentMenu = menu;
         menu.classList.add('visible');
         this.UI.menuContainer.classList.add('visible');
+        this.styleSomeMenu(this.UI.menuContainer, button);
     }
 
     closeMenu(menu) {
@@ -452,12 +435,10 @@ export class Game {
             this.openMenu(menu, button);
             return;
         }
-            
         
         
     }
 
-    
     
 
     setPlayerTarget(target) {

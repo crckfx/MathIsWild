@@ -172,6 +172,9 @@ html {
 #menu-container {
     position: absolute;
     display: none;
+    margin-left: 8px;
+    margin-right: 8px;    
+    bottom: 0px;
 }
 
 #menu-container.visible {
@@ -183,11 +186,13 @@ html {
     display: none;
     background-color: #888d;
     flex-direction: column;
-    bottom: 0px;
+    /* bottom: 0px; */
     gap: 8px;
     padding: 8px;
-
     list-style-type: none;
+    margin-top: 4px;
+    margin-bottom: 4px;
+
 }
 
 .floating-menu.visible {
@@ -212,4 +217,8 @@ button.ham {
     /* color: white; */
     /* background-color: var(--color-entity-background); */
 
+}
+
+.menu-anchor {
+    position: relative;
 }
