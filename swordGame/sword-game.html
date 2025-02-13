@@ -17,11 +17,9 @@
     <link rel="stylesheet" href="../global.css">
     <link rel="stylesheet" href="../themes.css">
     <link rel="stylesheet" href="../misc.css">
-    <link rel="stylesheet" href="sword-game.css">
+    <link rel="stylesheet" href="styles/sword-game.css">
+    <link rel="stylesheet" href="styles/inventory.css">
 
-    <style>
-
-    </style>
 </head>
 
 <body>
@@ -51,7 +49,7 @@
                     <div class="game-inventory">
                         <h2>Inventory</h2>
                         <div class="slots-wrapper">
-                            <div class="slots">
+                            <div class="slots no-scrollbar">
                                 <!-- slots added in JS -->
                             </div>
 
@@ -71,7 +69,8 @@
                         </div>
                     </div>
                     <!-- --- /inventory ---  -->
-                    <div class="game-controls">
+
+                    <div class="game-UI-panel no-scrollbar">
                         <div id="playerStats">
                             <span class="name"></span>
                             <span class="hp"></span>
@@ -80,13 +79,13 @@
                         </div>
                     </div>
                     <!-- ---- console ---- -->
-                    <div class="game-text">
+                    <div class="game-text no-scrollbar">
                         <div class="line">Welcome!</div>
                     </div>
                     <!-- ---- /console ---- -->
-                    <!-- ---- stats + controls ---- -->
-                    <div class="game-controls">
 
+                    <!-- ---- stats + controls ---- -->
+                    <div class="game-UI-panel no-scrollbar">
                         <div class="game-control-actions">
                             <!-- <button onclick="advance();">Advance</button> -->
                             <button id="advance">Advance</button>
