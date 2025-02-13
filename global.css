@@ -153,16 +153,18 @@ a.bigman:hover {
     width: 100%;
     display: flex;
     flex: 1;
+    padding: 12px;
+    box-sizing: border-box;
 }
 .page-content {
     border-radius: 12px;
-    margin: 12px;
     padding: 12px;
     width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;    
     transition: color 500ms ease, background-color 500ms ease;
+    box-sizing: border-box;
 }
 
 /* ---------------------------------------------------- */
