@@ -355,7 +355,7 @@ export class Game {
     getTargetList(entity) {
         const list = [];
         for (let i = 0; i < this.entities.length; i++) {
-            if (this.entities[i] !== entity && this.entities[i].isAlive) {
+            if (this.entities[i] !== entity && this.entities[i].isAlive === true) {
                 list.push(this.entities[i]);
             }
         }    
@@ -364,6 +364,9 @@ export class Game {
 
     drawTargetMenu() {
         const list = this.getTargetList(this.player);
+        console.log('---- list ----');
+        console.log(list);
+        console.log('---- /list ----');
         this.UI.targetMenuView.innerHTML = "<h2>Target Menu</h2>";
         for (let i = 0; i < list.length; i++) {
             const entity = list[i];
@@ -459,9 +462,13 @@ export class Game {
 
     setPlayerTarget(target) {
         this.player.setTarget(target);
-        this.printLine(`${this.formatEntityName(this.player)} is targeting ${this.formatStringWithClass(this.player.currentTarget.name, 'hostile')}.`);
-        this.UI.btn_playerAttack.innerHTML = `attack ${target.name}`;
-        this.UI.targetMenuView.classList.remove('visible');
+        if (this.player.currentTarget !== null) {
+            this.printLine(`${this.formatEntityName(this.player)} is targeting ${this.formatStringWithClass(this.player.currentTarget.name, 'hostile')}.`);
+            this.UI.btn_playerAttack.innerHTML = `attack ${target.name}`;
+            this.UI.targetMenuView.classList.remove('visible');
+        } else {
+            this.UI.btn_playerAttack.innerHTML = `attack`;
+        }
     }
 
     player_attack() {
@@ -485,6 +492,8 @@ export class Game {
             // check if the target dies
             if (killedTarget) {
                 this.printLine(`${this.formatEntityName(attackResult.target)} has died!`);
+                this.setPlayerTarget(null);
+                this.drawTargetMenu();
             }
         } else if (attackResult.target === undefined) {
             // console.log('yeah handled the no target case');
