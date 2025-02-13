@@ -5,6 +5,8 @@
     --color-armour-B: #882;
     --color-entity: #2dd;
     --color-entity-background: #042222;
+    --color-player: #2d2;
+    --color-entity-hostile: #a33;
 
     --color-inventoryItem-empty: #333;
     --color-inventoryItem-occupied: #222;
@@ -71,6 +73,12 @@
 .game-text .entity {
     color: var(--color-entity);
 }
+.game-text .player {
+    color: var(--color-player);
+}
+.game-text .hostile {
+    color: var(--color-entity-hostile);
+}
 
 
 /* horizontal scrolling panel for playerStats or gameActions */
@@ -125,4 +133,22 @@
 }
 #playerStats span.currentArmour::before {
     content: '🛡️';
+}
+
+
+.target-menu {
+    position: absolute;
+    background-color: yellow;
+    height: 100px;
+    width: 100px;
+    display: none;
+    flex-direction: column;
+}
+
+.target-menu.visible {
+    display: flex;
+}
+
+.target-menu button {
+    width: 100%;
 }

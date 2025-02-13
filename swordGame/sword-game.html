@@ -44,7 +44,7 @@
             <!-- content -->
             <div class="game-wrapper">
 
-                <div class="game-container">
+                <div class="game-container" oncontextmenu="return false;">
                     <!-- --- inventory ---  -->
                     <div class="game-inventory">
                         <h2>Inventory</h2>
@@ -74,8 +74,8 @@
                         <div id="playerStats">
                             <span class="name"></span>
                             <span class="hp"></span>
-                            <span class="currentWeapon">(none)</span>
-                            <span class="currentArmour">(none)</span>
+                            <span class="currentWeapon"></span>
+                            <span class="currentArmour"></span>
                         </div>
                     </div>
                     <!-- ---- console ---- -->
@@ -89,10 +89,14 @@
                         <div class="game-control-actions">
                             <!-- <button onclick="advance();">Advance</button> -->
                             <button id="advance">Advance</button>
-                            <button>Control 2</button>
+                            <button id="set-target">Set Target</button>
+                            <button id="player-attack">attack</button>
                             <button id="show-inventory">Inventory</button>
                         </div>
                     </div>
+
+                    <!-- uhhh targeting menu -->
+                    <div id="target-menu" class="target-menu"></div>
                 </div>
 
             </div>

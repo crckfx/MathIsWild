@@ -11,6 +11,8 @@ export class Entity {
         this.equippedArmour = null;
         this.equippedWeaponIndex = -1;
         this.equippedArmourIndex = -1;
+        this.currentTarget = null;
+        
 
         if (options.startingInventory !== undefined) {
 
@@ -24,6 +26,8 @@ export class Entity {
             //     this.addToInventory(item);
             // })
         }
+
+        this.isAlive = true;
     }
 
     // equip an item by inventory index
@@ -90,6 +94,7 @@ export class Entity {
 
     }
 
+    // HELPER METHODS
     getInventory() {
         let inventoryString = "";
         for (let i = 0; i < this.inventory.length; i++) {
@@ -115,6 +120,47 @@ export class Entity {
         return currentInventory;
     }
 
+    getDamage() {
+        if (this.equippedWeapon === null) {
+            return 1;
+        } else {
+            const damage = this.equippedWeapon.damage;
+            return damage;
+        }
+    }
 
+    // ATTACKING?
+    setTarget(target) {
+        this.currentTarget = target;
+    }
+
+    attack() {
+        if (this.currentTarget === null) {
+            console.error('error: tried to attack nobody');
+            return {
+                success: false,
+            }
+        } else {
+            const damage = this.getDamage();
+            // console.log(damage);
+            return {
+                success: true,
+                damage: damage,
+                target: this.currentTarget,
+            }
+        }
+    }
+
+    takeDamage(damage) {
+        this.currentHP -= damage;
+
+        if (this.currentHP <= 0) {
+            this.isAlive = false;
+            return true; // has died
+        }
+        return false; // has not died
+    }
+
+    
 
 }

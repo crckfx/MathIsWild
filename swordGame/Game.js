@@ -29,9 +29,14 @@ export class Game {
 
             inventoryView: this.gameContainer.querySelector('.game-inventory'),
             textView: this.gameContainer.querySelector('.game-text'),
+            targetMenuView: document.getElementById('target-menu'),
+
 
             btn_showInventory: document.getElementById('show-inventory'),
             btn_hideInventory: document.getElementById('hide-inventory'),
+            btn_setTarget: document.getElementById('set-target'),
+            btn_playerAttack: document.getElementById('player-attack'),
+
             playerStats: {
                 view: playerStatsView,
                 hp: playerStatsView.querySelector('.hp'),
@@ -56,6 +61,11 @@ export class Game {
         // inventory show/hide
         UI.btn_showInventory.onclick = () => this.showInventory();
         UI.btn_hideInventory.onclick = () => this.hideInventory();
+        // set target menu show/hide
+        UI.btn_setTarget.onclick = () => this.toggleTargetMenu();
+        // player attack
+        UI.btn_playerAttack.onclick = () => this.playerAttack();
+        // UI.btn_playerAttack.onclick = () => this.entityAttack(this.player, this.getTargetList()[0]);
         // gear slot right clicks
         UI.playerGear.armour.addEventListener("contextmenu", (event) => {
             event.preventDefault();
@@ -310,7 +320,12 @@ export class Game {
     // --------------------------------------
     // --- UI Coloured String Formatting ---
     formatEntityName(entity) {
-        const formattedName = `<span class="entity">${entity.name}</span>`;
+        let formattedName;
+        if (entity === this.player) {
+            formattedName = `<span class="player">${entity.name}</span>`;
+        } else {
+            formattedName = `<span class="entity">${entity.name}</span>`;
+        }
         return formattedName;
     }
 
@@ -324,6 +339,83 @@ export class Game {
         return formattedString;
     }
 
+
+    getTargetList() {
+        const list = [];
+        for (let i=0; i<this.entities.length; i++) {
+            if (this.entities[i] !== this.player) {
+                list.push(this.entities[i]);
+            }
+        }
+        // console.log(`--- target list ---`);
+        // for (let i=0; i<list.length; i++) {
+        //     console.log(list[i].name);
+        // }
+        // console.log(`--- /target list ---`);        
+        return list;
+    }
+
+    drawTargetMenu() {
+        const list = this.getTargetList();
+        this.UI.targetMenuView.innerHTML = "";
+        for (let i=0; i<list.length; i++) {
+            const entity = list[i];
+            const option = document.createElement('button');
+            console.log(`drawing target menu for ${entity.name}`);
+            console.log(entity);
+            option.onclick = () => this.setPlayerTarget(entity);
+            // option.classList.add('')
+            option.innerHTML = entity.name;
+            // option
+            this.UI.targetMenuView.appendChild(option);
+        }
+
+    }
+
+    toggleTargetMenu() {
+        if (this.UI.targetMenuView.classList.contains('visible')) {
+            this.UI.targetMenuView.classList.remove('visible');
+        } else {
+            this.drawTargetMenu();
+            this.UI.targetMenuView.classList.add('visible');
+        }
+    }
+
+    setPlayerTarget(target) {
+        this.player.setTarget(target);
+        this.printLine(`${this.formatEntityName(this.player)} is targeting ${this.formatStringWithClass(this.player.currentTarget.name, 'hostile')}`);
+        this.UI.btn_playerAttack.innerHTML = `attack ${target.name}`;
+        this.UI.targetMenuView.classList.remove('visible');        
+    }
+
+    playerAttack() {
+        this.entityAttack(this.player); 
+    }
+
+    entityAttack(attacker, target=null) {
+        // handle targeting if target 
+        if (target !== null) {
+            console.log(`bonus target named ${target.name}`);
+            attacker.setTarget(target);
+        }
+
+        // get a damage reading from the attacker
+        const attackResult = attacker.attack();
+        // use the result 
+        if (attackResult.success) {
+            // console.log(`${attacker.name} attacked ${attackResult.target.name} with damage ${attackResult.damage}`);
+            const killedTarget = attackResult.target.takeDamage(attackResult.damage);
+            this.printLine(`${this.formatEntityName(attacker)} attacked ${this.formatEntityName(attackResult.target)} with damage ${attackResult.damage}. (${attackResult.target.currentHP} / ${attackResult.target.maxHP})`);
+            // check if the target dies
+            if (killedTarget) {
+                this.printLine(`${this.formatEntityName(attackResult.target)} has died!`);
+            }
+
+            
+        }
+    }
+
+    
 
 }
 
