@@ -24,7 +24,7 @@
 
 <body>
     <!-- header -->
-    <header>
+    <!-- <header>
         <a class="goBackBtn" href="../index.html"></a>
 
         <div class="header-middle">
@@ -37,17 +37,28 @@
                 <span class="slider"></span>
             </label>
         </div>
-    </header>
+    </header> -->
     <!-- wrapper -->
     <div class="page-wrapper">
         <div class="page-content bg-5">
             <!-- content -->
             <div class="game-wrapper">
 
-                <div class="game-container" oncontextmenu="return false;">
+                <div class="game-container">
+
                     <!-- --- inventory ---  -->
                     <div class="game-inventory">
-                        <h2>Inventory</h2>
+                        <div style="display: flex; width: 100%; justify-content: space-between;">
+                            <div style="width: 50px"></div>
+                            <div style="flex: 1; height: 50px">
+                                <h2>Inventory</h2>
+                            </div>
+                            <span id="hide-inventory">
+                                <svg width="24" height="24" viewBox="0 0 24 24">
+                                    <path d="M4,4 L20, 20 M 4,20 L 20, 4 Z" stroke="black" stroke-width="4px" />
+                                </svg>
+                            </span>
+                        </div>
                         <div class="slots-wrapper">
                             <div class="slots no-scrollbar">
                                 <!-- slots added in JS -->
@@ -64,9 +75,9 @@
                                 </div>
                             </div>
                         </div>
-                        <div id="controls-inventory">
+                        <!-- <div id="controls-inventory">
                             <button style="margin-left: auto;" id="hide-inventory">Close</button>
-                        </div>
+                        </div> -->
                     </div>
                     <!-- --- /inventory ---  -->
 
@@ -80,6 +91,26 @@
                     </div>
                     <!-- ---- console ---- -->
                     <div class="game-text no-scrollbar">
+                        <div id="menu-container">
+
+                            <div id="ham-menu" class="floating-menu">
+
+                                <a href="../">go back</a>
+                                <div class="toggle-switch">
+                                    <label class="switch-label">
+                                        <input type="checkbox" class="checkbox" onclick="toggleTheme()">
+                                        <span class="slider"></span>
+                                    </label>
+                                </div>
+                                <button>something else</button>
+                            </div>
+
+                            <!-- uhhh targeting menu -->
+                            <div id="target-menu" class="floating-menu"></div>
+                        </div>
+
+
+
                         <div class="line">Welcome!</div>
                     </div>
                     <!-- ---- /console ---- -->
@@ -87,7 +118,7 @@
                     <!-- ---- stats + controls ---- -->
                     <div class="game-UI-panel no-scrollbar">
                         <div class="game-control-actions">
-                            <!-- <button onclick="advance();">Advance</button> -->
+                            <button id="ham-button" class="ham">≡</button>
                             <button id="advance">Advance</button>
                             <button id="set-target">Set Target</button>
                             <button id="player-attack">attack</button>
@@ -95,8 +126,6 @@
                         </div>
                     </div>
 
-                    <!-- uhhh targeting menu -->
-                    <div id="target-menu" class="target-menu"></div>
                 </div>
 
             </div>

@@ -1,3 +1,14 @@
+
+body, html {
+    height: 100svh;
+}
+
+.page-wrapper {
+    max-height: 100%;
+    max-width: none;
+}
+
+
 :root {
     --color-weapon-A: #a33;
     --color-weapon-B: #844;
@@ -5,8 +16,10 @@
     --color-armour-B: #882;
     --color-entity: #2dd;
     --color-entity-background: #042222;
-    --color-player: #2d2;
     --color-entity-hostile: #a33;
+    --color-player: #2d2;
+
+    --color-item: #8bb;
 
     --color-inventoryItem-empty: #333;
     --color-inventoryItem-occupied: #222;
@@ -14,6 +27,7 @@
 
     --color-inventoryItemBorder-empty: #555;
     --color-inventoryItemBorder-occupied: #228;
+    --color-inventoryItemBorder-oHover: #828;
     --color-inventoryItemBorder-equipped: #44d;
 
     --color-inventoryBackground: #622;
@@ -25,15 +39,16 @@
     width: 100%;
     justify-content: center;
     align-items: center;
+    max-height: 100%;
 }
 
 .game-container {
     /* width: 300px;
     height: 400px; */
     width: 100%;
-    max-width: 1024px;
+    max-width: 1400px;
     height: 100%;
-    max-height: 576px;
+    /* max-height: 576px; */
     display: flex;
     flex-direction: column;
     /* padding: 8px; */
@@ -55,6 +70,7 @@
     overflow-y: scroll;
 
     font-family: 'Courier New', Courier, monospace;
+    position: relative;
 
 }
 .game-text .weapon {
@@ -79,26 +95,30 @@
 .game-text .hostile {
     color: var(--color-entity-hostile);
 }
+.game-text .item {
+    color: var(--color-item);
+}
 
 
 /* horizontal scrolling panel for playerStats or gameActions */
 .game-UI-panel {
     margin: 8px;
     display: flex;
-    justify-content: space-evenly;
-    flex-direction: column;
+    justify-content: space-between;
+    /* flex-direction: column; */
     overflow-x: scroll;
-    
 }
 
 #playerStats {
     display: flex;
     gap: 8px;
+    flex: 1;
 }
 
 .game-control-actions {
     display: flex;
     justify-content: space-between;    
+    flex: 1;
 }
 
 #playerStats span {
@@ -136,19 +156,41 @@
 }
 
 
-.target-menu {
+#menu-container {
     position: absolute;
-    background-color: yellow;
-    height: 100px;
-    width: 100px;
     display: none;
-    flex-direction: column;
 }
-
-.target-menu.visible {
+#menu-container.visible{
+    /* position: absolute; */
     display: flex;
 }
 
-.target-menu button {
+.floating-menu {
+    display: none;
+    background-color: #888d;
+    flex-direction: column;
+    bottom: 0px;
+    gap: 8px;
+    padding: 8px;
+    
+}
+
+.floating-menu.visible{
+    display: flex;
+}
+
+.floating-menu button {
     width: 100%;
+}
+.floating-menu li {
+    width: 100%;
+}
+
+button.ham {
+    /* background-color: transparent; */
+    /* width: 100px; */
+    min-width: 2em;
+    /* color: white; */
+    /* background-color: var(--color-entity-background); */
+
 }

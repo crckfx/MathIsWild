@@ -27,10 +27,16 @@ export class Game {
         // --- create a UI to hand back to game ---
         const UI = {
 
+            currentMenu: null,
+
             inventoryView: this.gameContainer.querySelector('.game-inventory'),
             textView: this.gameContainer.querySelector('.game-text'),
+            menuContainer: document.getElementById('menu-container'),
             targetMenuView: document.getElementById('target-menu'),
+            hamMenuView: document.getElementById('ham-menu'),
 
+
+            btn_ham: document.getElementById('ham-button'),
 
             btn_showInventory: document.getElementById('show-inventory'),
             btn_hideInventory: document.getElementById('hide-inventory'),
@@ -58,29 +64,30 @@ export class Game {
         // ---------------------------------------------
         // --- bind actions before returning ---
         //
-        // inventory show/hide
-        UI.btn_showInventory.onclick = () => this.showInventory();
-        UI.btn_hideInventory.onclick = () => this.hideInventory();
-        // set target menu show/hide
-        UI.btn_setTarget.onclick = () => this.toggleTargetMenu();
-        // player attack
-        UI.btn_playerAttack.onclick = () => this.playerAttack();
-        // UI.btn_playerAttack.onclick = () => this.entityAttack(this.player, this.getTargetList()[0]);
+        UI.btn_ham.onclick = () => this.handleMenuSwitch(UI.hamMenuView, UI.btn_ham);  // inventory show
+        UI.btn_setTarget.onclick = () => this.handleMenuSwitch(UI.targetMenuView, UI.btn_setTarget);  // inventory show
+        //  = () => this.toggleTargetMenu();   // set target menu show/hide
+        
+        UI.btn_showInventory.onclick = () => this.showInventory();  // inventory show
+        UI.btn_hideInventory.onclick = () => this.hideInventory();  // inventory hide
+        UI.btn_playerAttack.onclick = () => this.player_attack();    // player attack
+        // UI.btn_playerAttack.onclick = () => this.entityAttack(this.player, this.getTargetList(this.player)[0]);
+
         // gear slot right clicks
         UI.playerGear.armour.addEventListener("contextmenu", (event) => {
             event.preventDefault();
             this.rightClickPlayerEquippedArmourSlot();
         });
-
         UI.playerGear.weapon.addEventListener("contextmenu", (event) => {
             event.preventDefault();
             this.rightClickPlayerEquippedWeaponSlot();
         });
 
-        // todo: use a for loop here, eg.:
+        // // todo: use a for loop here, eg.:
         // console.log('-*-*-*-*-*-*-*-*-*-*-*-*');
         // for (const key in UI.playerGear) {
         //     console.log(UI.playerGear[key]);
+        //     console.log(key);
         // }
         // console.log('-*-*-*-*-*-*-*-*-*-*-*-*');
 
@@ -99,7 +106,9 @@ export class Game {
                 startingInventory: [
                     this.createWeapon('Wooden Club', 2),
                     this.createWeapon('Axe', 3),
-                    this.createItem('Apple'),
+                    this.createItem('Apple', {
+                        isConsumable: true,
+                    }),
                     this.createArmour('Chain Mail', 5),
                 ],
             })
@@ -112,8 +121,8 @@ export class Game {
         this.createItem('Apple', {});
 
         // init some dummy weapons into the world
-        this.createWeapon('Sword', 3);
-        this.createWeapon('Dagger', 2);
+        this.createWeapon('Sword', 5);
+        this.createWeapon('Dagger', 4);
 
         this.createArmour('Hat', 2);
 
@@ -138,6 +147,7 @@ export class Game {
         const newLine = document.createElement('div');
         newLine.innerHTML = input;
         this.UI.textView.appendChild(newLine);
+        newLine.scrollIntoView();
     }
 
     showInventory() {
@@ -225,12 +235,13 @@ export class Game {
 
     // function to "use" inventory slot
     rightClickPlayerInventorySlot(index) {
-        if (this.player.inventory[index] !== null) {
-            const item = this.player.equipInventoryItem(index);
-            if (item === null) return;  // exit if nothing was equipped
+        const item = this.player.inventory[index];
+        if (item !== null) {
             // style all catch-all for
-
+            
             if (item.isEquippable) {
+                const result = this.player.equipInventoryItem(index);
+                if (result === null) return;  // exit if nothing was equipped
                 // if ()
 
                 for (let i = 0; i < this.player.inventory.length; i++) {
@@ -257,7 +268,7 @@ export class Game {
 
                 this.UI.playerInv.slots[index].classList.add('equipped');   // style the player inventory item
             } else if (item.isConsumable) {
-                this.printLine(`${this.player.name} tries to eat the ${item.name}.`);
+                this.printLine(`${this.formatEntityName(this.player)} tries to eat the ${this.formatItemName(item)}, but the feature is not yet implemented.`);
             }
         }
 
@@ -314,6 +325,7 @@ export class Game {
         this.UI.playerStats.name.innerHTML = `${this.player.name}`;
         this.UI.playerStats.currentArmour.innerHTML = this.player.equippedArmour !== null ? this.player.equippedArmour.name : "none";
         this.UI.playerStats.currentWeapon.innerHTML = this.player.equippedWeapon !== null ? this.player.equippedWeapon.name : 'none';
+        this.drawTargetMenu();
     }
 
 
@@ -340,25 +352,20 @@ export class Game {
     }
 
 
-    getTargetList() {
+    getTargetList(entity) {
         const list = [];
-        for (let i=0; i<this.entities.length; i++) {
-            if (this.entities[i] !== this.player) {
+        for (let i = 0; i < this.entities.length; i++) {
+            if (this.entities[i] !== entity && this.entities[i].isAlive) {
                 list.push(this.entities[i]);
             }
-        }
-        // console.log(`--- target list ---`);
-        // for (let i=0; i<list.length; i++) {
-        //     console.log(list[i].name);
-        // }
-        // console.log(`--- /target list ---`);        
+        }    
         return list;
     }
 
     drawTargetMenu() {
-        const list = this.getTargetList();
+        const list = this.getTargetList(this.player);
         this.UI.targetMenuView.innerHTML = "";
-        for (let i=0; i<list.length; i++) {
+        for (let i = 0; i < list.length; i++) {
             const entity = list[i];
             const option = document.createElement('button');
             console.log(`drawing target menu for ${entity.name}`);
@@ -369,31 +376,103 @@ export class Game {
             // option
             this.UI.targetMenuView.appendChild(option);
         }
-
     }
-
-    toggleTargetMenu() {
-        if (this.UI.targetMenuView.classList.contains('visible')) {
-            this.UI.targetMenuView.classList.remove('visible');
+    
+    styleSomeMenu(menu, anchor) {
+        // Get the button and container positions
+        const containerRect = this.UI.textView.getBoundingClientRect();
+        const btnRect = anchor.getBoundingClientRect();
+    
+        // Calculate the available space below and above the button
+        const spaceBelow = containerRect.bottom - btnRect.bottom; // Space from button bottom to container bottom
+        const spaceAbove = btnRect.top - containerRect.top; // Space from button top to container top
+    
+        // Define the position for the menu
+        let left = btnRect.left - containerRect.left;
+    
+        // Decide whether to show the menu above or below the button
+        if (spaceBelow >= spaceAbove) {
+            // Position the menu below the button (top of menu aligns with bottom of button)
+            menu.style.top = `${btnRect.bottom - containerRect.top}px`;
+            menu.style.bottom = ""; // Clear any previous bottom setting
         } else {
-            this.drawTargetMenu();
-            this.UI.targetMenuView.classList.add('visible');
+            // Position the menu above the button (bottom of menu aligns with top of button)
+            // menu.style.bottom = `${containerRect.bottom - btnRect.top}px`;
+            menu.style.bottom = '0px';
+            menu.style.top = ""; // Clear any previous top setting
         }
+    
+        // Apply the horizontal position (left)
+        menu.style.left = `${left}px`;
+    
+        // Ensure the menu does not overflow the right side of the container
+        const menuRect = menu.getBoundingClientRect(); // Get the menu's actual size after positioning
+        const overflowRight = (menuRect.left + menuRect.width) - containerRect.right;
+    
+        if (overflowRight > 0) {
+            // Shift the menu to the left to prevent overflow
+            left -= overflowRight;
+            menu.style.left = `${left}px`;
+        }
+    
+
     }
+    
+
+
+    
+
+
+    openMenu(menu, button) {
+        this.styleSomeMenu(this.UI.menuContainer, button);
+        this.UI.currentMenu = menu;
+        menu.classList.add('visible');
+        this.UI.menuContainer.classList.add('visible');
+    }
+
+    closeMenu(menu) {
+        this.UI.currentMenu = null;
+        menu.classList.remove('visible');
+    }
+
+    handleMenuSwitch(menu, button) {
+        // handle 'toggle open' the targeted menu
+        if (this.UI.currentMenu === null) {
+            this.openMenu(menu, button);
+            return;
+        }
+
+        if (this.UI.currentMenu === menu) {
+            // handle 'toggle closed' the (currently open) targeted menu
+            this.closeMenu(menu);
+            this.UI.menuContainer.classList.remove('visible');
+            return;
+        } else {
+            this.closeMenu(this.UI.currentMenu);
+            this.openMenu(menu, button);
+            return;
+        }
+            
+        
+        
+    }
+
+    
+    
 
     setPlayerTarget(target) {
         this.player.setTarget(target);
-        this.printLine(`${this.formatEntityName(this.player)} is targeting ${this.formatStringWithClass(this.player.currentTarget.name, 'hostile')}`);
+        this.printLine(`${this.formatEntityName(this.player)} is targeting ${this.formatStringWithClass(this.player.currentTarget.name, 'hostile')}.`);
         this.UI.btn_playerAttack.innerHTML = `attack ${target.name}`;
-        this.UI.targetMenuView.classList.remove('visible');        
+        this.UI.targetMenuView.classList.remove('visible');
     }
 
-    playerAttack() {
-        this.entityAttack(this.player); 
+    player_attack() {
+        this.entityAttack(this.player);
     }
 
-    entityAttack(attacker, target=null) {
-        // handle targeting if target 
+    entityAttack(attacker, target = null) {
+        // handle targeting if target is provided
         if (target !== null) {
             console.log(`bonus target named ${target.name}`);
             attacker.setTarget(target);
@@ -405,17 +484,20 @@ export class Game {
         if (attackResult.success) {
             // console.log(`${attacker.name} attacked ${attackResult.target.name} with damage ${attackResult.damage}`);
             const killedTarget = attackResult.target.takeDamage(attackResult.damage);
-            this.printLine(`${this.formatEntityName(attacker)} attacked ${this.formatEntityName(attackResult.target)} with damage ${attackResult.damage}. (${attackResult.target.currentHP} / ${attackResult.target.maxHP})`);
+            this.printLine(`${this.formatEntityName(attacker)} attacks ${this.formatEntityName(attackResult.target)} for ${attackResult.damage} damage. (${attackResult.target.currentHP} / ${attackResult.target.maxHP})`);
             // check if the target dies
             if (killedTarget) {
                 this.printLine(`${this.formatEntityName(attackResult.target)} has died!`);
             }
-
-            
+        } else if (attackResult.target === undefined) {
+            // console.log('yeah handled the no target case');
+            this.printLine(`${this.formatEntityName(attacker)} tries to attack nobody.`);
+        } else {
+            console.error('unhandled attack result case');
         }
     }
 
-    
+
 
 }
 

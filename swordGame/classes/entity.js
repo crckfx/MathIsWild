@@ -57,19 +57,19 @@ export class Entity {
     equipArmour(armour, index) {
         this.equippedArmour = armour;
         this.equippedArmourIndex = index;
-        return armour;        
+        return armour; // hand the equipped item's inventory index back to the game
     }
     
     unequipWeapon() {
         const oldIndex = this.equippedWeaponIndex;
         this.equippedWeapon = null;
-        return oldIndex;
+        return oldIndex; // hand the unequipped item's inventory index back to the game
     }
     
     unequipArmour() {
         const oldIndex = this.equippedArmourIndex;
         this.equippedArmour = null;
-        return oldIndex;
+        return oldIndex; // hand the unequipped item's inventory index back to the game
     }
 
     setHP(value) {
@@ -136,11 +136,18 @@ export class Entity {
 
     attack() {
         if (this.currentTarget === null) {
-            console.error('error: tried to attack nobody');
+            // console.error('error: tried to attack nobody');
             return {
                 success: false,
             }
-        } else {
+        } else if (this.currentTarget.isAlive === false) {
+            return {
+                success: false,
+                target: this.currentTarget,
+            }
+        }
+        else 
+        {
             const damage = this.getDamage();
             // console.log(damage);
             return {
@@ -153,7 +160,6 @@ export class Entity {
 
     takeDamage(damage) {
         this.currentHP -= damage;
-
         if (this.currentHP <= 0) {
             this.isAlive = false;
             return true; // has died

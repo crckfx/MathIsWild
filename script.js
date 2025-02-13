@@ -3,7 +3,11 @@
 // ----------------------------------------------
 const root = document.documentElement;
 // experimental
-const themeCheckbox = document.querySelector('.switch-label').querySelector('input');
+const switchLabel = document.querySelector('.switch-label');
+let themeCheckbox;
+if (switchLabel !== null) {
+    themeCheckbox = switchLabel.querySelector('input');
+}
 
 // Save theme in a cookie
 function saveThemeCookie(theme) {
@@ -18,7 +22,9 @@ function getThemeCookie() {
 // Apply saved theme to the page
 function applySavedTheme() {
     document.documentElement.className = getThemeCookie();
-    themeCheckbox.checked = root.classList.contains('theme-light') ? true : false;
+    if (themeCheckbox !== undefined) {
+        themeCheckbox.checked = root.classList.contains('theme-light') ? true : false;
+    }
 }
 // Toggle theme between dark and light
 function toggleTheme() {
@@ -26,12 +32,13 @@ function toggleTheme() {
     if (isDark) {
         root.classList.remove('theme-dark');
         root.classList.add('theme-light');
-        themeCheckbox.checked = true;
+        
+        if (themeCheckbox !== undefined) themeCheckbox.checked = true;
         saveThemeCookie('theme-light');
     } else {
         root.classList.remove('theme-light');
         root.classList.add('theme-dark');
-        themeCheckbox.checked = false;
+        if (themeCheckbox !== undefined) themeCheckbox.checked = false;
         saveThemeCookie('theme-dark');
     }
 }
