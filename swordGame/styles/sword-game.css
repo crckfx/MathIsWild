@@ -1,5 +1,5 @@
-
-body, html {
+body,
+html {
     height: 100svh;
 }
 
@@ -65,7 +65,7 @@ body, html {
     padding: 4px;
     margin-left: 8px;
     margin-right: 8px;
-    
+
     background-color: black;
     overflow-y: scroll;
 
@@ -73,15 +73,19 @@ body, html {
     position: relative;
 
 }
+
 .game-text .weapon {
     color: var(--color-weapon-A);
 }
+
 .game-text .weaponDescription {
     color: var(--color-weapon-B);
 }
+
 .game-text .armour {
     color: var(--color-armour);
 }
+
 .game-text .armourDescription {
     color: var(--color-armour-B);
 }
@@ -89,12 +93,15 @@ body, html {
 .game-text .entity {
     color: var(--color-entity);
 }
+
 .game-text .player {
     color: var(--color-player);
 }
+
 .game-text .hostile {
     color: var(--color-entity-hostile);
 }
+
 .game-text .item {
     color: var(--color-item);
 }
@@ -117,7 +124,7 @@ body, html {
 
 .game-control-actions {
     display: flex;
-    justify-content: space-between;    
+    justify-content: space-between;
     flex: 1;
 }
 
@@ -136,21 +143,27 @@ body, html {
 #playerStats span.name {
     background-color: var(--color-entity-background);
 }
+
 #playerStats span.hp {
     background-color: var(--color-entity-background);
 }
+
 #playerStats span.hp::before {
     content: "❤️";
 }
+
 #playerStats span.currentWeapon {
     background-color: var(--color-weapon-B);
 }
+
 #playerStats span.currentWeapon::before {
     content: '🗡️';
 }
+
 #playerStats span.currentArmour {
     background-color: var(--color-armour-B);
 }
+
 #playerStats span.currentArmour::before {
     content: '🛡️';
 }
@@ -160,7 +173,8 @@ body, html {
     position: absolute;
     display: none;
 }
-#menu-container.visible{
+
+#menu-container.visible {
     /* position: absolute; */
     display: flex;
 }
@@ -172,18 +186,23 @@ body, html {
     bottom: 0px;
     gap: 8px;
     padding: 8px;
-    
+
+    list-style-type: none;
 }
 
-.floating-menu.visible{
+.floating-menu.visible {
     display: flex;
 }
 
 .floating-menu button {
     width: 100%;
 }
+
 .floating-menu li {
+    background-color: #042222;
     width: 100%;
+    display: inline-flex;
+    justify-content: center;
 }
 
 button.ham {

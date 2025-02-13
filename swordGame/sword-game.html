@@ -92,21 +92,30 @@
                     <!-- ---- console ---- -->
                     <div class="game-text no-scrollbar">
                         <div id="menu-container">
+                            <ul id="ham-menu" class="floating-menu">
+                                <h2>Main Menu</h2>
+                                
+                                <li><!-- <a href="../">go back</a> -->
+                                    <a class="goBackBtn" href="../index.html"></a>
+                                </li>
 
-                            <div id="ham-menu" class="floating-menu">
+                                <li >
 
-                                <a href="../">go back</a>
-                                <div class="toggle-switch">
-                                    <label class="switch-label">
-                                        <input type="checkbox" class="checkbox" onclick="toggleTheme()">
-                                        <span class="slider"></span>
-                                    </label>
-                                </div>
-                                <button>something else</button>
-                            </div>
+                                        <div class="toggle-switch">
+                                            <label class="switch-label">
+                                                <input type="checkbox" class="checkbox" onclick="toggleTheme()">
+                                                <span class="slider"></span>
+                                            </label>
+                                        </div>
+                                </li>
+
+                                <li>
+                                    <button>something else</button>
+                                </li>
+                            </ul>
 
                             <!-- uhhh targeting menu -->
-                            <div id="target-menu" class="floating-menu"></div>
+                            <ul id="target-menu" class="floating-menu"></ul>
                         </div>
 
 

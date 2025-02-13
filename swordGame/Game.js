@@ -364,13 +364,16 @@ export class Game {
 
     drawTargetMenu() {
         const list = this.getTargetList(this.player);
-        this.UI.targetMenuView.innerHTML = "";
+        this.UI.targetMenuView.innerHTML = "<h2>Target Menu</h2>";
         for (let i = 0; i < list.length; i++) {
             const entity = list[i];
             const option = document.createElement('button');
             console.log(`drawing target menu for ${entity.name}`);
             console.log(entity);
-            option.onclick = () => this.setPlayerTarget(entity);
+            option.onclick = () => {
+                this.setPlayerTarget(entity);
+                this.closeMenu(this.UI.currentMenu);
+            };
             // option.classList.add('')
             option.innerHTML = entity.name;
             // option
@@ -414,14 +417,8 @@ export class Game {
             left -= overflowRight;
             menu.style.left = `${left}px`;
         }
-    
-
     }
     
-
-
-    
-
 
     openMenu(menu, button) {
         this.styleSomeMenu(this.UI.menuContainer, button);
