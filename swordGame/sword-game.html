@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="../themes.css">
     <link rel="stylesheet" href="../misc.css">
     <link rel="stylesheet" href="sword-game.css">
-    
+
     <style>
 
     </style>
@@ -47,6 +47,7 @@
             <div class="game-wrapper">
 
                 <div class="game-container">
+                    <!-- --- inventory ---  -->
                     <div class="game-inventory">
                         <h2>Inventory</h2>
                         <div class="slots-wrapper">
@@ -66,25 +67,32 @@
                             </div>
                         </div>
                         <div id="controls-inventory">
-                            <button style="margin-left: auto;"
-                                id="hide-inventory">Close</button>
+                            <button style="margin-left: auto;" id="hide-inventory">Close</button>
                         </div>
                     </div>
-
-                    <div class="game-text">
-                        <div class="line">Welcome!</div>
-                    </div>
+                    <!-- --- /inventory ---  -->
                     <div class="game-controls">
                         <div id="playerStats">
                             <span class="name"></span>
                             <span class="hp"></span>
-                            <span class="weapon">(none)</span>
-                            <span class="armour">(none)</span>
+                            <span class="currentWeapon">(none)</span>
+                            <span class="currentArmour">(none)</span>
                         </div>
-                        <!-- <button onclick="advance();">Advance</button> -->
-                        <button id="advance">Advance</button>
-                        <button>Control 2</button>
-                        <button id="show-inventory">Inventory</button>
+                    </div>
+                    <!-- ---- console ---- -->
+                    <div class="game-text">
+                        <div class="line">Welcome!</div>
+                    </div>
+                    <!-- ---- /console ---- -->
+                    <!-- ---- stats + controls ---- -->
+                    <div class="game-controls">
+
+                        <div class="game-control-actions">
+                            <!-- <button onclick="advance();">Advance</button> -->
+                            <button id="advance">Advance</button>
+                            <button>Control 2</button>
+                            <button id="show-inventory">Inventory</button>
+                        </div>
                     </div>
                 </div>
 
@@ -97,7 +105,7 @@
     <!-- include the javascript documents locally -->
     <!-- <script src="sword-game.js"></script> -->
     <script type="module">
-        import {Game} from './Game.js';
+        import { Game } from './Game.js';
         const game = new Game(document.querySelector('.game-container'));
     </script>
     <script src="../script.js"></script>

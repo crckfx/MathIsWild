@@ -4,6 +4,7 @@
     --color-armour: #cc6;
     --color-armour-B: #882;
     --color-entity: #2dd;
+    --color-entity-background: #042222;
 
     --color-inventoryItem-empty: #333;
     --color-inventoryItem-occupied: #222;
@@ -42,7 +43,8 @@
 .game-text {
     flex: 1;
     padding: 4px;
-    margin: 8px;
+    margin-left: 8px;
+    margin-right: 8px;
     
     background-color: black;
     overflow-y: scroll;
@@ -69,7 +71,8 @@
 }
 
 .game-text,
-.slots {
+.slots,
+#playerStats {
     /* no scrollbar */
 
     /* Firefox */
@@ -79,19 +82,16 @@
 }
 
 .game-text::-webkit-scrollbar,
-.slots::-webkit-scrollbar {
+.slots::-webkit-scrollbar 
+#playerStats::-webkit-scrollbar {
     /* WebKit */
     width: 0;
     height: 0;
 }
 
-
-.game-controls {
-    margin: 8px;
-    display: flex;
-    justify-content: space-evenly;
-}
-
+/**********************
+ ****** INVENTORY ******
+  **********************/
 .game-inventory {
     /* display: flex; */
     flex-direction: column;
@@ -128,7 +128,7 @@
     padding: 8px;
 }
 
-
+/* individual slots */
 .slot {
     font-size: 12px;
     display: inline-block;
@@ -152,6 +152,7 @@
     background-color: var(--color-inventoryItem-equipped);
 }
 
+/* gear slots */
 .game-inventory .gear {
     flex: 1;
     /* background-color: blue; */
@@ -163,8 +164,6 @@
 
 .game-inventory .gear .gear-section {
     display: inline-flex;
-    /* width: 48px; */
-    /* height: 48px; */
     background-color: #333;
     align-items: center;
     justify-content: space-evenly;
@@ -177,4 +176,60 @@
     display: flex;
     padding: 8px;
     flex-direction: column;
+    
+}
+
+.game-controls {
+    margin: 8px;
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: column;
+}
+
+#playerStats {
+    /* margin-bottom: 8px; */
+    display: flex;
+    gap: 8px;
+    overflow-x: scroll;
+}
+
+.game-control-actions {
+    display: flex;
+    justify-content: space-evenly;    
+    overflow-x: scroll;
+
+}
+
+#playerStats span {
+    text-wrap: nowrap;
+    flex: 1;
+    /* text-align: center; */
+    padding: 8px;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+#playerStats span.name {
+    background-color: var(--color-entity-background);
+}
+#playerStats span.hp {
+    background-color: var(--color-entity-background);
+}
+#playerStats span.hp::before {
+    content: "❤️";
+}
+#playerStats span.currentWeapon {
+    background-color: var(--color-weapon-B);
+}
+#playerStats span.currentWeapon::before {
+    content: '🗡️';
+}
+#playerStats span.currentArmour {
+    background-color: var(--color-armour-B);
+}
+#playerStats span.currentArmour::before {
+    content: '🛡️';
 }

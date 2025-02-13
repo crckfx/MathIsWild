@@ -36,6 +36,8 @@ export class Game {
                 view: playerStatsView,
                 hp: playerStatsView.querySelector('.hp'),
                 name: playerStatsView.querySelector('.name'),
+                currentWeapon: playerStatsView.querySelector('.currentWeapon'),
+                currentArmour: playerStatsView.querySelector('.currentArmour'),
             },
             playerInv: {
                 view: inventoryView.querySelector('.slots'),
@@ -47,7 +49,7 @@ export class Game {
                 weapon: document.getElementById('gear-weapon').querySelector('.slot'),
             },
         };
-  
+
         // ---------------------------------------------
         // --- bind actions before returning ---
         //
@@ -59,12 +61,12 @@ export class Game {
             event.preventDefault();
             this.rightClickPlayerEquippedArmourSlot();
         });
-        
+
         UI.playerGear.weapon.addEventListener("contextmenu", (event) => {
             event.preventDefault();
             this.rightClickPlayerEquippedWeaponSlot();
-        });  
-        
+        });
+
         // todo: use a for loop here, eg.:
         // console.log('-*-*-*-*-*-*-*-*-*-*-*-*');
         // for (const key in UI.playerGear) {
@@ -130,7 +132,7 @@ export class Game {
 
     showInventory() {
         this.UI.inventoryView.classList.add('visible');
-        
+
     }
 
     hideInventory() {
@@ -211,10 +213,8 @@ export class Game {
 
     }
 
+    // function to "use" inventory slot
     rightClickPlayerInventorySlot(index) {
-        // console.log(`right click on le slot ${index}`);
-
-
         if (this.player.inventory[index] !== null) {
             const item = this.player.equipInventoryItem(index);
             if (item === null) return;  // exit if nothing was equipped
@@ -231,11 +231,13 @@ export class Game {
                         this.printLine(`${this.formatEntityName(this.player)} has equipped ${this.formatStringWithClass("weapon", "weaponDescription")} ${this.formatItemName(this.player.equippedWeapon)}.`);
                         this.UI.playerGear.weapon.innerHTML = this.player.equippedWeapon.name;
                         this.UI.playerGear.weapon.classList.add('equipped');
+                        this.updatePlayerUI();
                         break;
                     case "armour":
                         this.printLine(`${this.formatEntityName(this.player)} has equipped ${this.formatStringWithClass("armour", "armourDescription")} ${this.formatItemName(this.player.equippedArmour)}.`);
                         this.UI.playerGear.armour.innerHTML = this.player.equippedArmour.name;
                         this.UI.playerGear.armour.classList.add('equipped');
+                        this.updatePlayerUI();
                         break;
                     default:
                         this.printLine(`uhhh unhandled? ${this.formatEntityName(this.player)} has equipped ${this.formatItemName(item)}?`);
@@ -251,15 +253,15 @@ export class Game {
 
     }
 
+    // 
     rightClickPlayerEquippedWeaponSlot() {
         if (this.player.equippedWeapon !== null) {
-            // console.log(`le click le weapon slot`);
-
-            const oldItem = this.player.equippedWeapon;
-            const oldIndex = this.player.unequipWeapon(); // store the returned old
+            const oldItem = this.player.equippedWeapon;     // store the old item
+            const oldIndex = this.player.unequipWeapon(); // store the *returned* old weapon index
             this.UI.playerGear.weapon.classList.remove('equipped');
             this.UI.playerGear.weapon.innerHTML = "";
             this.UI.playerInv.slots[oldIndex].classList.remove('equipped');
+
             this.printLine(`${this.formatEntityName(this.player)} has removed weapon ${this.formatItemName(oldItem)}.`);
 
         }
@@ -292,13 +294,16 @@ export class Game {
             this.UI.playerGear.armour.innerHTML = "";
             this.printLine(`${this.formatEntityName(this.player)} has removed armour ${this.formatItemName(oldItem)}.`);
 
-        }        
+        }
     }
 
     updatePlayerUI() {
-        const health = this.player.currentHP;
+        // const health = this.player.currentHP;
         // this.playerStatsView.querySelector('.hp').innerHTML = `${health} / ${this.player.maxHP}`;
-        this.UI.playerStats.hp.innerHTML = `${health} / ${this.player.maxHP}`;
+        this.UI.playerStats.hp.innerHTML = `${this.player.currentHP} / ${this.player.maxHP}`;
+        this.UI.playerStats.name.innerHTML = `${this.player.name}`;
+        this.UI.playerStats.currentArmour.innerHTML = this.player.equippedArmour !== null ? this.player.equippedArmour.name : "none";
+        this.UI.playerStats.currentWeapon.innerHTML = this.player.equippedWeapon !== null ? this.player.equippedWeapon.name : 'none';
     }
 
 
