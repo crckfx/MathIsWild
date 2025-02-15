@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width" initial-scale="1.0">
+    <title>Sword Game (canvas)</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap">
+    <!-- Font Awesome -->
+    <script src="https://kit.fontawesome.com/159c5c66b8.js" crossorigin="anonymous"></script>
+    <!-- local -->
+    <link rel="icon" type="image/png" rel="noopener" target="_blank" href="../../block.ico">
+    <link rel="stylesheet" href="../../global.css">
+    <link rel="stylesheet" href="../../themes.css">
+    <link rel="stylesheet" href="../../misc.css">
+    <link rel="stylesheet" href="../styles/sword-game.css">
+    <link rel="stylesheet" href="../styles/inventory.css">
+    
+    <link rel="stylesheet" href="./layout.css">
+    <link rel="stylesheet" href="./controls.css">
+    <style>
+    </style>
+
+</head>
+
+<body>
+    <div class="page-wrapper">
+        <div class="page-content bg-5">
+            <div class="container">
+                <div id="panel_center" class="item large">
+                    <canvas id="game_canv"></canvas>
+                </div>
+                <div id="panel_left" class="item small">
+                    <div class="ctrlblock">
+                        <svg width="48" height="48" viewBox="0 0 48 48">
+                            <path class="dpad" id="dpad_left" d="M22,24 L16, 18 H2 V30 H16 Z" />
+                            <path class="dpad" id="dpad_up" d="M24,22 L18, 16 V2 H30 V16Z"  />
+                            <path class="dpad" id="dpad_right" d="M26,24 L32,18 H46 V30 H32 Z"/>
+                            <path class="dpad" id="dpad_down" d="M24,26 L18, 32 V46 H30 V32Z" />
+                        </svg>
+                    </div>
+                </div>
+                <div id="panel_right" class="item small">
+                    <div class="ctrlblock">
+                            <button class="btn_circ" id="control_A">A</button>
+                            <button class="btn_circ" id="control_B">B</button>
+                            <button class="btn_circ" id="control_X">X</button>
+                            <button class="btn_circ" id="control_Y">Y</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div style="display:none;">
+        <img
+          id="source"
+          src="../../Images/blocklan_mcghie.png"
+        />
+      </div>
+
+
+
+    <script src="./canvas.js"></script>
+    <script src="../../script.js"></script>
+
+</body>
+
+</html>
