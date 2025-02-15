@@ -61,6 +61,30 @@ function draw_blocklan() {
     ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
 }
 
+function handleKeyDown(event) {
+    const key = event.key.toLowerCase();
+    if (key in keyboard) {
+        event.preventDefault();
+        if (keyboard[key] !== true) {
+            // only handle if not already pressed
+            console.log(`pog press ${key}`);
+            keyboard[key] = true;
+            fire_dpad_event(key);
+        }
+    }
+}
+
+function handleKeyUp(event) {
+    const key = event.key.toLowerCase();
+    if (key in keyboard) {
+        if (keyboard[key] === true) {
+            event.preventDefault();
+            keyboard[key] = false;
+            console.log(`pog release ${key}`);
+        }
+    }
+}
+
 function bindControls() {
     HTMLcontrols.dpad.left.addEventListener('pointerdown', () => press_dpad('left'));
     HTMLcontrols.dpad.up.addEventListener('pointerdown', () => press_dpad('up'));
@@ -71,42 +95,17 @@ function bindControls() {
     HTMLcontrols.buttons.B.addEventListener('pointerdown', () => press_btn('B'));
     HTMLcontrols.buttons.X.addEventListener('pointerdown', () => press_btn('X'));
     HTMLcontrols.buttons.Y.addEventListener('pointerdown', () => press_btn('Y'));
-}
 
-function handleKeyDown(event) {
-    const key = event.key.toLowerCase();
-    if (key in keyboard) {
-        event.preventDefault();
-        if (keyboard[key] !== true) {
-            // only handle if not already pressed
-            keyboard[key] = true;
-            console.log(`pog press ${key}`);
-            updateSomething(key);
-        }
-    }
-} 
-
-// Listen for all key presses
-document.addEventListener('keydown', (event) => handleKeyDown(event));
-
-// Listen for arrow key releases
-document.addEventListener('keyup', (event) => {
-    const key = event.key.toLowerCase();
-    if (key in keyboard) {
-        if (keyboard[key] === true) {
-            event.preventDefault();
-            keyboard[key] = false;
-            console.log(`pog release ${key}`);
-        }
-    }
-});
-
-function updateSomething(key) {
-    console.log(`SOMETHING DAWG`);
-    fire_dpad_event(key);
+    // Listen for all key presses / releases
+    document.addEventListener('keydown', (event) => handleKeyDown(event));
+    document.addEventListener('keyup', (event) => handleKeyUp(event));
 
 }
 
+
+
+
+// declarations
 const ASPECT_RATIO = 4 / 3;
 const PADDING = 24;
 const MAX_SIZE = {
