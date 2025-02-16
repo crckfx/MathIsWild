@@ -40,6 +40,9 @@
     /* border: 2px solid red; */
     border-style: 2px outset;
 }
+.btn_circ.active {
+    background-color: #555;
+}
 
 
 #control_B {
