@@ -40,17 +40,13 @@ function fire_control_event(code, on) {
             if (on) {
                 press_dpad(code);
             } else {
-                release_dpad();
+                if (current_dpad_dir === code) {
+                    release_dpad();
+                }
             }
-            // console.log(`moved ${code}.`);
             break;
-
         default:
-            if (on) {
-                press_btn(code);
-            } else {
-                release_btn(code);
-            }
+            on ? press_btn(code) : release_btn(code);
 
     }
 }
@@ -84,11 +80,7 @@ function press_btn(input) {
             draw_blocklan();
             break;
         case 'Y':
-            clearCanvas();
-            break;
         case 'A':
-            clearCanvas();
-            break;
         case 'B':
             clearCanvas();
             break;
@@ -142,16 +134,24 @@ function bindControls() {
         element.dataset.buttons = name; // Add a custom attribute to identify the direction
         element.addEventListener('pointerdown', (event) => handlePointerDown_button(name, event));
 
-    
+
         // Handle pointer up only if this button was pressed
-        element.addEventListener('pointerup', (event) => handlePointerUp_button(name, event));        
+        element.addEventListener('pointerup', (event) => handlePointerUp_button(name, event));
         // Handle pointer leave to release if dragged out of the button
         element.addEventListener('pointerleave', (event) => handlePointerUp_button(name, event));
         element.addEventListener('pointercancel', (event) => handlePointerUp_button(name, event));
 
+        // probably irrelevant touch actions
+        element.addEventListener('touchstart', function (e) { e.preventDefault(); });    // Prevent touchstart default action
+        element.addEventListener('touchend', function (e) { e.preventDefault(); });      // Prevent touchend default action
+        element.addEventListener('touchmove', function (e) { e.preventDefault(); });     // Prevent touchmove default action        
+        element.addEventListener('touchcancel', function (e) { e.preventDefault(); });   // Prevent touchcancel default action
+        
+        // disable right-click
         element.addEventListener("contextmenu", (event) => {
             event.preventDefault();
         });
+
 
 
     });
@@ -243,9 +243,6 @@ const observer = new ResizeObserver(resize);
 observer.observe(panelCenter);
 
 
-
-
-
 let activePointerId = null; // Track the active pointer ID
 
 function handlePointerDown(direction, event) {
@@ -284,7 +281,7 @@ function handlePointerDown_button(name, event) {
     }
 }
 function handlePointerUp_button(name, event) {
-    event.preventDefault();
+    // event.preventDefault();
     if (buttonStates[name] === true) {
         buttonStates[name] = false; // Reset the state
         release_btn(name);

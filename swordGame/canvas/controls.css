@@ -1,3 +1,4 @@
+
 .ctrlblock {
     width: 100px;
     height: 100px;
@@ -15,34 +16,38 @@
 
 .dpad {
     stroke: darkgray;
-    stroke-width: 2;
+    stroke-width: 1.5;
     fill: black;
+    stroke-linejoin: round;
 }
 
-.dpad:hover {
-    stroke: #d3d3d3;
-    /* display: none; */
-}
 
 .dpad.active {
     stroke: #d3d3d3;
-    fill: darkgray;
+    fill: #005;
 }
 
 .btn_circ {
-    height: 2rem;
-    width: 2rem;
+    user-select: none;
+    height: 32px;
+    width: 32px;
     text-align: center;
     border-radius: 50%;
     color: white;
     background-color: black;
     /* outline: none; */
     /* border: 2px solid red; */
-    border-style: 2px outset;
-    touch-action: none;    
+    border-width: 2px;
+    border-style: outset;
+    border-color: #e3e3e3;
+    touch-action: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .btn_circ.active {
-    background-color: #555;
+    border-style: inset;
+    background-color: #005;
 }
 
 
