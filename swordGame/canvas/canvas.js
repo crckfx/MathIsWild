@@ -137,26 +137,24 @@ function handleKeyUp(event) {
 }
 
 function bindControls() {
-    // HTMLcontrols.dpad.left.addEventListener('pointerdown', () => press_dpad('left'));
-    // HTMLcontrols.dpad.up.addEventListener('pointerdown', () => press_dpad('up'));
-    // HTMLcontrols.dpad.right.addEventListener('pointerdown', () => press_dpad('right'));
-    // HTMLcontrols.dpad.down.addEventListener('pointerdown', () => press_dpad('down'));
+    // Bind pointer down for each button (ABXY)
+    Object.entries(HTMLcontrols.buttons).forEach(([name, element]) => {
+        element.dataset.buttons = name; // Add a custom attribute to identify the direction
+        element.addEventListener('pointerdown', (event) => handlePointerDown_button(name, event));
 
-    HTMLcontrols.buttons.A.addEventListener('pointerdown', () => press_btn('A'));
-    HTMLcontrols.buttons.B.addEventListener('pointerdown', () => press_btn('B'));
-    HTMLcontrols.buttons.X.addEventListener('pointerdown', () => press_btn('X'));
-    HTMLcontrols.buttons.Y.addEventListener('pointerdown', () => press_btn('Y'));
+    
+        // Handle pointer up only if this button was pressed
+        element.addEventListener('pointerup', (event) => handlePointerUp_button(name, event));        
+        // Handle pointer leave to release if dragged out of the button
+        element.addEventListener('pointerleave', (event) => handlePointerUp_button(name, event));
+        element.addEventListener('pointercancel', (event) => handlePointerUp_button(name, event));
 
-    HTMLcontrols.buttons.A.addEventListener('click', () => release_btn('A'));
-    HTMLcontrols.buttons.B.addEventListener('click', () => release_btn('B'));
-    HTMLcontrols.buttons.X.addEventListener('click', () => release_btn('X'));
-    HTMLcontrols.buttons.Y.addEventListener('click', () => release_btn('Y'));
+        element.addEventListener("contextmenu", (event) => {
+            event.preventDefault();
+        });
 
 
-    // HTMLcontrols.dpad.left.addEventListener('pointerup', () => release_dpad());
-    // HTMLcontrols.dpad.up.addEventListener('pointerup', () => release_dpad());
-    // HTMLcontrols.dpad.right.addEventListener('pointerup', () => release_dpad());
-    // HTMLcontrols.dpad.down.addEventListener('pointerup', () => release_dpad());
+    });
 
     // Listen for all key presses / releases
     document.addEventListener('keydown', (event) => handleKeyDown(event));
@@ -173,8 +171,6 @@ function bindControls() {
     document.addEventListener('pointerup', handlePointerUp);
     document.addEventListener('pointermove', handlePointerMove);
 
-
-
 }
 
 
@@ -189,6 +185,12 @@ const MAX_SIZE = {
 };
 
 let current_dpad_dir = null;
+const buttonStates = {
+    A: false,
+    B: false,
+    X: false,
+    Y: false,
+};
 
 const HTMLcontrols = {
     dpad: {
@@ -272,5 +274,23 @@ function handlePointerMove(event) {
         }
     }
 }
+
+function handlePointerDown_button(name, event) {
+    event.preventDefault();
+    if (buttonStates[name] !== true) {
+        buttonStates[name] = true;
+        console.log(`pointer down on button ${name}`);
+        press_btn(name);
+    }
+}
+function handlePointerUp_button(name, event) {
+    event.preventDefault();
+    if (buttonStates[name] === true) {
+        buttonStates[name] = false; // Reset the state
+        release_btn(name);
+    }
+}
+
+
 
 bindControls();

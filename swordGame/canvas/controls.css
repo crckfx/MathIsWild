@@ -39,6 +39,7 @@
     /* outline: none; */
     /* border: 2px solid red; */
     border-style: 2px outset;
+    touch-action: none;    
 }
 .btn_circ.active {
     background-color: #555;
