@@ -24,16 +24,45 @@ function resize() {
 }
 
 
+function fire_control_event(code) {
+    switch (code) {
+        case 'left':
+        case 'up':
+        case 'right':
+        case 'down':
+            fire_dpad_event(code);
+            // console.log(`moved ${code}.`);
+            break;
+        case null:
+            release_dpad();
+            break;
+        default:
+            press_btn(code);
+
+    }
+}
+
 function fire_dpad_event(direction) {
+    if (current_dpad_dir !== null) {
+        HTMLcontrols.dpad[current_dpad_dir].classList.remove('active');
+    }
     current_dpad_dir = direction;
+    HTMLcontrols.dpad[current_dpad_dir].classList.add('active');
     console.log(`moved ${direction}.`);
 }
 
-function press_dpad(input) {
-    fire_dpad_event(input);
+function release_dpad() {
+    if (current_dpad_dir !== null) {
+        HTMLcontrols.dpad[current_dpad_dir].classList.remove('active');
+        console.log(`releasing ${current_dpad_dir}.`);
+        current_dpad_dir = null;
+    }
 }
 
+
+
 function press_btn(input) {
+    console.log(`pressed ${input}.`);
     switch (input) {
         case 'X':
             clearCanvas();
@@ -65,11 +94,11 @@ function handleKeyDown(event) {
     const key = event.key.toLowerCase();
     if (key in keyboard) {
         event.preventDefault();
+        // only handle if not already pressed
         if (keyboard[key] !== true) {
-            // only handle if not already pressed
-            console.log(`pog press ${key}`);
             keyboard[key] = true;
-            fire_dpad_event(key);
+            // fire_dpad_event(keys[key]);
+            fire_control_event(keys[key]);
         }
     }
 }
@@ -77,25 +106,33 @@ function handleKeyDown(event) {
 function handleKeyUp(event) {
     const key = event.key.toLowerCase();
     if (key in keyboard) {
+        // only handle if already pressed
         if (keyboard[key] === true) {
             event.preventDefault();
             keyboard[key] = false;
-            console.log(`pog release ${key}`);
+            fire_control_event(null);
+
         }
     }
 }
 
 function bindControls() {
-    HTMLcontrols.dpad.left.addEventListener('pointerdown', () => press_dpad('left'));
-    HTMLcontrols.dpad.up.addEventListener('pointerdown', () => press_dpad('up'));
-    HTMLcontrols.dpad.right.addEventListener('pointerdown', () => press_dpad('right'));
-    HTMLcontrols.dpad.down.addEventListener('pointerdown', () => press_dpad('down'));
-
+    HTMLcontrols.dpad.left.addEventListener('pointerdown', () => fire_dpad_event('left'));
+    HTMLcontrols.dpad.up.addEventListener('pointerdown', () => fire_dpad_event('up'));
+    HTMLcontrols.dpad.right.addEventListener('pointerdown', () => fire_dpad_event('right'));
+    HTMLcontrols.dpad.down.addEventListener('pointerdown', () => fire_dpad_event('down'));
+    
     HTMLcontrols.buttons.A.addEventListener('pointerdown', () => press_btn('A'));
     HTMLcontrols.buttons.B.addEventListener('pointerdown', () => press_btn('B'));
     HTMLcontrols.buttons.X.addEventListener('pointerdown', () => press_btn('X'));
     HTMLcontrols.buttons.Y.addEventListener('pointerdown', () => press_btn('Y'));
-
+    
+    
+    HTMLcontrols.dpad.left.addEventListener('pointerup', () => release_dpad());
+    HTMLcontrols.dpad.up.addEventListener('pointerup', () => release_dpad());
+    HTMLcontrols.dpad.right.addEventListener('pointerup', () => release_dpad());
+    HTMLcontrols.dpad.down.addEventListener('pointerup', () => release_dpad());
+    
     // Listen for all key presses / releases
     document.addEventListener('keydown', (event) => handleKeyDown(event));
     document.addEventListener('keyup', (event) => handleKeyUp(event));

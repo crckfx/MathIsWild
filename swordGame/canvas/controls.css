@@ -24,7 +24,7 @@
     /* display: none; */
 }
 
-.dpad:active {
+.dpad.active {
     stroke: #d3d3d3;
     fill: darkgray;
 }
