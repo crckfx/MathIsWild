@@ -180,8 +180,8 @@ function bindControls() {
 const ASPECT_RATIO = 4 / 3;
 const PADDING = 24;
 const MAX_SIZE = {
-    x: 1024,
-    y: 768
+    x: 1600,
+    y: 1200
 };
 
 let current_dpad_dir = null;

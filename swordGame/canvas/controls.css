@@ -1,11 +1,8 @@
-
+/* controls block (currently used for quadrant layout) */
 .ctrlblock {
     width: 100px;
     height: 100px;
-    /* background-color: green; */
     position: relative;
-    /* aspect-ratio: 1; */
-    /* object-fit: contain; */
 }
 
 .ctrlblock svg {
@@ -13,65 +10,70 @@
     height: 100%;
 }
 
-
+/* the D-PAD  */
 .dpad {
-    stroke: darkgray;
     stroke-width: 1.5;
-    fill: black;
     stroke-linejoin: round;
+    stroke: #a9a9a9;
+    fill: #030303;
 }
-
 
 .dpad.active {
-    stroke: #d3d3d3;
-    fill: #005;
+    stroke: #030303;
+    fill: #228;
 }
 
+/* the BUTTONS (ABXY) */
 .btn_circ {
     user-select: none;
-    height: 32px;
-    width: 32px;
+    height: 36px;
+    width: 36px;
     text-align: center;
+    color: #e3e3e3;
+    background-color: #030303;
+    border-width: 3px;
+    border-style: solid;
+    border-color: #a9a9a9;
     border-radius: 50%;
-    color: white;
-    background-color: black;
-    /* outline: none; */
-    /* border: 2px solid red; */
-    border-width: 2px;
-    border-style: outset;
-    border-color: #e3e3e3;
     touch-action: none;
     display: flex;
     justify-content: center;
     align-items: center;
+    box-sizing: border-box;
+
 }
+
 .btn_circ.active {
-    border-style: inset;
-    background-color: #005;
+    /* border-style: inset; */
+    border-width: 4px;
+    background-color: #228;
+    border-color: #030303;
+
 }
 
-
-#control_B {
+.quadrant .control {
     position: absolute;
-    right: 0px;
-    top: 50%;
-    transform: translateY(-50%);
 }
-#control_A {
-    position: absolute;
-    bottom: 0px;
+
+.quadrant .y {
     left: 50%;
     transform: translateX(-50%);
 }
-#control_X {
-    position: absolute;
+
+.quadrant .x {
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.quadrant .east {
     left: 0px;
-    top: 50%;
-    transform: translateY(-50%);
 }
-#control_Y {
-    position: absolute;
+.quadrant .north {
     top: 0px;
-    left: 50%;
-    transform: translateX(-50%);
+}
+.quadrant .west {
+    right: 0px;
+}
+.quadrant .south {
+    bottom: 0px;
 }
