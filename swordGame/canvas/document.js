@@ -7,6 +7,9 @@ const panelRight = document.getElementById('panel_right');
 
 export const canvas = document.getElementById('game_canv');
 export const ctx = canvas.getContext("2d");
+ctx.webkitImageSmoothingEnabled = false;
+ctx.mozImageSmoothingEnabled = false;
+ctx.imageSmoothingEnabled = false;
 export const cellSelector = document.getElementById('cellSelector');
 
 

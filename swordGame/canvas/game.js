@@ -1,11 +1,9 @@
 import { current_dpad_dir, HtmlControls } from "./controls.js";
-import { handlePointerDown_dpad } from "./pointer.js";
 import { clearCanvas, drawThingAtPosition, draw, clearThingAtPosition, drawBorder } from "./render.js";
 export const block_positon = {
     x: 0,
     y: 0
 };
-import { canvas, ctx, getHtmlControls, cell_size } from "./document.js";
 export const NUM_GRID_X = 12;
 export const NUM_GRID_Y = 9;
 
@@ -18,6 +16,9 @@ function createGameGrid(cellsX, cellsY) {
     game_grid[5][4] = 'tree';
     game_grid[5][8] = 'tree';
     game_grid[10][6] = 'tree';
+
+    game_grid[8][1] = 'skelly';
+    // game_grid[8][2] = 'sprite_1';
 
     return game_grid;
 }
@@ -59,47 +60,36 @@ export function do_a_tick() {
 
 }
 
+export let characterIsFacing = 'down';
 
 function move_block_position_x(offset) {
     const newPos = block_positon.x + offset;
-
-    if (newPos > NUM_GRID_X - 1 || newPos < 0) {
-        return;
+    if (newPos > NUM_GRID_X - 1 || newPos < 0) return;          // deny move through edge of grid
+    if (game_grid[newPos][block_positon.y] === 'tree') return;  // deny move though 'trees'
+    if (game_grid[newPos][block_positon.y] === 'skelly') return;  // deny move though 'trees'
+    if (game_grid[newPos][block_positon.y] === 'sprite_1') return;  // deny move though 'trees'
+    clearThingAtPosition(block_positon.x, block_positon.y);     // remove guy from old position
+    if (newPos > block_positon.x) {
+        characterIsFacing = 'right';
+    } else {
+        characterIsFacing = 'left';
     }
+    block_positon.x = newPos;                                   // set guy's new x position
+    drawThingAtPosition(block_positon.x, block_positon.y);      // render new position 
 
-    if (game_grid[newPos][block_positon.y] === 'tree') {
-        return;
-    }
-    
-    
-    clearThingAtPosition(block_positon.x, block_positon.y);
-    
-    block_positon.x = newPos;
-    drawThingAtPosition(block_positon.x, block_positon.y);
 }
 function move_block_position_y(offset) {
     const newPos = block_positon.y + offset;
-
-
-    if (newPos > NUM_GRID_Y - 1 || newPos < 0) {
-        return;
-    }
-
-    if (game_grid[block_positon.x][newPos] === 'tree') {
-        return;
-    }
-    
-
+    if (newPos > NUM_GRID_Y - 1 || newPos < 0) return;
+    if (game_grid[block_positon.x][newPos] === 'tree') return;
+    if (game_grid[block_positon.x][newPos] === 'skelly') return;
+    if (game_grid[block_positon.x][newPos] === 'sprite_1') return;
     clearThingAtPosition(block_positon.x, block_positon.y);
-
-    if (block_positon.y + offset > NUM_GRID_Y) {
-        block_positon.y = NUM_GRID_Y;
-    } else if (block_positon.y + offset < 0) {
-        block_positon.y = 0;
+    if (newPos > block_positon.y) {
+        characterIsFacing = 'down';
     } else {
-        block_positon.y += offset;
-    }
-
+        characterIsFacing = 'up';
+    }    
+    block_positon.y = newPos;                                   // set guy's new x position
     drawThingAtPosition(block_positon.x, block_positon.y);
 }
-
