@@ -1,4 +1,4 @@
-import { fire_control_event, current_dpad_dir, buttonStates } from "./canvas.js";
+import { fire_control_event, current_dpad_dir, buttonStates } from "./controls.js";
 // --- DPAD POINTERS ---
 let dpadPointerId = null; // Track the active pointer ID
 // (specific) this pointerDOWN handler is assigned to the DPAD elements (paths) only

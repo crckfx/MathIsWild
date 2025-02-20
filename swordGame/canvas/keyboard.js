@@ -3,7 +3,7 @@
 // - defines a translation of *keyboard actions* => *control messages*
 // - maps actions to `fire_control_event` (imported function which accepts control messages)
 
-import { fire_control_event } from "./canvas.js";
+import { fire_control_event } from "./controls.js";
 // --------------------------------------------
 // the keyboard
 // define the keyAliases we want to handle

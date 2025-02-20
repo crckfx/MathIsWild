@@ -1,5 +1,6 @@
-import { canvas, ctx, NUM_GRID_X, NUM_GRID_Y, cell_size, cellSelector } from "./document.js";
-import { block_positon, game_grid } from "./canvas.js";
+import { canvas, ctx, cell_size, cellSelector } from "./document.js";
+
+import { game_grid, block_positon } from "./game.js";
 // CLEARING THE CANVAS
 export function clearCanvas() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -27,6 +28,7 @@ export function clearThingAtPosition(posX, posY) {
     render_entire_grid();
 }
 
+// draw a border around a grid
 export function drawBorder(x, y) {
     ctx.strokeStyle = "green";
     ctx.strokeRect(cell_size.x * x, cell_size.y * y, cell_size.x, cell_size.y);
@@ -49,3 +51,6 @@ export function render_entire_grid() {
     drawBorder(block_positon.x, block_positon.y);
 }
 
+window.onload = () => {
+    drawThingAtPosition(block_positon.x, block_positon.y);
+}
