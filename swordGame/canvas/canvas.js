@@ -248,4 +248,6 @@ function do_a_tick() {
 
 }
 
-drawThingAtPosition(block_positon.x, block_positon.y);
+window.onload = () => {
+    drawThingAtPosition(block_positon.x, block_positon.y);
+}
