@@ -1,9 +1,9 @@
 // keyoard.js
 // - defines a way to catch specified key events 
 // - defines a translation of *keyboard actions* => *control messages*
-// - maps actions to `fire_keyboard_event` (imported function which accepts control messages)
+// - maps actions to `fire_control_event` (imported function which accepts control messages)
 
-import { fire_keyboard_event } from "./canvas.js";
+import { fire_control_event } from "./canvas.js";
 // --------------------------------------------
 // the keyboard
 // define the keyAliases we want to handle
@@ -36,7 +36,7 @@ export function handleKeyDown(event) {
         // only handle if not already pressed
         if (keyboard[key] !== true) {
             keyboard[key] = true;
-            fire_keyboard_event(keyAliases[key], true); // lookup the keycode in keyAliases[] for its control alias
+            fire_control_event(keyAliases[key], true); // lookup the keycode in keyAliases[] for its control alias
         }
     }
 }
@@ -48,7 +48,7 @@ export function handleKeyUp(event) {
         event.preventDefault();
         if (keyboard[key] === true) {
             keyboard[key] = false;
-            fire_keyboard_event(keyAliases[key], false); // lookup the keycode in keyAliases[] for its control alias
+            fire_control_event(keyAliases[key], false); // lookup the keycode in keyAliases[] for its control alias
         }
     }
 }

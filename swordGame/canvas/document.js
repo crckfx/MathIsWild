@@ -1,13 +1,27 @@
+import { render_entire_grid } from "./render.js";
+
 const panelCenter = document.getElementById('panel_center');
 const panelLeft = document.getElementById('panel_left');
 const panelRight = document.getElementById('panel_right');
 
 export const canvas = document.getElementById('game_canv');
 export const ctx = canvas.getContext("2d");
+export const cellSelector = document.getElementById('cellSelector');
+
+export const NUM_GRID_X = 12;
+export const NUM_GRID_Y = 9;
+export const cell_size = getCellSize();
 
 const observer = new ResizeObserver(resize);
 observer.observe(panelCenter);
 
+
+function getCellSize() {
+    return {
+        x: canvas.width / NUM_GRID_X,
+        y: canvas.height / NUM_GRID_Y,
+    }
+}
 
 // function to set the canvas size based on its parent (note - overflow:hidden protects against parent growth)
 function resize() {
@@ -33,6 +47,12 @@ function resize() {
     // subtract padding
     canvas.width = width - PADDING;
     canvas.height = height - PADDING;
+
+    const newCellSize = getCellSize();
+    cell_size.x = newCellSize.x;
+    cell_size.y = newCellSize.y;
+
+    render_entire_grid();
 }
 
 

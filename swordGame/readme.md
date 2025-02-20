@@ -2,4 +2,5 @@
 
 ## todo
 - [x] create *item* class and extend it with *weapon* and *armour*
-- [ ] use a canvas to animate something
+- [x] use a canvas to animate something
+    - [ ] define a grid & animate something on it
