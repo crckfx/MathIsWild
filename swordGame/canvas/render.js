@@ -1,20 +1,14 @@
-import { canvas, ctx, cell_size, cellSelector } from "./document.js";
+import { canvas, ctx, cell_size, cellSelector, images } from "./document.js";
 
-import { game_grid, block_positon, characterIsFacing } from "./game.js";
-import { extractSprites } from "./sprite.js";
+import { game_grid, block_positon, characterIsFacing, gary } from "./game.js";
+
+import { getSpriteIndex } from "./sprite.js";
 // CLEARING THE CANVAS
 export function clearCanvas() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 }
 
-// TESTING DRAWING ON THE CANVAS
-const images = {
-    blocklan: document.getElementById("image_blocky"), // silly image of blocky
-    tree: document.getElementById("image_tree"),  // tree
-    skelly: document.getElementById("image_skelly"),  // skelly
-    spritesheet: document.getElementById("image_spritesheet"),  // sprites
-    spriteTextures: extractSprites(document.getElementById("image_spritesheet")),
-}
+
 
 
 export function drawThingAtPosition(posX, posY) {
@@ -33,8 +27,8 @@ export function clearThingAtPosition(posX, posY) {
 }
 
 // draw a border around a grid
-export function drawBorder(x, y) {
-    ctx.strokeStyle = "green";
+export function drawBorder(x, y, colour = 'green') {
+    ctx.strokeStyle = colour;
     ctx.strokeRect(cell_size.x * x, cell_size.y * y, cell_size.x, cell_size.y);
 
 }
@@ -46,7 +40,11 @@ export function render_entire_grid() {
         for (let j = 0; j < game_grid[i].length; j++) {
             const cell = game_grid[i][j];
             if (cell === 'lachie') {
+                ctx.imageSmoothingEnabled = false;
                 ctx.drawImage(getSprite(characterIsFacing), cell_size.x * i, cell_size.y * j, cell_size.x, cell_size.y);
+            } else if (cell === 'gary') {
+                // ctx.drawImage(getSprite_Red(gary.isFacing), cell_size.x * i, cell_size.y * j, cell_size.x, cell_size.y);
+                drawEntity(gary);
             } else if (cell === 'tree') {
                 ctx.drawImage(images.tree, cell_size.x * i, cell_size.y * j, cell_size.x, cell_size.y);
             } else if (cell === 'skelly') {
@@ -65,17 +63,21 @@ export function render_entire_grid() {
 function getSprite(isFacing) {
     return images.spriteTextures[getSpriteIndex(isFacing)];
 }
-
-function getSpriteIndex(isFacing) {
-
-    switch (isFacing) {
-        case 'down': return 0;
-        case 'left': return 8;
-        case 'up': return 16;
-        case 'right': return 24;
-    }
+function getSprite_Red(isFacing) {
+    return images.spriteTextures_red[getSpriteIndex(isFacing)];
 }
 
+
+
+export function drawEntity(entity) {
+    // console.log(`entity is facing ${entity.getFacing()}`)
+    // console.log(`entity sprite is ${entity.getEntitySprite()}`)
+    ctx.drawImage(entity.getEntitySprite(), cell_size.x * entity.position.x, cell_size.y * entity.position.y, cell_size.x, cell_size.y);
+    if (entity.hasAlert) {
+        drawBorder(entity.position.x, entity.position.y, "red");
+    }
+
+}
 
 window.onload = () => {
     drawThingAtPosition(block_positon.x, block_positon.y);

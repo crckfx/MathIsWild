@@ -52,8 +52,8 @@ function press_dpad(direction) {
 function release_dpad() {
     if (current_dpad_dir !== null) {
         HtmlControls.dpad[current_dpad_dir].classList.remove('active');
-        console.log(`releasing ${current_dpad_dir}.`);
         current_dpad_dir = null;
+        // console.log(`released ${current_dpad_dir}.`);
     }
 }
 // --------------------------------------------

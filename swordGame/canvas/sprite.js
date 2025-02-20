@@ -2,10 +2,11 @@ const SPRITE_SIZE = 16;
 const SPRITES_PER_ROW = 4;
 const SPRITE_COUNT = 8 * SPRITES_PER_ROW; // Total number of sprites (4 columns, 8 rows)
 
-// Cache for storing sprite textures
-const spriteTextures = [];
+
 
 export function extractSprites(spriteSheet) {
+    // Cache for storing sprite textures
+    const spriteTextures = [];
     for (let i = 0; i < SPRITE_COUNT; i++) {
         const sx = (i % SPRITES_PER_ROW) * SPRITE_SIZE;
         const sy = Math.floor(i / SPRITES_PER_ROW) * SPRITE_SIZE;
@@ -16,9 +17,9 @@ export function extractSprites(spriteSheet) {
         spriteCanvas.height = SPRITE_SIZE;
 
         const spriteCtx = spriteCanvas.getContext('2d');
-        spriteCtx.webkitImageSmoothingEnabled = false;
-        spriteCtx.mozImageSmoothingEnabled = false;
-        spriteCtx.imageSmoothingEnabled = false;
+        // spriteCtx.webkitImageSmoothingEnabled = false;
+        // spriteCtx.mozImageSmoothingEnabled = false;
+        // spriteCtx.imageSmoothingEnabled = false;
         // Draw the sprite onto the offscreen canvas
         spriteCtx.drawImage(
             spriteSheet,
@@ -30,4 +31,15 @@ export function extractSprites(spriteSheet) {
     }
 
     return spriteTextures;
+}
+
+
+export function getSpriteIndex(isFacing) {
+
+    switch (isFacing) {
+        case 'down': return 0;
+        case 'left': return 8;
+        case 'up': return 16;
+        case 'right': return 24;
+    }
 }

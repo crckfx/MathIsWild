@@ -1,5 +1,6 @@
 import { render_entire_grid } from "./render.js";
 import { NUM_GRID_X, NUM_GRID_Y } from "./game.js";
+import { extractSprites } from "./sprite.js";
 
 const panelCenter = document.getElementById('panel_center');
 const panelLeft = document.getElementById('panel_left');
@@ -84,4 +85,14 @@ export function getHtmlControls() {
     };
     
     return HTMLcontrols;
+}
+
+// TESTING DRAWING ON THE CANVAS
+export const images = {
+    blocklan: document.getElementById("image_blocky"), // silly image of blocky
+    tree: document.getElementById("image_tree"),  // tree
+    skelly: document.getElementById("image_skelly"),  // skelly
+    spritesheet: document.getElementById("image_spritesheet"),  // sprites
+    spriteTextures: extractSprites(document.getElementById("image_spritesheet")),
+    spriteTextures_red: extractSprites(document.getElementById("image_spritesheet_red")),
 }
