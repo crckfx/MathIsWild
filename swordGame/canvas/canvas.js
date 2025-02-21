@@ -3,7 +3,7 @@ import { draw } from "./render.js";
 
 import { HtmlControls, bindControls } from "./controls.js";
 import { do_a_tick, NUM_GRID_X, NUM_GRID_Y } from "./game.js";
-import { extractSprites, images, textures, dummy_extractSprites, loadImage } from "./sprite.js";
+import { extractSprites, images, textures, loadImage, extract_single_sprite } from "./sprite.js";
 
 async function dummy_init() {
     try {
@@ -18,19 +18,32 @@ async function dummy_init() {
         images.dirt = await loadImage('../../Images/sprite/dirt.png');
 
 
+        images.manyTextures = await loadImage('../../Images/sprite/Textures-16.png');
+
+
         // unpack the texture resources
-        textures.spriteDefault = await dummy_extractSprites(images.spriteDefault);
-        textures.spriteRed = await dummy_extractSprites(images.spriteRed);
-        textures.spriteYellow = await dummy_extractSprites(images.spriteYellow);
+        textures.spriteDefault = await extractSprites(images.spriteDefault);
+        textures.spriteRed = await extractSprites(images.spriteRed);
+        textures.spriteYellow = await extractSprites(images.spriteYellow);
+
+        textures.road = await extract_single_sprite(images.manyTextures, 3, 2);
+        textures.grass = await extract_single_sprite(images.manyTextures, 3, 15, 16);
+        textures.grass2 = await extract_single_sprite(images.manyTextures, 2, 15, 16);
+        textures.dirt = await extract_single_sprite(images.manyTextures, 1, 30);
+        textures.water = [
+            await extract_single_sprite(images.manyTextures, 11, 8),
+            await extract_single_sprite(images.manyTextures, 12, 8),
+            await extract_single_sprite(images.manyTextures, 13, 8),
+
+        ];
+        textures.sand = await extract_single_sprite(images.manyTextures, 1, 6);
 
         // assign pointer and keyboard listeners
         bindControls();
-
         // watch for resize on the canvas container
         const observer = new ResizeObserver(resize);
         observer.observe(panelCenter);
 
-        // draw();
     } catch (error) {
         console.error('Failed to load image', error);
     }

@@ -1,6 +1,5 @@
 import { draw, CAMERA_CELLS_X, CAMERA_CELLS_Y } from "./render.js";
 import { NUM_GRID_X, NUM_GRID_Y, } from "./game.js";
-import { extractSprites } from "./sprite.js";
 
 export const panelCenter = document.getElementById('panel_center');
 const panelLeft = document.getElementById('panel_left');

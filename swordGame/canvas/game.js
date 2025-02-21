@@ -6,8 +6,14 @@ export const block_positon = {
     x: 0,
     y: 0
 };
-export const NUM_GRID_X = 18;
+export const NUM_GRID_X = 24;
 export const NUM_GRID_Y = 24;
+
+export const camera = {
+    x: 0,
+    y: 0
+};
+
 
 export const doodads = [
     // // left wall trees
@@ -84,20 +90,20 @@ function createGameGrid(cellsX, cellsY) {
 
         }
     }
-    game_grid[1][1].occupying = 'lachie';
+    // game_grid[1][1].occupying = 'lachie';
 
 
 
 
-    for (let i = 0; i < doodads.length; i++) {
-        const d = doodads[i];
-        if (d.type === 'tree') {
-            // game_grid[d.x][d.y] = 'tree';
-            if (d.x > -1 && d.x < NUM_GRID_X && d.y > -1 && d.y < NUM_GRID_Y) {
-                game_grid[d.x][d.y].occupying = 'tree';
-            }
-        }
-    }
+    // for (let i = 0; i < doodads.length; i++) {
+    //     const d = doodads[i];
+    //     if (d.type === 'tree') {
+    //         // game_grid[d.x][d.y] = 'tree';
+    //         if (d.x > -1 && d.x < NUM_GRID_X && d.y > -1 && d.y < NUM_GRID_Y) {
+    //             game_grid[d.x][d.y].occupying = 'tree';
+    //         }
+    //     }
+    // }
 
     // for (const key in entities) {
     //     const e = entities[key];
@@ -185,9 +191,6 @@ function check_all_lines_of_sight() {
     for (const key in entities) {
         entities[key].hasAlert = check_cell_is_in_line_of_sight(px, py, entities[key]);
     }
-    // entities.gary.hasAlert = check_cell_is_in_line_of_sight(player.position.x, player.position.y, entities.gary);
-    // entities.harold.hasAlert = check_cell_is_in_line_of_sight(player.position.x, player.position.y, entities.harold);
-    // entities.fred.hasAlert = check_cell_is_in_line_of_sight(player.position.x, player.position.y, entities.fred);
 }
 
 function position_is_in_bounds(pos, min, max) {
@@ -278,46 +281,71 @@ export const player = {
 }
 
 
-
-
-// game_grid[5][4] = 'tree';
-// game_grid[5][8] = 'tree';
-// game_grid[10][6] = 'tree';
-
 const map_1 = {
     floor:
-    `   ggggggddssddgggggg
-        ggggggddssddgggggg
-        gggggddsssdggggggg
-        gggggddssddggggggg
-        gggggddssddggggggg
-        gggggddssdddgggggg
-        gggggddsssddgggggg
-        ggwwwgddssddgggggg
-        ggwwwgddssddgggggg
-        ggwwwgddssddgggggg
-        ggggggddssddgggggg
-        ggggggddssddgggggg`,
+    `   Gggggggdrrddggggggdswwww
+        GGggggddrrddggggggdswwww
+        Ggggggdrrrdgggggggdswwww
+        Ggggggdrrddgggggggdsswww
+        Ggggggdrrddgggggggsswwww
+        Ggggggdrrdddgggggggsswww
+        Ggggggdrrrddggggggssswww
+        Ggwwggddrrddggggggssssww
+        ggwwwgddrrddggggggssssww
+        ggwwggddrrddgggggggsssdw
+        gggggddrrrddggggggggssdw
+        gggggddrrddggggggggggssw
+        gggggddrrddgggggggggggsw
+        gggggddrrddgggggggdgggss
+        gggggdrrddggggggggddgggs
+        gggggdrrddgggssssssddggd
+        gggggdrrddgggswwswwddddd
+        gggggdrrddgggswwswwwwwww
+        gggggdrrddgggwwwswwwwwww
+        gggggdrrGdgggswwswwwssww
+        gggggGrGGdgggwwwswwssssw
+        gggggGrGGdgggswwswwsssww
+        gggggGrGddggswwwssssswww
+        gggggGwGdgggsswwwwwwwwws`,
     occupants: 
-    `   TTTT..dd..dd......
-        TP....dd03dd......
-        T....dd...d.......
-        T....dd..dd.....T.
-        2....dd..dd....TTT
-        T....dd..ddd...TTT
-        T....dd...dd....T.
-        T.WWW.dd..dd......
-        T.WWW.dd..dd......
-        ..WWW.dd..dd......
-        ......dd..dd......
-        ......dd1.dd......`,
+    `   TTTT....................
+        T.......03..............
+        T.......................
+        T...P...........T.......
+        2..............TTT......
+        T..............TTT......
+        T...............T.......
+        T.......................
+        T.......................
+        ........................
+        ........................
+        ........1...............
+        ....T......T............
+        ...............T........
+        ..T........T............
+        .....T..TT..............
+        .....T..TT..............
+        .....T..TT..............
+        .....T...T..............
+        .....T...T..............
+        .....T..TT..............
+        .....T.TT...............
+        .....T.T................
+        .....T.T................
+        .....TET................`,
+    cameraStart: {
+        x: 0,
+        y: 3
+    }
 };
 
 // Mapping of characters to floor types
 const tileMap = {
     'g': 'grass',
+    'G': 'grass2',
     'd': 'dirt',
-    's': 'stone',
+    'r': 'road',
+    's': 'sand',
     'w': 'water',
 };
 const occupantMap = {
@@ -329,7 +357,6 @@ const occupantMap = {
     '1': 'fred',
     '2': 'george',
     '3': 'harold',
-
 };
 
 // Decode the map into (x, y) positions
@@ -353,6 +380,11 @@ function applyFloorToGameGrid(game_grid, parsedFloorMap) {
     for (const { x, y, tile } of parsedFloorMap) {
         if (game_grid[x] && game_grid[x][y]) {
             game_grid[x][y].floor = tile;  // Apply floor type
+            if (tile === 'water') {
+                // add doodad here?
+                const num = doodads.push({ type: 'water', x: x, y: y });
+                game_grid[x][y].occupying = doodads[num-1].type;
+            }
         }
     }
 }
@@ -378,6 +410,16 @@ function parseOccupantMap(mapString) {
 function applyOccupantsToGameGrid(game_grid, parsedOccupantMap) {
     for (const { x, y, type } of parsedOccupantMap) {
         if (game_grid[x] && game_grid[x][y]) {
+            if (type === 'lachie') {
+                const oldCell = game_grid[player.position.x][player.position.y];
+                const cell = game_grid[x][y];
+                if (oldCell.occupying === 'lachie') {
+                    oldCell.occupying = null;
+                }
+                player.position.x = x;
+                player.position.y = y;
+                cell.occupying = 'lachie';
+            }
             if (type === 'gary' || type === 'fred' || type === 'george' || type === 'harold') {
                 console.log('GOT an entity BACK');
                 const e = entities[type];
@@ -387,6 +429,7 @@ function applyOccupantsToGameGrid(game_grid, parsedOccupantMap) {
                 e.position.x = x;
                 e.position.y = y;
                 game_grid[x][y].occupying = e.name;
+
             } else if (type === 'tree') {
                 const num = doodads.push({ type: 'tree', x: x, y: y });
                 game_grid[x][y].occupying = doodads[num-1].type;
@@ -398,7 +441,7 @@ function applyOccupantsToGameGrid(game_grid, parsedOccupantMap) {
 }
 
 // Example usage:
-const parsedFloorMap = parseFloorMap(map_1.floor);
 const parsedOccupantMap = parseOccupantMap(map_1.occupants);
-applyFloorToGameGrid(game_grid, parsedFloorMap);
 applyOccupantsToGameGrid(game_grid, parsedOccupantMap);
+const parsedFloorMap = parseFloorMap(map_1.floor);
+applyFloorToGameGrid(game_grid, parsedFloorMap);

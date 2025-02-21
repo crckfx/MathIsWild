@@ -1,14 +1,12 @@
 import { canvas, ctx, cell_size, cellSelector } from "./document.js";
 
-import { game_grid, block_positon, entities, player, doodads, NUM_GRID_X, NUM_GRID_Y } from "./game.js";
+import { game_grid, block_positon, entities, player, doodads, NUM_GRID_X, NUM_GRID_Y, camera } from "./game.js";
 
 import { images, textures, getSpriteIndex } from "./sprite.js";
 export const CAMERA_CELLS_X = 12;
 export const CAMERA_CELLS_Y = 9;
-const camera = {
-    x: 0,
-    y: 0
-}
+
+
 export function moveCamera(pos) {
     if (pos.x > camera.x + CAMERA_CELLS_X - 2) {
         if (camera.x + CAMERA_CELLS_X < NUM_GRID_X) {
@@ -39,13 +37,21 @@ export function moveCamera(pos) {
     }
 
 }
-
 // CLEARING THE CANVAS
 export function clearCanvas() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 }
+
+// KEEPING TRACK OF THE TEXTURE SHIFTING?
+const drawCycleCount = 3;
+let drawCount = 0;
+function increment_draw_count() {
+    drawCount = (drawCount + 1) % drawCycleCount;
+}
+
 // DRAWING THE CANVAS
 export function draw() {
+    increment_draw_count();
     render_entire_grid();
 }
 
@@ -57,6 +63,7 @@ export function drawBorder(x, y, colour = 'green') {
 
 export function render_entire_grid() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
+    console.log(`draw: drawCount is ${drawCount}`);
     ctx.imageSmoothingEnabled = false;
 
     moveCamera(player.position);
@@ -78,14 +85,14 @@ export function render_entire_grid() {
     }
 }
 
+// function to check 
 function isInCameraRange(cell) {
-    if (cell.x < camera.x) return false;
-    if (cell.y < camera.y) return false
-
-    if (cell.x > camera.x + CAMERA_CELLS_X - 1) return false;
-    if (cell.y > camera.y + CAMERA_CELLS_Y - 1) return false;
-
-    return true;
+    return !(
+        cell.x < camera.x ||
+        cell.y < camera.y ||
+        cell.x > camera.x + CAMERA_CELLS_X - 1 ||
+        cell.y > camera.y + CAMERA_CELLS_Y - 1
+    );
 }
 
 
@@ -135,22 +142,44 @@ function drawFloors() {
     for (let i = 0; i < CAMERA_CELLS_X; i++) {
         for (let j = 0; j < CAMERA_CELLS_Y; j++) {
             const cell = game_grid[i + camera.x][j + camera.y];
-            if (cell.floor === 'stone') {
-                drawMiscCell(images.cobblestone, i, j);
-            } else if (cell.floor === 'grass') {
-                // drawMiscCell(images.grass, x, y);
-                drawFillCell('green', i, j);
-            } else if (cell.floor === 'dirt') {
-                drawMiscCell(images.dirt, i, j);
-                // drawFillCell('green', i, j);
-            } else if (cell.floor === 'water') {
-                drawFillCell('blue', i, j);
+            switch (cell.floor) {
+                case 'road':
+                case 'grass':
+                case 'grass2':
+                case 'dirt':
+                case 'sand':
+                    // drawMiscCell(textures[cell.floor], i, j);
+                    // if (textures[cell.floor] === undefined) {
+                    //     // console.log(cell.floor);
+                    // }
+                    drawMiscCell(textures[cell.floor], i, j);
+                    // console.log(textures[cell.floor]);
+                    break;
+                case 'water':
+                    drawMiscCell(textures[cell.floor][drawCount], i, j);
+                    break;
             }
+            // if (cell.floor === 'road') {
+            //     drawMiscCell(textures.road, i, j);
+            // } else if (cell.floor === 'grass') {
+            //     drawMiscCell(textures.grass, i, j);
+            // } else if (cell.floor === 'grass2') {
+            //     drawMiscCell(textures.grass2, i, j);
+            // } else if (cell.floor === 'dirt') {
+            //     drawMiscCell(textures.dirt, i, j);
+            //     // drawFillCell('green', i, j);
+            // } else if (cell.floor === 'water') {
+            //     // drawFillCell('blue', i, j);
+            //     drawMiscCell(textures.water[drawCount], i, j);
+            // } else if (cell.floor === 'sand') {
+            //     // drawFillCell('yellow', i, j);
+            //     drawMiscCell(textures.sand, i, j);
+            // }
 
             // else if (cell.occupying === null) {
             //     // drawBorder(i, j, 'yellow');
             // }
-            
+
         }
     }
 }
