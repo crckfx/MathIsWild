@@ -1,6 +1,6 @@
 import { canvas, ctx, cell_size, cellSelector, images } from "./document.js";
 
-import { game_grid, block_positon, characterIsFacing, gary } from "./game.js";
+import { game_grid, block_positon, characterIsFacing, gary, harold, fred } from "./game.js";
 
 import { getSpriteIndex } from "./sprite.js";
 // CLEARING THE CANVAS
@@ -45,6 +45,12 @@ export function render_entire_grid() {
             } else if (cell === 'gary') {
                 // ctx.drawImage(getSprite_Red(gary.isFacing), cell_size.x * i, cell_size.y * j, cell_size.x, cell_size.y);
                 drawEntity(gary);
+            } else if (cell === 'harold') {
+                // ctx.drawImage(getSprite_Red(gary.isFacing), cell_size.x * i, cell_size.y * j, cell_size.x, cell_size.y);
+                drawEntity(harold);
+            } else if (cell === 'fred') {
+                // ctx.drawImage(getSprite_Red(gary.isFacing), cell_size.x * i, cell_size.y * j, cell_size.x, cell_size.y);
+                drawEntity(fred);
             } else if (cell === 'tree') {
                 ctx.drawImage(images.tree, cell_size.x * i, cell_size.y * j, cell_size.x, cell_size.y);
             } else if (cell === 'skelly') {
@@ -63,10 +69,6 @@ export function render_entire_grid() {
 function getSprite(isFacing) {
     return images.spriteTextures[getSpriteIndex(isFacing)];
 }
-function getSprite_Red(isFacing) {
-    return images.spriteTextures_red[getSpriteIndex(isFacing)];
-}
-
 
 
 export function drawEntity(entity) {

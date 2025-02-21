@@ -10,6 +10,7 @@ export const block_positon = {
 export const NUM_GRID_X = 12;
 export const NUM_GRID_Y = 9;
 
+
 function createGameGrid(cellsX, cellsY) {
     const game_grid = new Array(cellsX);
     for (let i = 0; i < game_grid.length; i++) {
@@ -23,6 +24,8 @@ function createGameGrid(cellsX, cellsY) {
     game_grid[10][6] = 'tree';
 
     game_grid[8][1] = 'gary';
+    game_grid[9][1] = 'harold';
+    game_grid[10][5] = 'fred';
     // game_grid[8][2] = 'sprite_1';
 
     return game_grid;
@@ -76,8 +79,11 @@ function move_block_position_x(offset) {
     if (position_is_in_bounds(newPos, 0, NUM_GRID_X - 1)) {
         if (!cell_is_occupied(game_grid[newPos][block_positon.y])) {
             block_positon.x = newPos;                                   // set guy's new x position
-            const line = get_line_of_sight(gary.isFacing);
-            gary.hasAlert = check_cell_is_in_line_of_sight(block_positon.x, block_positon.y, gary.position.x, gary.position.y, line.orientation, line.range);
+            // const orientation = get_line_of_sight(gary);
+            gary.hasAlert = check_cell_is_in_line_of_sight(block_positon.x, block_positon.y, gary);
+            harold.hasAlert = check_cell_is_in_line_of_sight(block_positon.x, block_positon.y, harold);
+            fred.hasAlert = check_cell_is_in_line_of_sight(block_positon.x, block_positon.y, fred);
+
 
         }
     }
@@ -101,8 +107,11 @@ function move_block_position_y(offset) {
     if (position_is_in_bounds(newPos, 0, NUM_GRID_Y - 1)) {             // catch out of bounds
         if (!cell_is_occupied(game_grid[block_positon.x][newPos])) {    // catch collisions
             block_positon.y = newPos;                                   // update position if no obstacles found
-            const line = get_line_of_sight(gary.isFacing);
-            gary.hasAlert = check_cell_is_in_line_of_sight(block_positon.x, block_positon.y, gary.position.x, gary.position.y, line.orientation, line.range);
+            gary.hasAlert = check_cell_is_in_line_of_sight(block_positon.x, block_positon.y, gary);
+            harold.hasAlert = check_cell_is_in_line_of_sight(block_positon.x, block_positon.y, harold);
+            fred.hasAlert = check_cell_is_in_line_of_sight(block_positon.x, block_positon.y, fred);
+
+
 
         }
     }
@@ -121,69 +130,101 @@ function cell_is_occupied(cell) {
     // console.log(`cell is ${cell}`);
     if (cell === 'tree') return true;  // deny move though 'trees'
     if (cell === 'gary') return true;  // deny move though 'skellington'
+    if (cell === 'harold') return true;  // deny move though 'skellington'
+    if (cell === 'fred') return true;  // deny move though 'skellington'
     if (cell === 'sprite_1') return true;  // deny move though 'sprite'    
     return false;
 
 }
 
 export const gary = {
+    name: 'gary',
     position: {
         x: 8,
         y: 1
     },
     isFacing: 'down',
-    getEntitySprite: function() {
+    getEntitySprite: function () {
         // console.log(`uhhh is facing ${this.isFacing}`);
         return images.spriteTextures_red[getSpriteIndex(this.isFacing)];
     },
     hasAlert: false,
+    sightRange: 5,
 
 }
+export const harold = {
+    name: 'harold',
+    position: {
+        x: 9,
+        y: 1
+    },
+    isFacing: 'down',
+    getEntitySprite: function () {
+        // console.log(`uhhh is facing ${this.isFacing}`);
+        return images.spriteTextures_yellow[getSpriteIndex(this.isFacing)];
+    },
+    hasAlert: false,
+    sightRange: 5,
+}
+export const fred = {
+    name: 'fred',
+    position: {
+        x: 4,
+        y: 8
+    },
+    isFacing: 'up',
+    getEntitySprite: function () {
+        // console.log(`uhhh is facing ${this.isFacing}`);
+        return images.spriteTextures_yellow[getSpriteIndex(this.isFacing)];
+    },
+    hasAlert: false,
+    sightRange: 5,
+}
 
-function get_line_of_sight(isFacing) {
+
+
+function get_line_of_sight(entity) {
     let orientation = null;
     let range = null;
-    switch (isFacing) {
+    switch (entity.isFacing) {
         case 'up':
             orientation = 'vertical';
-            range = -5;
-            break;
-        case 'left':
-            orientation = 'horizontal';
-            range = -5;
-            break;
-        case 'right':
-            orientation = 'horizontal';
-            range = 5;
+            range = -entity.sightRange;
             break;
         case 'down':
             orientation = 'vertical';
-            range = 5;
+            range = entity.sightRange;
+            break;
+        case 'left':
+            orientation = 'horizontal';
+            range = -entity.sightRange;
+            break;
+        case 'right':
+            orientation = 'horizontal';
+            range = entity.sightRange;
             break;
     }
+    console.log(`range for ${entity.name} is ${range} ${orientation}`)
     return {
         orientation: orientation,
         range: range,
     }
 }
 
-function check_cell_is_in_line_of_sight(posX, posY, viewerX, viewerY, orientation, range) {
-
-    let viewer, cell;
-
-    if (orientation === 'vertical') {
-        if (posX !== viewerX) return false;
-        viewer = viewerY;
-        cell = posY;
-
+function check_cell_is_in_line_of_sight(cellX, cellY, viewer) {
+    let v, cell;
+    const line = get_line_of_sight(viewer);
+    if (line.orientation === 'vertical') {
+        if (cellX !== viewer.position.x) return false;
+        v = viewer.position.y;
+        cell = cellY;
     } else {
-    if (posY !== viewerY) return false;
-        viewer = viewerX;
-        cell = posX;
+        if (cellX !== viewer.position.y) return false;
+        v = viewer.position.x;
+        cell = cellX;
     }
 
-    return check_single_axis(range, viewer, cell);
-
+    return check_single_axis(line.range, v, cell);
 }
 
 function check_single_axis(range, viewer, cell) {
@@ -192,13 +233,12 @@ function check_single_axis(range, viewer, cell) {
         start = viewer + 1;
         stop = viewer + 1 + range;
     } else {
-        start = viewer - 1 - range;
-        stop = viewer - 1;
+        start = viewer + range;
+        stop = viewer;
     }
 
-
-    // stride down
     for (let i = start; i < stop; i++) {
+
         if (i === cell) return true;
     }
 

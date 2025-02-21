@@ -95,4 +95,5 @@ export const images = {
     spritesheet: document.getElementById("image_spritesheet"),  // sprites
     spriteTextures: extractSprites(document.getElementById("image_spritesheet")),
     spriteTextures_red: extractSprites(document.getElementById("image_spritesheet_red")),
+    spriteTextures_yellow: extractSprites(document.getElementById("image_spritesheet_yellow")),
 }

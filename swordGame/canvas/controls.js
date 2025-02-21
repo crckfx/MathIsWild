@@ -43,8 +43,6 @@ function press_dpad(direction) {
     }
     current_dpad_dir = direction;
     HtmlControls.dpad[current_dpad_dir].classList.add('active');
-    console.log(`moved ${direction}.`);
-
     do_a_tick();
 
 }
