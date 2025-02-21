@@ -1,5 +1,5 @@
-import { render_entire_grid } from "./render.js";
-import { NUM_GRID_X, NUM_GRID_Y } from "./game.js";
+import { draw, CAMERA_CELLS_X, CAMERA_CELLS_Y } from "./render.js";
+import { NUM_GRID_X, NUM_GRID_Y, } from "./game.js";
 import { extractSprites } from "./sprite.js";
 
 export const panelCenter = document.getElementById('panel_center');
@@ -27,8 +27,8 @@ const MAX_SIZE = {
 
 function getCellSize() {
     return {
-        x: canvas.width / NUM_GRID_X,
-        y: canvas.height / NUM_GRID_Y,
+        x: canvas.width / CAMERA_CELLS_X,
+        y: canvas.height / CAMERA_CELLS_Y,
     }
 }
 
@@ -59,7 +59,7 @@ export function resize() {
     cell_size.x = newCellSize.x;
     cell_size.y = newCellSize.y;
 
-    render_entire_grid();
+    draw();
 }
 
 
