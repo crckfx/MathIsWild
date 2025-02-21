@@ -10,32 +10,32 @@ export const NUM_GRID_X = 18;
 export const NUM_GRID_Y = 24;
 
 export const doodads = [
-    // left wall trees
-    { type: 'tree', x: 0, y: 0 },
-    { type: 'tree', x: 0, y: 1 },
-    { type: 'tree', x: 0, y: 2 },
-    { type: 'tree', x: 0, y: 3 },
-    // put an entity in this space
-    { type: 'tree', x: 0, y: 5 },
-    { type: 'tree', x: 0, y: 6 },
-    { type: 'tree', x: 0, y: 7 },
-    // top wall
-    { type: 'tree', x: 0, y: 0 },
-    { type: 'tree', x: 1, y: 0 },
-    { type: 'tree', x: 2, y: 0 },
-    { type: 'tree', x: 3, y: 0 },
-    { type: 'tree', x: 4, y: 0 },
-    // right wall
-    { type: 'tree', x: 16, y: 0 },
-    { type: 'tree', x: 17, y: 0 },
-    { type: 'tree', x: 17, y: 1 },
-    { type: 'tree', x: 17, y: 2 },
+    // // left wall trees
+    // { type: 'tree', x: 0, y: 0 },
+    // { type: 'tree', x: 0, y: 1 },
+    // { type: 'tree', x: 0, y: 2 },
+    // { type: 'tree', x: 0, y: 3 },
+    // // put an entity in this space
+    // { type: 'tree', x: 0, y: 5 },
+    // { type: 'tree', x: 0, y: 6 },
+    // { type: 'tree', x: 0, y: 7 },
+    // // top wall
+    // { type: 'tree', x: 0, y: 0 },
+    // { type: 'tree', x: 1, y: 0 },
+    // { type: 'tree', x: 2, y: 0 },
+    // { type: 'tree', x: 3, y: 0 },
+    // { type: 'tree', x: 4, y: 0 },
+    // // right wall
+    // { type: 'tree', x: 16, y: 0 },
+    // { type: 'tree', x: 17, y: 0 },
+    // { type: 'tree', x: 17, y: 1 },
+    // { type: 'tree', x: 17, y: 2 },
 
-    
-    //
-    { type: 'tree', x: 5, y: 4 },
-    { type: 'tree', x: 5, y: 8 },
-    { type: 'tree', x: 10, y: 6 },
+
+    // //
+    // { type: 'tree', x: 5, y: 4 },
+    // { type: 'tree', x: 5, y: 8 },
+    // { type: 'tree', x: 10, y: 6 },
 ]
 
 function createEntity(name = 'unnamed_entity', x = 0, y = 0, facing = 'down', range = 5, texture = 'spriteDefault') {
@@ -59,11 +59,11 @@ function createEntity(name = 'unnamed_entity', x = 0, y = 0, facing = 'down', ra
 
 export const entities = {
 
-    fred: createEntity('fred', 10, 5, 'up', 5, 'spriteYellow'),
     gary: createEntity('gary', 8, 1, 'down', 3, 'spriteRed'),
+    fred: createEntity('fred', 10, 5, 'up', 5, 'spriteYellow'),
     george: createEntity('george', 0, 4, 'right', 5, 'spriteRed'),
     harold: createEntity('harold', 9, 1, 'down', 5, 'spriteYellow'),
-    
+
 
 }
 
@@ -74,29 +74,20 @@ function createGameGrid(cellsX, cellsY) {
         game_grid[i] = new Array(cellsY);
     }
 
-    
-    for (let i=0; i<NUM_GRID_X; i++) {
-        for (let j=0; j<NUM_GRID_Y; j++) {
+
+    for (let i = 0; i < NUM_GRID_X; i++) {
+        for (let j = 0; j < NUM_GRID_Y; j++) {
             game_grid[i][j] = {
                 floor: null,
                 occupying: null,
             }
-            
+
         }
     }
     game_grid[1][1].occupying = 'lachie';
-    
-    game_grid[1][2].floor = 'stone';
-    game_grid[1][3].floor = 'stone';
-    game_grid[0][4].floor = 'stone';
-    game_grid[1][4].floor = 'stone';
-    game_grid[2][4].floor = 'stone';
-    game_grid[2][5].floor = 'stone';
-    game_grid[3][5].floor = 'stone';
-    game_grid[3][6].floor = 'stone';
-    game_grid[3][7].floor = 'stone';
 
-    
+
+
 
     for (let i = 0; i < doodads.length; i++) {
         const d = doodads[i];
@@ -108,15 +99,15 @@ function createGameGrid(cellsX, cellsY) {
         }
     }
 
-    for (const key in entities) {
-        const e = entities[key];
-        const x = e.position.x;
-        const y = e.position.y;
-        if (x > -1 && x < NUM_GRID_X && y > -1 && y < NUM_GRID_Y) {
-            game_grid[x][y].occupying = e.name;
-        }
+    // for (const key in entities) {
+    //     const e = entities[key];
+    //     const x = e.position.x;
+    //     const y = e.position.y;
+    //     if (x > -1 && x < NUM_GRID_X && y > -1 && y < NUM_GRID_Y) {
+    //         game_grid[x][y].occupying = e.name;
+    //     }
 
-    }
+    // }
     // game_grid[8][1] = 'gary';
     // game_grid[9][1] = 'harold';
     // game_grid[10][5] = 'fred';
@@ -164,7 +155,7 @@ function move_block_position_x(offset) {
             player.position.x = newPos;                                   // set guy's new x position
             check_all_lines_of_sight();
         } else {
-            // console.log(`cell occupied at [${newPos}][${player.position.y}] - ${game_grid[newPos][player.position.y]}`);
+            console.log(`cell occupied at [${newPos}][${player.position.y}] - ${game_grid[newPos][player.position.y].occupying}`);
         }
     }
     game_grid[player.position.x][player.position.y].occupying = 'lachie';
@@ -181,7 +172,7 @@ function move_block_position_y(offset) {
             player.position.y = newPos;                                   // update position if no obstacles found
             check_all_lines_of_sight();
         } else {
-            console.log(`cell occupied at [${player.position.x}][${newPos}] - ${game_grid[player.position.x][newPos]}`);
+            console.log(`cell occupied at [${player.position.x}][${newPos}] - ${game_grid[player.position.x][newPos].occupying}`);
         }
     }
     game_grid[player.position.x][player.position.y].occupying = 'lachie';
@@ -292,3 +283,122 @@ export const player = {
 // game_grid[5][4] = 'tree';
 // game_grid[5][8] = 'tree';
 // game_grid[10][6] = 'tree';
+
+const map_1 = {
+    floor:
+    `   ggggggddssddgggggg
+        ggggggddssddgggggg
+        gggggddsssdggggggg
+        gggggddssddggggggg
+        gggggddssddggggggg
+        gggggddssdddgggggg
+        gggggddsssddgggggg
+        ggwwwgddssddgggggg
+        ggwwwgddssddgggggg
+        ggwwwgddssddgggggg
+        ggggggddssddgggggg
+        ggggggddssddgggggg`,
+    occupants: 
+    `   TTTT..dd..dd......
+        TP....dd03dd......
+        T....dd...d.......
+        T....dd..dd.....T.
+        2....dd..dd....TTT
+        T....dd..ddd...TTT
+        T....dd...dd....T.
+        T.WWW.dd..dd......
+        T.WWW.dd..dd......
+        ..WWW.dd..dd......
+        ......dd..dd......
+        ......dd1.dd......`,
+};
+
+// Mapping of characters to floor types
+const tileMap = {
+    'g': 'grass',
+    'd': 'dirt',
+    's': 'stone',
+    'w': 'water',
+};
+const occupantMap = {
+    'T': 'tree',
+    'W': 'water',
+    'P': 'lachie',
+    '.': null,
+    '0': 'gary',
+    '1': 'fred',
+    '2': 'george',
+    '3': 'harold',
+
+};
+
+// Decode the map into (x, y) positions
+function parseFloorMap(mapString) {
+    const rows = mapString.trim().split("\n");
+    const parsedMap = [];
+
+    for (let y = 0; y < rows.length; y++) {
+        const row = rows[y].trim();
+
+        for (let x = 0; x < row.length; x++) {
+            parsedMap.push({ x, y, tile: tileMap[row[x]] || 'unknown' });
+        }
+    }
+
+    return parsedMap;
+}
+
+// Apply parsed data to the existing game_grid
+function applyFloorToGameGrid(game_grid, parsedFloorMap) {
+    for (const { x, y, tile } of parsedFloorMap) {
+        if (game_grid[x] && game_grid[x][y]) {
+            game_grid[x][y].floor = tile;  // Apply floor type
+        }
+    }
+}
+
+
+// Decode the map into (x, y) positions
+function parseOccupantMap(mapString) {
+    const rows = mapString.trim().split("\n");
+    const parsedMap = [];
+
+    for (let y = 0; y < rows.length; y++) {
+        const row = rows[y].trim();
+        
+        for (let x = 0; x < row.length; x++) {
+            parsedMap.push({ x: x, y: y, type: occupantMap[row[x]] || null });
+        }
+    }
+
+    return parsedMap;
+}
+
+// note : "type" is becoming maybe a terrible name
+function applyOccupantsToGameGrid(game_grid, parsedOccupantMap) {
+    for (const { x, y, type } of parsedOccupantMap) {
+        if (game_grid[x] && game_grid[x][y]) {
+            if (type === 'gary' || type === 'fred' || type === 'george' || type === 'harold') {
+                console.log('GOT an entity BACK');
+                const e = entities[type];
+                // remove entity occupation from a previous cell
+                game_grid[e.position.x][e.position.y].occupying = null;
+                // set new position
+                e.position.x = x;
+                e.position.y = y;
+                game_grid[x][y].occupying = e.name;
+            } else if (type === 'tree') {
+                const num = doodads.push({ type: 'tree', x: x, y: y });
+                game_grid[x][y].occupying = doodads[num-1].type;
+            } else {
+                game_grid[x][y].occupying = type;  // Apply floor type
+            }
+        }
+    }
+}
+
+// Example usage:
+const parsedFloorMap = parseFloorMap(map_1.floor);
+const parsedOccupantMap = parseOccupantMap(map_1.occupants);
+applyFloorToGameGrid(game_grid, parsedFloorMap);
+applyOccupantsToGameGrid(game_grid, parsedOccupantMap);

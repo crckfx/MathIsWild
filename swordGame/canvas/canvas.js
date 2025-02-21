@@ -15,6 +15,7 @@ async function dummy_init() {
         images.spriteRed = await loadImage('../../Images/sprite/sprites_transparent_red.png');
         images.spriteYellow = await loadImage('../../Images/sprite/sprites_transparent_yellow.png');
         images.cobblestone = await loadImage('../../Images/sprite/cobblestone.png');
+        images.dirt = await loadImage('../../Images/sprite/dirt.png');
 
 
         // unpack the texture resources

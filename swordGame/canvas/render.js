@@ -59,25 +59,10 @@ export function render_entire_grid() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx.imageSmoothingEnabled = false;
 
-    moveCamera(player.position)
-    
-    for (let i=0; i<CAMERA_CELLS_X; i++) {
-        for (let j=0; j<CAMERA_CELLS_Y; j++) {
-            const cell = game_grid[i+camera.x][j+camera.y];
-            if (cell.floor === 'stone') {
-                ctx.drawImage(
-                    images.cobblestone,
-                    cell_size.x * (i - camera.x),
-                    cell_size.y * (j - camera.y),
-                    cell_size.x,
-                    cell_size.y
-                );
-            } else if (cell.occupying === null) {
-                // drawBorder(i, j, 'yellow');
-            }
-        }
-    }
-    
+    moveCamera(player.position);
+
+    drawFloors();
+
     drawPlayer();
 
 
@@ -146,3 +131,49 @@ function drawDoodad(doodad) {
 }
 
 
+function drawFloors() {
+    for (let i = 0; i < CAMERA_CELLS_X; i++) {
+        for (let j = 0; j < CAMERA_CELLS_Y; j++) {
+            const cell = game_grid[i + camera.x][j + camera.y];
+            if (cell.floor === 'stone') {
+                drawMiscCell(images.cobblestone, i, j);
+            } else if (cell.floor === 'grass') {
+                // drawMiscCell(images.grass, x, y);
+                drawFillCell('green', i, j);
+            } else if (cell.floor === 'dirt') {
+                drawMiscCell(images.dirt, i, j);
+                // drawFillCell('green', i, j);
+            } else if (cell.floor === 'water') {
+                drawFillCell('blue', i, j);
+            }
+
+            // else if (cell.occupying === null) {
+            //     // drawBorder(i, j, 'yellow');
+            // }
+            
+        }
+    }
+}
+
+function drawMiscCell(image, x, y) {
+    ctx.drawImage(
+        image,
+        cell_size.x * (x),
+        cell_size.y * (y),
+        cell_size.x,
+        cell_size.y
+    );
+}
+function drawFillCell(colour, x, y) {
+    ctx.fillStyle = colour;
+    ctx.strokeStyle = colour;
+
+    // ctx.strokeWidth = 4;
+    ctx.fillRect(
+        cell_size.x * (x),
+        cell_size.y * (y),
+        cell_size.x,
+        cell_size.y
+    );
+    // ctx.strokeRect(cell_size.x * x, cell_size.y * y, cell_size.x, cell_size.y);
+}
