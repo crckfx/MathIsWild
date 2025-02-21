@@ -5,35 +5,35 @@ import { game_grid, block_positon, entities, player, doodads, NUM_GRID_X, NUM_GR
 import { images, textures, getSpriteIndex } from "./sprite.js";
 export const CAMERA_CELLS_X = 12;
 export const CAMERA_CELLS_Y = 9;
-
+export const CAMERA_PADDING = 2;
 
 export function moveCamera(pos) {
-    if (pos.x > camera.x + CAMERA_CELLS_X - 2) {
+    if (pos.x > camera.x + CAMERA_CELLS_X - 1 - CAMERA_PADDING) {
         if (camera.x + CAMERA_CELLS_X < NUM_GRID_X) {
             camera.x += 1;
-            return;
             // console.log('camera to the right!?');
         }
-    } else if (pos.x < camera.x + 1) {
+        return;
+    } else if (pos.x < camera.x + CAMERA_PADDING) {
         if (camera.x > 0) {
             camera.x -= 1;
-            return;
             // console.log('camera to the left!?');
         }
+        return;
     }
 
-    if (pos.y > camera.y + CAMERA_CELLS_Y - 2) {
+    if (pos.y > camera.y + CAMERA_CELLS_Y - 1 - CAMERA_PADDING) {
         if (camera.y + CAMERA_CELLS_Y < NUM_GRID_Y) {
             camera.y += 1;
-            return;
             // console.log('camera to the down!?');
         }
-    } else if (pos.y < camera.y + 1) {
+        return;
+    } else if (pos.y < camera.y + CAMERA_PADDING) {
         if (camera.y > 0) {
             camera.y -= 1;
-            return;
             // console.log('camera to the up!?');
         }
+        return;
     }
 
 }
@@ -159,27 +159,6 @@ function drawFloors() {
                     drawMiscCell(textures[cell.floor][drawCount], i, j);
                     break;
             }
-            // if (cell.floor === 'road') {
-            //     drawMiscCell(textures.road, i, j);
-            // } else if (cell.floor === 'grass') {
-            //     drawMiscCell(textures.grass, i, j);
-            // } else if (cell.floor === 'grass2') {
-            //     drawMiscCell(textures.grass2, i, j);
-            // } else if (cell.floor === 'dirt') {
-            //     drawMiscCell(textures.dirt, i, j);
-            //     // drawFillCell('green', i, j);
-            // } else if (cell.floor === 'water') {
-            //     // drawFillCell('blue', i, j);
-            //     drawMiscCell(textures.water[drawCount], i, j);
-            // } else if (cell.floor === 'sand') {
-            //     // drawFillCell('yellow', i, j);
-            //     drawMiscCell(textures.sand, i, j);
-            // }
-
-            // else if (cell.occupying === null) {
-            //     // drawBorder(i, j, 'yellow');
-            // }
-
         }
     }
 }
@@ -204,5 +183,4 @@ function drawFillCell(colour, x, y) {
         cell_size.x,
         cell_size.y
     );
-    // ctx.strokeRect(cell_size.x * x, cell_size.y * y, cell_size.x, cell_size.y);
 }
