@@ -81,6 +81,3 @@ export function drawEntity(entity) {
 
 }
 
-window.onload = () => {
-    drawThingAtPosition(block_positon.x, block_positon.y);
-}

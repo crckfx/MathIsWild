@@ -44,7 +44,10 @@ function bindControls() {
 }
 
 
+window.onload = () => {
+    bindControls();
+    drawThingAtPosition(0,0);
+}
 
-bindControls();
 
 
