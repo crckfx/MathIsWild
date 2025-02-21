@@ -2,15 +2,13 @@ import { render_entire_grid } from "./render.js";
 import { NUM_GRID_X, NUM_GRID_Y } from "./game.js";
 import { extractSprites } from "./sprite.js";
 
-const panelCenter = document.getElementById('panel_center');
+export const panelCenter = document.getElementById('panel_center');
 const panelLeft = document.getElementById('panel_left');
 const panelRight = document.getElementById('panel_right');
 
 export const canvas = document.getElementById('game_canv');
 export const ctx = canvas.getContext("2d");
-ctx.webkitImageSmoothingEnabled = false;
-ctx.mozImageSmoothingEnabled = false;
-ctx.imageSmoothingEnabled = false;
+
 export const cellSelector = document.getElementById('cellSelector');
 
 
@@ -24,8 +22,7 @@ const MAX_SIZE = {
 };
 
 
-const observer = new ResizeObserver(resize);
-observer.observe(panelCenter);
+
 
 
 function getCellSize() {
@@ -36,7 +33,7 @@ function getCellSize() {
 }
 
 // function to set the canvas size based on its parent (note - overflow:hidden protects against parent growth)
-function resize() {
+export function resize() {
     // use the container's dimensions to determine orientation
     const rect = panelCenter.getBoundingClientRect();
     let width, height;
@@ -87,13 +84,3 @@ export function getHtmlControls() {
     return HTMLcontrols;
 }
 
-// TESTING DRAWING ON THE CANVAS
-export const images = {
-    blocklan: document.getElementById("image_blocky"), // silly image of blocky
-    tree: document.getElementById("image_tree"),  // tree
-    skelly: document.getElementById("image_skelly"),  // skelly
-    spritesheet: document.getElementById("image_spritesheet"),  // sprites
-    spriteTextures: extractSprites(document.getElementById("image_spritesheet")),
-    spriteTextures_red: extractSprites(document.getElementById("image_spritesheet_red")),
-    spriteTextures_yellow: extractSprites(document.getElementById("image_spritesheet_yellow")),
-}

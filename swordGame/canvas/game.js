@@ -1,7 +1,6 @@
 import { current_dpad_dir, HtmlControls } from "./controls.js";
-import { clearCanvas, drawThingAtPosition, draw, clearThingAtPosition, drawBorder, drawEntity } from "./render.js";
-import { images } from "./document.js";
-import { getSpriteIndex } from "./sprite.js";
+import { draw } from "./render.js";
+import { getSpriteIndex, images, textures } from "./sprite.js";
 
 export const block_positon = {
     x: 0,
@@ -45,81 +44,59 @@ export function do_a_tick() {
                 break;
             case 'up':
                 move_block_position_y(-1);
-                // block_positon.y -= 1;
+                // player.position.y -= 1;
                 break;
             case 'down':
-                // block_positon.y += 1;
+                // player.position.y += 1;
                 move_block_position_y(1);
                 break;
             default:
                 console.log(`game: tick with no dpad dir!`);
-
         }
-
     }
-
-    // if (buttonStates.B === true) clearThingAtPosition(block_positon.x, block_positon.y);
-
 }
 
-export let characterIsFacing = 'down';
 
 function move_block_position_x(offset) {
-    const newPos = block_positon.x + offset;
-
-    if (newPos > block_positon.x) {
-        characterIsFacing = 'right';
-    } else {
-        characterIsFacing = 'left';
-    }
-
-    clearThingAtPosition(block_positon.x, block_positon.y);     // remove guy from old position
-
+    const newPos = player.position.x + offset;
+    (newPos > player.position.x) ? player.isFacing = 'right' : player.isFacing = 'left';
+    game_grid[player.position.x][player.position.y] = null;
     // catch out of bounds
     if (position_is_in_bounds(newPos, 0, NUM_GRID_X - 1)) {
-        if (!cell_is_occupied(game_grid[newPos][block_positon.y])) {
-            block_positon.x = newPos;                                   // set guy's new x position
-            // const orientation = get_line_of_sight(gary);
-            gary.hasAlert = check_cell_is_in_line_of_sight(block_positon.x, block_positon.y, gary);
-            harold.hasAlert = check_cell_is_in_line_of_sight(block_positon.x, block_positon.y, harold);
-            fred.hasAlert = check_cell_is_in_line_of_sight(block_positon.x, block_positon.y, fred);
-
-
+        if (!cell_is_occupied(game_grid[newPos][player.position.y])) {
+            player.position.x = newPos;                                   // set guy's new x position
+            check_all_lines_of_sight();
+        } else {
+            console.log(`cell occupied at [${newPos}][${player.position.y}] - ${game_grid[newPos][player.position.y]}`);
         }
     }
-    drawThingAtPosition(block_positon.x, block_positon.y);      // render new position 
+    game_grid[player.position.x][player.position.y] = 'lachie';
+    draw();
 
 }
-
-
 
 function move_block_position_y(offset) {
-    const newPos = block_positon.y + offset;
+    const newPos = player.position.y + offset;
 
-    if (newPos > block_positon.y) {
-        characterIsFacing = 'down';
-    } else {
-        characterIsFacing = 'up';
-    }
-    clearThingAtPosition(block_positon.x, block_positon.y);
-
-
+    (newPos > player.position.y) ? player.isFacing = 'down' : player.isFacing = 'up';
+    game_grid[player.position.x][player.position.y] = null;
     if (position_is_in_bounds(newPos, 0, NUM_GRID_Y - 1)) {             // catch out of bounds
-        if (!cell_is_occupied(game_grid[block_positon.x][newPos])) {    // catch collisions
-            block_positon.y = newPos;                                   // update position if no obstacles found
-            gary.hasAlert = check_cell_is_in_line_of_sight(block_positon.x, block_positon.y, gary);
-            harold.hasAlert = check_cell_is_in_line_of_sight(block_positon.x, block_positon.y, harold);
-            fred.hasAlert = check_cell_is_in_line_of_sight(block_positon.x, block_positon.y, fred);
-
-
-
+        if (!cell_is_occupied(game_grid[player.position.x][newPos])) {    // catch collisions
+            player.position.y = newPos;                                   // update position if no obstacles found
+            check_all_lines_of_sight();
+        } else {
+            console.log(`cell occupied at [${player.position.x}][${newPos}] - ${game_grid[player.position.x][newPos]}`);
         }
     }
-
-
-    drawThingAtPosition(block_positon.x, block_positon.y);
+    game_grid[player.position.x][player.position.y] = 'lachie';
+    draw();
 }
 
+function check_all_lines_of_sight() {
+    entities.gary.hasAlert = check_cell_is_in_line_of_sight(player.position.x, player.position.y, entities.gary);
+    entities.harold.hasAlert = check_cell_is_in_line_of_sight(player.position.x, player.position.y, entities.harold);
+    entities.fred.hasAlert = check_cell_is_in_line_of_sight(player.position.x, player.position.y, entities.fred);
+}
 
 function position_is_in_bounds(pos, min, max) {
     if (pos < min || pos > max) return false;
@@ -137,52 +114,9 @@ function cell_is_occupied(cell) {
 
 }
 
-export const gary = {
-    name: 'gary',
-    position: {
-        x: 8,
-        y: 1
-    },
-    isFacing: 'down',
-    getEntitySprite: function () {
-        // console.log(`uhhh is facing ${this.isFacing}`);
-        return images.spriteTextures_red[getSpriteIndex(this.isFacing)];
-    },
-    hasAlert: false,
-    sightRange: 5,
 
-}
-export const harold = {
-    name: 'harold',
-    position: {
-        x: 9,
-        y: 1
-    },
-    isFacing: 'down',
-    getEntitySprite: function () {
-        // console.log(`uhhh is facing ${this.isFacing}`);
-        return images.spriteTextures_yellow[getSpriteIndex(this.isFacing)];
-    },
-    hasAlert: false,
-    sightRange: 5,
-}
-export const fred = {
-    name: 'fred',
-    position: {
-        x: 4,
-        y: 8
-    },
-    isFacing: 'up',
-    getEntitySprite: function () {
-        // console.log(`uhhh is facing ${this.isFacing}`);
-        return images.spriteTextures_yellow[getSpriteIndex(this.isFacing)];
-    },
-    hasAlert: false,
-    sightRange: 5,
-}
-
-
-
+// ------------------------------------------------------
+// LINE OF SIGHT
 function get_line_of_sight(entity) {
     let orientation = null;
     let range = null;
@@ -204,7 +138,7 @@ function get_line_of_sight(entity) {
             range = entity.sightRange;
             break;
     }
-    console.log(`range for ${entity.name} is ${range} ${orientation}`)
+
     return {
         orientation: orientation,
         range: range,
@@ -223,7 +157,6 @@ function check_cell_is_in_line_of_sight(cellX, cellY, viewer) {
         v = viewer.position.x;
         cell = cellX;
     }
-
     return check_single_axis(line.range, v, cell);
 }
 
@@ -236,12 +169,64 @@ function check_single_axis(range, viewer, cell) {
         start = viewer + range;
         stop = viewer;
     }
-
     for (let i = start; i < stop; i++) {
-
         if (i === cell) return true;
     }
-
     return false;
+}
+// ------------------------------------------------------
+export const player = {
+    name: 'lachie',
+    position: {
+        x: 0,
+        y: 0
+    },    
+    isFacing: 'down',
+}
 
+
+export const entities = {
+    gary: {
+        name: 'gary',
+        position: {
+            x: 8,
+            y: 1
+        },
+        isFacing: 'down',
+        getEntitySprite: function () {
+            // console.log(`uhhh is facing ${this.isFacing}`);
+            return textures.spriteRed[getSpriteIndex(this.isFacing)];
+        },
+        hasAlert: false,
+        sightRange: 5,        
+    },
+    
+    fred: {
+        name: 'fred',
+        position: {
+            x: 10,
+            y: 5
+        },
+        isFacing: 'up',
+        getEntitySprite: function () {
+            // console.log(`uhhh is facing ${this.isFacing}`);
+            return textures.spriteYellow[getSpriteIndex(this.isFacing)];
+        },
+        hasAlert: false,
+        sightRange: 5,
+    },
+    harold: {
+        name: 'harold',
+        position: {
+            x: 9,
+            y: 1
+        },
+        isFacing: 'down',
+        getEntitySprite: function () {
+            // console.log(`uhhh is facing ${this.isFacing}`);
+            return textures.spriteYellow[getSpriteIndex(this.isFacing)];
+        },
+        hasAlert: false,
+        sightRange: 5,        
+    }
 }
