@@ -283,7 +283,7 @@ export const player = {
 
 const map_1 = {
     floor:
-    `   Gggggggdrrddggggggdswwww
+    `   GGGGGGGdrrddGGGGGGdswwww
         GGggggddrrddggggggdswwww
         Ggggggdrrrdgggggggdswwww
         Ggggggdrrddgggggggdsswww
@@ -292,19 +292,19 @@ const map_1 = {
         Ggggggdrrrddggggggssswww
         Ggwwggddrrddggggggssssww
         ggwwwgddrrddggggggssssww
-        ggwwggddrrddgggggggsssdw
-        gggggddrrrddggggggggssdw
+        ggwwggddrrddgggggggsssww
+        gggggddrrrddggggggggssww
         gggggddrrddggggggggggssw
         gggggddrrddgggggggggggsw
-        gggggddrrddgggggggdgggss
-        gggggdrrddggggggggddgggs
-        gggggdrrddgggssssssddggd
-        gggggdrrddgggswwswwddddd
-        gggggdrrddgggswwswwwwwww
-        gggggdrrddgggwwwswwwwwww
-        gggggdrrGdgggswwswwwssww
-        gggggGrGGdgggwwwswwssssw
-        gggggGrGGdgggswwswwsssww
+        gggggddrrddgggggsgddddss
+        gggggdrrddgggggsssddddds
+        gggggdrrddgggsssssssddds
+        gggggdrrddgggswwswwsssss
+        gggggdrrddggsswwswwwwwww
+        gggggdrrddggswwwswwwwwww
+        gggggdrrGdggsswwswwwssww
+        gggggGrGGdggswwwswwssssw
+        gggggGrGGdggswwwswwsssww
         gggggGrGddggswwwssssswww
         gggggGwGdgggsswwwwwwwwws`,
     occupants: 

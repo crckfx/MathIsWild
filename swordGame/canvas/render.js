@@ -12,28 +12,28 @@ export function moveCamera(pos) {
         if (camera.x + CAMERA_CELLS_X < NUM_GRID_X) {
             camera.x += 1;
             // console.log('camera to the right!?');
+            return;
         }
-        return;
     } else if (pos.x < camera.x + CAMERA_PADDING) {
         if (camera.x > 0) {
             camera.x -= 1;
             // console.log('camera to the left!?');
+            return;
         }
-        return;
     }
 
     if (pos.y > camera.y + CAMERA_CELLS_Y - 1 - CAMERA_PADDING) {
         if (camera.y + CAMERA_CELLS_Y < NUM_GRID_Y) {
             camera.y += 1;
             // console.log('camera to the down!?');
+            return;
         }
-        return;
     } else if (pos.y < camera.y + CAMERA_PADDING) {
         if (camera.y > 0) {
             camera.y -= 1;
             // console.log('camera to the up!?');
+            return;
         }
-        return;
     }
 
 }
