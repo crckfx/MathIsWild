@@ -9,40 +9,9 @@ export const block_positon = {
 export const NUM_GRID_X = 24;
 export const NUM_GRID_Y = 24;
 
-export const camera = {
-    x: 0,
-    y: 0
-};
 
 
-export const doodads = [
-    // // left wall trees
-    // { type: 'tree', x: 0, y: 0 },
-    // { type: 'tree', x: 0, y: 1 },
-    // { type: 'tree', x: 0, y: 2 },
-    // { type: 'tree', x: 0, y: 3 },
-    // // put an entity in this space
-    // { type: 'tree', x: 0, y: 5 },
-    // { type: 'tree', x: 0, y: 6 },
-    // { type: 'tree', x: 0, y: 7 },
-    // // top wall
-    // { type: 'tree', x: 0, y: 0 },
-    // { type: 'tree', x: 1, y: 0 },
-    // { type: 'tree', x: 2, y: 0 },
-    // { type: 'tree', x: 3, y: 0 },
-    // { type: 'tree', x: 4, y: 0 },
-    // // right wall
-    // { type: 'tree', x: 16, y: 0 },
-    // { type: 'tree', x: 17, y: 0 },
-    // { type: 'tree', x: 17, y: 1 },
-    // { type: 'tree', x: 17, y: 2 },
-
-
-    // //
-    // { type: 'tree', x: 5, y: 4 },
-    // { type: 'tree', x: 5, y: 8 },
-    // { type: 'tree', x: 10, y: 6 },
-]
+export const doodads = [];
 
 function createEntity(name = 'unnamed_entity', x = 0, y = 0, facing = 'down', range = 5, texture = 'spriteDefault') {
     const entity = {
