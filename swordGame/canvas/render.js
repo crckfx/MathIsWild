@@ -32,37 +32,34 @@ export const CAMERA_CELLS_X = 11;
 export const CAMERA_CELLS_Y = 9;
 export const CAMERA_PADDING = 2;
 
-export let isAnimating = false;  // Control flag to check if we should animate
-const targetDuration = 0.2;  // Time in seconds to catch up to camera
+export let isAnimating = false;  
+const targetDuration = 0.2;  
 
 function updateRenderCamera() {
     const distanceX = camera.x - renderCamera.x;
     const distanceY = camera.y - renderCamera.y;
 
-    // Calculate the speed to move per frame along each axis
-    const speedX = Math.abs(distanceX) / (targetDuration * 60); // targetDuration is in seconds, assuming 60 FPS
-    const speedY = Math.abs(distanceY) / (targetDuration * 60); // Same for Y axis
+    const speedX = Math.abs(distanceX) / (targetDuration * 60); 
+    const speedY = Math.abs(distanceY) / (targetDuration * 60); 
 
-    // Move renderCamera toward the camera position along the X axis
     if (Math.abs(distanceX) > 0.1) {
         renderCamera.x += Math.sign(distanceX) * speedX;
     }
 
-    // Move renderCamera toward the camera position along the Y axis
     if (Math.abs(distanceY) > 0.1) {
         renderCamera.y += Math.sign(distanceY) * speedY;
     }
 
-    // Check if renderCamera has reached the target
+    // check if renderCamera has reached its target
     if (Math.abs(renderCamera.x - camera.x) < 0.1 && Math.abs(renderCamera.y - camera.y) < 0.1) {
-        renderCamera.x = camera.x;  // Ensure renderCamera is exactly aligned
+        renderCamera.x = camera.x;  
         renderCamera.y = camera.y;
         console.log("Render Camera has caught up to Game Camera.");
 
-        // Stop animation by disabling the flag
         playerDrawCount = (playerDrawCount + 1) % playerDrawCycle;
 
         isAnimating = false;
+        // // here is where we WOULD rerun it for 'hold down', although previous attempts caused speed to accumulate
         // if (current_dpad_dir !== null) {
         //     do_a_tick();
         // }
@@ -72,15 +69,15 @@ function updateRenderCamera() {
 
 function animate() {
     if (isAnimating) {
-        updateRenderCamera(); // Update render camera position
-        requestAnimationFrame(animate); // Continue animation loop only if animating
+        updateRenderCamera(); 
+        requestAnimationFrame(animate); 
     }
 }
 
 export function startRenderCameraAnimation() {
     if (!isAnimating) {
-        isAnimating = true; // Start the animation
-        requestAnimationFrame(animate); // Start the animation loop
+        isAnimating = true; 
+        requestAnimationFrame(animate); 
     }
 }
 
