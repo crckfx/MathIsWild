@@ -1,5 +1,5 @@
 import { current_dpad_dir, HtmlControls } from "./controls.js";
-import { draw } from "./render.js";
+import { draw, camera, isAnimating } from "./render.js";
 import { getSpriteIndex, images, textures } from "./sprite.js";
 
 export const block_positon = {
@@ -64,28 +64,6 @@ function createGameGrid(cellsX, cellsY) {
 
 
 
-    // for (let i = 0; i < doodads.length; i++) {
-    //     const d = doodads[i];
-    //     if (d.type === 'tree') {
-    //         // game_grid[d.x][d.y] = 'tree';
-    //         if (d.x > -1 && d.x < NUM_GRID_X && d.y > -1 && d.y < NUM_GRID_Y) {
-    //             game_grid[d.x][d.y].occupying = 'tree';
-    //         }
-    //     }
-    // }
-
-    // for (const key in entities) {
-    //     const e = entities[key];
-    //     const x = e.position.x;
-    //     const y = e.position.y;
-    //     if (x > -1 && x < NUM_GRID_X && y > -1 && y < NUM_GRID_Y) {
-    //         game_grid[x][y].occupying = e.name;
-    //     }
-
-    // }
-    // game_grid[8][1] = 'gary';
-    // game_grid[9][1] = 'harold';
-    // game_grid[10][5] = 'fred';
 
     return game_grid;
 }
@@ -96,30 +74,33 @@ export const game_grid = createGameGrid(NUM_GRID_X, NUM_GRID_Y);
 
 
 export function do_a_tick() {
-    if (current_dpad_dir !== null) {
+    let moved = false;
+    if (current_dpad_dir !== null && isAnimating === false) {
         switch (current_dpad_dir) {
             case 'left':
-                move_block_position_x(-1);
+                moved = move_block_position_x(-1);
                 break;
             case 'right':
-                move_block_position_x(1);
+                moved = move_block_position_x(1);
                 break;
             case 'up':
-                move_block_position_y(-1);
+                moved = move_block_position_y(-1);
                 // player.position.y -= 1;
                 break;
             case 'down':
                 // player.position.y += 1;
-                move_block_position_y(1);
+                moved = move_block_position_y(1);
                 break;
             default:
                 console.log(`game: tick with no dpad dir!`);
         }
+        draw(moved);
     }
 }
 
 
 function move_block_position_x(offset) {
+    let moved = false;
     const newPos = player.position.x + offset;
     (newPos > player.position.x) ? player.isFacing = 'right' : player.isFacing = 'left';
     game_grid[player.position.x][player.position.y].occupying = null;
@@ -129,15 +110,19 @@ function move_block_position_x(offset) {
         if (!cell_is_occupied(game_grid[newPos][player.position.y])) {
             player.position.x = newPos;                                   // set guy's new x position
             check_all_lines_of_sight();
+            moved = true;
+            // camera.x += offset;
         } else {
             console.log(`cell occupied at [${newPos}][${player.position.y}] - ${game_grid[newPos][player.position.y].occupying}`);
         }
     }
     game_grid[player.position.x][player.position.y].occupying = 'lachie';
-    draw();
+    // draw(moved);
+    return moved;
 }
 
 function move_block_position_y(offset) {
+    let moved = false;
     const newPos = player.position.y + offset;
 
     (newPos > player.position.y) ? player.isFacing = 'down' : player.isFacing = 'up';
@@ -145,13 +130,16 @@ function move_block_position_y(offset) {
     if (position_is_in_bounds(newPos, 0, NUM_GRID_Y - 1)) {             // catch out of bounds
         if (!cell_is_occupied(game_grid[player.position.x][newPos])) {    // catch collisions
             player.position.y = newPos;                                   // update position if no obstacles found
+            moved = true;
+            // camera.y += offset;
             check_all_lines_of_sight();
         } else {
             console.log(`cell occupied at [${player.position.x}][${newPos}] - ${game_grid[player.position.x][newPos].occupying}`);
         }
     }
     game_grid[player.position.x][player.position.y].occupying = 'lachie';
-    draw();
+    // draw(moved);
+    return moved;
 }
 
 function check_all_lines_of_sight() {

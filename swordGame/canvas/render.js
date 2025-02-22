@@ -1,6 +1,7 @@
+import { current_dpad_dir, fire_control_event } from "./controls.js";
 import { canvas, ctx, cell_size, cellSelector } from "./document.js";
 
-import { game_grid, block_positon, entities, player, doodads, NUM_GRID_X, NUM_GRID_Y } from "./game.js";
+import { game_grid, block_positon, entities, player, doodads, NUM_GRID_X, NUM_GRID_Y, do_a_tick } from "./game.js";
 
 import { images, textures, getSpriteIndex } from "./sprite.js";
 
@@ -14,53 +15,25 @@ export const renderCamera = {
     x: 0,
     y: 0
 };
-let isAnimating = false;  // Control flag to check if we should animate
-const targetDuration = 0.2;  // Time in seconds to catch up to camera
 
 // KEEPING TRACK OF THE TEXTURE SHIFTING?
 const drawCycleCount = 3;
 let drawCount = 0;
+
+const playerDrawCycle = 4;
+let playerDrawCount = 0;
+
 function increment_draw_count() {
     drawCount = (drawCount + 1) % drawCycleCount;
 }
 
 
-export const CAMERA_CELLS_X = 12;
+export const CAMERA_CELLS_X = 11;
 export const CAMERA_CELLS_Y = 9;
 export const CAMERA_PADDING = 2;
 
-export function moveCamera(pos) {
-    if (pos.x > camera.x + CAMERA_CELLS_X - 1 - CAMERA_PADDING) {
-        if (camera.x + CAMERA_CELLS_X < NUM_GRID_X) {
-            camera.x += 1;
-            // console.log('camera to the right!?');
-            return true;
-        }
-    } else if (pos.x < camera.x + CAMERA_PADDING) {
-        if (camera.x > 0) {
-            camera.x -= 1;
-            // console.log('camera to the left!?');
-            return true;
-        }
-    }
-
-    if (pos.y > camera.y + CAMERA_CELLS_Y - 1 - CAMERA_PADDING) {
-        if (camera.y + CAMERA_CELLS_Y < NUM_GRID_Y) {
-            camera.y += 1;
-            // console.log('camera to the down!?');
-            return true;
-        }
-    } else if (pos.y < camera.y + CAMERA_PADDING) {
-        if (camera.y > 0) {
-            camera.y -= 1;
-            // console.log('camera to the up!?');
-            return true;
-        }
-    }
-
-    return false;
-}
-
+export let isAnimating = false;  // Control flag to check if we should animate
+const targetDuration = 0.2;  // Time in seconds to catch up to camera
 
 function updateRenderCamera() {
     const distanceX = camera.x - renderCamera.x;
@@ -87,7 +60,12 @@ function updateRenderCamera() {
         console.log("Render Camera has caught up to Game Camera.");
 
         // Stop animation by disabling the flag
+        playerDrawCount = (playerDrawCount + 1) % playerDrawCycle;
+
         isAnimating = false;
+        // if (current_dpad_dir !== null) {
+        //     do_a_tick();
+        // }
     }
     render_entire_grid();
 }
@@ -102,23 +80,48 @@ function animate() {
 export function startRenderCameraAnimation() {
     if (!isAnimating) {
         isAnimating = true; // Start the animation
-        animate(); // Start the animation loop
+        requestAnimationFrame(animate); // Start the animation loop
     }
 }
 
 // DRAWING THE CANVAS
-export function draw() {
+export function draw(moved = false) {
     increment_draw_count();
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx.imageSmoothingEnabled = false;
-    if (moveCamera(player.position)) {
-        startRenderCameraAnimation();
-    } else {
+    if (moved) {
+        playerDrawCount = (playerDrawCount + 1) % playerDrawCycle;
+        switch(player.isFacing) {
+            case 'left':
+                camera.x--;
+                startRenderCameraAnimation();
+                break;
+            case 'right':
+                camera.x++;
+                startRenderCameraAnimation();
+                break;
+            case 'up':
+                camera.y--;
+                startRenderCameraAnimation();
+                break;
+            case 'down':
+                camera.y++;
+                startRenderCameraAnimation();
+                break;
+            
+                
+        }
+        // console.log('player draw count is ', playerDrawCount);
+        // accept a direction? player has moved, camera has not
+        
+    }
+    // if (moveCamera(player.position)) {
+    // } 
+    else {
         render_entire_grid();
     }
 
-    // moveCamera(player.position);
-    // render_entire_grid();
+
 
 }
 
@@ -145,11 +148,11 @@ export function render_entire_grid() {
 
 // function to check 
 function isInCameraRange(cell) {
-    return !(
-        cell.x < camera.x ||
-        cell.y < camera.y ||
-        cell.x > camera.x + CAMERA_CELLS_X - 1 ||
-        cell.y > camera.y + CAMERA_CELLS_Y - 1
+    return (
+        cell.x > camera.x -1 ||
+        cell.y > camera.y -1 ||
+        cell.x < camera.x + CAMERA_CELLS_X ||
+        cell.y < camera.y + CAMERA_CELLS_Y
     );
 }
 
@@ -157,7 +160,7 @@ function isInCameraRange(cell) {
 function drawPlayer() {
     let index = getSpriteIndex(player.isFacing);
     
-    if (isAnimating) index ++; // use a running index if animating. todo: improve me
+    if (isAnimating) index += playerDrawCount; // use a running index if animating. todo: improve me
 
     // do not shift the player; shift the floor? 
     // because both camera and player update their position instantly, we keep the player still when the camera moves
@@ -205,8 +208,10 @@ function drawFloors() {
             const cellX = i + camera.x;
             const cellY = j + camera.y;
             
+            
             // Skip out-of-bounds cells
             if (cellX < 0 || cellX >= NUM_GRID_X || cellY < 0 || cellY >= NUM_GRID_Y) {
+                drawFillCell('black',cellX - renderCamera.x, cellY - renderCamera.y);  // for the draw, still offset using the renderCam
                 continue;
             }
 

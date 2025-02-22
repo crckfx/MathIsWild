@@ -1,5 +1,5 @@
 import { canvas, getHtmlControls, cell_size, panelCenter, resize } from "./document.js";
-import { draw } from "./render.js";
+import { camera, CAMERA_CELLS_X, CAMERA_CELLS_Y, draw, renderCamera } from "./render.js";
 
 import { HtmlControls, bindControls } from "./controls.js";
 import { do_a_tick, NUM_GRID_X, NUM_GRID_Y, game_grid, doodads, entities, player } from "./game.js";
@@ -46,6 +46,15 @@ async function dummy_init() {
         const parsedFloorMap = parseFloorMap(map_1.floor);
         applyFloorToGameGrid(game_grid, parsedFloorMap);
 
+        console.log(`you want to use ${player.name} to center ${camera.x}, ${camera.y}
+                    to coords ${player.position.x}, ${player.position.y}
+                    using ${(CAMERA_CELLS_X-1)/2}, ${ (CAMERA_CELLS_Y-1)/2} for middles
+                    and ${player.position.x - ((CAMERA_CELLS_X-1)/2)} and ${player.position.y - ((CAMERA_CELLS_Y-1)/2)}
+            `);
+        camera.x = -1;
+        camera.y = -1;
+        renderCamera.x = -1;
+        renderCamera.y = -1;
         // assign pointer and keyboard listeners
         bindControls();
         // watch for resize on the canvas container

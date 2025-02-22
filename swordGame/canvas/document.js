@@ -13,7 +13,7 @@ export const cellSelector = document.getElementById('cellSelector');
 
 export const cell_size = getCellSize();
 // declarations
-const ASPECT_RATIO = 4 / 3;
+const ASPECT_RATIO = 11 / 9;
 const PADDING = 24;
 const MAX_SIZE = {
     x: 1600,
