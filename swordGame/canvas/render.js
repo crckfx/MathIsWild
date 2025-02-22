@@ -15,7 +15,7 @@ export const renderCamera = {
     y: 0
 };
 let isAnimating = false;  // Control flag to check if we should animate
-const targetDuration = 0.5;  // Time in seconds to catch up to camera
+const targetDuration = 0.2;  // Time in seconds to catch up to camera
 
 // KEEPING TRACK OF THE TEXTURE SHIFTING?
 const drawCycleCount = 3;
@@ -133,13 +133,13 @@ export function render_entire_grid() {
         if (isInCameraRange(doodads[i]))
             drawDoodad(doodads[i]);
     }    
-    // draw player
-    drawPlayer();
     // draw entities
     for (const key in entities) {
         if (isInCameraRange(entities[key].position))
             drawEntity(entities[key]);
     }
+    // draw player
+    drawPlayer();
 
 }
 
@@ -155,10 +155,16 @@ function isInCameraRange(cell) {
 
 
 function drawPlayer() {
+    let index = getSpriteIndex(player.isFacing);
+    
+    if (isAnimating) index ++; // use a running index if animating. todo: improve me
+
+    // do not shift the player; shift the floor? 
+    // because both camera and player update their position instantly, we keep the player still when the camera moves
     ctx.drawImage(
-        textures.spriteDefault[getSpriteIndex(player.isFacing)],
-        cell_size.x * (player.position.x - camera.x),
-        cell_size.y * (player.position.y - camera.y),
+        textures.spriteDefault[index],
+        cell_size.x * (player.position.x - camera.x), 
+        cell_size.y * (player.position.y - camera.y), 
         cell_size.x, cell_size.y
     );
 }
@@ -192,24 +198,29 @@ function drawDoodad(doodad) {
 
 
 function drawFloors() {
-    for (let i = 0; i < CAMERA_CELLS_X; i++) {
-        for (let j = 0; j < CAMERA_CELLS_Y; j++) {
-            const cell = game_grid[i + camera.x][j + camera.y];
+    for (let i = -1; i < CAMERA_CELLS_X + 1; i++) {
+        for (let j = -1; j < CAMERA_CELLS_Y + 1; j++) {
+
+
+            const cellX = i + camera.x;
+            const cellY = j + camera.y;
+            
+            // Skip out-of-bounds cells
+            if (cellX < 0 || cellX >= NUM_GRID_X || cellY < 0 || cellY >= NUM_GRID_Y) {
+                continue;
+            }
+
+            const cell = game_grid[cellX][cellY];
             switch (cell.floor) {
                 case 'road':
                 case 'grass':
                 case 'grass2':
                 case 'dirt':
                 case 'sand':
-                    // drawMiscCell(textures[cell.floor], i, j);
-                    // if (textures[cell.floor] === undefined) {
-                    //     // console.log(cell.floor);
-                    // }
-                    drawMiscCell(textures[cell.floor], i + camera.x - renderCamera.x, j + camera.y - renderCamera.y);
-                    // console.log(textures[cell.floor]);
+                    drawMiscCell(textures[cell.floor], cellX - renderCamera.x, cellY - renderCamera.y);
                     break;
                 case 'water':
-                    drawMiscCell(textures[cell.floor][drawCount], i + camera.x - renderCamera.x, j + camera.y - renderCamera.y);
+                    drawMiscCell(textures[cell.floor][drawCount], cellX - renderCamera.x, cellY - renderCamera.y);
                     break;
             }
         }
