@@ -33,14 +33,15 @@ export const CAMERA_CELLS_Y = 9;
 export const CAMERA_PADDING = 2;
 
 export let isAnimating = false;  
-const targetDuration = 0.2;  
 
-function updateRenderCamera() {
+function updateRenderCamera(dt) {
+    // console.log('dt is: ', dt)
+    elapsed += dt;
     const distanceX = camera.x - renderCamera.x;
     const distanceY = camera.y - renderCamera.y;
 
-    const speedX = Math.abs(distanceX) / (targetDuration * 60); 
-    const speedY = Math.abs(distanceY) / (targetDuration * 60); 
+    const speedX = 0.005 * dt; 
+    const speedY = 0.005 * dt; 
 
     if (Math.abs(distanceX) > 0.1) {
         renderCamera.x += Math.sign(distanceX) * speedX;
@@ -51,7 +52,7 @@ function updateRenderCamera() {
     }
 
     // check if renderCamera has reached its target
-    if (Math.abs(renderCamera.x - camera.x) < 0.1 && Math.abs(renderCamera.y - camera.y) < 0.1) {
+    if (Math.abs(renderCamera.x - camera.x) <= 0.1 && Math.abs(renderCamera.y - camera.y) <= 0.1) {
         renderCamera.x = camera.x;  
         renderCamera.y = camera.y;
         console.log("Render Camera has caught up to Game Camera.");
@@ -59,25 +60,36 @@ function updateRenderCamera() {
         playerDrawCount = (playerDrawCount + 1) % playerDrawCycle;
 
         isAnimating = false;
+        console.log('elapsed is', elapsed);
+        // elapsed = 0;
         // // here is where we WOULD rerun it for 'hold down', although previous attempts caused speed to accumulate
-        // if (current_dpad_dir !== null) {
-        //     do_a_tick();
-        // }
+        // // update: speed accumulation seems fixed - the approach below worked and felt the same on both 60 and 144 
+        if (current_dpad_dir !== null) {
+            console.log('retrigger?');
+            setTimeout(do_a_tick, 100); // if 100 ms after the last frame is found, the control is down, we do a rollover "hold" tick
+        }
     }
-    render_entire_grid();
+    
 }
 
-function animate() {
+let then = 0;
+function animate(now) {
     if (isAnimating) {
-        updateRenderCamera(); 
+        let deltaTime = now - then;
+        then = now;
+        updateRenderCamera(deltaTime); 
+        render_entire_grid();
         requestAnimationFrame(animate); 
-    }
+    } 
 }
-
+let elapsed = 0;
 export function startRenderCameraAnimation() {
     if (!isAnimating) {
+        console.log('starting animation');
         isAnimating = true; 
-        requestAnimationFrame(animate); 
+        then = performance.now(); // always set to the last performance then loop on that
+        elapsed = 0;
+        animate(0); 
     }
 }
 
