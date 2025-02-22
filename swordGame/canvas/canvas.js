@@ -2,8 +2,9 @@ import { canvas, getHtmlControls, cell_size, panelCenter, resize } from "./docum
 import { draw } from "./render.js";
 
 import { HtmlControls, bindControls } from "./controls.js";
-import { do_a_tick, NUM_GRID_X, NUM_GRID_Y } from "./game.js";
+import { do_a_tick, NUM_GRID_X, NUM_GRID_Y, game_grid, doodads, entities, player } from "./game.js";
 import { extractSprites, images, textures, loadImage, extract_single_sprite } from "./sprite.js";
+import { map_1, parseFloorMap, parseOccupantMap, applyFloorToGameGrid, applyOccupantsToGameGrid } from "./map.js";
 
 async function dummy_init() {
     try {
@@ -38,6 +39,13 @@ async function dummy_init() {
         ];
         textures.sand = await extract_single_sprite(images.manyTextures, 1, 6);
 
+
+        // do the map!
+        const parsedOccupantMap = parseOccupantMap(map_1.occupants);
+        applyOccupantsToGameGrid(game_grid, parsedOccupantMap);
+        const parsedFloorMap = parseFloorMap(map_1.floor);
+        applyFloorToGameGrid(game_grid, parsedFloorMap);
+
         // assign pointer and keyboard listeners
         bindControls();
         // watch for resize on the canvas container
@@ -52,3 +60,6 @@ async function dummy_init() {
 window.onload = () => {
     dummy_init();
 }
+
+
+
