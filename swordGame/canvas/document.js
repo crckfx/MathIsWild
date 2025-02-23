@@ -20,18 +20,14 @@ const MAX_SIZE = {
     y: 1350
 };
 
-
-panelLeft.addEventListener("contextmenu", (event) => {
-    event.preventDefault();
-});
-panelRight.addEventListener("contextmenu", (event) => {
-    event.preventDefault();
-});
+// prevent right clicks on the controller panels
+panelLeft.addEventListener("contextmenu", (event) => { event.preventDefault(); });
+panelRight.addEventListener("contextmenu", (event) => { event.preventDefault(); });
 const controlBoxes = {
     left: panelLeft.querySelector('.ctrlblock'),
     right: panelRight.querySelector('.ctrlblock'),
 }
-// console.log(controlBoxes);
+// prevent right clicks on the dpad and buttons
 for (const key in controlBoxes) {
     console.log(key);
     // disable right-click

@@ -1,10 +1,10 @@
 import { canvas, getHtmlControls, cell_size, panelCenter, resize } from "./document.js";
-import { camera, CAMERA_CELLS_X, CAMERA_CELLS_Y, draw, renderCamera, getMapBackground } from "./render.js";
+import { camera, CAMERA_CELLS_X, CAMERA_CELLS_Y, draw, renderCamera } from "./render.js";
 
 import { HtmlControls, bindControls } from "./controls.js";
 import { do_a_tick, NUM_GRID_X, NUM_GRID_Y, game_grid, doodads, entities, player } from "./game.js";
 import { extractSprites, images, textures, loadImage, extract_single_sprite } from "./sprite.js";
-import { map_1, parseFloorMap, parseOccupantMap, applyFloorToGameGrid, applyOccupantsToGameGrid } from "./map.js";
+import { map_1, parseFloorMap, parseOccupantMap, applyFloorToGameGrid, applyOccupantsToGameGrid, getMapBackground, getMapOccupants } from "./map.js";
 
 async function dummy_init() {
     try {
@@ -35,6 +35,7 @@ async function dummy_init() {
             await extract_single_sprite(images.manyTextures, 11, 8),
             await extract_single_sprite(images.manyTextures, 12, 8),
             await extract_single_sprite(images.manyTextures, 13, 8),
+            await extract_single_sprite(images.manyTextures, 12, 8),
 
         ];
         textures.sand = await extract_single_sprite(images.manyTextures, 1, 6);
@@ -45,14 +46,24 @@ async function dummy_init() {
         applyOccupantsToGameGrid(game_grid, parsedOccupantMap);
         const parsedFloorMap = parseFloorMap(map_1.floor);
         applyFloorToGameGrid(game_grid, parsedFloorMap);
-        const mapCanvas = await getMapBackground();
+        const mapCanvas = await getMapBackground(game_grid);
         images.gameMap = mapCanvas;
+        
+        const mapOccupantCanvases = [
+            await getMapOccupants(game_grid, 0),
+            await getMapOccupants(game_grid, 1),
+            await getMapOccupants(game_grid, 2),
+            await getMapOccupants(game_grid, 1),
+        ];
+
+        textures.gameOccupants = mapOccupantCanvases;
 
         
         // var link = document.createElement('a');
-        // link.download = 'filename.png';
-        // link.href = mapCanvas.toDataURL()
+        // link.download = 'filename_0.png';
+        // link.href = mapOccupantCanvases[0].toDataURL();
         // link.click();
+        
 
         // console.log(`you want to use ${player.name} to center ${camera.x}, ${camera.y}
         //             to coords ${player.position.x}, ${player.position.y}

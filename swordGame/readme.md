@@ -7,4 +7,5 @@
     - [x] use controls to move a guy on a grid
     - [x] use a 'tree' to block movement
     - [x] make a guy face a direction
-    - [ ] use bitmaps for texture? / draw an image without scaling blur
+    - [x] draw an image without scaling blur
+    - [x] compute some textures and draw a single image

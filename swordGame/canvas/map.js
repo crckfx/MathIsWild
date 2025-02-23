@@ -23,7 +23,9 @@ export const occupantMap = {
     '2': 'george',
     '3': 'harold',
 };
-import { doodads, entities, player } from "./game.js";
+import { doodads, entities, player, NUM_GRID_X, NUM_GRID_Y } from "./game.js";
+import { FLOOR_CELL_PIXELS } from "./render.js";
+import { textures, images } from "./sprite.js";
 
 export const map_1 = {
     floor:
@@ -168,4 +170,101 @@ export function applyOccupantsToGameGrid(game_grid, parsedOccupantMap) {
             }
         }
     }
+}
+
+
+
+export async function getMapBackground(game_grid) {
+    // get the pixel sizes for the map
+    const mapWidthPx = FLOOR_CELL_PIXELS * NUM_GRID_X;
+    const mapHeightPx = FLOOR_CELL_PIXELS * NUM_GRID_Y;
+    // Create an offscreen canvas for each sprite
+    const mapCanvas = document.createElement('canvas');
+    mapCanvas.width = mapWidthPx;
+    mapCanvas.height = mapHeightPx;
+    const mapCtx = mapCanvas.getContext('2d');
+    mapCtx.imageSmoothingEnabled = false;
+
+    // loop over the entire game grid
+    for (let i = 0; i < NUM_GRID_X; i++) {
+        for (let j = 0; j < NUM_GRID_Y; j++) {
+            const cell = game_grid[i][j];
+            switch (cell.floor) {
+                case 'road':
+                case 'grass':
+                case 'grass2':
+                case 'dirt':
+                case 'sand':
+                    mapCtx.drawImage(
+                        textures[cell.floor],
+                        FLOOR_CELL_PIXELS * (i),
+                        FLOOR_CELL_PIXELS * (j),
+                        FLOOR_CELL_PIXELS,
+                        FLOOR_CELL_PIXELS,
+                        // 0, 0, cell_size.x, cell_size.y    // Draw full size to the offscreen canvas
+
+                    );
+                    break;
+                case 'water':
+                    mapCtx.fillStyle = 'blue';
+                    mapCtx.fillRect(
+                        FLOOR_CELL_PIXELS * (i),
+                        FLOOR_CELL_PIXELS * (j),
+                        FLOOR_CELL_PIXELS,
+                        FLOOR_CELL_PIXELS
+                    );
+                    break;
+            }
+        }
+    }
+    return mapCanvas;
+}
+
+
+export async function getMapOccupants(game_grid, stateIndex) {
+    // get the pixel sizes for the map
+    const mapWidthPx = FLOOR_CELL_PIXELS * NUM_GRID_X;
+    const mapHeightPx = FLOOR_CELL_PIXELS * NUM_GRID_Y;
+    // Create an offscreen canvas for each sprite
+    const mapCanvas = document.createElement('canvas');
+    mapCanvas.width = mapWidthPx;
+    mapCanvas.height = mapHeightPx;
+    const mapCtx = mapCanvas.getContext('2d');
+    mapCtx.imageSmoothingEnabled = false;
+
+
+
+    // loop over the entire game grid
+    for (let i = 0; i < NUM_GRID_X; i++) {
+        for (let j = 0; j < NUM_GRID_Y; j++) {
+            const cell = game_grid[i][j];
+            switch (cell.occupant) {
+                case 'tree':
+                // case 'lachie':
+                // case 'lachie':
+                // case 'lachie':
+                // case 'lachie':
+                    mapCtx.drawImage(
+                        images.tree,
+                        FLOOR_CELL_PIXELS * (i),
+                        FLOOR_CELL_PIXELS * (j),
+                        FLOOR_CELL_PIXELS,
+                        FLOOR_CELL_PIXELS,
+
+                    );
+                    break;
+                case 'water':
+                    mapCtx.drawImage(
+                        textures.water[stateIndex],
+                        FLOOR_CELL_PIXELS * (i),
+                        FLOOR_CELL_PIXELS * (j),
+                        FLOOR_CELL_PIXELS,
+                        FLOOR_CELL_PIXELS,
+
+                    );
+                    break;
+            }
+        }
+    }
+    return mapCanvas;
 }
