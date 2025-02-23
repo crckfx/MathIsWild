@@ -54,12 +54,12 @@ function createGameGrid(cellsX, cellsY) {
         for (let j = 0; j < NUM_GRID_Y; j++) {
             game_grid[i][j] = {
                 floor: null,
-                occupying: null,
+                occupant: null,
             }
 
         }
     }
-    // game_grid[1][1].occupying = 'lachie';
+    // game_grid[1][1].occupant = 'lachie';
 
 
 
@@ -103,7 +103,7 @@ function move_block_position_x(offset) {
     let moved = false;
     const newPos = player.position.x + offset;
     (newPos > player.position.x) ? player.isFacing = 'right' : player.isFacing = 'left';
-    game_grid[player.position.x][player.position.y].occupying = null;
+    game_grid[player.position.x][player.position.y].occupant = null;
     // catch out of bounds
     if (position_is_in_bounds(newPos, 0, NUM_GRID_X - 1)) {
 
@@ -113,10 +113,10 @@ function move_block_position_x(offset) {
             moved = true;
             // camera.x += offset;
         } else {
-            console.log(`cell occupied at [${newPos}][${player.position.y}] - ${game_grid[newPos][player.position.y].occupying}`);
+            console.log(`cell occupied at [${newPos}][${player.position.y}] - ${game_grid[newPos][player.position.y].occupant}`);
         }
     }
-    game_grid[player.position.x][player.position.y].occupying = 'lachie';
+    game_grid[player.position.x][player.position.y].occupant = 'lachie';
     // draw(moved);
     return moved;
 }
@@ -126,7 +126,7 @@ function move_block_position_y(offset) {
     const newPos = player.position.y + offset;
 
     (newPos > player.position.y) ? player.isFacing = 'down' : player.isFacing = 'up';
-    game_grid[player.position.x][player.position.y].occupying = null;
+    game_grid[player.position.x][player.position.y].occupant = null;
     if (position_is_in_bounds(newPos, 0, NUM_GRID_Y - 1)) {             // catch out of bounds
         if (!cell_is_occupied(game_grid[player.position.x][newPos])) {    // catch collisions
             player.position.y = newPos;                                   // update position if no obstacles found
@@ -134,10 +134,10 @@ function move_block_position_y(offset) {
             // camera.y += offset;
             check_all_lines_of_sight();
         } else {
-            console.log(`cell occupied at [${player.position.x}][${newPos}] - ${game_grid[player.position.x][newPos].occupying}`);
+            console.log(`cell occupied at [${player.position.x}][${newPos}] - ${game_grid[player.position.x][newPos].occupant}`);
         }
     }
-    game_grid[player.position.x][player.position.y].occupying = 'lachie';
+    game_grid[player.position.x][player.position.y].occupant = 'lachie';
     // draw(moved);
     return moved;
 }
@@ -157,7 +157,7 @@ function position_is_in_bounds(pos, min, max) {
 
 function cell_is_occupied(cell) {
     // console.log(`cell is ${cell}`);
-    if (cell.occupying !== null) return true;
+    if (cell.occupant !== null) return true;
     // if (cell === 'tree') return true;  // deny move though 'trees'
     // if (cell === 'gary') return true;  // deny move though 'skellington'
     // if (cell === 'harold') return true;  // deny move though 'skellington'

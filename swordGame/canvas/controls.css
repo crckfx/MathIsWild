@@ -1,8 +1,15 @@
+/* panel */
+.panel.control {
+    touch-action: none;
+}
+
 /* controls block (currently used for quadrant layout) */
 .ctrlblock {
     width: 100px;
     height: 100px;
     position: relative;
+    touch-action: none;
+
 }
 
 .ctrlblock svg {

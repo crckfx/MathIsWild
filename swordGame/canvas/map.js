@@ -1,3 +1,28 @@
+// map.js 
+// handles loading of map from text string. 
+// it seems cool to store a map as a text file. here, we don't fetch a text file or anything - we just store it as a text string.
+
+// 
+// define floor signifiers
+export const tileMap = {
+    'g': 'grass',
+    'G': 'grass2',
+    'd': 'dirt',
+    'r': 'road',
+    's': 'sand',
+    'w': 'water',
+};
+// define occupant signifiers
+export const occupantMap = {
+    'T': 'tree',
+    'W': 'water',
+    'P': 'lachie',
+    '.': null,
+    '0': 'gary',
+    '1': 'fred',
+    '2': 'george',
+    '3': 'harold',
+};
 import { doodads, entities, player } from "./game.js";
 
 export const map_1 = {
@@ -58,27 +83,6 @@ export const map_1 = {
     }
 };
 
-// Mapping of characters to floor types
-export const tileMap = {
-    'g': 'grass',
-    'G': 'grass2',
-    'd': 'dirt',
-    'r': 'road',
-    's': 'sand',
-    'w': 'water',
-};
-export const occupantMap = {
-    'T': 'tree',
-    'W': 'water',
-    'P': 'lachie',
-    '.': null,
-    '0': 'gary',
-    '1': 'fred',
-    '2': 'george',
-    '3': 'harold',
-};
-
-
 // Decode the map into (x, y) positions
 export function parseFloorMap(mapString) {
     const rows = mapString.trim().split("\n");
@@ -103,7 +107,7 @@ export function applyFloorToGameGrid(game_grid, parsedFloorMap) {
             if (tile === 'water') {
                 // add doodad here?
                 const num = doodads.push({ type: 'water', x: x, y: y });
-                game_grid[x][y].occupying = doodads[num-1].type;
+                game_grid[x][y].occupant = doodads[num-1].type;
             }
         }
     }
@@ -133,28 +137,34 @@ export function applyOccupantsToGameGrid(game_grid, parsedOccupantMap) {
             if (type === 'lachie') {
                 const oldCell = game_grid[player.position.x][player.position.y];
                 const cell = game_grid[x][y];
-                if (oldCell.occupying === 'lachie') {
-                    oldCell.occupying = null;
+                if (oldCell.occupant === 'lachie') {
+                    oldCell.occupant = null;
                 }
                 player.position.x = x;
                 player.position.y = y;
-                cell.occupying = 'lachie';
+                cell.occupant = 'lachie';
             }
             if (type === 'gary' || type === 'fred' || type === 'george' || type === 'harold') {
-                console.log('GOT an entity BACK');
+                // console.log('GOT an entity BACK');
                 const e = entities[type];
                 // remove entity occupation from a previous cell
-                game_grid[e.position.x][e.position.y].occupying = null;
-                // set new position
-                e.position.x = x;
-                e.position.y = y;
-                game_grid[x][y].occupying = e.name;
+                const cell = game_grid[e.position.x][e.position.y];
+                if (cell.occupant !== null) {
+                    console.error(`something went WRONG applying ${e.name} to cell [${x}][${y}], it is already occupied by ${cell.occupant}`);
+                } else {
+
+                    game_grid[e.position.x][e.position.y].occupant = null;
+                    // set new position
+                    e.position.x = x;
+                    e.position.y = y;
+                    game_grid[x][y].occupant = e.name;
+                }
 
             } else if (type === 'tree') {
                 const num = doodads.push({ type: 'tree', x: x, y: y });
-                game_grid[x][y].occupying = doodads[num-1].type;
+                game_grid[x][y].occupant = doodads[num-1].type;
             } else {
-                game_grid[x][y].occupying = type;  // Apply floor type
+                game_grid[x][y].occupant = type;  // Apply floor type
             }
         }
     }

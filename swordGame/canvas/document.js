@@ -16,11 +16,30 @@ export const cell_size = getCellSize();
 const ASPECT_RATIO = 11 / 9;
 const PADDING = 24;
 const MAX_SIZE = {
-    x: 1600,
-    y: 1200
+    x: 1650,
+    y: 1350
 };
 
 
+panelLeft.addEventListener("contextmenu", (event) => {
+    event.preventDefault();
+});
+panelRight.addEventListener("contextmenu", (event) => {
+    event.preventDefault();
+});
+const controlBoxes = {
+    left: panelLeft.querySelector('.ctrlblock'),
+    right: panelRight.querySelector('.ctrlblock'),
+}
+// console.log(controlBoxes);
+for (const key in controlBoxes) {
+    console.log(key);
+    // disable right-click
+    controlBoxes[key].addEventListener("contextmenu", (event) => {
+        event.preventDefault();
+    });
+
+}
 
 
 
@@ -79,7 +98,7 @@ export function getHtmlControls() {
             Y: document.getElementById('control_Y'),
         },
     };
-    
+
     return HTMLcontrols;
 }
 

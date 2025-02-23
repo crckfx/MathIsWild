@@ -47,13 +47,12 @@ async function dummy_init() {
         applyFloorToGameGrid(game_grid, parsedFloorMap);
         const mapCanvas = await getMapBackground();
         images.gameMap = mapCanvas;
+
         
-        // // var download = function(){
         // var link = document.createElement('a');
         // link.download = 'filename.png';
         // link.href = mapCanvas.toDataURL()
         // link.click();
-        // //   }       
 
         // console.log(`you want to use ${player.name} to center ${camera.x}, ${camera.y}
         //             to coords ${player.position.x}, ${player.position.y}

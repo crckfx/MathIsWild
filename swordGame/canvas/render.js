@@ -31,6 +31,7 @@ function increment_draw_count() {
 export const CAMERA_CELLS_X = 11;
 export const CAMERA_CELLS_Y = 9;
 export const CAMERA_PADDING = 2;
+const speed = 0.005;
 
 export let isAnimating = false;
 
@@ -40,15 +41,14 @@ function updateRenderCamera(dt) {
     const distanceX = camera.x - renderCamera.x;
     const distanceY = camera.y - renderCamera.y;
 
-    const speedX = 0.005 * dt;
-    const speedY = 0.005 * dt;
+    const dtSpeed = speed * dt;
 
     if (Math.abs(distanceX) > 0.1) {
-        renderCamera.x += Math.sign(distanceX) * speedX;
+        renderCamera.x += Math.sign(distanceX) * dtSpeed;
     }
 
     if (Math.abs(distanceY) > 0.1) {
-        renderCamera.y += Math.sign(distanceY) * speedY;
+        renderCamera.y += Math.sign(distanceY) * dtSpeed;
     }
 
     // check if renderCamera has reached its target
@@ -66,7 +66,7 @@ function updateRenderCamera(dt) {
         // // update: speed accumulation seems fixed - the approach below worked and felt the same on both 60 and 144 
         if (current_dpad_dir !== null) {
             console.log('retrigger?');
-            setTimeout(do_a_tick, 50); // if some number of ms after the last frame is found, the control is down, we do a rollover "hold" tick
+            setTimeout(do_a_tick, 70); // if some number of ms after the last frame is found, the control is down, we do a rollover "hold" tick
         }
     }
 
@@ -131,14 +131,11 @@ export function draw(moved = false) {
 
 export function render_entire_grid() {
     ctx.fillStyle = 'black';
-    ctx.fillRect(0, 0, canvas.width, canvas.height);    
-    // draw floors
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    // draw floors - uses an image now :)
     drawFloors();
-    // draw doodads
-    for (let i = 0; i < doodads.length; i++) {
-        if (isInCameraRange(doodads[i]))
-            drawDoodad(doodads[i]);
-    }
+    // draw occupants - currently only does doodads
+    drawOccupants();
     // draw entities
     for (const key in entities) {
         if (isInCameraRange(entities[key].position))
@@ -184,7 +181,10 @@ export function drawEntity(entity) {
         cell_size.y
     );
     if (entity.hasAlert) {
-        drawBorder(entity.position.x - renderCamera.x, entity.position.y - renderCamera.y, "red");
+        if (!isAnimating) {
+            drawBorder(entity.position.x - renderCamera.x, entity.position.y - renderCamera.y, "red");
+
+        }
     }
 
 }
@@ -204,9 +204,6 @@ function drawDoodad(doodad) {
 
 
 function drawFloors() {
-    // ctx.fillStyle = 'black';
-    // ctx.fillRect(0, 0, canvas.width, canvas.height);
-
 
     const sourceX = camera.x * FLOOR_CELL_PIXELS - FLOOR_CELL_PIXELS;
     const sourceY = camera.y * FLOOR_CELL_PIXELS - FLOOR_CELL_PIXELS;
@@ -222,36 +219,37 @@ function drawFloors() {
     // Draw the floor background slice
     ctx.drawImage(images.gameMap, sourceX, sourceY, sourceWidth, sourceHeight, destX, destY, destWidth, destHeight);
 
-    // // everything from here SHOULD theoretically get removed, and replaced with a "draw a rect slice of the background image, scaled up"
-    // for (let i = -1; i < CAMERA_CELLS_X + 1; i++) {
-    //     for (let j = -1; j < CAMERA_CELLS_Y + 1; j++) {
+}
 
+function drawOccupants() {
 
-    //         const cellX = i + camera.x;
-    //         const cellY = j + camera.y;
+    // everything from here SHOULD theoretically get removed, and replaced with a "draw a rect slice of the background image, scaled up"
+    for (let i = -1; i < CAMERA_CELLS_X + 1; i++) {
+        for (let j = -1; j < CAMERA_CELLS_Y + 1; j++) {
+            const cellX = i + camera.x;
+            const cellY = j + camera.y;
+            // Skip out-of-bounds cells, we draw the black insurance rect upstream now
+            if (cellX < 0 || cellX >= NUM_GRID_X || cellY < 0 || cellY >= NUM_GRID_Y) {
+                continue;
+            }
 
+            const cell = game_grid[cellX][cellY];
+            switch (cell.occupant) {
+                case 'tree':
+                    ctx.drawImage(
+                        images.tree,
+                        cell_size.x * (cellX - renderCamera.x),
+                        cell_size.y * (cellY - renderCamera.y),
+                        cell_size.x,
+                        cell_size.y
+                    );
+                    break;
 
-    //         // Skip out-of-bounds cells
-    //         if (cellX < 0 || cellX >= NUM_GRID_X || cellY < 0 || cellY >= NUM_GRID_Y) {
-    //             // drawFillCell('black', cellX - renderCamera.x, cellY - renderCamera.y);  // for the draw, still offset using the renderCam
-    //             continue;
-    //         }
-
-    //         const cell = game_grid[cellX][cellY];
-    //         switch (cell.floor) {
-    //             case 'road':
-    //             case 'grass':
-    //             case 'grass2':
-    //             case 'dirt':
-    //             case 'sand':
-    //                 drawMiscCell(textures[cell.floor], cellX - renderCamera.x, cellY - renderCamera.y);
-    //                 break;
-    //             case 'water':
-    //                 drawMiscCell(textures[cell.floor][drawCount], cellX - renderCamera.x, cellY - renderCamera.y);
-    //                 break;
-    //         }
-    //     }
-    // }
+                case 'water':
+                    drawMiscCell(textures['water'][drawCount], cellX - renderCamera.x, cellY - renderCamera.y);
+            }
+        }
+    }    
 }
 
 function drawMiscCell(image, x, y) {
